@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="GLORIS BEAUTY — премиальный салон красоты у м. XXX. Лазерная эпиляция, косметология, маникюр, парикмахерские услуги.">
+  <title>GLORIS BEAUTY — Салон красоты премиум-класса</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <script src="js/tailwind-config.js"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/clients-widget.css">
+</head>
+<body data-page="home">
+
+  <div class="site-container">
+
+    <header id="header" class="site-header top-nav">
+      <div class="top-nav-bar">
+        <div class="top-nav-start">
+          <a href="index.html" class="top-nav-logo">GLORIS BEAUTY</a>
+        </div>
+        <nav class="top-nav-center top-nav-menu" aria-label="Навигация">
+          <a href="index.html" data-page="home" class="top-nav-link nav-link">Главная</a>
+          <a href="services.html" data-page="services" class="top-nav-link nav-link">Услуги</a>
+          <a href="masters.html" data-page="masters" class="top-nav-link nav-link">Мастера</a>
+          <a href="works.html" data-page="works" class="top-nav-link nav-link">Наши работы</a>
+          <a href="promo.html" data-page="promo" class="top-nav-link nav-link">Акции</a>
+          <a href="contacts.html" data-page="contacts" class="top-nav-link nav-link">Контакты</a>
+        </nav>
+        <div class="top-nav-end top-nav-actions">
+          <div class="top-nav-contacts">
+            <a href="tel:+74950000000" class="top-nav-phone">+7 (495) XXX-XX-XX</a>
+            <div class="top-nav-social" aria-label="Соцсети">
+              <a href="#">VK</a>
+              <a href="#">Telegram</a>
+            </div>
+          </div>
+          <button type="button" class="top-nav-cta yc-widget-open">Записаться</button>
+        </div>
+        <button type="button" id="burger" class="top-nav-burger" aria-label="Открыть меню" aria-expanded="false" aria-controls="side-menu">
+          <span class="top-nav-burger__line" aria-hidden="true"></span>
+          <span class="top-nav-burger__line" aria-hidden="true"></span>
+        </button>
+      </div>
+    </header>
+
+    <div id="menu-overlay" class="menu-overlay" aria-hidden="true"></div>
+    <aside id="side-menu" class="side-menu" aria-label="Меню сайта">
+      <div class="side-menu-head">
+        <a href="index.html" class="side-menu-brand">GLORIS BEAUTY</a>
+        <button type="button" id="menu-close" class="menu-close" aria-label="Закрыть меню"><span aria-hidden="true"></span></button>
+      </div>
+      <ul class="side-menu-links">
+        <li><a href="index.html" data-page="home" class="side-nav-link nav-link">Главная <span class="menu-dot" aria-hidden="true"></span></a></li>
+        <li><a href="services.html" data-page="services" class="side-nav-link nav-link">Услуги <span class="menu-dot" aria-hidden="true"></span></a></li>
+        <li><a href="masters.html" data-page="masters" class="side-nav-link nav-link">Мастера <span class="menu-dot" aria-hidden="true"></span></a></li>
+        <li><a href="works.html" data-page="works" class="side-nav-link nav-link">Наши работы <span class="menu-dot" aria-hidden="true"></span></a></li>
+        <li><a href="promo.html" data-page="promo" class="side-nav-link nav-link">Акции <span class="menu-dot" aria-hidden="true"></span></a></li>
+        <li><a href="contacts.html" data-page="contacts" class="side-nav-link nav-link">Контакты <span class="menu-dot" aria-hidden="true"></span></a></li>
+      </ul>
+      <div class="side-menu-foot">
+        <a href="tel:+74950000000" class="side-menu-phone">+7 (495) XXX-XX-XX</a>
+        <div class="side-menu-social" aria-label="Соцсети">
+          <a href="#">VK</a>
+          <a href="#">Telegram</a>
+        </div>
+        <button type="button" class="side-menu-book yc-widget-open">Записаться</button>
+      </div>
+    </aside>
+
+    <main class="page-main">
+      <!-- HERO -->
+      <div class="home-first-screen">
+      <section class="main-content">
+        <div class="hero-image hero-text-animate">
+          <img src="images/hero-main.png" alt="Осенний маникюр с декором в GLORIS BEAUTY" width="1005" height="564" loading="eager" fetchpriority="high">
+        </div>
+        <div class="hero-text hero-text-animate delay-1">
+          <div class="hero-copy">
+            <h1 class="hero-heading">
+              <span class="hero-line">Новый уровень красоты,</span>
+              <span class="hero-line">одна безупречная история за другой.</span>
+            </h1>
+            <p class="hero-lead">
+              <span class="hero-line">Создайте образ, который вдохновляет:</span>
+              <span class="hero-line">подберём процедуры и сервис под вашу уникальность.</span>
+            </p>
+            <div class="hero-actions">
+              <button type="button" class="hero-book-btn lo-pill-btn yc-widget-open">Записаться</button>
+              <a href="services.html" class="explore-btn ds-btn lo-pill-btn">
+                Смотреть услуги
+                <span class="ds-btn__arrow" aria-hidden="true">→</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- MARQUEE -->
+      <div class="marquee" aria-hidden="true">
+        <div class="marquee-track">
+          <span class="marquee-group">АКЦИЯ №1: 6 140 → 5 390 ₽ &nbsp;✦&nbsp; АКЦИЯ №2: 5 140 → 3 990 ₽ &nbsp;✦&nbsp; ЭКОНОМИЯ ДО 1 940 ₽ &nbsp;✦&nbsp; GLORIS BEAUTY &nbsp;✦&nbsp;</span>
+          <span class="marquee-group" aria-hidden="true">АКЦИЯ №1: 6 140 → 5 390 ₽ &nbsp;✦&nbsp; АКЦИЯ №2: 5 140 → 3 990 ₽ &nbsp;✦&nbsp; ЭКОНОМИЯ ДО 1 940 ₽ &nbsp;✦&nbsp; GLORIS BEAUTY &nbsp;✦&nbsp;</span>
+        </div>
+      </div>
+      </div>
+
+      <!-- PROMO CARDS -->
+      <section class="promo-sections" aria-label="Специальные предложения">
+        <article class="promo-card green reveal">
+          <img src="images/epilation-legs.png" alt="Акция №1 — лазерная эпиляция ног" class="promo-image" loading="lazy">
+          <a href="services-medical.html?service=Ноги%20полностью%20%2B%20подмышки%20%2B%20бикини%20глубокое" class="promo-content" aria-label="Акция №1: Ноги полностью + подмышки + бикини глубокое — 5 390 ₽">
+            <span class="promo-badge-inline text-overline">Акция №1</span>
+            <div class="promo-price" aria-label="Цена: было 6 140 рублей, стало 5 390 рублей">
+              <span class="price-old">6 140 ₽</span>
+              <span class="price-arrow" aria-hidden="true">→</span>
+              <span class="price-new">5 390 ₽</span>
+            </div>
+            <span class="price-save">экономия 750 ₽</span>
+            <p class="promo-subtitle text-body">Ноги полностью + подмышки + бикини глубокое</p>
+          </a>
+        </article>
+        <article class="promo-card purple reveal">
+          <img src="images/epilation-underarm.png" alt="Акция №2 — лазерная эпиляция" class="promo-image" loading="lazy">
+          <a href="services-medical.html?service=Голени%20%2B%20подмышки%20%2B%20бикини%20глубокое" class="promo-content" aria-label="Акция №2: Голени + подмышки + бикини глубокое — 3 990 ₽">
+            <span class="promo-badge-inline text-overline">Акция №2</span>
+            <div class="promo-price" aria-label="Цена: было 5 140 рублей, стало 3 990 рублей">
+              <span class="price-old">5 140 ₽</span>
+              <span class="price-arrow" aria-hidden="true">→</span>
+              <span class="price-new">3 990 ₽</span>
+            </div>
+            <span class="price-save">экономия 1 150 ₽</span>
+            <p class="promo-subtitle text-body">Голени + подмышки + бикини глубокое</p>
+          </a>
+        </article>
+        <a href="promo.html" class="view-all reveal text-ui">Все акции <span class="ds-btn__arrow" aria-hidden="true">→</span></a>
+      </section>
+
+      <!-- НАПРАВЛЕНИЯ УСЛУГ -->
+      <section class="section-block lo-services">
+        <header class="ds-section-header directions-header reveal">
+          <span class="ds-overline">Направления</span>
+          <h2 class="ds-title text-h2">Услуги салона</h2>
+          <p class="ds-lead text-body">Полный спектр beauty-услуг премиум-класса — от маникюра до аппаратной косметологии</p>
+        </header>
+        <div class="directions-grid">
+          <a href="services.html" class="direction-card direction-card--photo direction-card--1 direction-card--featured reveal">
+            <img class="direction-card__photo" src="images/services/catalog.png" alt="" loading="lazy" width="600" height="600">
+            <div class="direction-card__content">
+              <span class="direction-card-label">Каталог</span>
+              <h3 class="direction-card-title">Полный спектр beauty-услуг премиум-класса</h3>
+              <span class="direction-card-btn lo-pill-btn lo-pill-btn--sm">Все услуги <span aria-hidden="true">↗</span></span>
+            </div>
+          </a>
+          <a href="services-medical.html" class="direction-card direction-card--photo direction-card--2 reveal">
+            <img class="direction-card__photo" src="images/services/laser.png" alt="" loading="lazy" width="600" height="600">
+            <div class="direction-card__content">
+              <span class="direction-card-label">Медицина</span>
+              <h3 class="direction-card-title">Лазерная эпиляция</h3>
+            </div>
+          </a>
+          <a href="services-medical.html" class="direction-card direction-card--photo direction-card--3 reveal">
+            <img class="direction-card__photo" src="images/services/apparatus.jpg" alt="" loading="lazy" width="600" height="600">
+            <div class="direction-card__content">
+              <span class="direction-card-label">Аппараты</span>
+              <h3 class="direction-card-title">Аппаратная косметология</h3>
+            </div>
+          </a>
+          <a href="services.html#massage" class="direction-card direction-card--photo direction-card--4 reveal">
+            <img class="direction-card__photo" src="images/services/massage.jpg" alt="" loading="lazy" width="600" height="600">
+            <div class="direction-card__content">
+              <span class="direction-card-label">Релакс</span>
+              <h3 class="direction-card-title">Массаж и SPA-уход</h3>
+            </div>
+          </a>
+          <a href="services.html#hair" class="direction-card direction-card--photo direction-card--5 reveal">
+            <img class="direction-card__photo" src="images/services/hair.jpeg" alt="" loading="lazy" width="600" height="600">
+            <div class="direction-card__content">
+              <span class="direction-card-label">Волосы</span>
+              <h3 class="direction-card-title">Парикмахерские услуги</h3>
+            </div>
+          </a>
+          <a href="services.html#cosmetology" class="direction-card direction-card--photo direction-card--6 reveal">
+            <img class="direction-card__photo" src="images/services/cosmetology.jpeg" alt="" loading="lazy" width="600" height="600">
+            <div class="direction-card__content">
+              <span class="direction-card-label">Кожа</span>
+              <h3 class="direction-card-title">Косметология и уход</h3>
+            </div>
+          </a>
+          <a href="services.html#nails" class="direction-card direction-card--photo direction-card--7 reveal">
+            <img class="direction-card__photo" src="images/services/nails.jpeg" alt="" loading="lazy" width="600" height="600">
+            <div class="direction-card__content">
+              <span class="direction-card-label">Ногти</span>
+              <h3 class="direction-card-title">Ногтевой сервис</h3>
+            </div>
+          </a>
+          <a href="services.html#cosmetology" class="direction-card direction-card--photo direction-card--8 reveal">
+            <img class="direction-card__photo" src="images/services/lashes.jpg" alt="" loading="lazy" width="600" height="600">
+            <div class="direction-card__content">
+              <span class="direction-card-label">Взгляд</span>
+              <h3 class="direction-card-title">Ресницы и брови</h3>
+            </div>
+          </a>
+          <a href="services.html#barbershop" class="direction-card direction-card--photo direction-card--9 reveal">
+            <img class="direction-card__photo" src="images/services/barber.jpg" alt="" loading="lazy" width="600" height="600">
+            <div class="direction-card__content">
+              <span class="direction-card-label">Мужской зал</span>
+              <h3 class="direction-card-title">Барбершоп</h3>
+            </div>
+          </a>
+        </div>
+      </section>
+
+      <!-- ПОПУЛЯРНЫЕ УСЛУГИ -->
+      <section class="section-block alt lo-featured">
+        <header class="ds-section-header section-heading reveal">
+          <span class="ds-overline">Популярное</span>
+          <h2 class="ds-title text-h2">Популярные услуги</h2>
+          <p class="ds-lead text-body">Популярные процедуры салона — актуальные цены в полном каталоге</p>
+        </header>
+        <div class="featured-grid">
+          <div class="featured-card featured-card--empty" aria-hidden="true"></div>
+          <a
+            href="services-medical.html?service=%D0%93%D0%BB%D1%83%D0%B1%D0%BE%D0%BA%D0%BE%D0%B5%20%D0%B1%D0%B8%D0%BA%D0%B8%D0%BD%D0%B8%20(%D0%B6%D0%B5%D0%BD%D1%89%D0%B8%D0%BD%D1%8B)"
+            class="reveal featured-card featured-card--2"
+            aria-label="Лазерная эпиляция бикини глубокое — 2 000 ₽"
+          >
+            <p class="featured-card-name">Лазерная эпиляция бикини глубокое</p>
+            <p class="featured-card-price">2 000 ₽</p>
+          </a>
+          <a
+            href="services.html?service=%D0%9C%D0%B0%D0%BD%D0%B8%D0%BA%D1%8E%D1%80%20%2B%20%D0%B3%D0%B5%D0%BB%D1%8C-%D0%BB%D0%B0%D0%BA"
+            class="reveal featured-card featured-card--3"
+            aria-label="Маникюр + гель-лак — 2 000 ₽"
+          >
+            <p class="featured-card-name">Маникюр + гель-лак</p>
+            <p class="featured-card-price">2 000 ₽</p>
+          </a>
+          <div class="featured-card featured-card--empty" aria-hidden="true"></div>
+          <a
+            href="services.html?service=%D0%A1%D1%82%D1%80%D0%B8%D0%B6%D0%BA%D0%B0%20%D0%BC%D1%83%D0%B6%D1%81%D0%BA%D0%B0%D1%8F%20(%D0%BA%D0%BE%D0%BC%D0%BF%D0%BB%D0%B5%D0%BA%D1%81)"
+            class="reveal featured-card featured-card--5"
+            aria-label="Мужская стрижка — от 1 500 ₽"
+          >
+            <p class="featured-card-name">Мужская стрижка</p>
+            <p class="featured-card-price">от 1 500 ₽</p>
+          </a>
+          <a
+            href="services.html?service=%D0%9E%D0%BA%D1%80%D0%B0%D1%88%D0%B8%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5%20%D0%BE%D0%B4%D0%BD%D0%B8%D0%BC%20%D1%86%D0%B2%D0%B5%D1%82%D0%BE%D0%BC"
+            class="reveal featured-card featured-card--6"
+            aria-label="Окрашивание волос — от 2 200 ₽"
+          >
+            <p class="featured-card-name">Окрашивание волос</p>
+            <p class="featured-card-price">от 2 200 ₽</p>
+          </a>
+          <a
+            href="services.html#massage"
+            class="reveal featured-card featured-card--7"
+            aria-label="Массаж спины — от 2 100 ₽"
+          >
+            <p class="featured-card-name">Массаж спины</p>
+            <p class="featured-card-price">от 2 100 ₽</p>
+          </a>
+          <a
+            href="services.html?service=%D0%A3%D0%BB%D1%8C%D1%82%D1%80%D0%B0%D0%B7%D0%B2%D1%83%D0%BA%D0%BE%D0%B2%D0%B0%D1%8F%20%D1%87%D0%B8%D1%81%D1%82%D0%BA%D0%B0%20%D0%BB%D0%B8%D1%86%D0%B0"
+            class="reveal featured-card featured-card--8"
+            aria-label="Ультразвуковая чистка лица — 2 800 ₽"
+          >
+            <p class="featured-card-name">Ультразвуковая чистка лица</p>
+            <p class="featured-card-price">2 800 ₽</p>
+          </a>
+          <a
+            href="services.html?service=%D0%9B%D0%B0%D0%BC%D0%B8%D0%BD%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5%20%D1%80%D0%B5%D1%81%D0%BD%D0%B8%D1%86"
+            class="reveal featured-card featured-card--9"
+            aria-label="Ламинирование ресниц — 2 000 ₽"
+          >
+            <p class="featured-card-name">Ламинирование ресниц</p>
+            <p class="featured-card-price">2 000 ₽</p>
+          </a>
+          <a
+            href="services.html?q=Стрижка%20детская"
+            class="reveal featured-card featured-card--10"
+            aria-label="Детская стрижка — 1 000 ₽"
+          >
+            <p class="featured-card-name">Детская стрижка</p>
+            <p class="featured-card-price">1 000 ₽</p>
+          </a>
+        </div>
+        <div class="text-center mt-10 reveal">
+          <a href="services.html" class="lo-pill-btn lo-pill-btn--outline">Полный прайс-лист</a>
+        </div>
+      </section>
+
+      <!-- НАШИ РАБОТЫ -->
+      <section class="section-block lo-works">
+        <header class="ds-section-header reveal">
+          <span class="ds-overline">Портфолио</span>
+          <h2 class="ds-title text-h2">Наши работы</h2>
+          <p class="ds-lead text-body">Реальные результаты наших мастеров — маникюр, волосы, косметология и другие направления</p>
+        </header>
+        <div class="works-gallery" data-works-gallery data-works-limit="4" aria-label="Галерея работ"></div>
+        <div class="text-center works-gallery-cta reveal">
+          <a href="works.html" class="lo-pill-btn lo-pill-btn--outline">Смотреть ещё</a>
+        </div>
+      </section>
+
+      <!-- ПРЕИМУЩЕСТВА -->
+      <section class="section-block lo-words">
+        <header class="ds-section-header lo-intro reveal">
+          <span class="ds-overline">О салоне</span>
+          <h2 class="ds-title text-h2">Создаём красоту, с которой хочется оставаться</h2>
+          <p class="ds-lead text-body">GLORIS BEAUTY сочетает элегантность и качество — безупречный сервис для тех, кто ценит настоящую роскошь</p>
+          <a href="services.html" class="lo-pill-btn">Наши услуги</a>
+        </header>
+        <div class="advantages-grid">
+          <div class="reveal">
+            <div class="text-4xl font-bold text-gray-200 mb-3">01</div>
+            <h3 class="font-semibold mb-2">Опыт 10+ лет</h3>
+            <p class="text-sm text-gray-500">Десятилетие безупречной работы в индустрии красоты</p>
+          </div>
+          <div class="reveal">
+            <div class="text-4xl font-bold text-gray-200 mb-3">02</div>
+            <h3 class="font-semibold mb-2">Сертифицированные мастера</h3>
+            <p class="text-sm text-gray-500">Профессионалы с международными сертификатами</p>
+          </div>
+          <div class="reveal">
+            <div class="text-4xl font-bold text-gray-200 mb-3">03</div>
+            <h3 class="font-semibold mb-2">Премиум аппараты</h3>
+            <p class="text-sm text-gray-500">Современное оборудование мировых брендов</p>
+          </div>
+          <div class="reveal">
+            <div class="text-4xl font-bold text-gray-200 mb-3">04</div>
+            <h3 class="font-semibold mb-2">Медицинская лицензия</h3>
+            <p class="text-sm text-gray-500">Мед. процедуры по адресу на пр-т XXX</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ДВА АДРЕСА -->
+      <section class="lo-addresses">
+        <div class="page-shell">
+        <header class="ds-section-header lo-addresses-head reveal">
+          <span class="ds-overline">Контакты</span>
+          <h2 class="ds-title text-h2">Два адреса в Москве</h2>
+          <p class="ds-lead text-body">Основной салон и медицинский кабинет — как добраться, режим работы и подробные контакты</p>
+        </header>
+        <div class="addresses-grid">
+          <article class="venue-card venue-card--salon reveal">
+            <div class="venue-card__media">
+              <img src="images/salon-kolomenskaya.png" alt="Салон GLORIS BEAUTY — ул. XXX, д. 27" class="venue-card__photo" width="800" height="500" loading="lazy">
+            </div>
+            <div class="venue-card__body">
+              <span class="venue-card__label">Адреса</span>
+              <h2 class="venue-card__title lo-heading">м. XXX — основной салон красоты</h2>
+              <p class="venue-card__text lo-lead">Основной салон — маникюр, волосы, косметология, массаж, ресницы и барбершоп. Ежедневно 10:00–22:00.</p>
+              <p class="venue-card__detail">ул. XXX, д. 27 · 3 мин пешком от м. XXX</p>
+              <a href="contacts.html#kolomenskaya" class="venue-card__btn lo-pill-btn lo-pill-btn--sm">Подробнее <span aria-hidden="true">↗</span></a>
+            </div>
+          </article>
+          <article class="venue-card venue-card--medical reveal">
+            <div class="venue-card__media">
+              <img src="images/salon-medical.png" alt="Фасад медицинского кабинета GLORIS BEAUTY — пр-т XXX, д. 26" class="venue-card__photo venue-card__photo--medical" width="769" height="1024" loading="lazy">
+            </div>
+            <div class="venue-card__body">
+              <span class="venue-card__label">Медицина</span>
+              <h2 class="venue-card__title lo-heading">м. YYY — медицинский кабинет</h2>
+              <p class="venue-card__text lo-lead">Лазерная эпиляция, аппаратная косметология и процедуры, требующие медицинской лицензии — в отдельной студии. Ежедневно 10:00–21:00.</p>
+              <p class="venue-card__detail">пр-т XXX, д. 26 · 10 мин пешком от м. YYY</p>
+              <a href="contacts.html#andropova" class="venue-card__btn lo-pill-btn lo-pill-btn--sm">Подробнее <span aria-hidden="true">↗</span></a>
+            </div>
+          </article>
+        </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="page-container">
+        <div class="grid md:grid-cols-3 gap-10 mb-10">
+          <div>
+            <p class="text-2xl font-bold text-white mb-3">GLORIS <span class="text-gray-400">BEAUTY</span></p>
+            <p class="text-sm text-gray-500 mb-4">Премиальный салон красоты в Москве</p>
+            <a href="tel:+74950000000" class="text-sm hover:text-white">+7 (495) XXX-XX-XX</a>
+          </div>
+          <div>
+            <h4>Навигация</h4>
+            <ul class="space-y-2 text-sm">
+              <li><a href="services.html">Услуги</a></li>
+              <li><a href="masters.html">Мастера</a></li>
+              <li><a href="works.html">Наши работы</a></li>
+              <li><a href="promo.html">Акции</a></li>
+              <li><a href="contacts.html">Контакты</a></li>
+            </ul>
+          </div>
+          <div>
+            <h4>Соцсети</h4>
+            <div class="flex gap-3">
+              <a href="#" class="w-10 h-10 rounded-full bg-gray-800 hover:bg-white hover:text-black flex items-center justify-center transition-colors" aria-label="VK"><i class="fab fa-vk"></i></a>
+              <a href="#" class="w-10 h-10 rounded-full bg-gray-800 hover:bg-white hover:text-black flex items-center justify-center transition-colors" aria-label="Telegram"><i class="fab fa-telegram"></i></a>
+            </div>
+          </div>
+        </div>
+        <div class="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-gray-500">
+          <span>GLORIS BEAUTY</span>
+          <span>© 2025</span>
+          <a href="#" class="hover:text-white">Политика конфиденциальности</a>
+        </div>
+        <div class="footer-logo">GLORIS BEAUTY</div>
+      </div>
+    </footer>
+  </div>
+
+  <a class="portfolio-back" href="../index.html" aria-label="Вернуться в портфолио">← Портфолио</a>
+
+  <script src="js/masters-data.js"></script>
+  <script src="js/services-catalog.js"></script>
+  <script src="js/works-data.js"></script>
+  <script src="js/gallery.js"></script>
+  <script src="js/clients-widget.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
+

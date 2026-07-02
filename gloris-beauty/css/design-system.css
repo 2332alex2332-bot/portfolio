@@ -1,0 +1,721 @@
+/* ===== GLORIS BEAUTY — Swiss Design System (Design Tokens & Components) ===== */
+
+:root {
+  /* —— Colors —— */
+  --color-bg-primary: #FFFFFF;
+  --color-bg-secondary: #FFFFFF;
+  --color-text-main: #111111;
+  --color-text-muted: #767676;
+  --color-accent-dark: #000000;
+  --color-card-cream: #F4F2EF;
+  --color-card-blue: #E4EBF0;
+  --color-card-pink: #F5D6D6;
+  --color-card-lavender: #EDE8F0;
+  --color-card-peach: #F8F0EB;
+  --color-card-sage: #E8F0ED;
+  --color-border: rgba(17, 17, 17, 0.1);
+
+  /* —— Typography scale —— */
+  --font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  --text-h2: clamp(1.5rem, 3.2vw, 2.5rem);
+  --text-h2-lh: 1.2;
+  --text-h2-tracking: -0.02em;
+  --text-h2-weight: 600;
+
+  --text-display: clamp(1.75rem, 2.5vw, 2rem);
+  --text-display-weight: 700;
+  --text-display-tracking: -0.01em;
+
+  --text-body: clamp(0.9375rem, 1vw, 1rem);
+  --text-body-lh: 1.6;
+  --text-body-weight: 400;
+
+  --text-muted-size: clamp(0.875rem, 1vw, 1rem);
+  --text-ui: 11px;
+  --text-ui-tracking: 0.08em;
+  --text-ui-weight: 500;
+
+  --text-overline: clamp(0.625rem, 0.7vw, 0.6875rem);
+  --text-overline-tracking: 0.12em;
+
+  --text-section-title: clamp(2rem, 3.8vw, 3.25rem);
+  --text-section-title-lh: 1.12;
+  --text-section-title-tracking: -0.03em;
+  --text-section-title-weight: 700;
+
+  --text-section-lead: clamp(1rem, 1.35vw, 1.2rem);
+  --text-section-lead-lh: 1.5;
+  --text-section-lead-weight: 400;
+
+  /* —— 8pt Grid System —— */
+  --space-4: 4px;
+  --space-8: 8px;
+  --space-12: 12px;
+  --space-16: 16px;
+  --space-20: 20px;
+  --space-24: 24px;
+  --space-32: 32px;
+  --space-48: 48px;
+  --space-64: 64px;
+  --space-96: 96px;
+  --space-120: 120px;
+
+  /* —— Layout —— */
+  --container-max: 1440px;
+  --container-padding: var(--space-24);
+  --space-section-y: var(--space-96);
+  --space-section-x: var(--container-padding);
+  --space-card: var(--space-24);
+  --grid-gap: var(--space-24);
+  --grid-gap-lg: var(--space-32);
+
+  /* —— Geometry & motion —— */
+  --radius: 0;
+  --radius-btn: 9999px;
+  --btn-padding-y: var(--space-8);
+  --btn-padding-x: var(--space-20);
+  --btn-min-height: auto;
+  --btn-gap: var(--space-8);
+  --transition-swiss: all 0.3s ease-in-out;
+  --ease-swiss: ease-in-out;
+
+  /* —— Legacy aliases (backward compatibility) —— */
+  --white: var(--color-bg-primary);
+  --cream: var(--color-bg-secondary);
+  --champagne: var(--color-bg-secondary);
+  --charcoal: var(--color-text-main);
+  --black: var(--color-text-main);
+  --text-secondary: var(--color-text-muted);
+  --text-muted: var(--color-text-muted);
+  --dusty-rose: #B8908E;
+  --gold: #C9B99A;
+  --blush: #E8D5D0;
+  --border: var(--color-border);
+  --shadow-soft: none;
+  --shadow-lift: none;
+  --ease: var(--ease-swiss);
+  --transition: var(--transition-swiss);
+  --font-display: var(--font-family);
+  --font-body: var(--font-family);
+  --green-dark: var(--dusty-rose);
+  --green-mid: var(--color-text-main);
+  --green-light: var(--blush);
+  --green-muted: var(--gold);
+  --cream-alt: var(--color-bg-secondary);
+  --sage-bg: var(--color-bg-secondary);
+  --booking-accent: var(--dusty-rose);
+}
+
+/* —— Page container (единая вертикальная линия) —— */
+.page-container,
+.page-shell,
+.section-block {
+  width: 100%;
+  max-width: var(--container-max);
+  margin-inline: auto;
+  padding-inline: var(--container-padding);
+  box-sizing: border-box;
+}
+
+.section-block {
+  padding-block: var(--space-section-y);
+}
+
+.section-block.lo-promo-hero,
+.section-block.lo-contacts-hero {
+  padding-block: var(--space-32);
+}
+
+.section-block.lo-promo-note,
+.section-block.lo-contacts-note {
+  padding-block: 2rem;
+}
+
+/* —— Unified main content grid (все внутренние страницы) —— */
+.page-main {
+  width: 100%;
+}
+
+.page-shell--content {
+  padding-block: var(--space-32) var(--space-64);
+}
+
+.page-intro.ds-section-header,
+.shop-page-intro.ds-section-header,
+.contacts-page-intro.ds-section-header,
+.promo-page-intro.ds-section-header,
+.masters-section__head.ds-section-header {
+  max-width: 720px;
+}
+
+.lo-promo-hero,
+.lo-contacts-hero,
+.lo-promo-note,
+.lo-contacts-note,
+.lo-promo-laser,
+.lo-promo-other,
+.lo-contacts-locations {
+  background: var(--white);
+}
+
+.site-block-title {
+  display: block;
+  width: 100%;
+  margin: 0 0 var(--space-8);
+  padding: var(--space-12) var(--space-16);
+  box-sizing: border-box;
+  background: var(--color-accent-dark);
+  color: var(--color-bg-primary);
+  font-size: inherit;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.content-surface {
+  background: var(--color-bg-secondary);
+}
+
+/* —— Venue card: фото + адрес в одной карточке —— */
+.venues-stack {
+  display: flex;
+  flex-direction: column;
+  gap: var(--grid-gap);
+  width: 100%;
+}
+
+.venue-card {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background: var(--color-card-cream);
+}
+
+.venue-card--salon {
+  background: var(--color-card-blue);
+}
+
+.venue-card--medical {
+  background: var(--color-card-pink);
+}
+
+.venue-card--wide {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  align-items: stretch;
+}
+
+.venue-card__media {
+  overflow: hidden;
+  min-height: 0;
+}
+
+.venue-card:not(.venue-card--wide) .venue-card__media {
+  aspect-ratio: 16 / 10;
+}
+
+.venue-card--wide .venue-card__media {
+  min-height: 100%;
+}
+
+.venue-card__photo {
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-height: 100%;
+  object-fit: cover;
+  object-position: center center;
+}
+
+.venue-card__photo--medical {
+  object-position: center 42%;
+}
+
+.venue-card__body {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: clamp(var(--space-24), 3vw, var(--space-32));
+  box-sizing: border-box;
+}
+
+.venue-card__label {
+  display: block;
+  font-family: var(--font-body);
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+  margin-bottom: var(--space-12);
+}
+
+.venue-card__title {
+  margin: 0 0 var(--space-16);
+  font-size: clamp(1.35rem, 2.4vw, 2.1rem);
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  max-width: 22ch;
+}
+
+.venue-card--wide .venue-card__title {
+  max-width: none;
+  font-size: clamp(1.5rem, 2.8vw, 2.25rem);
+}
+
+.venue-card__text {
+  margin: 0 0 var(--space-12);
+  font-size: 0.9rem;
+  line-height: 1.55;
+  color: var(--text-secondary);
+  max-width: 38ch;
+}
+
+.venue-card__detail {
+  margin: 0 0 auto;
+  padding-top: var(--space-8);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--charcoal);
+}
+
+.venue-card__btn {
+  margin-top: var(--space-24);
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+@media (max-width: 900px) {
+  .venue-card--wide {
+    grid-template-columns: 1fr;
+  }
+
+  .venue-card--wide .venue-card__media {
+    aspect-ratio: 4 / 3;
+    min-height: 0;
+  }
+}
+
+@media (max-width: 768px) {
+  :root {
+    --container-padding: var(--space-16);
+    --space-section-y: var(--space-64);
+  }
+}
+
+/* —— Strict rectangular geometry (cards & layout) —— */
+.promo-card,
+.direction-card,
+.featured-card,
+.promo-offer-card,
+.venue-card,
+.shop-list-group,
+.catalog-tab,
+.price-save,
+.promo-badge,
+input:not([type="checkbox"]):not([type="radio"]),
+select,
+textarea {
+  border-radius: var(--radius) !important;
+}
+
+/* —— Pill CTA buttons (full rounding) —— */
+.ds-btn,
+.explore-btn,
+.lo-pill-btn,
+.visit-btn,
+.top-nav-book,
+.venue-card__btn,
+.direction-card-btn,
+.btn-primary,
+.btn-outline,
+.btn-gold,
+.visit-book-btn,
+.shop-clear-btn,
+.contact-map-btn,
+.top-nav-cta.yc-widget-open,
+.yc-widget-fab,
+.fab-booking,
+.booking-submit-btn,
+.booking-form-submit,
+.side-menu-book,
+button.lo-pill-btn,
+button.top-nav-cta.yc-widget-open,
+body[data-page] .lo-pill-btn,
+body[data-page] .top-nav-book,
+body[data-page] .venue-card__btn,
+body[data-page] .fab-booking,
+body[data-page] button.lo-pill-btn,
+body[data-page] button.top-nav-cta.yc-widget-open,
+body[data-page] button:not(.shop-list-row):not(.yc-widget-backdrop):not(.yc-widget-close):not(.works-gallery__item):not(.works-lightbox__close):not(.works-lightbox__nav) {
+  border-radius: var(--radius-btn) !important;
+}
+
+/* —— Unified CTA button sizing —— */
+.ds-btn,
+.explore-btn,
+.lo-pill-btn,
+.lo-pill-btn--sm,
+.visit-btn,
+.view-all,
+.top-nav-book,
+.venue-card__btn,
+.direction-card-btn,
+.btn-primary,
+.btn-outline,
+.btn-gold,
+.visit-book-btn,
+.shop-clear-btn,
+.contact-map-btn,
+.yc-widget-fab,
+.fab-booking,
+.booking-submit-btn,
+.booking-form-submit,
+.side-menu-book,
+button.lo-pill-btn {
+  padding: var(--btn-padding-y) var(--btn-padding-x) !important;
+  min-height: var(--btn-min-height);
+  gap: var(--btn-gap);
+  font-size: var(--text-ui) !important;
+  font-weight: var(--text-ui-weight) !important;
+  letter-spacing: var(--text-ui-tracking) !important;
+  line-height: 1 !important;
+  box-sizing: border-box;
+  white-space: nowrap;
+  text-align: center;
+}
+
+/* —— Typography utilities —— */
+.text-h2 {
+  font-family: var(--font-family);
+  font-size: var(--text-h2);
+  font-weight: var(--text-h2-weight);
+  line-height: var(--text-h2-lh);
+  letter-spacing: var(--text-h2-tracking);
+  color: var(--color-text-main);
+}
+
+.text-display {
+  font-family: var(--font-family);
+  font-size: var(--text-display);
+  font-weight: var(--text-display-weight);
+  letter-spacing: var(--text-display-tracking);
+  line-height: 1.1;
+  color: var(--color-text-main);
+}
+
+.text-body {
+  font-family: var(--font-family);
+  font-size: var(--text-body);
+  font-weight: var(--text-body-weight);
+  line-height: var(--text-body-lh);
+  color: var(--color-text-main);
+}
+
+.text-muted-price {
+  font-family: var(--font-family);
+  font-size: var(--text-muted-size);
+  font-weight: 400;
+  color: var(--color-text-muted);
+  text-decoration: line-through;
+  text-decoration-color: rgba(17, 17, 17, 0.35);
+}
+
+.text-ui {
+  font-family: var(--font-family);
+  font-size: var(--text-ui);
+  font-weight: var(--text-ui-weight);
+  letter-spacing: var(--text-ui-tracking);
+  text-transform: uppercase;
+}
+
+.text-overline {
+  font-family: var(--font-family);
+  font-size: var(--text-overline);
+  font-weight: 400;
+  letter-spacing: var(--text-overline-tracking);
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+
+/* —— Component: SectionHeader —— */
+.ds-section-header,
+.directions-header,
+.section-heading.ds-section-header,
+.page-intro.ds-section-header,
+.shop-page-intro.ds-section-header,
+.promo-section-head.ds-section-header,
+.contacts-section-head.ds-section-header,
+.promo-page-intro.ds-section-header,
+.contacts-page-intro.ds-section-header {
+  margin-bottom: var(--space-48);
+  text-align: left;
+}
+
+.section-block.lo-promo-hero .page-intro.ds-section-header,
+.section-block.lo-contacts-hero .page-intro.ds-section-header {
+  margin-bottom: 0;
+}
+
+.ds-section-header .ds-overline,
+.ds-section-header .directions-eyebrow,
+.promo-badge-inline,
+.promo-offer-label {
+  display: block;
+  font-size: var(--text-overline);
+  font-weight: 400;
+  letter-spacing: var(--text-overline-tracking);
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  margin: 0 0 0.75rem;
+}
+
+.ds-section-header .ds-title,
+.ds-section-header .text-h2,
+.ds-section-header .lo-heading,
+.ds-section-header .directions-title,
+.ds-section-header .section-title,
+.ds-section-header h1,
+.ds-section-header h2 {
+  font-family: var(--font-family);
+  font-size: var(--text-section-title);
+  font-weight: var(--text-section-title-weight);
+  line-height: var(--text-section-title-lh);
+  letter-spacing: var(--text-section-title-tracking);
+  color: var(--color-text-main);
+  margin: 0;
+  text-transform: none;
+  font-style: normal;
+}
+
+.ds-section-header .ds-lead,
+.ds-section-header .text-body,
+.ds-section-header .lo-lead {
+  font-family: var(--font-family);
+  font-size: var(--text-section-lead);
+  font-weight: var(--text-section-lead-weight);
+  line-height: var(--text-section-lead-lh);
+  letter-spacing: -0.01em;
+  color: var(--color-text-main);
+  margin: 1rem 0 0;
+  max-width: 46ch;
+}
+
+/* —— Component: Button —— */
+.ds-btn,
+.explore-btn,
+.lo-pill-btn,
+.visit-btn,
+.top-nav-book,
+.venue-card__btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-family);
+  text-transform: uppercase;
+  text-decoration: none;
+  border: 1px solid var(--color-accent-dark);
+  background: var(--color-accent-dark);
+  color: var(--color-bg-primary);
+  cursor: pointer;
+  transition: var(--transition-swiss);
+}
+
+.ds-btn:hover,
+.explore-btn:hover,
+.lo-pill-btn:hover,
+.visit-btn:hover,
+.top-nav-book:hover,
+.venue-card__btn:hover {
+  opacity: 0.85;
+}
+
+.ds-btn:focus-visible,
+.explore-btn:focus-visible,
+.lo-pill-btn:focus-visible,
+.visit-btn:focus-visible,
+.view-all:focus-visible,
+.top-nav-link:focus-visible,
+.direction-card:focus-visible,
+.featured-card:focus-visible,
+.promo-content:focus-visible,
+.promo-offer-card:focus-visible {
+  outline: 2px solid var(--color-accent-dark);
+  outline-offset: 3px;
+}
+
+.ds-btn--outline,
+.lo-pill-btn--outline,
+.visit-btn {
+  background: transparent;
+  color: var(--color-text-main);
+  border-color: var(--color-text-main);
+}
+
+.ds-btn--outline:hover,
+.lo-pill-btn--outline:hover,
+.visit-btn.green:hover,
+.visit-btn.purple:hover {
+  background: var(--color-accent-dark);
+  color: var(--color-bg-primary);
+  opacity: 1;
+}
+
+.ds-btn__arrow {
+  display: inline-block;
+  transition: transform 0.3s ease-in-out;
+}
+
+.ds-btn:hover .ds-btn__arrow,
+.view-all:hover .ds-btn__arrow {
+  transform: translateX(4px);
+}
+
+/* —— Price label (not a button) —— */
+.price-save,
+.promo-badge {
+  display: inline-block;
+  font-family: var(--font-family);
+  font-size: var(--text-ui);
+  font-weight: var(--text-ui-weight);
+  letter-spacing: var(--text-ui-tracking);
+  text-transform: uppercase;
+  color: var(--color-bg-primary);
+  background: var(--color-accent-dark);
+  padding: 0.4rem 0.875rem;
+  border: none;
+  border-radius: 0 !important;
+  cursor: default;
+  pointer-events: none;
+}
+
+/* —— Component: Card —— */
+.ds-card,
+.direction-card,
+.featured-card,
+.promo-offer-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: var(--space-card);
+  border: none;
+  box-shadow: none;
+  text-decoration: none;
+  color: var(--color-text-main);
+  transition: var(--transition-swiss);
+}
+
+.ds-card:hover,
+.direction-card:hover,
+.featured-card:hover,
+.promo-offer-card:hover {
+  opacity: 0.88;
+}
+
+.ds-card--blue,
+.direction-card--1,
+.featured-card--1,
+.promo-offer-card--5 { background: var(--color-card-blue); }
+
+.ds-card--pink,
+.direction-card--2,
+.promo-offer-card--7 { background: var(--color-card-pink); }
+
+.ds-card--cream,
+.direction-card--3,
+.featured-card--3,
+.promo-offer-card--3 { background: var(--color-card-cream); }
+
+.ds-card--peach,
+.direction-card--4,
+.featured-card--4 { background: var(--color-card-peach); }
+
+.ds-card--lavender,
+.direction-card--6,
+.promo-offer-card--1 { background: var(--color-card-lavender); }
+
+.ds-card--sage,
+.direction-card--7,
+.promo-offer-card--10 { background: var(--color-card-sage); }
+
+/* —— Price block —— */
+.price-old {
+  font-size: var(--text-muted-size);
+  color: var(--color-text-muted);
+  text-decoration: line-through;
+  text-decoration-color: rgba(17, 17, 17, 0.35);
+  font-weight: 400;
+}
+
+.price-new {
+  font-size: var(--text-display);
+  font-weight: var(--text-display-weight);
+  letter-spacing: var(--text-display-tracking);
+  color: var(--color-text-main);
+  line-height: 1.1;
+}
+
+/* —— View-all CTA —— */
+.view-all {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+  max-width: 100vw;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+  padding: var(--space-16) var(--space-24) !important;
+  border-radius: 0 !important;
+  background: var(--color-accent-dark);
+  color: var(--color-bg-primary);
+  font-size: var(--text-ui);
+  font-weight: var(--text-ui-weight);
+  letter-spacing: var(--text-ui-tracking);
+  text-transform: uppercase;
+  text-decoration: none;
+  border: none;
+  box-sizing: border-box;
+  transition: var(--transition-swiss);
+}
+
+.view-all .ds-btn__arrow {
+  display: inline-block;
+  transition: transform 0.3s ease-in-out;
+}
+
+.view-all:hover {
+  opacity: 0.88;
+  background: var(--color-accent-dark);
+  color: var(--color-bg-primary);
+  transform: none;
+  box-shadow: none;
+}
+
+/* —— Grids —— */
+.directions-grid,
+.featured-grid,
+.promo-offers-grid,
+.promo-offers-grid--3,
+.addresses-grid {
+  gap: var(--grid-gap);
+  align-items: stretch;
+}
+
+.direction-card,
+.featured-card,
+.promo-offer-card {
+  height: 100%;
+}
+
+/* —— Reduced motion —— */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

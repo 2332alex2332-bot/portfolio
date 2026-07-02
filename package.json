@@ -1,0 +1,7 @@
+{
+  "private": true,
+  "scripts": {
+    "dev": "vercel dev",
+    "setup:telegram": "node scripts/telegram-setup.mjs"
+  }
+}

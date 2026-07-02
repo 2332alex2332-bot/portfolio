@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Прайс-лист салона красоты GLORIS BEAUTY — лазерная эпиляция, косметология, массаж, парикмахерские услуги.">
+  <title>Услуги и цены — GLORIS BEAUTY</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <script src="js/tailwind-config.js"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/clients-widget.css">
+</head>
+<body data-page="services" data-catalog-venue="salon">
+
+  <div class="site-container">
+
+    <header id="header" class="site-header top-nav">
+      <div class="top-nav-bar">
+        <div class="top-nav-start">
+          <a href="index.html" class="top-nav-logo">GLORIS BEAUTY</a>
+        </div>
+        <nav class="top-nav-center top-nav-menu" aria-label="Навигация">
+          <a href="index.html" data-page="home" class="top-nav-link nav-link">Главная</a>
+          <a href="services.html" data-page="services" class="top-nav-link nav-link">Услуги</a>
+          <a href="masters.html" data-page="masters" class="top-nav-link nav-link">Мастера</a>
+          <a href="works.html" data-page="works" class="top-nav-link nav-link">Наши работы</a>
+          <a href="promo.html" data-page="promo" class="top-nav-link nav-link">Акции</a>
+          <a href="contacts.html" data-page="contacts" class="top-nav-link nav-link">Контакты</a>
+        </nav>
+        <div class="top-nav-end top-nav-actions">
+          <div class="top-nav-contacts">
+            <a href="tel:+74950000000" class="top-nav-phone">+7 (495) XXX-XX-XX</a>
+            <div class="top-nav-social" aria-label="Соцсети">
+              <a href="#">VK</a>
+              <a href="#">Telegram</a>
+            </div>
+          </div>
+          <button type="button" class="top-nav-cta yc-widget-open">Записаться</button>
+        </div>
+        <button type="button" id="burger" class="top-nav-burger" aria-label="Открыть меню" aria-expanded="false" aria-controls="side-menu">
+          <span class="top-nav-burger__line" aria-hidden="true"></span>
+          <span class="top-nav-burger__line" aria-hidden="true"></span>
+        </button>
+      </div>
+    </header>
+
+    <div id="menu-overlay" class="menu-overlay" aria-hidden="true"></div>
+    <aside id="side-menu" class="side-menu" aria-label="Меню сайта">
+      <div class="side-menu-head">
+        <a href="index.html" class="side-menu-brand">GLORIS BEAUTY</a>
+        <button type="button" id="menu-close" class="menu-close" aria-label="Закрыть меню"><span aria-hidden="true"></span></button>
+      </div>
+      <ul class="side-menu-links">
+        <li><a href="index.html" data-page="home" class="side-nav-link nav-link">Главная <span class="menu-dot" aria-hidden="true"></span></a></li>
+        <li><a href="services.html" data-page="services" class="side-nav-link nav-link">Услуги <span class="menu-dot" aria-hidden="true"></span></a></li>
+        <li><a href="masters.html" data-page="masters" class="side-nav-link nav-link">Мастера <span class="menu-dot" aria-hidden="true"></span></a></li>
+        <li><a href="works.html" data-page="works" class="side-nav-link nav-link">Наши работы <span class="menu-dot" aria-hidden="true"></span></a></li>
+        <li><a href="promo.html" data-page="promo" class="side-nav-link nav-link">Акции <span class="menu-dot" aria-hidden="true"></span></a></li>
+        <li><a href="contacts.html" data-page="contacts" class="side-nav-link nav-link">Контакты <span class="menu-dot" aria-hidden="true"></span></a></li>
+      </ul>
+      <div class="side-menu-foot">
+        <a href="tel:+74950000000" class="side-menu-phone">+7 (495) XXX-XX-XX</a>
+        <div class="side-menu-social" aria-label="Соцсети">
+          <a href="#">VK</a>
+          <a href="#">Telegram</a>
+        </div>
+        <button type="button" class="side-menu-book yc-widget-open">Записаться</button>
+      </div>
+    </aside>
+
+    <main class="catalog-main page-main">
+    <div class="marquee catalog-marquee" aria-hidden="true">
+      <div class="marquee-track">
+        <span class="marquee-group">ул. XXX, д. 27 &nbsp;✦&nbsp; МАНИКЮР · ВОЛОСЫ · КОСМЕТОЛОГИЯ · МАССАЖ &nbsp;✦&nbsp; GLORIS BEAUTY &nbsp;✦&nbsp;</span>
+        <span class="marquee-group" aria-hidden="true">ул. XXX, д. 27 &nbsp;✦&nbsp; МАНИКЮР · ВОЛОСЫ · КОСМЕТОЛОГИЯ · МАССАЖ &nbsp;✦&nbsp; GLORIS BEAUTY &nbsp;✦&nbsp;</span>
+      </div>
+    </div>
+    <div class="page-shell page-shell--catalog">
+    <div class="shop-page">
+      <aside class="shop-filters" id="shop-filters" aria-label="Фильтры услуг">
+        <h2 class="shop-filters-title">Фильтры</h2>
+
+        <div class="shop-search">
+          <i class="fa-solid fa-magnifying-glass shop-search-icon" aria-hidden="true"></i>
+          <input type="search" id="shop-search-input" class="shop-search-input" placeholder="Поиск..." autocomplete="off">
+        </div>
+
+        <div class="shop-filter-group">
+          <h3 class="shop-filter-label">КАТЕГОРИЯ</h3>
+          <div id="shop-category-filters" class="shop-checklist"></div>
+        </div>
+
+        <button type="button" id="shop-clear-filters" class="shop-clear-btn lo-pill-btn lo-pill-btn--sm lo-pill-btn--outline">Сбросить</button>
+      </aside>
+
+      <div class="shop-content">
+        <header class="ds-section-header shop-page-intro page-intro reveal">
+          <span class="ds-overline">Каталог</span>
+          <h1 class="ds-title text-h2">Услуги и цены</h1>
+          <p class="ds-lead text-body">Немедицинские процедуры основного салона — актуальные цены и описания услуг</p>
+        </header>
+        <nav class="catalog-tabs catalog-tabs--venue" aria-label="Разделы каталога">
+          <a href="services.html" class="catalog-tab is-active" aria-current="page">
+            <span class="catalog-tab-label">Немедицинские</span>
+            <span class="catalog-tab-addr">ул. XXX, д. 27</span>
+          </a>
+          <a href="services-medical.html" class="catalog-tab">
+            <span class="catalog-tab-label">Медицинские</span>
+            <span class="catalog-tab-addr">пр-т XXX, д. 26</span>
+          </a>
+        </nav>
+        <div id="shop-grid" class="shop-list"></div>
+        <p id="shop-empty" class="shop-empty hidden">По вашему запросу ничего не найдено</p>
+      </div>
+    </div>
+    </div>
+    </main>
+
+    <footer class="site-footer">
+      <div class="page-container">
+        <div class="grid md:grid-cols-3 gap-10 mb-10">
+          <div>
+            <p class="text-2xl font-bold text-white mb-3">GLORIS <span class="text-gray-400">BEAUTY</span></p>
+            <p class="text-sm text-gray-500 mb-2">ул. XXX, д. 27</p>
+            <p class="text-sm text-gray-500">пр-т XXX, д. 26</p>
+          </div>
+          <div>
+            <h4>Связь</h4>
+            <a href="tel:+74950000000" class="text-sm block mb-3 hover:text-white">+7 (495) XXX-XX-XX</a>
+            <div class="flex gap-3">
+              <a href="#" class="w-10 h-10 rounded-full bg-gray-800 hover:bg-white hover:text-black flex items-center justify-center"><i class="fab fa-vk"></i></a>
+              <a href="#" class="w-10 h-10 rounded-full bg-gray-800 hover:bg-white hover:text-black flex items-center justify-center"><i class="fab fa-telegram"></i></a>
+            </div>
+          </div>
+          <div>
+            <h4>Навигация</h4>
+            <ul class="space-y-2 text-sm">
+              <li><a href="services.html">Услуги</a></li>
+              <li><a href="masters.html">Мастера</a></li>
+              <li><a href="works.html">Наши работы</a></li>
+              <li><a href="promo.html">Акции</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-gray-500">
+          <span>GLORIS BEAUTY</span>
+          <span>© 2025</span>
+          <a href="#" class="hover:text-white">Политика конфиденциальности</a>
+        </div>
+        <div class="footer-logo">GLORIS BEAUTY</div>
+      </div>
+    </footer>
+  </div>
+
+
+  <a class="portfolio-back" href="../index.html" aria-label="Вернуться в портфолио">← Портфолио</a>
+
+  <script src="js/masters-data.js"></script>
+  <script src="js/services-catalog.js"></script>
+  <script src="js/clients-widget.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Telegram — Михаил</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --tg-blue: #24A1DE;
+      --tg-blue-dark: #1E8FC7;
+      --tg-header: #517DA2;
+      --tg-bg: #D5E8F7;
+      --tg-bg-pattern: #C8DFF0;
+      --tg-in: #FFFFFF;
+      --tg-out: #EFFDDE;
+      --tg-text: #000000;
+      --tg-muted: #707579;
+      --tg-time-out: #4CAF50;
+      --tg-time-in: #A0ACB6;
+      --tg-shadow: 0 1px 0.5px rgba(11, 20, 26, 0.13);
+      --safe-bottom: env(safe-area-inset-bottom, 0px);
+    }
+
+    html, body {
+      height: 100%;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      background: var(--tg-header);
+      color: var(--tg-text);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .tg-app {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      max-width: 100%;
+      height: 100%;
+      margin: 0;
+      background: var(--tg-bg);
+    }
+
+    /* Шапка как в Telegram */
+    .tg-header {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      min-height: 56px;
+      padding: 0.5rem 0.75rem;
+      background: var(--tg-header);
+      color: #fff;
+      flex-shrink: 0;
+      position: relative;
+      z-index: 10;
+    }
+
+    .tg-header__back {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      border: none;
+      background: transparent;
+      color: #fff;
+      cursor: pointer;
+      border-radius: 50%;
+      transition: background 0.15s;
+      text-decoration: none;
+      flex-shrink: 0;
+    }
+    .tg-header__back:hover { background: rgba(255, 255, 255, 0.12); }
+    .tg-header__back svg { width: 24px; height: 24px; }
+
+    .tg-header__avatar {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: #e8e8e8;
+      flex-shrink: 0;
+      overflow: hidden;
+      user-select: none;
+    }
+    .tg-header__avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: 50% 18%;
+    }
+
+    .tg-header__info { flex: 1; min-width: 0; }
+    .tg-header__name {
+      font-size: 1rem;
+      font-weight: 600;
+      line-height: 1.25;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .tg-header__status {
+      font-size: 0.8125rem;
+      opacity: 0.85;
+      margin-top: 1px;
+    }
+    .tg-header__status.is-online { color: #B8E986; }
+
+    .tg-header__actions {
+      display: flex;
+      gap: 0.25rem;
+      flex-shrink: 0;
+    }
+    .tg-header__icon {
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      opacity: 0.9;
+    }
+    .tg-header__icon svg { width: 22px; height: 22px; fill: currentColor; }
+
+    /* Область чата с «обоями» Telegram */
+    .tg-chat {
+      flex: 1;
+      overflow-y: auto;
+      padding: 0.75rem 0.625rem 1rem;
+      background-color: var(--tg-bg);
+      background-image:
+        radial-gradient(circle at 20% 30%, rgba(255,255,255,0.35) 0, transparent 45%),
+        radial-gradient(circle at 80% 70%, rgba(255,255,255,0.25) 0, transparent 40%),
+        url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.08'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+      scroll-behavior: smooth;
+    }
+
+    .tg-date {
+      text-align: center;
+      margin: 0.5rem 0 0.75rem;
+    }
+    .tg-date span {
+      display: inline-block;
+      padding: 0.25rem 0.75rem;
+      border-radius: 9999px;
+      background: rgba(0, 0, 0, 0.18);
+      color: #fff;
+      font-size: 0.75rem;
+      font-weight: 500;
+    }
+
+    .tg-msg {
+      display: flex;
+      margin-bottom: 0.375rem;
+      opacity: 0;
+      transform: translateY(8px);
+      animation: msgIn 0.35s ease forwards;
+    }
+    .tg-msg--out { justify-content: flex-end; }
+    .tg-msg--in { justify-content: flex-start; }
+
+    @keyframes msgIn {
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .tg-bubble {
+      max-width: 82%;
+      padding: 0.45rem 0.625rem 0.3rem;
+      border-radius: 12px;
+      box-shadow: var(--tg-shadow);
+      position: relative;
+      word-wrap: break-word;
+    }
+    .tg-msg--out .tg-bubble {
+      background: var(--tg-out);
+      border-bottom-right-radius: 4px;
+    }
+    .tg-msg--in .tg-bubble {
+      background: var(--tg-in);
+      border-bottom-left-radius: 4px;
+    }
+
+    .tg-bubble__text {
+      font-size: 0.9375rem;
+      line-height: 1.45;
+      padding-right: 3.25rem;
+    }
+
+    .tg-bubble__meta {
+      position: absolute;
+      right: 0.5rem;
+      bottom: 0.25rem;
+      display: flex;
+      align-items: center;
+      gap: 0.2rem;
+      font-size: 0.6875rem;
+      line-height: 1;
+    }
+    .tg-msg--out .tg-bubble__meta { color: var(--tg-time-out); }
+    .tg-msg--in .tg-bubble__meta { color: var(--tg-time-in); }
+
+    .tg-bubble__check svg {
+      width: 16px;
+      height: 11px;
+      fill: currentColor;
+    }
+
+    /* Индикатор «печатает…» */
+    .tg-typing {
+      display: none;
+      justify-content: flex-start;
+      margin-bottom: 0.375rem;
+    }
+    .tg-typing.is-visible { display: flex; animation: msgIn 0.25s ease forwards; }
+
+    .tg-typing__bubble {
+      background: var(--tg-in);
+      border-radius: 12px;
+      border-bottom-left-radius: 4px;
+      padding: 0.75rem 1rem;
+      box-shadow: var(--tg-shadow);
+      display: flex;
+      gap: 4px;
+      align-items: center;
+    }
+    .tg-typing__dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #90949A;
+      animation: typingDot 1.2s infinite ease-in-out;
+    }
+    .tg-typing__dot:nth-child(2) { animation-delay: 0.15s; }
+    .tg-typing__dot:nth-child(3) { animation-delay: 0.3s; }
+
+    @keyframes typingDot {
+      0%, 60%, 100% { transform: translateY(0); opacity: 0.45; }
+      30% { transform: translateY(-4px); opacity: 1; }
+    }
+
+    /* Нижняя панель */
+    .tg-footer {
+      flex-shrink: 0;
+      background: #F0F0F0;
+      border-top: 1px solid rgba(0, 0, 0, 0.06);
+      padding: 0.625rem 0.75rem calc(0.625rem + var(--safe-bottom));
+    }
+
+    .tg-compose {
+      display: flex;
+      align-items: flex-end;
+      gap: 0.5rem;
+    }
+
+    .tg-compose__input {
+      flex: 1;
+      min-height: 42px;
+      max-height: 120px;
+      padding: 0.625rem 0.875rem;
+      border: none;
+      border-radius: 21px;
+      background: #fff;
+      font-size: 0.9375rem;
+      line-height: 1.4;
+      color: var(--tg-text);
+      outline: none;
+      resize: none;
+      font-family: inherit;
+      overflow-y: auto;
+    }
+
+    .tg-compose__send {
+      width: 42px;
+      height: 42px;
+      border: none;
+      border-radius: 50%;
+      background: var(--tg-blue);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.15s;
+    }
+    .tg-compose__send:hover { background: var(--tg-blue-dark); }
+    .tg-compose__send svg { width: 20px; height: 20px; fill: currentColor; margin-left: 2px; }
+
+    @media (min-width: 481px) {
+      body {
+        background: var(--tg-bg);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="tg-app">
+    <header class="tg-header">
+      <a class="tg-header__back" href="index.html#calculator" aria-label="Назад на сайт">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M15 18l-6-6 6-6"/>
+        </svg>
+      </a>
+      <div class="tg-header__avatar" aria-hidden="true"><img src="images/timur-avatar.png" alt="" width="42" height="42" loading="eager"></div>
+      <div class="tg-header__info">
+        <div class="tg-header__name">Михаил · прораб</div>
+        <div id="headerStatus" class="tg-header__status">был(а) недавно</div>
+      </div>
+      <div class="tg-header__actions" aria-hidden="true">
+        <span class="tg-header__icon">
+          <svg viewBox="0 0 24 24"><path d="M15.05 5A5 5 0 0 1 19 8.95M15.05 1A9 9 0 0 1 23 8.94M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        </span>
+        <span class="tg-header__icon">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="5" r="1.5"/><circle cx="12" cy="12" r="1.5"/><circle cx="12" cy="19" r="1.5"/></svg>
+        </span>
+      </div>
+    </header>
+
+    <main id="chatArea" class="tg-chat">
+      <div class="tg-date"><span id="chatDate">Сегодня</span></div>
+    </main>
+
+    <footer class="tg-footer">
+      <div class="tg-compose">
+        <textarea id="composeInput" class="tg-compose__input" rows="1" readonly aria-label="Текст сообщения"></textarea>
+        <a id="sendBtn" class="tg-compose__send" href="#" target="_blank" rel="noopener noreferrer" aria-label="Отправить в Telegram">
+          <svg viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
+        </a>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    // @username прораба без собачки — должен совпадать с index.html
+    const TELEGRAM_USERNAME = 'stanislav5621';
+
+    const fmt = n => Number(n).toLocaleString('ru-RU');
+
+    function formatChatDate(d) {
+      const months = ['января', 'февраля', 'марта', 'апреля', 'мая', 'июня',
+        'июля', 'августа', 'сентября', 'октября', 'ноября', 'декабря'];
+      return d.getDate() + ' ' + months[d.getMonth()];
+    }
+
+    // Читаем параметры расчёта из URL
+    function readParams() {
+      const p = new URLSearchParams(location.search);
+      const min = parseInt(p.get('min'), 10);
+      const max = parseInt(p.get('max'), 10);
+      return {
+        min: Number.isFinite(min) ? min : null,
+        max: Number.isFinite(max) ? max : null,
+        service: p.get('service') || 'ремонт',
+        area: p.get('area') ? parseInt(p.get('area'), 10) : null,
+        category: p.get('category') || '',
+      };
+    }
+
+    function buildUserMessage(data) {
+      if (data.min != null && data.max != null) {
+        const sumText = fmt(data.min) + ' – ' + fmt(data.max);
+        return 'Здравствуйте! Я рассчитал стоимость ремонта на вашем сайте. Итоговая сумма получилась: '
+          + sumText + ' руб. Хочу обсудить детали проекта.';
+      }
+      return 'Здравствуйте! Я рассчитал стоимость ремонта на вашем сайте. Хочу обсудить детали проекта.';
+    }
+
+    function buildTelegramDeepLink(userText) {
+      return 'https://t.me/' + TELEGRAM_USERNAME + '?text=' + encodeURIComponent(userText);
+    }
+
+    function autoResizeTextarea(el) {
+      el.style.height = 'auto';
+      el.style.height = Math.min(el.scrollHeight, 120) + 'px';
+    }
+
+    // Подставляем текст расчёта в поле ввода
+    (function init() {
+      const data = readParams();
+      const userText = buildUserMessage(data);
+
+      document.getElementById('chatDate').textContent = formatChatDate(new Date());
+
+      const composeInput = document.getElementById('composeInput');
+      composeInput.value = userText;
+      autoResizeTextarea(composeInput);
+
+      document.getElementById('sendBtn').href = buildTelegramDeepLink(userText);
+    })();
+  </script>
+
+  <a class="portfolio-back" href="../index.html" aria-label="Вернуться в портфолио">← Портфолио</a>
+</body>
+</html>

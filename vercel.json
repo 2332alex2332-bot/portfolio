@@ -1,0 +1,8 @@
+{
+  "rewrites": [
+    { "source": "/privacy-policy.html", "destination": "/privacy-policy.html" },
+    { "source": "/gloris-beauty/(.*)", "destination": "/gloris-beauty/$1" },
+    { "source": "/custom-cars/(.*)", "destination": "/custom-cars/$1" },
+    { "source": "/timur/(.*)", "destination": "/timur/$1" }
+  ]
+}

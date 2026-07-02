@@ -1,0 +1,68 @@
+@import url('../../portfolio-back.css');
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Montserrat", Arial, sans-serif;
+  font-size: 15px;
+  line-height: 1.65;
+  font-weight: 500;
+  color: #121212;
+  background: #e9e4d8;
+  padding: 2rem 1.25rem 4rem;
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+a {
+  color: #121212;
+}
+
+.back {
+  display: inline-block;
+  margin-bottom: 2rem;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #77736a;
+  text-decoration: none;
+}
+
+.back:hover {
+  color: #121212;
+}
+
+h1 {
+  font-size: 1.75rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  margin-bottom: 0.5rem;
+}
+
+.meta {
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #77736a;
+  margin-bottom: 2rem;
+}
+
+h2 {
+  font-size: 1.05rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  margin: 2rem 0 0.75rem;
+}
+
+p, li {
+  margin-bottom: 0.75rem;
+}
+
+ul {
+  padding-left: 1.25rem;
+}

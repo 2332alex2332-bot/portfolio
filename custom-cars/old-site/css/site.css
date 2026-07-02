@@ -1,0 +1,24 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: #0a0a0a;
+}
+
+.screenshot-page {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.screenshot-page__img {
+  display: block;
+  width: 100%;
+  max-width: 1269px;
+  height: auto;
+  margin: 0 auto;
+  vertical-align: top;
+}

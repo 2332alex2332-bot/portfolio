@@ -1,0 +1,59 @@
+/* Общая кнопка «назад в портфолио» для всех демо-сайтов */
+.portfolio-back {
+  position: fixed;
+  bottom: max(0.75rem, env(safe-area-inset-bottom, 0px));
+  left: max(0.75rem, env(safe-area-inset-left, 0px));
+  z-index: 9000;
+  display: inline-flex;
+  align-items: center;
+  padding: 0.4rem 0.7rem;
+  background: rgba(17, 17, 17, 0.5);
+  color: rgba(255, 255, 255, 0.85);
+  font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
+  font-size: 0.625rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  opacity: 0.42;
+  transition: opacity 0.2s ease, background 0.2s ease;
+}
+
+.portfolio-back:hover,
+.portfolio-back:focus-visible {
+  opacity: 1;
+  background: rgba(17, 17, 17, 0.78);
+  color: #fff;
+  outline: none;
+}
+
+@media (min-width: 641px) {
+  .portfolio-back {
+    bottom: max(1.25rem, env(safe-area-inset-bottom, 0px));
+    left: max(1.25rem, env(safe-area-inset-left, 0px));
+    padding: 0.75rem 1.25rem;
+    font-size: 0.875rem;
+    letter-spacing: 0.06em;
+    border-width: 1px;
+    opacity: 0.55;
+  }
+}
+
+@media (max-width: 640px) {
+  .portfolio-back {
+    bottom: max(0.65rem, env(safe-area-inset-bottom, 0px));
+    left: max(0.65rem, env(safe-area-inset-left, 0px));
+    font-size: 0.5625rem;
+    padding: 0.35rem 0.6rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .portfolio-back {
+    transition: none;
+  }
+}

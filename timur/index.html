@@ -1,0 +1,1953 @@
+<!DOCTYPE html>
+<html lang="ru" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ремонт квартир в Химках под ключ | Михаил</title>
+  <meta name="description" content="Ремонт квартир в Химках под ключ с гарантией 3 года. От 4 500 ₽/м².">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../portfolio-back.css">
+  <link rel="stylesheet" href="css/style.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            canvas: '#FFFFFF',
+            card: '#FFFFFF',
+            cream: '#F5F5F0',
+            sage: '#D4DDD0',
+            surface: '#F5F5F5',
+            ink: '#000000',
+            muted: '#666666',
+            line: '#E8E8E8',
+            dark: '#000000',
+            panel: '#1A1A1A',
+            accent: '#FFB703',
+            build: '#FFB703',
+            'build-dark': '#EAB308',
+            'build-soft': '#FDBA74',
+          },
+          fontFamily: {
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+            mono: ['JetBrains Mono', 'ui-monospace', 'monospace'],
+          },
+          maxWidth: { content: '1400px' },
+        },
+      },
+    };
+  </script>
+  <style>
+    :root {
+      --canvas: #FFFFFF;
+      --card: #FFFFFF;
+      --ink: #000000;
+      --muted: #666666;
+      --line: #E8E8E8;
+      --accent: #FFB703;
+      --accent-dark: #E5A503;
+    }
+    .text-accent { color: var(--accent); }
+    .btn-accent { display:inline-flex; align-items:center; gap:0.5rem; border:1px solid var(--accent); background:var(--accent); padding:0.625rem 1.35rem; font-size:0.8125rem; font-weight:600; color:var(--ink); transition:opacity .2s, background .2s, border-color .2s; }
+    .btn-accent:hover { opacity:.9; background:var(--accent-dark); border-color:var(--accent-dark); }
+    .btn-accent:disabled { opacity:.45; cursor:not-allowed; }
+    .btn-accent.rounded-full { border-radius:9999px; text-transform:uppercase; letter-spacing:0.06em; font-size:0.75rem; font-weight:500; }
+    .label-accent { color:var(--accent); }
+    .label { font-family:'JetBrains Mono',ui-monospace,monospace; font-size:10px; font-weight:500; text-transform:uppercase; letter-spacing:0.14em; color:var(--muted); }
+    .btn-dark, .btn-solid { display:inline-flex; align-items:center; gap:0.5rem; border:1px solid var(--ink); background:var(--ink); padding:0.625rem 1.35rem; font-size:0.8125rem; font-weight:500; color:#fff; transition:opacity 0.2s; }
+    .btn-dark { border-radius:9999px; text-transform:uppercase; letter-spacing:0.06em; font-size:0.75rem; }
+    .btn-dark:hover, .btn-solid:hover { opacity:0.82; }
+    .btn-ghost { display:inline-flex; align-items:center; gap:0.5rem; border-radius:9999px; border:1px solid var(--line); background:transparent; padding:0.625rem 1.35rem; font-size:0.75rem; font-weight:500; text-transform:uppercase; letter-spacing:0.06em; color:var(--ink); transition:all 0.2s; }
+    .btn-ghost:hover { border-color:var(--ink); background:var(--ink); color:#fff; }
+    .pill { border-radius:9999px; border:1px solid var(--line); background:transparent; padding:0.4rem 1.1rem; font-size:0.75rem; text-transform:uppercase; letter-spacing:0.05em; color:var(--muted); transition:all 0.2s; }
+    .pill.active { border-color:var(--ink); background:var(--ink); color:#fff; }
+    .quiz-step { display:none; } .quiz-step.active { display:block; }
+    .quiz-opts { display:flex; flex-wrap:wrap; gap:0.5rem; }
+    .quiz-opt { border-radius:9999px; border:1px solid var(--line); background:transparent; padding:0.55rem 1.15rem; font-size:0.8125rem; text-align:left; color:var(--ink); transition:all 0.2s; }
+    .quiz-opt:hover { border-color:var(--ink); }
+    .quiz-opt.selected { border-color:var(--ink); background:var(--ink); color:#fff; }
+    .calc-card { background:var(--card); border:1px solid var(--line); padding:2rem; }
+    @media(min-width:640px){ .calc-card { padding:2.5rem 3rem; } }
+    .calc-input { width:100%; border:none; border-bottom:1px solid var(--line); background:transparent; padding:0.75rem 0; font-size:clamp(2rem,5vw,3.5rem); font-weight:600; color:var(--ink); outline:none; -moz-appearance:textfield; appearance:textfield; }
+    .calc-input:focus { border-bottom-color:var(--ink); }
+    .calc-input::-webkit-outer-spin-button,
+    .calc-input::-webkit-inner-spin-button { -webkit-appearance:none; margin:0; }
+    .calc-price { font-size:clamp(2.5rem,6vw,4rem); font-weight:600; letter-spacing:-0.03em; line-height:1; color:var(--ink); }
+    .calc-field { border:none; border-bottom:1px solid var(--line); background:transparent; padding:0.75rem 0; font-size:0.875rem; outline:none; width:100%; }
+    .calc-dual { display:grid; gap:1.5rem; }
+    @media(min-width:640px){ .calc-dual { grid-template-columns:1fr 1fr; } }
+    .calc-dual .is-hidden { display:none; }
+    /* Пошаговый калькулятор */
+    .calc-wizard-step { display:none; animation:calcFade .25s ease; }
+    .calc-wizard-step.active { display:block; }
+    @keyframes calcFade { from{opacity:0;transform:translateY(6px)} to{opacity:1;transform:none} }
+    .calc-area-wrap { overflow:hidden; max-height:400px; opacity:1; transition:max-height .35s ease, opacity .3s ease; }
+    .calc-area-wrap.is-collapsed { max-height:0; opacity:0; margin-top:0 !important; pointer-events:none; }
+    .calc-area-value { font-size:clamp(2rem,5vw,3.25rem); font-weight:600; letter-spacing:-0.03em; line-height:1; color:var(--ink); }
+    .calc-area-range {
+      width:100%; margin-top:1.25rem; height:6px; appearance:none; -webkit-appearance:none;
+      background:var(--line); border-radius:9999px; outline:none; cursor:pointer;
+    }
+    .calc-area-range::-webkit-slider-thumb {
+      appearance:none; -webkit-appearance:none; width:22px; height:22px; border-radius:50%;
+      background:var(--ink); border:2px solid #fff; box-shadow:0 1px 6px rgba(0,0,0,.2); cursor:pointer;
+    }
+    .calc-area-range::-moz-range-thumb {
+      width:22px; height:22px; border-radius:50%; background:var(--ink); border:2px solid #fff; cursor:pointer;
+    }
+    .calc-area-quick { display:flex; flex-wrap:wrap; gap:0.5rem; margin-top:1.25rem; }
+    .calc-area-quick button {
+      border-radius:9999px; border:1px solid var(--line); background:transparent;
+      padding:0.45rem 0.95rem; font-size:0.8125rem; color:var(--ink); transition:all .2s;
+    }
+    .calc-area-quick button:hover { border-color:var(--ink); }
+    .calc-area-quick button.is-active { border-color:var(--ink); background:var(--ink); color:#fff; }
+    /* Главная кнопка перехода в Telegram */
+    .calc-tg-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      max-width: 22rem;
+      margin: 1.5rem auto 0;
+      padding: 1rem 1.25rem;
+      border-radius: 12px;
+      background: #24A1DE;
+      color: #fff;
+      font-size: 1rem;
+      font-weight: 600;
+      line-height: 1.35;
+      text-decoration: none;
+      text-align: center;
+      transition: transform 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+      box-shadow: 0 4px 14px rgba(36, 161, 222, 0.35);
+    }
+    .calc-tg-btn:hover {
+      background: #1E8FC7;
+      transform: scale(1.03);
+      box-shadow: 0 6px 20px rgba(36, 161, 222, 0.45);
+    }
+    .calc-lead__legal {
+      margin: 0.875rem auto 0;
+      max-width: 22rem;
+      font-size: 0.6875rem;
+      line-height: 1.55;
+      color: var(--muted);
+    }
+    .calc-lead__legal a {
+      color: var(--ink);
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+    .calc-lead__legal a:hover { opacity: 0.75; }
+    .privacy-check a { color:var(--ink); text-decoration:underline; text-underline-offset:2px; }
+    .privacy-check a:hover { opacity:.75; }
+    .privacy-check__input { width:1rem; height:1rem; accent-color:var(--ink); cursor:pointer; }
+    .contact-info { display:flex; align-items:center; gap:0.75rem; }
+    .contact-info__icon { width:1.25rem; height:1.25rem; flex-shrink:0; color:var(--ink); stroke:currentColor; }
+    .site-footer__legal a { color:rgba(255,255,255,.75); text-decoration:none; transition:color .2s; }
+    .site-footer__legal a:hover { color:#fff; }
+    .calc-lead { padding-top:1.5rem; text-align:center; }
+    .calc-lead__title { font-size:1.25rem; font-weight:600; letter-spacing:-0.02em; color:var(--ink); }
+    .calc-lead__text { margin-top:1rem; font-size:0.9375rem; line-height:1.6; color:var(--muted); max-width:32rem; margin-left:auto; margin-right:auto; }
+    .calc-lead__restart {
+      display: inline-flex;
+      justify-content: center;
+      width: auto;
+      padding: 0.5rem 1.15rem;
+    }
+    .calc-wizard.is-done .calc-wizard__body,
+    .calc-wizard.is-done .calc-nav { display:none; }
+    .calc-nav { display:flex; align-items:center; justify-content:space-between; gap:1rem; margin-top:2rem; padding-top:1.5rem; }
+    .calc-path .quiz-opt { cursor:default; pointer-events:none; }
+    .price-blocks { display:flex; flex-direction:column; gap:3rem; }
+    .price-block-title { font-size:1.125rem; font-weight:600; letter-spacing:-0.02em; }
+    .price-rows { margin-top:1rem; }
+    .price-row { display:flex; align-items:baseline; justify-content:space-between; gap:1.5rem; padding:1.1rem 0; font-size:0.875rem; flex-wrap:wrap; }
+    .price-row-name { color:var(--ink); }
+    .price-row-value { font-weight:600; white-space:nowrap; text-align:right; }
+    .price-row-unit { font-weight:400; color:var(--muted); font-size:0.8125rem; }
+    .step-pill { width:2rem; height:2rem; border-radius:9999px; border:1px solid var(--line); display:flex; align-items:center; justify-content:center; font-family:'JetBrains Mono',monospace; font-size:10px; color:var(--muted); transition:all 0.2s; cursor:pointer; background:transparent; padding:0; }
+    .step-pill:hover:not(.active):not(.is-disabled) { border-color:var(--ink); color:var(--ink); }
+    .step-pill.active { background:var(--accent); border-color:var(--accent); color:var(--ink); }
+    .step-pill.done { background:var(--ink); border-color:var(--ink); color:#fff; }
+    .step-pill.is-disabled { opacity:0.35; cursor:not-allowed; pointer-events:none; }
+    .gallery-card { display:flex; flex-direction:column; background:var(--card); padding:1.25rem; transition:box-shadow 0.2s; }
+    .gallery-card:hover { box-shadow:0 0 0 1px var(--ink); }
+    /* Заголовки секций */
+    .section-heading {
+      font-size: clamp(1.75rem, 4.5vw, 3rem);
+      font-weight: 600;
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+      color: var(--ink);
+    }
+    .section-heading--center { text-align: center; }
+    .section-heading--narrow { max-width: 20ch; }
+    .section-heading--medium { max-width: 42rem; }
+    .section-desc {
+      margin-top: 1rem;
+      max-width: 36rem;
+      font-size: 0.875rem;
+      line-height: 1.625;
+      color: var(--muted);
+    }
+    .section-desc--center {
+      text-align: center;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    /* Портфолио */
+    .ba-slider { position:relative; overflow:hidden; aspect-ratio:3/4; background:#fff; border:1px solid var(--line); cursor:ew-resize; user-select:none; transition:box-shadow .25s ease; }
+    .ba-slider:hover { box-shadow:0 12px 40px rgba(0,0,0,.12); }
+    .ba-slider__after { position:absolute; inset:0; overflow:hidden; }
+    .ba-slider__before { position:absolute; inset:0; overflow:hidden; width:50%; z-index:2; }
+    .ba-slider__after img, .ba-slider__before img { position:absolute; left:0; width:100%; height:200%; object-fit:cover; }
+    .ba-slider__after img { bottom:0; top:auto; object-position:center bottom; }
+    .ba-slider__before img { top:0; object-position:center top; }
+    .ba-slider--horizontal .ba-slider__after img,
+    .ba-slider--horizontal .ba-slider__before img { width:200%; height:100%; top:0; bottom:auto; left:0; object-fit:cover; }
+    .ba-slider--horizontal .ba-slider__after img { object-position:right center; }
+    .ba-slider--horizontal .ba-slider__before img { object-position:left center; }
+    .ba-slider--split .ba-slider__after img,
+    .ba-slider--split .ba-slider__before img { width:100%; height:100%; top:0; bottom:auto; left:0; object-fit:cover; max-width:none; }
+    .ba-slider--split .ba-slider__before img { max-width:none; }
+    #featuredCompare .ba-slider { aspect-ratio:21/9; max-width:100%; }
+    .ba-slider__handle { position:absolute; top:0; bottom:0; left:50%; width:2px; background:#fff; transform:translateX(-50%); z-index:3; box-shadow:0 0 0 1px rgba(0,0,0,.15); }
+    .ba-slider__handle::after { content:'↔'; position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); background:var(--accent); color:var(--ink); width:40px; height:40px; border-radius:9999px; display:flex; align-items:center; justify-content:center; font-size:12px; font-weight:700; }
+    .ba-slider__tag { position:absolute; z-index:1; top:12px; padding:4px 10px; font-size:10px; font-weight:600; text-transform:uppercase; letter-spacing:.08em; pointer-events:none; white-space:nowrap; }
+    .ba-slider__tag--before { left:12px; background:#fff; color:var(--ink); }
+    .ba-slider__tag--after { right:12px; background:var(--accent); color:var(--ink); }
+    .ba-slider__caption { margin-top:.75rem; font-size:.8125rem; color:var(--muted); }
+    .project-card { display:flex; flex-direction:column; overflow:hidden; background:var(--card); border:1px solid var(--line); text-align:left; transition:transform .25s ease, box-shadow .25s ease; }
+    .project-card:hover { transform:translateY(-4px); box-shadow:0 16px 40px rgba(0,0,0,.1); }
+    .project-card__media { position:relative; height:14rem; overflow:hidden; }
+    .project-card__media img { position:absolute; left:0; width:100%; height:200%; bottom:0; object-fit:cover; object-position:center bottom; transition:transform .4s ease; }
+    .project-card__media img.is-horizontal { width:200%; height:100%; bottom:auto; top:0; left:0; object-position:right center; }
+    .project-card:hover .project-card__media img { transform:scale(1.03); }
+    .project-card__badges { position:absolute; inset:auto 0 0 0; display:flex; flex-wrap:wrap; gap:.35rem; padding:.75rem; background:linear-gradient(to top,rgba(0,0,0,.72),transparent); }
+    .project-card__badge { background:rgba(255,255,255,.95); color:var(--ink); padding:.25rem .55rem; font-size:9px; font-weight:600; text-transform:uppercase; letter-spacing:.06em; }
+    .project-card__body { padding:1.25rem; display:flex; flex-direction:column; flex:1; }
+    .project-card__title { font-size:1.05rem; font-weight:600; letter-spacing:-.02em; }
+    .project-card__meta { margin-top:.5rem; font-size:.75rem; color:var(--muted); }
+    .project-card__btn { margin-top:1rem; width:100%; justify-content:center; font-size:10px; }
+    .project-modal { position:fixed; inset:0; z-index:200; display:none; align-items:center; justify-content:center; padding:1rem; background:rgba(0,0,0,.88); backdrop-filter:blur(4px); overflow-y:auto; -webkit-overflow-scrolling:touch; overscroll-behavior:contain; }
+    .project-modal.is-open { display:flex; }
+    .project-modal__panel { position:relative; width:100%; max-width:1100px; max-height:92vh; overflow:hidden; background:var(--canvas); }
+    @media(max-width:899px){
+      .project-modal { align-items:flex-start; padding:.5rem; padding-bottom:max(1rem, env(safe-area-inset-bottom)); }
+      .project-modal.is-open { display:block; }
+      .project-modal__panel { max-height:none; overflow:visible; margin:0 auto; }
+      .project-modal__gallery { touch-action:pan-y pinch-zoom; }
+      .project-modal__stack { min-height:0; max-height:36vh; padding:.75rem; }
+      .project-modal__stack-half { min-height:6.5rem; }
+      .project-modal__stack-half img { min-height:6.5rem; }
+      .project-modal__slide img { min-height:0; max-height:36vh; }
+      .project-modal__slide img.is-composite { max-height:36vh; }
+      .project-modal__sidebar { max-height:none; overflow:visible; padding:1.25rem 1.25rem 1.5rem; }
+    }
+    @media(min-width:900px){
+      .project-modal__panel { height:min(92vh,680px); max-height:min(92vh,680px); }
+      .project-modal__viewport,
+      .project-modal__track { height:100%; }
+    }
+    .project-modal__close { position:absolute; top:12px; right:12px; z-index:5; width:40px; height:40px; display:flex; align-items:center; justify-content:center; background:var(--ink); color:#fff; font-size:18px; line-height:1; border:none; cursor:pointer; transition:opacity .2s; }
+    .project-modal__close:hover { opacity:.8; }
+    .project-modal__viewport { position:relative; width:100%; overflow:hidden; touch-action:pan-y pinch-zoom; }
+    .project-modal__track { display:flex; width:100%; will-change:transform; transition:transform .38s cubic-bezier(.25,.46,.45,.94); }
+    .project-modal__track.is-dragging { transition:none; }
+    @media (prefers-reduced-motion: reduce) {
+      .project-modal__track { transition:none; }
+    }
+    .project-modal__project { flex:0 0 100%; width:100%; min-width:100%; height:100%; }
+    .project-modal__card { display:grid; grid-template-columns:1fr; width:100%; height:100%; background:var(--canvas); overflow:hidden; }
+    @media(min-width:900px){
+      .project-modal__card { grid-template-columns:1.2fr .8fr; height:100%; min-height:100%; align-items:stretch; }
+    }
+    .project-modal__gallery { position:relative; background:var(--card); min-height:280px; display:flex; flex-direction:column; align-items:stretch; justify-content:stretch; overflow:hidden; }
+    @media(min-width:900px){ .project-modal__gallery { height:100%; min-height:0; } }
+    .project-modal__slide { display:flex; align-items:stretch; justify-content:center; width:100%; min-height:280px; flex:1; }
+    @media(min-width:900px){ .project-modal__slide { min-height:0; height:100%; } }
+    .project-modal__stack { display:flex; flex-direction:column; width:100%; flex:1; min-height:280px; max-height:min(85vh,820px); padding:1.25rem; }
+    @media(min-width:900px){ .project-modal__stack { min-height:0; height:100%; max-height:none; } }
+    .project-modal__stack-half { position:relative; flex:1 1 50%; min-height:10rem; overflow:hidden; background:var(--canvas); }
+    .project-modal__stack-half + .project-modal__stack-half { border-top:2px solid var(--ink); }
+    .project-modal__stack-half img { display:block; width:100%; height:100%; min-height:10rem; object-fit:cover; object-position:center; }
+    .project-modal__slide img { width:100%; height:100%; min-height:280px; max-height:60vh; object-fit:cover; object-position:center; }
+    .project-modal__slide img.is-composite { width:auto; height:auto; min-height:0; max-width:100%; max-height:min(60vh,520px); object-fit:contain; object-position:center center; }
+    @media(min-width:900px){
+      .project-modal__slide img { max-height:none; min-height:0; height:100%; }
+      .project-modal__slide img.is-composite { max-height:100%; height:100%; }
+    }
+    .project-modal__nav { position:absolute; inset:0; display:none; align-items:center; justify-content:space-between; padding:0 .75rem; pointer-events:none; z-index:4; }
+    @media(min-width:900px){ .project-modal__nav { display:flex; } }
+    .project-modal__nav button { pointer-events:auto; width:40px; height:40px; background:rgba(0,0,0,.55); color:#fff; border:none; cursor:pointer; font-size:18px; transition:background .2s; }
+    .project-modal__nav button:hover { background:var(--ink); }
+    .project-modal__pager { position:absolute; left:50%; transform:translateX(-50%); z-index:6; pointer-events:auto; opacity:0; transition:opacity .2s, top .38s cubic-bezier(.25,.46,.45,.94); }
+    .project-modal__pager.is-ready { opacity:1; }
+    .project-modal__pager-inner { position:relative; display:flex; align-items:center; gap:8px; padding:7px 12px; background:rgba(255,255,255,.88); backdrop-filter:blur(10px); -webkit-backdrop-filter:blur(10px); border-radius:9999px; box-shadow:0 4px 20px rgba(0,0,0,.08); }
+    .project-modal__pager-dots { position:relative; z-index:1; display:flex; align-items:center; gap:8px; }
+    .project-modal__dot { width:8px; height:8px; border-radius:9999px; background:rgba(0,0,0,.18); border:none; padding:0; cursor:pointer; flex-shrink:0; transition:background .28s ease, transform .28s ease; }
+    .project-modal__dot.is-active { background:var(--ink); transform:scale(1); }
+    .project-modal__dot:hover { opacity:.85; }
+    .project-modal__sidebar { padding:1.5rem; overflow-y:auto; max-height:92vh; background:var(--canvas); }
+    @media(min-width:900px){
+      .project-modal__sidebar { padding:2rem; height:100%; min-height:0; max-height:none; overflow-y:auto; }
+    }
+    .project-modal__head { min-height:6rem; }
+    .project-modal__label { font-family:'JetBrains Mono',monospace; font-size:10px; text-transform:uppercase; letter-spacing:.12em; color:var(--muted); }
+    .project-modal__title {
+      margin-top:.5rem;
+      min-height:5.2rem;
+      font-size:1.5rem;
+      font-weight:600;
+      letter-spacing:-.03em;
+      line-height:1.15;
+      display:-webkit-box;
+      -webkit-box-orient:vertical;
+      -webkit-line-clamp:3;
+      overflow:hidden;
+    }
+    .project-modal__stats { margin-top:1.25rem; display:grid; gap:.75rem; }
+    .project-modal__stat { display:flex; align-items:center; justify-content:space-between; gap:1rem; min-height:2.35rem; font-size:.8125rem; padding-bottom:.75rem; border-bottom:1px solid var(--line); }
+    .project-modal__stat span:first-child { flex-shrink:0; }
+    .project-modal__stat span:last-child { font-weight:600; text-align:right; max-width:58%; }
+    .project-modal__task { margin-top:1.25rem; font-size:.875rem; line-height:1.6; color:var(--muted); }
+    .project-modal__rooms { margin-top:1rem; display:flex; flex-wrap:wrap; gap:.4rem; }
+    .project-modal__room { padding:.35rem .7rem; font-size:10px; text-transform:uppercase; letter-spacing:.06em; background:var(--card); cursor:pointer; border:1px solid transparent; transition:all .2s; }
+    .project-modal__room.is-active, .project-modal__room:hover { border-color:var(--ink); background:var(--ink); color:#fff; }
+    .project-modal.is-open ~ .portfolio-back { opacity:0; pointer-events:none; visibility:hidden; }
+    .spec-row { display:grid; grid-template-columns:3rem 3rem 1fr; gap:1.5rem; padding:2.5rem 0; }
+    @media(min-width:1024px){ .spec-row { grid-template-columns:4rem 4rem 1fr; } }
+    .doc-list { display: flex; flex-direction: column; gap: 0.5rem; }
+    .doc-row {
+      display: grid;
+      grid-template-columns: 1.25rem 1fr 4.75rem;
+      align-items: center;
+      column-gap: 0.75rem;
+      padding: 1rem;
+      background: var(--card);
+      text-decoration: none;
+      color: inherit;
+    }
+    .doc-row--link {
+      border: 1px solid var(--line);
+      transition: box-shadow 0.2s, border-color 0.2s;
+    }
+    .doc-row--link:hover { box-shadow: 0 0 0 1px var(--ink); }
+    .doc-row__icon { width: 1.25rem; height: 1.25rem; color: var(--muted); flex-shrink: 0; }
+    .doc-row__action {
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--muted);
+      text-align: right;
+      white-space: nowrap;
+    }
+    .doc-row--link:hover .doc-row__action { color: var(--ink); }
+    .doc-row__action--empty { visibility: hidden; pointer-events: none; }
+    @media (max-width:639px) {
+      .doc-row {
+        grid-template-columns:1.25rem minmax(0, 1fr);
+        row-gap:0.35rem;
+      }
+      .doc-row__action {
+        grid-column:2;
+        text-align:left;
+        white-space:normal;
+      }
+      .spec-row {
+        grid-template-columns:auto minmax(0, 1fr);
+        grid-template-rows:auto auto;
+        column-gap:1rem;
+        row-gap:0.65rem;
+        padding:2rem 0;
+      }
+      .spec-row > span:first-child { grid-column:1; grid-row:1; align-self:start; }
+      .spec-row > svg { grid-column:1; grid-row:2; width:1.75rem; height:1.75rem; }
+      .spec-row > div { grid-column:2; grid-row:1 / -1; min-width:0; }
+      .price-row { flex-direction:column; align-items:flex-start; gap:0.35rem; }
+      .price-row-value { text-align:left; white-space:normal; }
+    }
+    .reviews-source { font-size:0.6875rem; text-transform:uppercase; letter-spacing:0.1em; color:var(--muted); }
+    .reviews-shots { margin-top: 2rem; }
+    .reviews-shots__summary {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 1rem;
+    }
+    .reviews-shots__summary .reviews-shot { max-width: 280px; }
+    .reviews-shots__grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1rem;
+      align-items: start;
+    }
+    @media (min-width: 640px) {
+      .reviews-shots__grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (min-width: 1024px) {
+      .reviews-shots__grid { grid-template-columns: repeat(3, 1fr); }
+    }
+    .reviews-shot {
+      width: 100%;
+      height: auto;
+      border: 1px solid var(--line);
+      background: #fff;
+    }
+    .reviews-shot-caption {
+      margin-top: 0.75rem;
+      text-align: center;
+      font-size: 0.75rem;
+      color: var(--muted);
+    }
+    .reviews-shot-caption a { text-decoration: underline; text-underline-offset: 2px; }
+    .reviews-shot-caption a:hover { color: var(--ink); }
+    .hero-wide { width:100%; max-width:1920px; margin-left:auto; margin-right:auto; padding-left:2.5vw; padding-right:2.5vw; }
+    .nav-link { font-size:11px; font-weight:500; text-transform:uppercase; letter-spacing:0.14em; color:var(--muted); transition:color .2s; white-space:nowrap; }
+    .nav-link:hover { color:var(--ink); }
+    .hero-mark { width:2rem; height:2rem; border-radius:9999px; border:1px solid var(--ink); flex-shrink:0; overflow:hidden; display:block; background:var(--surface); }
+    .hero-mark img { width:100%; height:100%; object-fit:cover; object-position:50% 18%; }
+    .site-header__bar {
+      display:grid;
+      grid-template-columns:minmax(0, auto) 1fr minmax(0, auto);
+      align-items:center;
+      gap:clamp(12px, 2vw, 24px);
+      min-height:4rem;
+      padding-block:1rem;
+    }
+    .site-header__brand {
+      display:inline-flex;
+      align-items:center;
+      gap:0.625rem;
+      min-width:0;
+      font-size:0.8125rem;
+      font-weight:600;
+      letter-spacing:-0.02em;
+      color:var(--ink);
+      text-decoration:none;
+      white-space:nowrap;
+    }
+    .site-header__nav {
+      display:none;
+      align-items:center;
+      justify-content:center;
+      gap:clamp(1rem, 1.8vw, 2rem);
+      min-width:0;
+    }
+    .site-header__actions {
+      display:flex;
+      align-items:center;
+      justify-content:flex-end;
+      gap:clamp(0.5rem, 1.2vw, 1.25rem);
+      min-width:0;
+    }
+    .site-header__phone,
+    .site-header__cta {
+      display:none;
+      flex-shrink:0;
+    }
+    .site-header__cta {
+      padding:0.5rem 0.95rem;
+      font-size:0.6875rem;
+    }
+    .site-header__burger {
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      flex-shrink:0;
+      width:2.25rem;
+      height:2.25rem;
+      padding:0;
+      border:1px solid var(--line);
+      border-radius:9999px;
+      background:transparent;
+      color:var(--ink);
+      transition:border-color .2s, background .2s;
+    }
+    .site-header__burger:hover { border-color:var(--ink); background:rgba(0,0,0,.03); }
+    .site-header__menu-phone { display:block; }
+    .site-header__menu-cta { display:none; }
+    .site-header__cta.btn-accent,
+    .site-header__menu-cta.btn-accent {
+      text-transform:none;
+      letter-spacing:0.02em;
+    }
+    @media (min-width:768px) {
+      .site-header__phone { display:inline-flex; }
+      .site-header__menu-phone { display:none; }
+    }
+    @media (min-width:768px) and (max-width:1023px) {
+      .site-header__menu-cta { display:flex; }
+    }
+    @media (min-width:1024px) {
+      .site-header__cta { display:inline-flex; }
+    }
+    @media (min-width:1280px) {
+      .site-header__nav { display:flex; }
+      .site-header__burger { display:none; }
+      .site-header__menu-cta { display:none; }
+      .site-header__nav .nav-link { font-size:10px; letter-spacing:0.11em; }
+    }
+    @media (min-width:1440px) {
+      .site-header__nav .nav-link { font-size:11px; letter-spacing:0.14em; }
+      .site-header__cta { padding:0.625rem 1.35rem; font-size:0.75rem; letter-spacing:0.02em; }
+    }
+    @media (max-width:767px) {
+      .site-header__menu-cta { display:flex; }
+    }
+    .mobile-link {
+      display:block;
+      color:var(--ink);
+      text-decoration:none;
+      transition:color .2s;
+    }
+    .mobile-link:hover { color:var(--muted); }
+    /* Hero — bold headline + marquee + full image */
+    .section-hero {
+      display:flex; flex-direction:column;
+      background:#F5F5F0;
+    }
+    .hero-bath__top {
+      padding-top:clamp(2rem, 5vh, 4rem);
+      padding-bottom:clamp(1rem, 2.5vh, 1.5rem);
+    }
+    .hero-bath__title {
+      font-size:clamp(3.25rem, 15.5vw, 12.5rem);
+      font-weight:800;
+      line-height:0.84;
+      letter-spacing:-0.045em;
+      text-transform:uppercase;
+      color:var(--ink);
+      width:100%;
+    }
+    .hero-bath__marquee {
+      overflow:hidden;
+      width:100%;
+      margin-top:clamp(1.25rem, 3vw, 2.25rem);
+      padding:0.85rem 0;
+      border-top:1px solid rgba(0,0,0,.1);
+      border-bottom:1px solid rgba(0,0,0,.1);
+    }
+    .hero-bath__marquee-track {
+      display:flex;
+      width:max-content;
+      animation:heroMarquee 32s linear infinite;
+    }
+    .hero-bath__marquee-track span {
+      flex-shrink:0;
+      padding-right:3rem;
+      font-size:clamp(0.625rem, 1.15vw, 0.8125rem);
+      font-weight:700;
+      line-height:1;
+      text-transform:uppercase;
+      letter-spacing:0.1em;
+      color:var(--ink);
+      white-space:nowrap;
+    }
+    @keyframes heroMarquee {
+      from { transform:translateX(0); }
+      to { transform:translateX(-50%); }
+    }
+    .hero-bath__visual {
+      position:relative;
+      background:#D4DDD0;
+      min-height:clamp(260px, 50vh, 580px);
+      overflow:hidden;
+    }
+    .hero-bath__visual img {
+      display:block;
+      width:100%;
+      height:100%;
+      min-height:clamp(260px, 50vh, 580px);
+      object-fit:cover;
+      object-position:center 35%;
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .hero-bath__marquee-track { animation:none; flex-wrap:wrap; width:100%; }
+      .hero-bath__marquee-track span:last-child { display:none; }
+    }
+    /* Плавные переходы между секциями */
+    html {
+      scroll-padding-top:4rem;
+      scroll-behavior:smooth;
+    }
+    .section-flow {
+      position:relative; overflow:visible; z-index:0;
+    }
+    .site-footer {
+      scroll-margin-bottom:1rem;
+      padding-top:2.5rem;
+      padding-bottom:max(2.5rem, env(safe-area-inset-bottom, 0px));
+      padding-left:max(1.25rem, env(safe-area-inset-left, 0px));
+      padding-right:max(1.25rem, env(safe-area-inset-right, 0px));
+    }
+    @media (min-width:640px) {
+      .site-footer {
+        padding-left:max(2.5rem, env(safe-area-inset-left, 0px));
+        padding-right:max(2.5rem, env(safe-area-inset-right, 0px));
+      }
+    }
+    .site-footer__legal { max-width:100%; padding-inline:0.25rem; }
+    .section-inner { position:relative; z-index:2; }
+    /* Появление при скролле — невидимо, потом плавно */
+    .reveal, .reveal-block {
+      opacity:0;
+      transform:translateY(40px) scale(0.992);
+      filter:blur(8px);
+      transition:
+        opacity 1.45s cubic-bezier(.22,1,.36,1),
+        transform 1.55s cubic-bezier(.22,1,.36,1),
+        filter 1.35s cubic-bezier(.22,1,.36,1);
+      will-change:opacity, transform, filter;
+    }
+    .reveal.is-visible, .reveal-block.is-visible {
+      opacity:1; transform:none; filter:blur(0);
+    }
+    .reveal-stagger > .reveal-child {
+      opacity:0;
+      transform:translateY(28px) scale(0.995);
+      filter:blur(6px);
+      transition:
+        opacity 1.2s cubic-bezier(.22,1,.36,1),
+        transform 1.25s cubic-bezier(.22,1,.36,1),
+        filter 1.1s cubic-bezier(.22,1,.36,1);
+    }
+    .reveal-stagger.is-visible > .reveal-child { opacity:1; transform:none; filter:blur(0); }
+    .reveal-stagger.is-visible > .reveal-child:nth-child(1) { transition-delay:.12s; }
+    .reveal-stagger.is-visible > .reveal-child:nth-child(2) { transition-delay:.24s; }
+    .reveal-stagger.is-visible > .reveal-child:nth-child(3) { transition-delay:.36s; }
+    .reveal-stagger.is-visible > .reveal-child:nth-child(4) { transition-delay:.48s; }
+    .reveal-stagger.is-visible > .reveal-child:nth-child(5) { transition-delay:.6s; }
+    .reveal-block.is-visible .reveal,
+    .reveal-block.is-visible .reveal-stagger { transition-delay:.25s; }
+    @media (prefers-reduced-motion: reduce) {
+      .reveal, .reveal-block, .reveal-stagger > .reveal-child { opacity:1; transform:none; filter:none; transition:none; }
+      html { scroll-behavior:auto; }
+    }
+  </style>
+</head>
+<body class="bg-canvas font-sans text-ink antialiased">
+  <script>if('scrollRestoration' in history) history.scrollRestoration='manual';window.scrollTo(0,0);</script>
+
+  <!-- HEADER -->
+  <header class="site-header fixed inset-x-0 top-0 z-50 border-b border-line bg-white/95 backdrop-blur-sm">
+    <div class="site-header__bar hero-wide">
+      <a href="#top" class="site-header__brand">
+        <span class="hero-mark"><img src="images/timur-avatar.png" alt="" width="32" height="32" loading="eager"></span>
+        <span>Михаил</span>
+      </a>
+
+      <nav class="site-header__nav" aria-label="Основная навигация">
+        <a href="#portfolio" class="nav-link">Работы</a>
+        <a href="#calculator" class="nav-link">Калькулятор</a>
+        <a href="#about" class="nav-link">О нас</a>
+        <a href="#pricing" class="nav-link">Цены</a>
+        <a href="#contacts" class="nav-link">Контакты</a>
+      </nav>
+
+      <div class="site-header__actions">
+        <a href="tel:+79000000000" class="site-header__phone nav-link">+7 (900) 000-00-00</a>
+        <a href="#calculator" class="site-header__cta btn-accent rounded-full">Рассчитать стоимость</a>
+        <button id="menuBtn" class="site-header__burger" type="button" aria-label="Открыть меню" aria-expanded="false" aria-controls="mobileMenu">
+          <svg id="iconOpen" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+          <svg id="iconClose" class="hidden h-5 w-5" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+        </button>
+      </div>
+    </div>
+    <div id="mobileMenu" class="hidden border-t border-line bg-white xl:hidden">
+      <nav class="hero-wide flex flex-col py-3 text-sm">
+        <a href="#portfolio" class="mobile-link py-3 border-b border-line">Работы</a>
+        <a href="#calculator" class="mobile-link py-3 border-b border-line">Калькулятор</a>
+        <a href="#about" class="mobile-link py-3 border-b border-line">О нас</a>
+        <a href="#pricing" class="mobile-link py-3 border-b border-line">Цены</a>
+        <a href="#contacts" class="mobile-link py-3 border-b border-line">Контакты</a>
+        <a href="tel:+79000000000" class="mobile-link site-header__menu-phone py-3 border-b border-line">+7 (900) 000-00-00</a>
+        <a href="#calculator" class="mobile-link site-header__menu-cta btn-accent mt-4 justify-center">Рассчитать стоимость</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="pt-[4rem]">
+
+    <!-- 1. HERO -->
+    <section id="top" class="section-flow section-hero">
+      <div class="hero-bath__top section-inner">
+        <div class="hero-wide">
+          <h1 class="hero-bath__title reveal">Ремонт<br>квартир</h1>
+        </div>
+        <div class="hero-bath__marquee reveal" aria-hidden="true">
+          <div class="hero-bath__marquee-track">
+            <span>Ремонт под ключ в Химках · Гарантия 3 года · Фиксированная цена · Бесплатный замер · Отделка · Плитка · Электрика · Сантехника · </span>
+            <span>Ремонт под ключ в Химках · Гарантия 3 года · Фиксированная цена · Бесплатный замер · Отделка · Плитка · Электрика · Сантехника · </span>
+          </div>
+        </div>
+      </div>
+      <figure class="hero-bath__visual reveal">
+        <img src="images/hero/01-painting.png" alt="Малярные работы — ремонт под ключ в Химках" width="7680" height="5120" loading="eager">
+      </figure>
+    </section>
+
+    <!-- 2. PORTFOLIO -->
+    <section id="portfolio" class="section-flow bg-canvas">
+      <div class="mx-auto max-w-content px-5 py-16 lg:px-10 lg:py-24 section-inner reveal-block">
+
+        <h2 class="section-heading section-heading--narrow reveal">Посмотрите на квартиры, которые мы сдали в этом месяце</h2>
+        <p class="section-desc reveal">Реальные объекты в Химках — потяните ползунок, чтобы увидеть разницу до и после ремонта</p>
+
+        <div id="featuredCompare" class="reveal mx-auto mt-12 w-full max-w-5xl"></div>
+
+        <div id="portfolioGrid" class="reveal mt-16 grid gap-6 sm:grid-cols-2 lg:grid-cols-3"></div>
+
+        <a href="#calculator" class="btn-accent rounded-full reveal mx-auto mt-16 block w-fit">Рассчитать стоимость</a>
+      </div>
+    </section>
+
+    <!-- Модалка проекта -->
+    <div id="projectModal" class="project-modal" role="dialog" aria-modal="true" aria-hidden="true">
+      <div class="project-modal__panel">
+        <button type="button" id="projectModalClose" class="project-modal__close" aria-label="Закрыть">✕</button>
+        <div class="project-modal__viewport" id="projectModalViewport">
+          <div id="projectModalTrack" class="project-modal__track"></div>
+        </div>
+        <div class="project-modal__nav">
+          <button type="button" id="projectModalPrev" aria-label="Назад">←</button>
+          <button type="button" id="projectModalNext" aria-label="Вперёд">→</button>
+        </div>
+        <div class="project-modal__pager" id="projectModalPager" aria-hidden="true">
+          <div class="project-modal__pager-inner">
+            <div class="project-modal__pager-dots" id="projectModalPagerDots"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3. CALCULATOR -->
+    <section id="calculator" class="section-flow bg-surface">
+      <div class="hero-wide py-16 lg:py-24 section-inner reveal-block">
+        <div class="reveal flex flex-wrap items-center justify-between gap-4 pb-6">
+          <div class="flex items-center gap-3">
+            <span class="h-1.5 w-1.5 rounded-full bg-ink"></span>
+            <span class="label">Калькулятор</span>
+          </div>
+          <a href="#contacts" class="btn-ghost text-[11px]">Вызвать мастера ↗</a>
+        </div>
+
+        <div class="reveal">
+          <h2 class="section-heading section-heading--center reveal">Рассчитайте стоимость</h2>
+          <p class="section-desc section-desc--center reveal max-w-lg">Три шага — и прораб подготовит для вас предварительную смету</p>
+        </div>
+
+        <div id="calcWizard" class="calc-card calc-wizard reveal mx-auto mt-14 max-w-2xl">
+          <div class="calc-wizard__body">
+          <div class="flex flex-wrap items-center justify-between gap-4 pb-5">
+            <p id="calcStepLabel" class="label">Категория</p>
+            <div id="calcProgress" class="flex gap-2"></div>
+          </div>
+
+          <div id="calcBreadcrumb" class="quiz-opts calc-path mt-5 hidden"></div>
+
+          <p id="calcHint" class="mt-6 hidden text-center text-xs text-muted"></p>
+
+          <!-- Шаг 1: категория -->
+          <div class="calc-wizard-step active mt-10" data-step="1">
+            <p class="label mb-4">Выберите направление</p>
+            <div id="calcBlocks" class="quiz-opts"></div>
+          </div>
+
+          <!-- Шаг 2: услуга -->
+          <div class="calc-wizard-step mt-10" data-step="2">
+            <p class="label mb-4">Вид ремонта</p>
+            <div id="calcServices" class="quiz-opts"></div>
+          </div>
+
+          <!-- Шаг 3: площадь -->
+          <div class="calc-wizard-step mt-10" data-step="3">
+            <div id="calcAreaWrap" class="calc-area-wrap">
+              <p class="label mb-4">Площадь объекта</p>
+              <p class="calc-area-value"><span id="calcAreaValue">55</span> м²</p>
+              <input type="range" id="calcAreaRange" class="calc-area-range" min="10" max="200" step="1" value="55" aria-label="Площадь в квадратных метрах">
+              <input type="hidden" id="calcArea" value="55">
+              <div id="calcAreaQuick" class="calc-area-quick"></div>
+            </div>
+          </div>
+
+          <div class="calc-nav">
+            <button type="button" id="calcBack" class="btn-ghost hidden text-[11px]">← Назад</button>
+            <button type="button" id="calcAreaDone" class="btn-accent ml-auto hidden text-[11px]">Готово</button>
+          </div>
+          </div>
+
+          <!-- Финальный экран: сумма + Telegram -->
+          <div id="calcLeadPanel" class="calc-lead hidden">
+            <p class="calc-lead__title">Расчёт готов!</p>
+            <p id="calcLeadText" class="calc-lead__text"></p>
+
+            <a id="calcTgBtn" class="calc-tg-btn" href="#" target="_blank" rel="noopener noreferrer">
+              👉 Написать в Telegram
+            </a>
+            <p class="calc-lead__legal">
+              Нажимая на кнопку перехода в Telegram, вы подтверждаете своё согласие на обработку персональных данных в соответствии с
+              <a href="legal/privacy-policy.html" target="_blank" rel="noopener noreferrer">Политикой конфиденциальности</a>.
+            </p>
+
+            <button type="button" id="calcLeadRestart" class="btn-ghost calc-lead__restart mt-6 text-[11px]">Пройти заново</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. ABOUT -->
+    <section id="about" class="section-flow bg-canvas">
+      <div class="mx-auto max-w-content px-5 py-16 lg:px-10 lg:py-24 section-inner reveal-block">
+        <div class="reveal">
+          <p class="label">· О нас</p>
+          <h2 class="section-heading mt-3">Почему выбирают нас</h2>
+          <p class="section-desc">Опыт в сфере ремонта — более 10 лет. Работаем в Химках и области.</p>
+        </div>
+
+        <div class="mt-16 grid gap-12 lg:grid-cols-12">
+          <div class="lg:col-span-8 reveal-stagger">
+            <div class="spec-row reveal-child">
+              <span class="text-sm font-medium text-muted">01</span>
+              <svg class="h-8 w-8 text-ink" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+              <div><h3 class="text-lg font-semibold text-ink">Опыт более 10 лет</h3><p class="mt-2 text-sm leading-relaxed text-muted">Капитальный и косметический ремонт, отделка под ключ. Сотни сданных объектов в Химках.</p></div>
+            </div>
+            <div class="spec-row reveal-child">
+              <span class="text-sm font-medium text-muted">02</span>
+              <svg class="h-8 w-8 text-ink" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+              <div><h3 class="text-lg font-semibold text-ink">Гарантия 3 года</h3><p class="mt-2 text-sm leading-relaxed text-muted">Письменная гарантия в договоре на все виды работ. Цена фиксируется — никаких доплат.</p></div>
+            </div>
+            <div class="spec-row reveal-child">
+              <span class="text-sm font-medium text-muted">03</span>
+              <svg class="h-8 w-8 text-ink" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+              <div><h3 class="text-lg font-semibold text-ink">Работа по договору</h3><p class="mt-2 text-sm leading-relaxed text-muted">Договор подряда, расписка, акт приёма-передачи. Оплата поэтапно после каждого этапа.</p></div>
+            </div>
+            <div class="spec-row reveal-child">
+              <span class="text-sm font-medium text-muted">04</span>
+              <svg class="h-8 w-8 text-ink" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"/></svg>
+              <div><h3 class="text-lg font-semibold text-ink">Контроль в телефоне</h3><p class="mt-2 text-sm leading-relaxed text-muted">Фото и видеоотчёты в Telegram или WhatsApp каждый день. Всегда на связи.</p></div>
+            </div>
+            <div class="spec-row reveal-child">
+              <span class="text-sm font-medium text-muted">05</span>
+              <svg class="h-8 w-8 text-ink" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
+              <div><h3 class="text-lg font-semibold text-ink">Закупки без переплат</h3><p class="mt-2 text-sm leading-relaxed text-muted">Материалы напрямую у поставщиков со скидкой до 30%. Помогаем с подбором.</p></div>
+            </div>
+          </div>
+          <div class="lg:col-span-4 reveal">
+            <div class="flex items-center justify-between text-[10px] uppercase tracking-widest text-muted">
+              <span>Документы</span><span>03 доступно</span>
+            </div>
+            <div class="mt-4 doc-list">
+              <a href="documents/dogovor-podryada.pdf" class="doc-row doc-row--link group" download="dogovor-podryada.pdf">
+                <svg class="doc-row__icon" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+                <div>
+                  <p class="text-sm font-medium text-ink">Договор подряда</p>
+                  <p class="text-[10px] text-muted">PDF — образец</p>
+                </div>
+                <span class="doc-row__action">Скачать ↓</span>
+              </a>
+              <a href="documents/garantijnyj-talon.pdf" class="doc-row doc-row--link group" download="garantijnyj-talon.pdf">
+                <svg class="doc-row__icon" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+                <div>
+                  <p class="text-sm font-medium text-ink">Гарантийный талон</p>
+                  <p class="text-[10px] text-muted">PDF — образец</p>
+                </div>
+                <span class="doc-row__action">Скачать ↓</span>
+              </a>
+              <a href="documents/akt-priema-peredachi.pdf" class="doc-row doc-row--link group" download="akt-priema-peredachi.pdf">
+                <svg class="doc-row__icon" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/></svg>
+                <div>
+                  <p class="text-sm font-medium text-ink">Акт приёма-передачи</p>
+                  <p class="text-[10px] text-muted">PDF — образец</p>
+                </div>
+                <span class="doc-row__action">Скачать ↓</span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-16 pt-16 reveal">
+          <div class="flex flex-wrap items-end justify-between gap-4">
+            <div>
+              <p class="label">· Отзывы</p>
+              <h3 class="section-heading mt-2">Что пишут клиенты</h3>
+            </div>
+            <p class="reviews-source">Площадка объявлений · реальные отзывы</p>
+          </div>
+          <div class="reviews-shots reveal">
+            <div class="reviews-shots__summary">
+              <img
+                src="images/reviews/avito-reviews-summary.png"
+                alt="Рейтинг 5,0 — 5 отзывов клиентов"
+                class="reviews-shot"
+                width="560"
+                height="80"
+                loading="lazy"
+              >
+            </div>
+            <div class="reviews-shots__grid reveal-stagger">
+              <img src="images/reviews/avito-review-1.png" alt="Отзыв Кристины" class="reviews-shot reveal-child" loading="lazy">
+              <img src="images/reviews/avito-review-2.png" alt="Отзыв Романа" class="reviews-shot reveal-child" loading="lazy">
+              <img src="images/reviews/avito-review-3.png" alt="Отзыв Генриха" class="reviews-shot reveal-child" loading="lazy">
+              <img src="images/reviews/avito-review-4.png" alt="Отзыв David" class="reviews-shot reveal-child" loading="lazy">
+              <img src="images/reviews/avito-review-5.png" alt="Отзыв Анжелы" class="reviews-shot reveal-child" loading="lazy">
+            </div>
+          </div>
+          <p class="reviews-shot-caption reveal">
+            Скриншоты исходного объявления
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. PRICING -->
+    <section id="pricing" class="section-flow bg-surface">
+      <div class="mx-auto max-w-content px-5 py-16 lg:px-10 lg:py-24 section-inner reveal-block">
+        <div class="reveal">
+          <p class="label text-center">· Цены</p>
+          <h2 class="section-heading section-heading--center mt-3">Прайс-лист</h2>
+          <p class="section-desc section-desc--center max-w-lg">Актуальные расценки на все виды работ</p>
+        </div>
+        <div id="priceList" class="price-blocks reveal mx-auto mt-14 max-w-3xl"></div>
+        <a href="#calculator" class="btn-solid reveal mx-auto mt-12 block w-fit text-center">Рассчитать стоимость</a>
+      </div>
+    </section>
+
+    <!-- 6. CONTACTS -->
+    <section id="contacts" class="section-flow bg-canvas">
+      <div class="mx-auto max-w-content px-5 py-16 lg:px-10 lg:py-24 section-inner reveal-block">
+        <h2 class="section-heading section-heading--medium reveal">
+          Готовы начать ремонт? Закажите бесплатный замер прямо сейчас!
+        </h2>
+        <div class="mt-12 grid gap-12 lg:grid-cols-2">
+          <div class="reveal space-y-4 text-sm text-muted">
+            <p class="contact-info">
+              <svg class="contact-info__icon" fill="none" stroke-width="1.5" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"/></svg>
+              <span>Московская обл., г. Химки</span>
+            </p>
+            <p class="contact-info">
+              <svg class="contact-info__icon" fill="none" stroke-width="1.5" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+              <span>Время для связи: 08:00 – 20:00</span>
+            </p>
+            <p class="contact-info">
+              <svg class="contact-info__icon" fill="none" stroke-width="1.5" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z"/></svg>
+              <a href="tel:+79000000000" class="font-medium text-ink">+7 (900) 000-00-00</a>
+            </p>
+          </div>
+          <form id="contactForm" class="reveal space-y-4" novalidate>
+            <input type="text" id="name" name="name" required autocomplete="name" placeholder="Ваше имя" class="calc-field">
+            <input type="tel" id="phone" name="phone" required autocomplete="tel" placeholder="+7 (___) ___-__-__" class="calc-field">
+            <label class="privacy-check flex gap-3 items-start text-xs leading-relaxed text-muted">
+              <input type="checkbox" id="contact-privacy-agree" class="privacy-check__input shrink-0">
+              <span>Нажимая кнопку, я даю <a href="legal/privacy-policy.html#consent" target="_blank" rel="noopener noreferrer">согласие</a> на обработку персональных данных и соглашаюсь с <a href="legal/privacy-policy.html" target="_blank" rel="noopener noreferrer">Политикой конфиденциальности</a>.</span>
+            </label>
+            <button type="submit" id="contactSubmitBtn" class="btn-accent" disabled>Вызвать Михаила на замер</button>
+            <p id="contactFormError" class="hidden text-xs text-red-600"></p>
+            <p id="formSuccess" class="hidden text-sm text-muted">Спасибо! Перезвоним за 15 минут.</p>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer bg-ink text-center text-xs text-white/60">
+    <nav class="site-footer__legal mb-4 flex flex-wrap items-center justify-center gap-x-5 gap-y-2" aria-label="Юридические документы">
+      <a href="legal/privacy-policy.html">Политика конфиденциальности</a>
+      <a href="legal/user-agreement.html">Пользовательское соглашение</a>
+      <a href="legal/cookie-policy.html">Политика Cookie</a>
+    </nav>
+    <p class="text-white/50">ИП Михаил · ИНН 000000000000 · ОГРНИП 000000000000000 · г. Химки</p>
+    <p class="mt-3">© 2026 Ремонт от Михаила</p>
+  </footer>
+
+  <script>
+    // Всегда в самом верху при загрузке
+    window.scrollTo(0, 0);
+    window.addEventListener('pageshow', e => { if (e.persisted) window.scrollTo(0, 0); });
+
+    // Портфолио — данные объектов
+    const PROJECTS = [
+      {
+        id: 'DM-K01',
+        title: 'Кухня Emerald & Oak',
+        building: 'ЖК «Зелёный квартал»',
+        area: '12 м²',
+        days: '24 дня',
+        workCost: '450 000 ₽',
+        materialsCost: '680 000 ₽',
+        before: 'images/portfolio/kitchen-emerald-before.png',
+        after: 'images/portfolio/kitchen-emerald-after.png',
+        cover: 'images/portfolio/kitchen-emerald-after.png',
+        featured: false,
+        task: 'Полный демонтаж старой кухни, замена напольного покрытия на ёлочку из дуба, установка кухни на заказ с подсветкой, замена электрики и сантехники под встроенную технику.',
+        gallery: [
+          { room: 'Кухня', src: 'images/portfolio/kitchen-emerald-after.png' },
+        ],
+      },
+      {
+        id: 'DM-K02',
+        title: 'Гостиная с панорамным окном',
+        building: 'Частный дом',
+        area: '24 м²',
+        days: '42 дня',
+        workCost: '850 000 ₽',
+        materialsCost: '600 000 ₽',
+        before: 'images/portfolio/living-before.png',
+        after: 'images/portfolio/living-after.png',
+        cover: 'images/portfolio/living-after.png',
+        featured: true,
+        baAlign: { before: 'center 50%', after: 'center 68%' },
+        task: 'Капитальный ремонт гостиной: демонтаж старых покрытий, выравнивание стен, укладка паркета, монтаж панорамного окна с электрокарнизом и портьерными шторами.',
+        gallery: [
+          { room: 'Гостиная', src: 'images/portfolio/living-after.png' },
+        ],
+      },
+      {
+        id: 'DM-K03',
+        title: 'Кухня Black & Wood',
+        building: 'ЖК «Южный»',
+        area: '11 м²',
+        days: '14 дней',
+        workCost: '320 000 ₽',
+        materialsCost: '410 000 ₽',
+        before: 'images/portfolio/kitchen-black-before.png',
+        after: 'images/portfolio/kitchen-black-after.png',
+        cover: 'images/portfolio/kitchen-black-after.png',
+        featured: false,
+        task: 'Замена напольного покрытия, установка матовых фасадов, столешницы из массива, встраиваемой техники и новой мойки с смесителем.',
+        gallery: [
+          { room: 'Кухня', src: 'images/portfolio/kitchen-black-after.png' },
+        ],
+      },
+    ];
+
+    // Mobile menu
+    const mobileMenu = document.getElementById('mobileMenu');
+    const menuBtn = document.getElementById('menuBtn');
+
+    const closeMobileMenu = () => {
+      mobileMenu?.classList.add('hidden');
+      document.getElementById('iconOpen')?.classList.remove('hidden');
+      document.getElementById('iconClose')?.classList.add('hidden');
+      menuBtn?.setAttribute('aria-expanded', 'false');
+    };
+
+    const openMobileMenu = () => {
+      mobileMenu?.classList.remove('hidden');
+      document.getElementById('iconOpen')?.classList.add('hidden');
+      document.getElementById('iconClose')?.classList.remove('hidden');
+      menuBtn?.setAttribute('aria-expanded', 'true');
+    };
+
+    menuBtn?.addEventListener('click', () => {
+      if (mobileMenu?.classList.contains('hidden')) openMobileMenu();
+      else closeMobileMenu();
+    });
+
+    document.querySelectorAll('.mobile-link').forEach((link) => {
+      link.addEventListener('click', closeMobileMenu);
+    });
+
+    window.matchMedia('(min-width: 1280px)').addEventListener('change', (event) => {
+      if (event.matches) closeMobileMenu();
+    });
+
+    // Контактная форма — отправка на сервер
+    const LEADS_API = '/api/leads';
+
+    // КАЛЬКУЛЯТОР — финальный экран с переходом в Telegram
+    const TELEGRAM_USERNAME = 'stanislav5621'; // @username без собачки
+    const AREA_MIN = 10;
+    const AREA_MAX = 200;
+    const DEFAULT_AREA = 55;
+    const QUICK_AREAS = [35, 55, 75, 100];
+
+    const CALC_BLOCKS = [
+      {
+        id: 'apartments',
+        title: 'Ремонт квартир',
+        type: 'sqm',
+        services: [
+          { id: 'cosmetic',  name: 'Косметический',              price: 7000 },
+          { id: 'secondary', name: 'Капитальный во вторичке',    price: 15000 },
+          { id: 'newbuild',  name: 'Под ключ в новостройке',     price: 13000 },
+          { id: 'design',    name: 'Дизайнерский',               price: 20000 },
+        ],
+      },
+      {
+        id: 'houses',
+        title: 'Ремонт домов',
+        type: 'sqm',
+        services: [
+          { id: 'cosmetic', name: 'Косметический',  price: 10000 },
+          { id: 'capital',  name: 'Капитальный',    price: 15000 },
+          { id: 'design',   name: 'Дизайнерский',   price: 20000 },
+        ],
+      },
+      {
+        id: 'finishing',
+        title: 'Чистовая отделка',
+        type: 'sqm',
+        services: [
+          { id: 'full', name: 'Чистовая отделка', price: 12000 },
+          { id: 'ceiling',   name: 'Монтаж натяжных потолков', price: 700,  from: true, hideInCalc: true },
+          { id: 'wallpaper', name: 'Поклейка обоев',           price: 350,  from: true, hideInCalc: true },
+          { id: 'tile',      name: 'Укладка плитки',           price: 1000, from: true, hideInCalc: true },
+        ],
+      },
+      {
+        id: 'rooms',
+        title: 'Ремонт комнат',
+        type: 'fixed',
+        services: [
+          { id: 'bathroom', name: 'Ремонт ванной комнаты',    price: 70000 },
+          { id: 'kitchen',  name: 'Ремонт кухни',             price: 15000 },
+          { id: 'living',   name: 'Ремонт жилых комнат',      price: 30000 },
+          { id: 'kids',     name: 'Ремонт детской комнаты',   price: 15000 },
+          { id: 'hall',     name: 'Ремонт гостиной',          price: 20000 },
+          { id: 'balcony',  name: 'Ремонт балконов и лоджий', price: 50000 },
+        ],
+      },
+    ];
+
+    const STEP_LABELS = ['Категория', 'Услуга', 'Площадь'];
+    const fmt = n => n.toLocaleString('ru-RU');
+
+    function priceListValue(svc, block) {
+      if (block.type === 'fixed') return 'от ' + fmt(svc.price) + ' ₽';
+      if (svc.from) return 'от ' + fmt(svc.price) + ' <span class="price-row-unit">₽/м²</span>';
+      return fmt(svc.price) + ' <span class="price-row-unit">₽/м²</span>';
+    }
+
+    function renderPriceList() {
+      const el = document.getElementById('priceList');
+      if (!el) return;
+      el.innerHTML = CALC_BLOCKS.map((block, i) => `
+        <div class="price-block">
+          <p class="label">0${i + 1}</p>
+          <h3 class="price-block-title mt-2">${block.title}</h3>
+          <div class="price-rows">
+            ${block.services.map(s => `
+              <div class="price-row">
+                <span class="price-row-name">${s.name}</span>
+                <span class="price-row-value">${priceListValue(s, block)}</span>
+              </div>
+            `).join('')}
+          </div>
+        </div>
+      `).join('');
+    }
+
+    renderPriceList();
+
+    let calcStep = 1;
+    let selBlock = null;
+    let selService = null;
+
+    const calcWizardEl  = document.getElementById('calcWizard');
+    const calcHint      = document.getElementById('calcHint');
+    const calcAreaEl    = document.getElementById('calcArea');
+    const calcAreaRange = document.getElementById('calcAreaRange');
+    const calcAreaValue = document.getElementById('calcAreaValue');
+    const calcAreaQuick = document.getElementById('calcAreaQuick');
+    const calcAreaWrap  = document.getElementById('calcAreaWrap');
+    const calcBlocksEl  = document.getElementById('calcBlocks');
+    const calcServicesEl = document.getElementById('calcServices');
+    const calcProgressEl = document.getElementById('calcProgress');
+    const calcLeadPanel = document.getElementById('calcLeadPanel');
+    const calcLeadText  = document.getElementById('calcLeadText');
+    const calcTgBtn       = document.getElementById('calcTgBtn');
+
+    function setCalcHint(msg) {
+      if (!calcHint) return;
+      calcHint.textContent = msg || '';
+      calcHint.classList.toggle('hidden', !msg);
+    }
+
+    function calcServicesForBlock(block) {
+      return block.services.filter(s => !s.hideInCalc);
+    }
+
+    function setAreaValue(n) {
+      const v = Math.min(AREA_MAX, Math.max(AREA_MIN, Math.round(n)));
+      calcAreaEl.value = v;
+      calcAreaRange.value = v;
+      calcAreaValue.textContent = v;
+      calcAreaQuick.querySelectorAll('button').forEach(btn => {
+        btn.classList.toggle('is-active', +btn.dataset.area === v);
+      });
+      updateBreadcrumb();
+    }
+
+    function resetArea() {
+      setAreaValue(DEFAULT_AREA);
+    }
+
+    function updateBreadcrumb() {
+      const el = document.getElementById('calcBreadcrumb');
+      if (!el) return;
+      if (!selBlock) {
+        el.classList.add('hidden');
+        el.innerHTML = '';
+        return;
+      }
+      const parts = [selBlock.title];
+      if (selService) parts.push(selService.name);
+      if (selBlock.type === 'sqm' && calcStep === 3) {
+        parts.push(calcAreaEl.value + ' м²');
+      }
+      el.classList.remove('hidden');
+      el.innerHTML = parts.map(text =>
+        '<span class="quiz-opt selected">' + text + '</span>'
+      ).join('');
+    }
+
+    function renderBlocks() {
+      calcBlocksEl.innerHTML = CALC_BLOCKS.map(b => `
+        <button type="button" class="quiz-opt${selBlock?.id === b.id ? ' selected' : ''}" data-id="${b.id}">${b.title}</button>
+      `).join('');
+      calcBlocksEl.querySelectorAll('.quiz-opt').forEach(btn => {
+        btn.onclick = () => {
+          selBlock = CALC_BLOCKS.find(b => b.id === btn.dataset.id);
+          selService = null;
+          setCalcHint('');
+          hideLeadCapture();
+          renderBlocks();
+          renderServices();
+          showCalcStep(2);
+        };
+      });
+      updateStepPills(calcStep);
+    }
+
+    function renderServices() {
+      if (!selBlock) {
+        calcServicesEl.innerHTML = '';
+        updateStepPills(calcStep);
+        return;
+      }
+      const list = calcServicesForBlock(selBlock);
+      calcServicesEl.innerHTML = list.map(s => `
+        <button type="button" class="quiz-opt${selService?.id === s.id ? ' selected' : ''}" data-id="${s.id}">${s.name}</button>
+      `).join('');
+      calcServicesEl.querySelectorAll('.quiz-opt').forEach(btn => {
+        btn.onclick = () => {
+          selService = list.find(s => s.id === btn.dataset.id);
+          setCalcHint('');
+          renderServices();
+          if (selBlock.type === 'sqm') {
+            showCalcStep(3);
+          } else {
+            updateBreadcrumb();
+            finishCalculator();
+          }
+        };
+      });
+      updateStepPills(calcStep);
+    }
+
+    function updateAreaVisibility() {
+      const showArea = calcStep === 3 && selBlock?.type === 'sqm' && !!selService;
+      calcAreaWrap.classList.toggle('is-collapsed', !showArea);
+      document.getElementById('calcAreaDone').classList.toggle('hidden', !showArea);
+    }
+
+    function computeEstimate() {
+      if (!selBlock || !selService) return null;
+      let base;
+      let area = null;
+      if (selBlock.type === 'fixed') {
+        base = selService.price;
+      } else {
+        area = parseInt(calcAreaEl.value, 10);
+        base = Math.round(area * selService.price);
+      }
+      return {
+        base,
+        min: Math.round(base * 0.9),
+        max: Math.round(base * 1.15),
+        area,
+      };
+    }
+
+    function buildTelegramMessage(est) {
+      const lines = [
+        'Здравствуйте! Я рассчитал стоимость ремонта на вашем сайте.',
+        '',
+        'Категория: ' + (selBlock?.title || '—'),
+        'Услуга: ' + (selService?.name || '—'),
+      ];
+      if (est.area) lines.push('Площадь: ' + est.area + ' м²');
+      lines.push(
+        'Итоговая сумма: ' + fmt(est.min) + ' – ' + fmt(est.max) + ' ₽',
+        '',
+        'Хочу обсудить детали проекта.',
+      );
+      return lines.join('\n');
+    }
+
+    function buildTelegramDeepLink(est) {
+      return 'https://t.me/' + TELEGRAM_USERNAME + '?text=' + encodeURIComponent(buildTelegramMessage(est));
+    }
+
+    function resetLeadPanel() {
+      calcTgBtn.href = '#';
+    }
+
+    function showLeadCapture() {
+      const est = computeEstimate();
+      if (!est) return;
+
+      calcWizardEl.classList.add('is-done');
+      calcLeadPanel.classList.remove('hidden');
+      resetLeadPanel();
+      calcTgBtn.href = buildTelegramDeepLink(est);
+
+      const sumText = fmt(est.min) + ' – ' + fmt(est.max) + ' ₽';
+      if (selBlock.type === 'fixed') {
+        calcLeadText.textContent = 'Услуга: «' + selService.name + '». Ориентир: ' + sumText + '. Нажмите кнопку — откроется Telegram с готовым текстом.';
+      } else {
+        calcLeadText.textContent = 'Площадь ' + est.area + ' м² · ' + selService.name + '. Ориентир: ' + sumText + '. Нажмите кнопку — откроется Telegram с готовым текстом.';
+      }
+    }
+
+    function hideLeadCapture() {
+      calcWizardEl.classList.remove('is-done');
+      calcLeadPanel.classList.add('hidden');
+      resetLeadPanel();
+    }
+
+    function getMaxStep() {
+      if (!selBlock) return 1;
+      if (!selService) return 2;
+      return selBlock.type === 'sqm' ? 3 : 2;
+    }
+
+    function canGoToStep(n) {
+      if (calcWizardEl.classList.contains('is-done')) return false;
+      if (n === 1) return true;
+      if (n === 2) return !!selBlock;
+      if (n === 3) return !!selBlock && !!selService && selBlock.type === 'sqm';
+      return false;
+    }
+
+    function goToCalcStep(n) {
+      if (n === calcStep || !canGoToStep(n)) return;
+      setCalcHint('');
+      hideLeadCapture();
+      showCalcStep(n);
+    }
+
+    function updateStepPills(n) {
+      document.querySelectorAll('#calcProgress .step-pill').forEach((p, i) => {
+        const num = i + 1;
+        const accessible = canGoToStep(num);
+        p.className = 'step-pill' +
+          (num < n ? ' done' : '') +
+          (num === n ? ' active' : '') +
+          (!accessible ? ' is-disabled' : '');
+      });
+    }
+
+    function showCalcStep(n) {
+      calcStep = n;
+      document.querySelectorAll('.calc-wizard-step').forEach(s => {
+        s.classList.toggle('active', +s.dataset.step === n);
+      });
+      document.getElementById('calcStepLabel').textContent = STEP_LABELS[n - 1];
+      updateStepPills(n);
+      document.getElementById('calcBack').classList.toggle('hidden', n === 1);
+      updateAreaVisibility();
+      updateBreadcrumb();
+    }
+
+    function finishCalculator() {
+      if (calcStep === 3) {
+        const area = parseInt(calcAreaEl.value, 10);
+        if (isNaN(area) || area < AREA_MIN || area > AREA_MAX) {
+          setCalcHint('Укажите площадь от ' + AREA_MIN + ' до ' + AREA_MAX + ' м²');
+          return;
+        }
+      }
+      setCalcHint('');
+      showLeadCapture();
+    }
+
+    calcProgressEl.innerHTML = '';
+    for (let i = 1; i <= 3; i++) {
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.dataset.step = i;
+      btn.className = 'step-pill';
+      btn.textContent = i;
+      btn.setAttribute('aria-label', 'Шаг ' + i);
+      btn.onclick = () => goToCalcStep(i);
+      calcProgressEl.appendChild(btn);
+    }
+
+    calcAreaQuick.innerHTML = QUICK_AREAS.map(a =>
+      '<button type="button" data-area="' + a + '">' + a + ' м²</button>'
+    ).join('');
+    calcAreaQuick.querySelectorAll('button').forEach(btn => {
+      btn.onclick = () => setAreaValue(+btn.dataset.area);
+    });
+
+    calcAreaRange.addEventListener('input', () => setAreaValue(+calcAreaRange.value));
+
+    document.getElementById('calcAreaDone').onclick = () => finishCalculator();
+
+    document.getElementById('calcBack').onclick = () => {
+      setCalcHint('');
+      hideLeadCapture();
+      if (calcStep === 3) {
+        selService = null;
+        renderServices();
+        showCalcStep(2);
+      } else if (calcStep === 2) {
+        selService = null;
+        selBlock = null;
+        renderBlocks();
+        renderServices();
+        showCalcStep(1);
+      }
+    };
+
+    document.getElementById('calcLeadRestart').onclick = () => {
+      selBlock = null;
+      selService = null;
+      hideLeadCapture();
+      resetArea();
+      renderBlocks();
+      renderServices();
+      showCalcStep(1);
+    };
+
+    resetArea();
+    renderBlocks();
+    renderServices();
+    showCalcStep(1);
+    function maskPhone(el) { el.oninput=()=>{ let d=el.value.replace(/\D/g,''); if(d.startsWith('8'))d='7'+d.slice(1); if(!d.startsWith('7'))d='7'+d; d=d.slice(0,11); let f='+7'; if(d.length>1)f+=' ('+d.slice(1,4); if(d.length>=4)f+=')'; if(d.length>4)f+=' '+d.slice(4,7); if(d.length>7)f+='-'+d.slice(7,9); if(d.length>9)f+='-'+d.slice(9,11); el.value=f; }; }
+    maskPhone(document.getElementById('phone'));
+
+    const contactForm = document.getElementById('contactForm');
+    const contactPrivacyAgree = document.getElementById('contact-privacy-agree');
+    const contactSubmitBtn = document.getElementById('contactSubmitBtn');
+    const contactFormError = document.getElementById('contactFormError');
+    const formSuccess = document.getElementById('formSuccess');
+
+    contactPrivacyAgree.addEventListener('change', () => {
+      contactSubmitBtn.disabled = !contactPrivacyAgree.checked;
+    });
+
+    contactForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      contactFormError.classList.add('hidden');
+      formSuccess.classList.add('hidden');
+
+      if (!contactPrivacyAgree.checked) {
+        contactFormError.textContent = 'Необходимо согласие на обработку персональных данных';
+        contactFormError.classList.remove('hidden');
+        return;
+      }
+
+      contactSubmitBtn.disabled = true;
+      contactSubmitBtn.textContent = 'Отправка…';
+
+      try {
+        const res = await fetch(LEADS_API, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            name: document.getElementById('name').value.trim(),
+            phone: document.getElementById('phone').value.trim(),
+            category: 'Контактная форма',
+            service: 'Вызов на замер',
+            consent: true,
+          }),
+        });
+        const data = await res.json().catch(() => ({}));
+        if (!res.ok) throw new Error(data.error || 'Не удалось отправить заявку');
+
+        formSuccess.classList.remove('hidden');
+        contactForm.reset();
+        contactSubmitBtn.disabled = true;
+      } catch (err) {
+        contactFormError.textContent = err.message || 'Ошибка сети. Запустите сервер: python server/app.py';
+        contactFormError.classList.remove('hidden');
+        contactSubmitBtn.disabled = !contactPrivacyAgree.checked;
+      } finally {
+        contactSubmitBtn.textContent = 'Вызвать Михаила на замер';
+      }
+    });
+
+    // Портфолио — слайдеры, карточки, модалка
+    function baImgStyle(p, side) {
+      if (p.composite) return '';
+      const pos = p.baAlign?.[side] || 'center center';
+      return `style="width:100%;height:100%;top:0;bottom:auto;left:0;object-fit:cover;object-position:${pos}"`;
+    }
+
+    function baSliderInner(p) {
+      const isComposite = !!p.composite;
+      const afterSrc = p.composite || p.after || p.before;
+      const beforeSrc = p.composite || p.before;
+      return `
+        <div class="ba-slider__after">
+          <img src="${afterSrc}" alt="${p.title} — после" ${isComposite ? '' : baImgStyle(p, 'after')}>
+          <span class="ba-slider__tag ba-slider__tag--after">После</span>
+        </div>
+        <div class="ba-slider__before">
+          <img src="${beforeSrc}" alt="${p.title} — до" ${isComposite ? '' : baImgStyle(p, 'before')}>
+          <span class="ba-slider__tag ba-slider__tag--before">До</span>
+        </div>
+        <div class="ba-slider__handle"></div>`;
+    }
+
+    function baSliderHtml(p) {
+      const isSplit = !p.composite && p.before && p.after;
+      const layout = p.compositeLayout === 'horizontal' ? ' ba-slider--horizontal' : '';
+      const split = isSplit ? ' ba-slider--split' : '';
+      return `
+        <article>
+          <div class="ba-slider${layout}${split}" data-id="${p.id}">
+            ${baSliderInner(p)}
+          </div>
+          <p class="ba-slider__caption"><strong class="text-ink">${p.title}</strong> · ${p.building} · ${p.area}</p>
+        </article>`;
+    }
+
+    function initBaSlider(el) {
+      const before = el.querySelector('.ba-slider__before');
+      const beforeImg = el.querySelector('.ba-slider__before img');
+      const afterImg = el.querySelector('.ba-slider__after img');
+      const handle = el.querySelector('.ba-slider__handle');
+      const isSplit = el.classList.contains('ba-slider--split');
+      let drag = false;
+      const syncSplit = () => {
+        if (!isSplit) return;
+        const w = el.offsetWidth;
+        const h = el.offsetHeight;
+        [beforeImg, afterImg].forEach(img => {
+          if (!img) return;
+          img.style.width = w + 'px';
+          img.style.height = h + 'px';
+          img.style.maxWidth = 'none';
+          img.style.left = '0';
+          img.style.top = '0';
+        });
+      };
+      const set = pct => {
+        pct = Math.max(0, Math.min(100, pct));
+        before.style.width = pct + '%';
+        handle.style.left = pct + '%';
+      };
+      set(50);
+      syncSplit();
+      [beforeImg, afterImg].forEach(img => img?.addEventListener('load', syncSplit));
+      const ro = typeof ResizeObserver !== 'undefined' ? new ResizeObserver(syncSplit) : null;
+      ro?.observe(el);
+      const move = e => {
+        const r = el.getBoundingClientRect();
+        const x = (e.touches ? e.touches[0].clientX : e.clientX) - r.left;
+        set((x / r.width) * 100);
+      };
+      el.onmousedown = e => { drag = true; move(e); };
+      el.ontouchstart = e => { drag = true; move(e); };
+      window.addEventListener('mousemove', e => { if (drag) move(e); });
+      window.addEventListener('touchmove', e => { if (drag) move(e); }, { passive: true });
+      window.addEventListener('mouseup', () => { drag = false; });
+      window.addEventListener('touchend', () => { drag = false; });
+    }
+
+    function projectCardHtml(p) {
+      const img = p.cover || p.after;
+      const isComposite = !!p.composite && img === p.composite;
+      const isHorizontal = p.compositeLayout === 'horizontal';
+      const imgClass = isComposite && isHorizontal ? ' class="is-horizontal"' : '';
+      const imgStyle = isComposite && !isHorizontal ? '' : (!isComposite ? ' style="position:static;height:100%;object-position:center"' : '');
+      return `
+        <article class="project-card" data-id="${p.id}">
+          <div class="project-card__media">
+            <img src="${img}" alt="${p.title}"${imgClass}${imgStyle}>
+            <div class="project-card__badges">
+              <span class="project-card__badge">${p.building}</span>
+              <span class="project-card__badge">${p.area}</span>
+              <span class="project-card__badge">${p.days}</span>
+              <span class="project-card__badge">${p.workCost}</span>
+            </div>
+          </div>
+          <div class="project-card__body">
+            <h3 class="project-card__title">${p.title}</h3>
+            <p class="project-card__meta">${p.building} · срок ${p.days}</p>
+            <button type="button" class="project-card__btn btn-ghost">Смотреть объект</button>
+          </div>
+        </article>`;
+    }
+
+    let modalProject = null;
+    let modalSlide = 0;
+    let modalTrackIndex = 0;
+    let modalTrackBuilt = false;
+
+    function getProjectIndex(p) {
+      return PROJECTS.findIndex(x => x.id === p.id);
+    }
+
+    function projectGalleryInnerHtml(p, idx = 0) {
+      const useSplitStack = !p.composite && p.before && p.after;
+      if (useSplitStack) return modalSplitStackHtml(p, false);
+      const g = p.gallery[idx] || p.gallery[0];
+      if (!g) return '';
+      const isComposite = p.composite && g.src === p.composite;
+      return `<img src="${g.src}" alt="${g.room}"${isComposite ? ' class="is-composite"' : ''}>`;
+    }
+
+    function modalSidebarHtml(p, slideIdx = 0) {
+      const roomsBlock = p.gallery.length <= 1 ? '' : `
+          <p class="project-modal__label mt-6">Комнаты</p>
+          <div class="project-modal__rooms">
+            ${p.gallery.map((g, i) => `
+              <button type="button" class="project-modal__room ${i === slideIdx ? 'is-active' : ''}" data-idx="${i}">${g.room}</button>
+            `).join('')}
+          </div>`;
+      return `
+        <aside class="project-modal__sidebar">
+          <div class="project-modal__head">
+            <p class="project-modal__label">${p.id}</p>
+            <h3 class="project-modal__title">${p.title}</h3>
+          </div>
+          <div class="project-modal__stats">
+            <div class="project-modal__stat"><span>ЖК / Тип дома</span><span>${p.building}</span></div>
+            <div class="project-modal__stat"><span>Площадь</span><span>${p.area}</span></div>
+            <div class="project-modal__stat"><span>Срок</span><span>${p.days}</span></div>
+            <div class="project-modal__stat"><span>Стоимость работ</span><span>${p.workCost}</span></div>
+            <div class="project-modal__stat"><span>Стоимость материалов</span><span>${p.materialsCost}</span></div>
+          </div>
+          <p class="project-modal__label mt-6">Задача</p>
+          <p class="project-modal__task">${p.task}</p>
+          ${roomsBlock}
+        </aside>`;
+    }
+
+    function renderModalPager() {
+      const dotsWrap = document.getElementById('projectModalPagerDots');
+      if (!dotsWrap) return;
+      dotsWrap.innerHTML = PROJECTS.map((proj, i) => `
+        <button type="button" class="project-modal__dot" data-project-idx="${i}" aria-label="${proj.title}"></button>
+      `).join('');
+      dotsWrap.querySelectorAll('.project-modal__dot').forEach(dot => {
+        dot.onclick = e => {
+          e.stopPropagation();
+          goToModalProject(+dot.dataset.projectIdx, 0, true);
+        };
+      });
+    }
+
+    function positionModalPager() {
+      const pager = document.getElementById('projectModalPager');
+      const gallery = document.querySelector(`.project-modal__project[data-project-idx="${modalTrackIndex}"] .project-modal__gallery`);
+      const panel = document.querySelector('.project-modal__panel');
+      if (!pager || !gallery || !panel) return;
+      const galleryRect = gallery.getBoundingClientRect();
+      const panelRect = panel.getBoundingClientRect();
+      pager.style.top = `${galleryRect.bottom - panelRect.top - 34}px`;
+      pager.classList.add('is-ready');
+      pager.setAttribute('aria-hidden', 'false');
+    }
+
+    function updateModalPager(index, offsetPx = 0, viewportWidth = 0) {
+      const dots = document.querySelectorAll('#projectModalPagerDots .project-modal__dot');
+      if (!dots.length) return;
+
+      const width = viewportWidth || document.getElementById('projectModalViewport')?.offsetWidth || 1;
+      const raw = index + (-offsetPx / width);
+      const progress = Math.max(0, Math.min(PROJECTS.length - 1, raw));
+      const activeIdx = Math.round(progress);
+
+      dots.forEach((dot, i) => {
+        dot.classList.toggle('is-active', i === activeIdx);
+        dot.style.opacity = '';
+        dot.style.transform = '';
+      });
+    }
+
+    function modalProjectCardHtml(p, slideIdx = 0) {
+      return `
+        <div class="project-modal__card">
+          <div class="project-modal__gallery">
+            <div class="project-modal__slide" data-idx="${slideIdx}">
+              ${projectGalleryInnerHtml(p, slideIdx)}
+            </div>
+          </div>
+          ${modalSidebarHtml(p, slideIdx)}
+        </div>`;
+    }
+
+    function renderModalTrack(activeIdx, slideIdx = 0) {
+      modalTrackIndex = activeIdx;
+      modalSlide = slideIdx;
+      modalProject = PROJECTS[activeIdx];
+      const track = document.getElementById('projectModalTrack');
+      track.innerHTML = PROJECTS.map((p, i) => `
+        <div class="project-modal__project" data-project-idx="${i}">
+          ${modalProjectCardHtml(p, i === activeIdx ? slideIdx : 0)}
+        </div>
+      `).join('');
+      modalTrackBuilt = true;
+      renderModalPager();
+      applyModalTrackTransform(0, false);
+      requestAnimationFrame(positionModalPager);
+    }
+
+    function applyModalTrackTransform(offsetPx, animate) {
+      const track = document.getElementById('projectModalTrack');
+      const viewport = document.getElementById('projectModalViewport');
+      if (!track || !viewport) return;
+      const width = viewport.offsetWidth || viewport.getBoundingClientRect().width;
+      const base = -modalTrackIndex * width;
+      track.classList.toggle('is-dragging', !animate);
+      track.style.transform = `translate3d(${base + offsetPx}px, 0, 0)`;
+      track.querySelectorAll('.project-modal__project').forEach(el => {
+        el.style.transform = '';
+        el.style.opacity = '';
+      });
+      updateModalPager(modalTrackIndex, offsetPx, width, animate);
+    }
+
+    function updateProjectCard(projectIdx, slideIdx = 0) {
+      const project = PROJECTS[projectIdx];
+      const root = document.querySelector(`.project-modal__project[data-project-idx="${projectIdx}"]`);
+      if (!root) return;
+      root.innerHTML = modalProjectCardHtml(project, slideIdx);
+      if (projectIdx === modalTrackIndex) requestAnimationFrame(positionModalPager);
+    }
+
+    function goToModalProject(idx, slideIdx = 0, animate = true) {
+      idx = (idx + PROJECTS.length) % PROJECTS.length;
+      modalProject = PROJECTS[idx];
+      modalSlide = slideIdx;
+      if (!modalTrackBuilt) {
+        renderModalTrack(idx, slideIdx);
+        return;
+      }
+      if (slideIdx !== 0) updateProjectCard(idx, slideIdx);
+      modalTrackIndex = idx;
+      applyModalTrackTransform(0, animate);
+      requestAnimationFrame(positionModalPager);
+    }
+
+    function modalSplitStackHtml(p, showTags = false) {
+      const beforePos = p.baAlign?.before || 'center center';
+      const afterPos = p.baAlign?.after || 'center center';
+      return `
+        <div class="project-modal__stack">
+          <div class="project-modal__stack-half">
+            <img src="${p.before}" alt="${p.title} — до" style="object-position:${beforePos}">
+            ${showTags ? '<span class="ba-slider__tag ba-slider__tag--before">До</span>' : ''}
+          </div>
+          <div class="project-modal__stack-half">
+            <img src="${p.after}" alt="${p.title} — после" style="object-position:${afterPos}">
+            ${showTags ? '<span class="ba-slider__tag ba-slider__tag--after">После</span>' : ''}
+          </div>
+        </div>`;
+    }
+
+    function renderModalGallery(p, idx) {
+      modalSlide = idx;
+      modalProject = p;
+      const projectIdx = getProjectIndex(p);
+      if (!modalTrackBuilt) {
+        renderModalTrack(projectIdx, idx);
+        return;
+      }
+      updateProjectCard(projectIdx, idx);
+    }
+
+    function navigateModalProject(step) {
+      if (!modalProject) return;
+      goToModalProject(modalTrackIndex + step, 0, true);
+    }
+
+    function openProjectModal(p, slideIdx = 0) {
+      const idx = getProjectIndex(p);
+      goToModalProject(idx, slideIdx, !document.getElementById('projectModal').classList.contains('is-open'));
+      const m = document.getElementById('projectModal');
+      if (!m.classList.contains('is-open')) {
+        m.classList.add('is-open');
+        m.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+      }
+    }
+
+    function closeProjectModal() {
+      const m = document.getElementById('projectModal');
+      m.classList.remove('is-open');
+      m.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+      modalProject = null;
+      modalTrackBuilt = false;
+      document.getElementById('projectModalPager')?.classList.remove('is-ready');
+    }
+
+    function renderPortfolio() {
+      const featured = PROJECTS.filter(p => p.featured);
+      document.getElementById('featuredCompare').innerHTML = featured.map(baSliderHtml).join('');
+      document.getElementById('featuredCompare').querySelectorAll('.ba-slider').forEach(initBaSlider);
+      document.getElementById('portfolioGrid').innerHTML = PROJECTS.map(projectCardHtml).join('');
+      document.getElementById('portfolioGrid').querySelectorAll('.project-card').forEach(card => {
+        const open = () => openProjectModal(PROJECTS.find(p => p.id === card.dataset.id));
+        card.querySelector('.project-card__btn').onclick = open;
+      });
+    }
+
+    document.getElementById('projectModalClose').onclick = closeProjectModal;
+    document.getElementById('projectModal').onclick = e => { if (e.target.id === 'projectModal') closeProjectModal(); };
+    document.getElementById('projectModalPrev').onclick = () => navigateModalProject(-1);
+    document.getElementById('projectModalNext').onclick = () => navigateModalProject(1);
+
+    document.getElementById('projectModalTrack').addEventListener('click', e => {
+      const room = e.target.closest('.project-modal__room');
+      if (!room) return;
+      const projectEl = room.closest('.project-modal__project');
+      if (!projectEl) return;
+      renderModalGallery(PROJECTS[+projectEl.dataset.projectIdx], +room.dataset.idx);
+    });
+
+    (function initProjectModalSwipe() {
+      const viewport = document.getElementById('projectModalViewport');
+      if (!viewport) return;
+
+      let startX = 0;
+      let startY = 0;
+      let dragX = 0;
+      let dragging = false;
+      let locked = false;
+      let activePointer = false;
+
+      function canStartSwipe(e) {
+        if (!modalProject) return false;
+        return !e.target.closest('button, a, input, textarea, select, label, .project-modal__close, .project-modal__pager, .project-modal__nav');
+      }
+
+      function getPoint(e) {
+        if (e.touches && e.touches.length) {
+          return { x: e.touches[0].clientX, y: e.touches[0].clientY };
+        }
+        return { x: e.clientX, y: e.clientY };
+      }
+
+      function onStart(e) {
+        if (!canStartSwipe(e)) return;
+        if (e.type === 'mousedown' && e.button !== 0) return;
+        const p = getPoint(e);
+        startX = p.x;
+        startY = p.y;
+        dragX = 0;
+        dragging = true;
+        locked = false;
+        activePointer = true;
+      }
+
+      function onMove(e) {
+        if (!dragging || !activePointer || !modalProject) return;
+        if (e.type === 'mousemove' && e.buttons !== 1) return;
+        if (e.touches && e.touches.length !== 1) return;
+
+        const p = getPoint(e);
+        const dx = p.x - startX;
+        const dy = p.y - startY;
+
+        if (!locked) {
+          if (Math.abs(dx) < 8 && Math.abs(dy) < 8) return;
+          locked = Math.abs(dx) > Math.abs(dy) * 1.1;
+          if (!locked) {
+            dragging = false;
+            activePointer = false;
+            return;
+          }
+        }
+
+        if (e.cancelable) e.preventDefault();
+        dragX = dx;
+        let offset = dx;
+        if ((modalTrackIndex === 0 && dx > 0) || (modalTrackIndex === PROJECTS.length - 1 && dx < 0)) {
+          offset = dx * 0.28;
+        }
+        applyModalTrackTransform(offset, false);
+      }
+
+      function onEnd() {
+        if (!activePointer) return;
+        activePointer = false;
+        if (!dragging || !modalProject) return;
+        dragging = false;
+        locked = false;
+
+        const width = viewport.offsetWidth || 1;
+        const threshold = Math.min(72, width * 0.18);
+        if (dragX <= -threshold && modalTrackIndex < PROJECTS.length - 1) {
+          goToModalProject(modalTrackIndex + 1, 0, true);
+        } else if (dragX >= threshold && modalTrackIndex > 0) {
+          goToModalProject(modalTrackIndex - 1, 0, true);
+        } else {
+          applyModalTrackTransform(0, true);
+        }
+        dragX = 0;
+      }
+
+      viewport.addEventListener('touchstart', onStart, { passive: true });
+      viewport.addEventListener('touchmove', onMove, { passive: false });
+      viewport.addEventListener('touchend', onEnd, { passive: true });
+      viewport.addEventListener('touchcancel', onEnd, { passive: true });
+      viewport.addEventListener('mousedown', onStart);
+      window.addEventListener('mousemove', onMove);
+      window.addEventListener('mouseup', onEnd);
+
+      window.addEventListener('resize', () => {
+        if (modalTrackBuilt) {
+          applyModalTrackTransform(0, false);
+          positionModalPager();
+        }
+      });
+
+      document.getElementById('projectModalTrack')?.addEventListener('transitionend', e => {
+        if (e.propertyName === 'transform') positionModalPager();
+      });
+    })();
+
+    renderPortfolio();
+
+    // Появление блоков при скролле
+    const revealEls = document.querySelectorAll('.reveal, .reveal-stagger, .reveal-block');
+    const revealObs = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          revealObs.unobserve(entry.target);
+        }
+      });
+    }, { rootMargin: '0px 0px -4% 0px', threshold: 0.04 });
+    revealEls.forEach(el => revealObs.observe(el));
+    document.querySelector('.hero-bath__title.reveal')?.classList.add('is-visible');
+    document.querySelector('.hero-bath__marquee.reveal')?.classList.add('is-visible');
+    document.querySelector('.hero-bath__visual.reveal')?.classList.add('is-visible');
+
+    // Smooth scroll по якорям
+    document.querySelectorAll('a[href^="#"]').forEach(a => a.onclick = e => {
+      const id = a.getAttribute('href');
+      if (!id || id === '#') return;
+      const el = document.querySelector(id);
+      if (!el) return;
+      e.preventDefault();
+      closeMobileMenu();
+      el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+
+    document.onkeydown = e => { if (e.key === 'Escape') closeProjectModal(); };
+  </script>
+
+  <a class="portfolio-back" href="../index.html" aria-label="Вернуться в портфолио">← Портфолио</a>
+</body>
+</html>

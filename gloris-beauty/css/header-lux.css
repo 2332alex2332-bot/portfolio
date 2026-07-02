@@ -1,0 +1,245 @@
+/* ===== GLORIS BEAUTY — Премиальный хедер (только index.html) ===== */
+
+.header-lux {
+  position: sticky;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  width: 100%;
+  background: #ffffff;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+/* Главный flex-контейнер: три блока, выровненные по центру */
+.header-lux__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1440px;
+  height: 96px;
+  margin: 0 auto;
+  padding: 0 64px;
+  box-sizing: border-box;
+}
+
+/* —— Блок 1: Логотип (лево) —— */
+.header-lux__start {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  min-width: 0;
+}
+
+.header-lux__logo {
+  display: inline-flex;
+  align-items: center;
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 26px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  color: #1a1a1a;
+  text-decoration: none;
+  line-height: 1;
+  white-space: nowrap;
+  transition: opacity 0.3s ease;
+}
+
+.header-lux__logo:hover {
+  opacity: 0.72;
+}
+
+/* —— Блок 2: Навигация (строго по центру) —— */
+.header-lux__nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  gap: 40px;
+}
+
+.header-lux__link {
+  display: inline-flex;
+  align-items: center;
+  padding: 10px 6px 12px;
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #8a8a8a;
+  text-decoration: none;
+  line-height: 1;
+  white-space: nowrap;
+  border-bottom: 1px solid transparent;
+  transition: color 0.3s ease, border-color 0.3s ease, background 0.3s ease;
+}
+
+.header-lux__link:hover {
+  color: #1a1a1a;
+  background: #ebebeb;
+}
+
+.header-lux__link.active,
+.header-lux__link.nav-link.active {
+  color: #1a1a1a;
+  border-bottom-color: #1a1a1a;
+}
+
+/* —— Блок 3: Контакты + CTA (право) —— */
+.header-lux__end {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex: 1;
+  min-width: 0;
+  gap: 32px;
+}
+
+.header-lux__phone {
+  display: inline-flex;
+  align-items: center;
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  color: #1a1a1a;
+  text-decoration: none;
+  line-height: 1;
+  white-space: nowrap;
+  transition: opacity 0.3s ease;
+}
+
+.header-lux__phone:hover {
+  opacity: 0.65;
+}
+
+/* Соцсети: отдельная группа с внутренним gap */
+.header-lux__social {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.header-lux__social a {
+  display: inline-flex;
+  align-items: center;
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #8a8a8a;
+  text-decoration: none;
+  line-height: 1;
+  transition: color 0.3s ease;
+}
+
+.header-lux__social a:hover {
+  color: #1a1a1a;
+}
+
+/* Кнопка «Записаться» — таблетка */
+.header-lux__cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 46px;
+  padding: 0 32px;
+  flex-shrink: 0;
+  border: none;
+  border-radius: 999px;
+  background: #1a1a1a;
+  color: #ffffff;
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  line-height: 1;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.header-lux__cta:hover {
+  background: #000000;
+  transform: translateY(-1px);
+}
+
+.header-lux__cta:focus-visible {
+  outline: 2px solid #1a1a1a;
+  outline-offset: 3px;
+}
+
+/* —— Адаптив —— */
+@media (max-width: 1200px) {
+  .header-lux__inner {
+    padding: 0 40px;
+  }
+
+  .header-lux__nav {
+    gap: 28px;
+  }
+
+  .header-lux__end {
+    gap: 24px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .header-lux__phone,
+  .header-lux__social {
+    display: none;
+  }
+
+  .header-lux__inner {
+    height: 80px;
+    padding: 0 24px;
+  }
+
+  .header-lux__logo {
+    font-size: 22px;
+  }
+}
+
+@media (max-width: 768px) {
+  .header-lux__inner {
+    flex-wrap: wrap;
+    height: auto;
+    padding: 16px 16px 0;
+    gap: 12px;
+  }
+
+  .header-lux__start,
+  .header-lux__end {
+    flex: 0 1 auto;
+  }
+
+  .header-lux__end {
+    margin-left: auto;
+  }
+
+  .header-lux__nav {
+    order: 3;
+    width: 100%;
+    justify-content: flex-start;
+    gap: 20px;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    padding-bottom: 12px;
+    border-top: 1px solid #f0f0f0;
+    margin-top: 4px;
+  }
+
+  .header-lux__nav::-webkit-scrollbar {
+    display: none;
+  }
+
+  .header-lux__cta {
+    height: 40px;
+    padding: 0 24px;
+    font-size: 10px;
+  }
+}

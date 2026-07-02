@@ -1,0 +1,555 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Станислав — сайты для бизнеса под ключ. Пересборка или запуск с нуля. Лендинг 9–12 дней, каталог 12–16. От 30 000 ₽."
+    />
+    <title>Станислав | Сайты для бизнеса — кейсы и цены</title>
+    <link rel="icon" href="./assets/favicon.svg" type="image/svg+xml" />
+    <meta property="og:title" content="Станислав | Сайты для бизнеса" />
+    <meta
+      property="og:description"
+      content="Сайты под ключ — с телефона просто найти услугу и оставить заявку. Лендинг 9–12 дней, каталог 12–16."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="./gloris-beauty/images/salon-kolomenskaya.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Oswald:wght@500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+
+  <body>
+    <header class="site-header">
+      <div class="site-header__bar container">
+        <a class="site-header__logo" href="#top">
+          <span class="site-header__logo-name">Станислав</span>
+          <span class="site-header__logo-tag">Сайты для бизнеса</span>
+        </a>
+
+        <nav class="site-header__nav" id="site-nav" aria-label="Основная навигация">
+          <ul class="site-header__nav-list">
+            <li><a class="site-header__link" href="#about">Обо мне</a></li>
+            <li><a class="site-header__link" href="#cases">Кейсы</a></li>
+            <li><a class="site-header__link" href="#pricing">Цены</a></li>
+            <li><a class="site-header__link" href="#contact">Контакты</a></li>
+          </ul>
+        </nav>
+
+        <a class="site-header__cta" href="#contact">
+          Обсудить
+          <span aria-hidden="true">↗</span>
+        </a>
+
+        <button
+          class="site-header__burger"
+          type="button"
+          aria-label="Открыть меню"
+          aria-expanded="false"
+          aria-controls="side-menu"
+        >
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </header>
+
+    <div id="menu-overlay" class="menu-overlay" aria-hidden="true"></div>
+    <aside id="side-menu" class="side-menu" aria-label="Меню сайта">
+      <div class="side-menu__head">
+        <a class="side-menu__brand" href="#top">
+          <span class="site-header__logo-name">Станислав</span>
+          <span class="site-header__logo-tag">Сайты для бизнеса</span>
+        </a>
+      </div>
+      <ul class="side-menu__links">
+        <li><a class="side-menu__link" href="#about">Обо мне</a></li>
+        <li><a class="side-menu__link" href="#cases">Кейсы</a></li>
+        <li><a class="side-menu__link" href="#pricing">Цены</a></li>
+        <li><a class="side-menu__link" href="#process">Как я работаю</a></li>
+        <li><a class="side-menu__link" href="#contact">Контакты</a></li>
+      </ul>
+      <div class="side-menu__foot">
+        <a class="side-menu__cta" href="#contact">
+          Обсудить
+          <span aria-hidden="true">↗</span>
+        </a>
+      </div>
+    </aside>
+
+    <main id="top">
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="hero__bg" aria-hidden="true">
+          <div class="hero-shapes">
+            <div class="hero-shapes__mesh"></div>
+            <div class="hero-shapes__orb hero-shapes__orb--1"></div>
+            <div class="hero-shapes__orb hero-shapes__orb--2"></div>
+            <div class="hero-shapes__ring"></div>
+            <div class="hero-shapes__glass"></div>
+          </div>
+        </div>
+
+        <div class="container hero__inner">
+          <div class="hero__content">
+            <div class="hero__block hero__block--hook">
+              <h1 id="hero-title" class="hero__title hero__title--prose">
+                Большинство заходят с телефона.<br />
+                Не находят услугу или закрывают вкладку?
+              </h1>
+            </div>
+
+            <div class="hero__block hero__block--pitch">
+              <p class="hero__lead">
+                Сайты под ключ: услуги на виду, заявка в пару кликов.
+                Лендинг 9–12 дней, каталог 12–16.
+              </p>
+              <p class="hero__offer">
+                Отвечу в Telegram или VK в течение рабочего дня. Срок и цену — после разбора задачи.
+              </p>
+            </div>
+
+            <div class="hero__block hero__block--cta">
+              <div class="hero__actions">
+                <a class="btn btn--primary btn--compact" href="#cases">
+                  Смотреть кейсы
+                  <span aria-hidden="true">↗</span>
+                </a>
+                <a class="btn btn--ghost btn--compact" href="#contact">
+                  Обсудить проект
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="container hero__trust" aria-label="Клиенты">
+          <ul class="hero__trust-list">
+            <li>Салон красоты</li>
+            <li>Детейлинг</li>
+            <li>Ремонт квартир</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="cases" id="cases" aria-labelledby="cases-title">
+        <div class="container">
+          <header class="section-heading">
+            <p class="section-heading__eyebrow">Кейсы</p>
+            <h2 id="cases-title" class="section-heading__title">Избранные проекты</h2>
+          </header>
+
+          <div class="cases__grid">
+            <article class="case-card">
+              <a
+                class="case-card__media"
+                href="./gloris-beauty/index.html"
+              >
+                <img
+                  class="case-card__photo"
+                  src="./gloris-beauty/images/salon-kolomenskaya.png"
+                  alt="Gloris Beauty — премиальный салон красоты"
+                  width="800"
+                  height="500"
+                  loading="lazy"
+                />
+                <span class="case-card__tag">Редизайн</span>
+              </a>
+              <div class="case-card__body">
+                <p class="case-card__meta">
+                  <span>Редизайн / Салон красоты</span>
+                  <span aria-hidden="true">·</span>
+                  <time datetime="2026">2026</time>
+                </p>
+                <p class="case-card__estimate">
+                  Ориентир: ~55 000 ₽ · 7 страниц, каталог с поиском · 10–12 дней
+                </p>
+                <h3 class="case-card__name">Gloris Beauty — премиальный салон красоты</h3>
+                <p class="case-card__excerpt">
+                  Редизайн старого сайта салона: перенос контента, премиальный стиль,
+                  каталог с поиском и онлайн-запись.
+                </p>
+                <p class="case-card__result">
+                  <strong>10–12 дней.</strong> Было: услуги вперемешку, без поиска, неудобно
+                  искать по смыслу → стало: логичные разделы, поиск по каталогу, запись онлайн.
+                </p>
+                <a
+                  class="case-card__link"
+                  href="./gloris-beauty/index.html"
+                >
+                  Новый дизайн ↗
+                </a>
+                <a
+                  class="case-card__link case-card__link--muted"
+                  href="./gloris-beauty/old-site/index.html"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Старый сайт ↗
+                </a>
+              </div>
+            </article>
+
+            <article class="case-card">
+              <a
+                class="case-card__media"
+                href="./custom-cars/index.html"
+              >
+                <img
+                  class="case-card__photo"
+                  src="./custom-cars/images/range-rover-detail.png"
+                  alt="Detail Lab — детейлинг-центр"
+                  width="3840"
+                  height="2560"
+                  loading="lazy"
+                />
+                <span class="case-card__tag">Редизайн</span>
+              </a>
+              <div class="case-card__body">
+                <p class="case-card__meta">
+                  <span>Редизайн / Детейлинг</span>
+                  <span aria-hidden="true">·</span>
+                  <time datetime="2026">2026</time>
+                </p>
+                <p class="case-card__estimate">
+                  Ориентир: ~33 000 ₽ · одна страница, интерактивный прайс · 9–11 дней
+                </p>
+                <h3 class="case-card__name">Detail Lab — детейлинг-центр</h3>
+                <p class="case-card__excerpt">
+                  Редизайн сайта детейлинг-центра: новая структура, тексты и
+                  интерактивный прайс вместо старой вёрстки.
+                </p>
+                <p class="case-card__result">
+                  <strong>9–11 дней.</strong> Было: прайс и услуги на старом сайте — долго
+                  искать, неудобно с телефона → стало: понятные разделы, прайс и видео-блок.
+                </p>
+                <a
+                  class="case-card__link"
+                  href="./custom-cars/index.html"
+                >
+                  Новый дизайн ↗
+                </a>
+                <a
+                  class="case-card__link case-card__link--muted"
+                  href="./custom-cars/old-site/index.html"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Старый сайт ↗
+                </a>
+              </div>
+            </article>
+
+            <article class="case-card">
+              <a
+                class="case-card__media"
+                href="./timur/index.html"
+              >
+                <img
+                  class="case-card__photo"
+                  src="./timur/images/hero/01-painting.png"
+                  alt="Михаил — ремонт квартир под ключ в Химках"
+                  width="7680"
+                  height="5120"
+                  loading="lazy"
+                />
+                <span class="case-card__tag">С нуля</span>
+              </a>
+              <div class="case-card__body">
+                <p class="case-card__meta">
+                  <span>С нуля / Ремонт квартир</span>
+                  <span aria-hidden="true">·</span>
+                  <time datetime="2026">2026</time>
+                </p>
+                <p class="case-card__estimate">
+                  Ориентир: ~38 000 ₽ · одна страница с нуля, калькулятор · 9–12 дней
+                </p>
+                <h3 class="case-card__name">Михаил — ремонт квартир под ключ</h3>
+                <p class="case-card__excerpt">
+                  Сайт с нуля для частного бригадира: интервью, структура, калькулятор
+                  и заявка в Telegram.
+                </p>
+                <p class="case-card__result">
+                  <strong>9–12 дней.</strong> Было: объявление на площадке → стало: лендинг
+                  с калькулятором, портфолио и заявкой в Telegram.
+                </p>
+                <a
+                  class="case-card__link"
+                  href="./timur/index.html"
+                >
+                  Новый сайт ↗
+                </a>
+                <a
+                  class="case-card__link case-card__link--muted"
+                  href="./timur/old-site/index.html"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Объявление до сайта ↗
+                </a>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="pricing" id="pricing" aria-labelledby="pricing-title">
+        <div class="container">
+          <header class="section-heading">
+            <p class="section-heading__eyebrow">Цены</p>
+            <h2 id="pricing-title" class="section-heading__title">
+              Зависит от объёма, не от названия
+            </h2>
+          </header>
+
+          <p class="pricing__lead">
+            «Редизайн» и «с нуля» — только отправная точка. Одностраничник и сайт с
+            каталогом на десятки услуг — разная работа. Ниже ориентиры: что входит и
+            от чего растёт цена. Точную сумму назову после разбора вашей задачи.
+          </p>
+
+          <div class="pricing__grid">
+            <article class="pricing-card">
+              <h3 class="pricing-card__title">Лендинг</h3>
+              <p class="pricing-card__price">от 30 000 ₽</p>
+              <p class="pricing-card__term">9–12 рабочих дней</p>
+              <p class="pricing-card__text">
+                Одна страница: услуги, преимущества, контакты, форма или мессенджер.
+                Редизайн или с нуля — по срокам примерно одинаково; разница в том,
+                откуда берётся контент. Калькулятор или квиз — по задаче.
+              </p>
+              <ul class="pricing-card__list">
+                <li>до 6–8 смысловых блоков</li>
+                <li>адаптив, форма заявки</li>
+                <li>домен, хостинг, запуск</li>
+              </ul>
+              <a class="pricing-card__link" href="#contact">Обсудить лендинг ↗</a>
+            </article>
+
+            <article class="pricing-card pricing-card--featured">
+              <h3 class="pricing-card__title">Несколько страниц / каталог</h3>
+              <p class="pricing-card__price">от 45 000 ₽</p>
+              <p class="pricing-card__term">12–16 рабочих дней</p>
+              <p class="pricing-card__text">
+                Когда блоков на одной странице мало: отдельные разделы, прайс,
+                каталог услуг, поиск, запись. Обычно это редизайн «толстого» старого сайта.
+              </p>
+              <ul class="pricing-card__list">
+                <li>несколько страниц или большой каталог</li>
+                <li>поиск, фильтры, структура услуг</li>
+                <li>перенос и вычистка контента</li>
+              </ul>
+              <a class="pricing-card__link" href="#contact">Обсудить каталог ↗</a>
+            </article>
+          </div>
+
+          <p class="pricing__note">
+            Цифры с «~» — ориентир по портфолио, не прайс-лист. Калькулятор, интеграции
+            и нестандартный объём считаю отдельно после короткого разбора.
+          </p>
+        </div>
+      </section>
+
+      <section class="process" id="process" aria-labelledby="process-title">
+        <div class="container">
+          <header class="section-heading">
+            <p class="section-heading__eyebrow">Как я работаю</p>
+            <h2 id="process-title" class="section-heading__title">
+              Без сорванных дедлайнов
+            </h2>
+          </header>
+
+          <ol class="process__list">
+            <li class="process-step">
+              <h3 class="process-step__title">
+                <span class="card-num">01.</span> Анализ и сбор информации
+              </h3>
+              <p class="process-step__text">
+                Изучаю старый сайт или провожу глубокое интервью (если с нуля),
+                фиксирую цели и подбираю сильные референсы.
+              </p>
+            </li>
+            <li class="process-step">
+              <h3 class="process-step__title">
+                <span class="card-num">02.</span> Первая рабочая версия
+              </h3>
+              <p class="process-step__text">
+                Собираю сайт в коде — не статичный макет, а то, что уже кликается.
+                Через 9–12 дней отправлю ссылку: можно смотреть с телефона и давать правки.
+                Дальше — доводка, адаптив и запуск в согласованный срок.
+              </p>
+            </li>
+            <li class="process-step">
+              <h3 class="process-step__title">
+                <span class="card-num">03.</span> Выравнивание и адаптив
+              </h3>
+              <p class="process-step__text">
+                Руками довожу дизайн до финала и делаю адаптив — сайт одинаково
+                удобен на телефоне, планшете и компьютере.
+              </p>
+            </li>
+            <li class="process-step">
+              <h3 class="process-step__title">
+                <span class="card-num">04.</span> Сдача под ключ
+              </h3>
+              <p class="process-step__text">
+                Покупаю и привязываю домен, настраиваю хостинг, тестирую формы и
+                передаю вам полные права на готовый работающий сайт.
+              </p>
+            </li>
+          </ol>
+        </div>
+      </section>
+
+      <section class="about" id="about" aria-labelledby="about-title">
+        <div class="container about__layout">
+          <header class="section-heading section-heading--compact">
+            <p class="section-heading__eyebrow">Обо мне</p>
+            <h2 id="about-title" class="section-heading__title">
+              Один человек — весь проект
+            </h2>
+          </header>
+          <div class="about__body">
+            <p class="about__lead">
+              Я Станислав. Делаю сайты для малого и среднего бизнеса: структура, тексты,
+              адаптив, формы и запуск. Не агентство — все решения принимаю и делаю сам.
+            </p>
+            <ul class="about__facts">
+              <li>Салоны, сервисы, локальные компании и частные специалисты</li>
+              <li>Сначала смотрю ваш сайт или задачу — потом называю срок и цену</li>
+              <li>Отвечаю лично в Telegram и VK, без менеджеров</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="contact" id="contact" aria-labelledby="contact-title">
+        <div class="container contact__layout">
+          <div class="contact__intro">
+            <header class="section-heading section-heading--compact">
+              <p class="section-heading__eyebrow">Связаться</p>
+              <h2 id="contact-title" class="section-heading__title">
+                Расскажите о проекте
+              </h2>
+            </header>
+            <p class="contact__text">
+              Опишите задачу или скиньте ссылку на текущий сайт. Отвечу лично — обычно
+              в течение рабочего дня. Срок и цену назову после разбора, не наугад.
+            </p>
+            <nav class="contact__channels" aria-label="Быстрая связь">
+              <a class="contact__channel" id="contact-telegram" data-telegram-link href="https://t.me/stanislav5621" target="_blank" rel="noopener noreferrer">Telegram</a>
+              <a class="contact__channel contact__channel--vk" href="https://vk.ru/id1025918815" target="_blank" rel="noopener noreferrer">VK</a>
+            </nav>
+            <p class="contact__channels-note">Или оставьте заявку — укажите, куда ответить.</p>
+          </div>
+
+          <form
+            class="lead-form"
+            id="lead-form"
+            action="#"
+            method="post"
+            novalidate
+            data-lead-api="/api/lead"
+          >
+            <label class="lead-form__field">
+              <span class="lead-form__label">Имя</span>
+              <input
+                class="lead-form__input"
+                type="text"
+                name="name"
+                id="lead-name"
+                placeholder="Иван"
+                autocomplete="name"
+              />
+            </label>
+
+            <label class="lead-form__field">
+              <span class="lead-form__label">Telegram или VK</span>
+              <div class="lead-form__social" role="radiogroup" aria-label="Способ связи">
+                <label class="lead-form__social-option">
+                  <input
+                    class="lead-form__social-input"
+                    type="radio"
+                    name="social"
+                    value="telegram"
+                    checked
+                  />
+                  <span>Telegram</span>
+                </label>
+                <label class="lead-form__social-option">
+                  <input
+                    class="lead-form__social-input"
+                    type="radio"
+                    name="social"
+                    value="vk"
+                  />
+                  <span>VK</span>
+                </label>
+              </div>
+              <input
+                class="lead-form__input"
+                type="text"
+                id="lead-contact"
+                name="contact"
+                placeholder="@username в Telegram"
+                required
+                autocomplete="off"
+                minlength="3"
+              />
+            </label>
+
+            <label class="lead-form__consent">
+              <input
+                class="lead-form__checkbox"
+                type="checkbox"
+                id="lead-consent"
+                name="consent"
+                required
+              />
+              <span>
+                Согласен с
+                <a href="./privacy-policy.html">политикой обработки персональных данных</a>.
+              </span>
+            </label>
+
+            <button class="lead-form__submit" type="submit" id="lead-submit">
+              Оставить заявку
+            </button>
+
+            <p class="lead-form__fallback">
+              Проще написать напрямую —
+              <a data-telegram-link href="https://t.me/stanislav5621" target="_blank" rel="noopener noreferrer">Telegram</a>
+              или
+              <a href="https://vk.ru/id1025918815" target="_blank" rel="noopener noreferrer">VK</a>.
+            </p>
+
+            <p class="lead-form__status" id="lead-form-status" role="status" aria-live="polite" hidden></p>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container site-footer__inner">
+        <p>© Станислав | Сайты для бизнеса 2026</p>
+        <nav aria-label="Подвал">
+          <a href="#about">Обо мне</a>
+          <a href="#cases">Кейсы</a>
+          <a href="#pricing">Цены</a>
+          <a href="#process">Как я работаю</a>
+          <a href="#contact">Контакты</a>
+        </nav>
+      </div>
+      <div class="container site-footer__legal">
+        <a href="./privacy-policy.html">Политика конфиденциальности</a>
+      </div>
+    </footer>
+
+    <script src="script.js" defer></script>
+  </body>
+</html>
