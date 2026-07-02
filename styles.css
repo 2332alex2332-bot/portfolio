@@ -916,6 +916,12 @@ body.menu-open .site-footer {
   gap: 24px;
 }
 
+@media (min-width: 1200px) {
+  .cases__grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
 .case-card {
   display: flex;
   flex-direction: column;
@@ -973,57 +979,45 @@ body.menu-open .site-footer {
 }
 
 .case-card__body {
-  padding: 28px;
-}
-
-.case-card__meta {
   display: flex;
-  align-items: center;
-  gap: 8px;
-  margin-bottom: 12px;
-  color: var(--muted);
-  font-size: 11px;
-  font-weight: 500;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
+  flex-direction: column;
+  gap: 10px;
+  padding: 20px 22px 22px;
 }
 
 .case-card__name {
-  margin-bottom: 12px;
   font-family: var(--font-display);
-  font-size: clamp(20px, 2.2vw, 26px);
+  font-size: clamp(18px, 2vw, 22px);
   font-weight: 600;
-  line-height: 1.15;
+  line-height: 1.2;
   letter-spacing: -0.02em;
   text-transform: uppercase;
 }
 
-.case-card__excerpt {
-  margin-bottom: 10px;
-  color: var(--dim);
-  font-size: 14px;
-  line-height: 1.6;
+.case-card__name a {
+  transition: color 0.2s;
+}
+
+.case-card__name a:hover {
+  color: var(--orange);
 }
 
 .case-card__result {
-  margin-bottom: 16px;
-  padding: 12px 14px;
-  border-left: 2px solid rgba(232, 93, 4, 0.55);
-  background: rgba(255, 255, 255, 0.03);
-  color: rgba(255, 255, 255, 0.72);
-  font-size: 13px;
-  line-height: 1.55;
+  margin: 0;
+  color: var(--dim);
+  font-size: 14px;
+  line-height: 1.5;
 }
 
-.case-card__result strong {
-  color: var(--text);
-  font-weight: 600;
+.case-card__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 16px;
+  margin-top: 4px;
 }
 
 .case-card__link {
-  display: inline-block;
-  margin-top: 20px;
-  margin-right: 20px;
   color: var(--orange);
   font-size: 12px;
   font-weight: 600;
@@ -1033,11 +1027,11 @@ body.menu-open .site-footer {
 }
 
 .case-card__link--muted {
-  color: var(--dim);
+  color: var(--muted);
 }
 
 .case-card__link--muted:hover {
-  color: var(--text);
+  color: var(--dim);
 }
 
 .case-card__link:hover {
@@ -1224,15 +1218,6 @@ body.menu-open .site-footer {
   color: var(--muted);
   font-size: 13px;
   line-height: 1.6;
-}
-
-.case-card__estimate {
-  margin-bottom: 12px;
-  color: var(--orange);
-  font-size: 12px;
-  font-weight: 600;
-  letter-spacing: 0.04em;
-  line-height: 1.45;
 }
 
 .pricing-card__link {
