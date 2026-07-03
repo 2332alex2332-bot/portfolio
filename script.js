@@ -102,6 +102,16 @@ document.addEventListener(
 
 initSiteHeaderHeight();
 
+const siteHeader = document.querySelector(".site-header");
+window.addEventListener(
+  "scroll",
+  () => {
+    siteHeader?.classList.toggle("is-scrolled", window.scrollY > 24);
+  },
+  { passive: true }
+);
+siteHeader?.classList.toggle("is-scrolled", window.scrollY > 24);
+
 const form = document.getElementById("lead-form");
 const formStatus = document.getElementById("lead-form-status");
 const nameInput = document.getElementById("lead-name");

@@ -16,6 +16,11 @@
   --pad-x: clamp(20px, 3vw, 48px);
   --menu-overlay-blur: 16px;
   --site-header-height: calc(64px + env(safe-area-inset-top, 0px));
+  --header-glass-bg: rgba(8, 8, 8, 0.26);
+  --header-glass-bg-scrolled: rgba(8, 8, 8, 0.48);
+  --header-safe-glass-bg: rgba(8, 8, 8, 0.58);
+  --header-safe-glass-bg-scrolled: rgba(8, 8, 8, 0.72);
+  --header-glass-blur: 20px;
   --ph-white: #ffffff;
   --ph-charcoal: #111111;
   --ph-muted: #767676;
@@ -193,23 +198,70 @@ img {
 }
 
 /* ============================================================
-   Header — ИСПРАВЛЕНО: дырка закрыта
+   Header — тёмное стекло (top-nav + side menu)
    ============================================================ */
 .site-header.top-nav {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
-  z-index: 10000;
+  z-index: 1000;
   margin: 0;
   padding: 0;
   overflow: hidden;
   border: none;
-  background: var(--ph-white);
+  background: var(--header-glass-bg);
+  backdrop-filter: blur(var(--header-glass-blur)) saturate(165%);
+  -webkit-backdrop-filter: blur(var(--header-glass-blur)) saturate(165%);
   width: 100%;
   max-width: 100%;
   box-sizing: border-box;
-  border-bottom: 1px solid var(--ph-border);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.05),
+    0 4px 30px rgba(0, 0, 0, 0.14);
+  transition:
+    background 0.35s ease,
+    border-color 0.35s ease,
+    box-shadow 0.35s ease,
+    backdrop-filter 0.35s ease;
+  isolation: isolate;
+}
+
+.site-header.top-nav::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: env(safe-area-inset-top, 0px);
+  background: var(--header-safe-glass-bg);
+  backdrop-filter: blur(var(--header-glass-blur)) saturate(165%);
+  -webkit-backdrop-filter: blur(var(--header-glass-blur)) saturate(165%);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+  pointer-events: none;
+  z-index: 0;
+  transition: background 0.35s ease, backdrop-filter 0.35s ease;
+}
+
+.site-header.top-nav.is-scrolled,
+body.menu-open .site-header.top-nav {
+  background: var(--header-glass-bg-scrolled);
+  backdrop-filter: blur(28px) saturate(185%);
+  -webkit-backdrop-filter: blur(28px) saturate(185%);
+  border-bottom-color: rgba(255, 255, 255, 0.1);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.07),
+    0 8px 40px rgba(0, 0, 0, 0.22);
+}
+
+.site-header.top-nav.is-scrolled::before,
+body.menu-open .site-header.top-nav::before {
+  background: var(--header-safe-glass-bg-scrolled);
+  backdrop-filter: blur(28px) saturate(185%);
+  -webkit-backdrop-filter: blur(28px) saturate(185%);
 }
 
 .top-nav-bar {
@@ -219,6 +271,7 @@ img {
   align-items: center;
   column-gap: var(--ph-space-16);
   position: relative;
+  z-index: 1;
   width: 100%;
   max-width: var(--ph-container-max);
   margin-inline: auto;
@@ -261,7 +314,7 @@ img {
   font-weight: 700;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--ph-charcoal);
+  color: var(--text);
   text-decoration: none;
   line-height: 1.15;
   background: transparent;
@@ -274,12 +327,12 @@ img {
   font-size: 0.52rem;
   font-weight: 500;
   letter-spacing: 0.1em;
-  color: var(--ph-muted);
+  color: var(--muted);
   text-transform: uppercase;
 }
 
 .top-nav-logo:hover {
-  opacity: 0.65;
+  opacity: 0.75;
 }
 
 .top-nav-center.top-nav-menu {
@@ -304,7 +357,7 @@ img {
   font-weight: var(--ph-text-ui-weight);
   letter-spacing: var(--ph-text-ui-tracking);
   text-transform: uppercase;
-  color: var(--ph-muted);
+  color: rgba(255, 255, 255, 0.68);
   text-decoration: none;
   white-space: nowrap;
   line-height: 1;
@@ -314,8 +367,9 @@ img {
 
 .top-nav-link:hover,
 .top-nav-link:focus-visible {
-  color: var(--ph-charcoal);
-  border-bottom-color: var(--ph-charcoal);
+  color: var(--text);
+  border-bottom-color: rgba(255, 255, 255, 0.35);
+  text-shadow: 0 0 14px rgba(255, 255, 255, 0.35), 0 0 28px rgba(232, 93, 4, 0.2);
 }
 
 .top-nav-actions {
@@ -332,10 +386,10 @@ img {
   justify-content: center;
   padding: var(--ph-space-8) 20px;
   min-height: auto;
-  border: 1px solid var(--ph-charcoal);
+  border: 1px solid rgba(232, 93, 4, 0.65);
   border-radius: var(--ph-radius-btn);
-  background: var(--ph-charcoal);
-  color: var(--ph-white);
+  background: rgba(232, 93, 4, 0.08);
+  color: var(--text);
   font-family: var(--font-body);
   font-size: var(--ph-text-ui);
   font-weight: var(--ph-text-ui-weight);
@@ -346,13 +400,18 @@ img {
   white-space: nowrap;
   cursor: pointer;
   box-sizing: border-box;
+  box-shadow: 0 0 24px rgba(232, 93, 4, 0.15);
   transition: var(--ph-transition);
   -webkit-tap-highlight-color: transparent;
 }
 
 .top-nav-cta:hover,
 .top-nav-cta:focus-visible {
-  opacity: 0.85;
+  border-color: var(--orange);
+  background: var(--orange);
+  color: var(--bg);
+  box-shadow: 0 0 32px var(--orange-glow);
+  opacity: 1;
 }
 
 .top-nav-burger {
@@ -363,13 +422,20 @@ img {
   height: 40px;
   padding: 0;
   margin: 0;
-  border: 1px solid rgba(0, 0, 0, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.14);
   border-radius: 50%;
-  background: var(--ph-white);
+  background: rgba(255, 255, 255, 0.04);
   cursor: pointer;
   flex-shrink: 0;
   z-index: 3;
   -webkit-tap-highlight-color: transparent;
+  transition: background 0.25s ease, border-color 0.25s ease;
+}
+
+.top-nav-burger:hover,
+.top-nav-burger:focus-visible {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.22);
 }
 
 .top-nav-burger__line {
@@ -380,7 +446,7 @@ img {
   height: 2px;
   margin: 0;
   border-radius: 999px;
-  background: var(--ph-charcoal);
+  background: var(--text);
   transform: translateX(-50%);
   transform-origin: center;
   transition: transform 0.25s ease, top 0.25s ease;
@@ -462,7 +528,7 @@ img {
     scrollbar-width: none;
     margin-top: 0;
     padding: var(--ph-space-4) var(--ph-space-8) var(--ph-space-8);
-    border-top: 1px solid rgba(0, 0, 0, 0.05);
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
     justify-content: center;
   }
 
