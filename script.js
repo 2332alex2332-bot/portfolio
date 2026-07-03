@@ -30,20 +30,15 @@ let menuScrollY = 0;
 
 const lockPageScroll = () => {
   menuScrollY = window.scrollY;
-  document.body.style.position = "fixed";
-  document.body.style.top = `-${menuScrollY}px`;
-  document.body.style.left = "0";
-  document.body.style.right = "0";
-  document.body.style.width = "100%";
+  document.body.style.setProperty("--menu-scroll-y", `${menuScrollY}px`);
+  document.documentElement.classList.add("is-menu-scroll-locked");
 };
 
 const unlockPageScroll = () => {
-  document.body.style.position = "";
-  document.body.style.top = "";
-  document.body.style.left = "";
-  document.body.style.right = "";
-  document.body.style.width = "";
-  window.scrollTo(0, menuScrollY);
+  const scrollY = menuScrollY;
+  document.documentElement.classList.remove("is-menu-scroll-locked");
+  document.body.style.removeProperty("--menu-scroll-y");
+  window.scrollTo(0, scrollY);
 };
 
 const toggleMenu = (forceOpen) => {
@@ -54,17 +49,17 @@ const toggleMenu = (forceOpen) => {
       ? forceOpen
       : !sideMenu.classList.contains("open");
 
-  if (isOpen) {
-    lockPageScroll();
-  } else {
-    unlockPageScroll();
-  }
-
   sideMenu.classList.toggle("open", isOpen);
   menuOverlay.classList.toggle("open", isOpen);
   menuOverlay.setAttribute("aria-hidden", isOpen ? "false" : "true");
   menuBtn.setAttribute("aria-expanded", isOpen ? "true" : "false");
   document.body.classList.toggle("menu-open", isOpen);
+
+  if (isOpen) {
+    lockPageScroll();
+  } else {
+    unlockPageScroll();
+  }
 };
 
 menuBtn?.addEventListener("click", () => toggleMenu());
