@@ -22,11 +22,26 @@ document.querySelectorAll("[data-telegram-link]").forEach((link) => {
   link.setAttribute("href", buildTelegramLink());
 });
 
-const menuBtn = document.querySelector(".site-header__burger");
+const menuBtn = document.getElementById("burger");
 const sideMenu = document.getElementById("side-menu");
 const menuOverlay = document.getElementById("menu-overlay");
-const siteHeader = document.querySelector(".site-header");
 let menuScrollY = 0;
+
+const updateSiteHeaderHeight = () => {
+  const header = document.querySelector(".site-header");
+  if (!header) return;
+  const height = Math.ceil(header.getBoundingClientRect().height);
+  document.documentElement.style.setProperty("--site-header-height", `${height}px`);
+};
+
+const initSiteHeaderHeight = () => {
+  updateSiteHeaderHeight();
+  window.addEventListener("resize", updateSiteHeaderHeight, { passive: true });
+  const header = document.querySelector(".site-header");
+  if (header && typeof ResizeObserver !== "undefined") {
+    new ResizeObserver(updateSiteHeaderHeight).observe(header);
+  }
+};
 
 const lockPageScroll = () => {
   menuScrollY = window.scrollY;
@@ -85,9 +100,7 @@ document.addEventListener(
   { passive: false }
 );
 
-window.addEventListener("scroll", () => {
-  siteHeader?.classList.toggle("is-scrolled", window.scrollY > 24);
-});
+initSiteHeaderHeight();
 
 const form = document.getElementById("lead-form");
 const formStatus = document.getElementById("lead-form-status");
