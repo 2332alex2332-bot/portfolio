@@ -10,6 +10,7 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/clients-widget.css">
+  <link rel="stylesheet" href="css/breadcrumbs.css">
 </head>
 <body data-page="services" data-catalog-venue="salon">
 
@@ -30,7 +31,7 @@
         </nav>
         <div class="top-nav-end top-nav-actions">
           <div class="top-nav-contacts">
-            <a href="tel:+74950000000" class="top-nav-phone">+7 (495) XXX-XX-XX</a>
+            <a href="tel:+74956127229" class="top-nav-phone">+7 (495) 612-72-29</a>
             <div class="top-nav-social" aria-label="Соцсети">
               <a href="#">VK</a>
               <a href="#">Telegram</a>
@@ -60,7 +61,7 @@
         <li><a href="contacts.html" data-page="contacts" class="side-nav-link nav-link">Контакты <span class="menu-dot" aria-hidden="true"></span></a></li>
       </ul>
       <div class="side-menu-foot">
-        <a href="tel:+74950000000" class="side-menu-phone">+7 (495) XXX-XX-XX</a>
+        <a href="tel:+74956127229" class="side-menu-phone">+7 (495) 612-72-29</a>
         <div class="side-menu-social" aria-label="Соцсети">
           <a href="#">VK</a>
           <a href="#">Telegram</a>
@@ -70,10 +71,14 @@
     </aside>
 
     <main class="catalog-main page-main">
+    <div class="site-breadcrumbs-wrap page-shell">
+      <nav class="site-breadcrumbs" data-breadcrumbs-root aria-label="Хлебные крошки"></nav>
+    </div>
+
     <div class="marquee catalog-marquee" aria-hidden="true">
       <div class="marquee-track">
-        <span class="marquee-group">ул. XXX, д. 27 &nbsp;✦&nbsp; МАНИКЮР · ВОЛОСЫ · КОСМЕТОЛОГИЯ · МАССАЖ &nbsp;✦&nbsp; GLORIS BEAUTY &nbsp;✦&nbsp;</span>
-        <span class="marquee-group" aria-hidden="true">ул. XXX, д. 27 &nbsp;✦&nbsp; МАНИКЮР · ВОЛОСЫ · КОСМЕТОЛОГИЯ · МАССАЖ &nbsp;✦&nbsp; GLORIS BEAUTY &nbsp;✦&nbsp;</span>
+        <span class="marquee-group">ул. Кантемировская, д. 27 &nbsp;✦&nbsp; МАНИКЮР · ВОЛОСЫ · КОСМЕТОЛОГИЯ · МАССАЖ &nbsp;✦&nbsp; GLORIS BEAUTY &nbsp;✦&nbsp;</span>
+        <span class="marquee-group" aria-hidden="true">ул. Кантемировская, д. 27 &nbsp;✦&nbsp; МАНИКЮР · ВОЛОСЫ · КОСМЕТОЛОГИЯ · МАССАЖ &nbsp;✦&nbsp; GLORIS BEAUTY &nbsp;✦&nbsp;</span>
       </div>
     </div>
     <div class="page-shell page-shell--catalog">
@@ -103,11 +108,11 @@
         <nav class="catalog-tabs catalog-tabs--venue" aria-label="Разделы каталога">
           <a href="services.html" class="catalog-tab is-active" aria-current="page">
             <span class="catalog-tab-label">Немедицинские</span>
-            <span class="catalog-tab-addr">ул. XXX, д. 27</span>
+            <span class="catalog-tab-addr">ул. Кантемировская, д. 27</span>
           </a>
           <a href="services-medical.html" class="catalog-tab">
             <span class="catalog-tab-label">Медицинские</span>
-            <span class="catalog-tab-addr">пр-т XXX, д. 26</span>
+            <span class="catalog-tab-addr">пр-т Андропова, д. 26</span>
           </a>
         </nav>
         <div id="shop-grid" class="shop-list"></div>
@@ -122,12 +127,12 @@
         <div class="grid md:grid-cols-3 gap-10 mb-10">
           <div>
             <p class="text-2xl font-bold text-white mb-3">GLORIS <span class="text-gray-400">BEAUTY</span></p>
-            <p class="text-sm text-gray-500 mb-2">ул. XXX, д. 27</p>
-            <p class="text-sm text-gray-500">пр-т XXX, д. 26</p>
+            <p class="text-sm text-gray-500 mb-2">ул. Кантемировская, д. 27</p>
+            <p class="text-sm text-gray-500">пр-т Андропова, д. 26</p>
           </div>
           <div>
             <h4>Связь</h4>
-            <a href="tel:+74950000000" class="text-sm block mb-3 hover:text-white">+7 (495) XXX-XX-XX</a>
+            <a href="tel:+74956127229" class="text-sm block mb-3 hover:text-white">+7 (495) 612-72-29</a>
             <div class="flex gap-3">
               <a href="#" class="w-10 h-10 rounded-full bg-gray-800 hover:bg-white hover:text-black flex items-center justify-center"><i class="fab fa-vk"></i></a>
               <a href="#" class="w-10 h-10 rounded-full bg-gray-800 hover:bg-white hover:text-black flex items-center justify-center"><i class="fab fa-telegram"></i></a>
@@ -153,12 +158,10 @@
     </footer>
   </div>
 
-
-  <a class="portfolio-back" href="../index.html" aria-label="Вернуться в портфолио">← Портфолио</a>
-
   <script src="js/masters-data.js"></script>
   <script src="js/services-catalog.js"></script>
   <script src="js/clients-widget.js"></script>
   <script src="js/main.js"></script>
+  <script src="js/breadcrumbs.js" defer></script>
 </body>
 </html>

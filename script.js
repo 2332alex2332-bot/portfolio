@@ -207,7 +207,7 @@ const sendLeadToEmail = async (payload, summary, endpointEmail) => {
       Accept: "application/json",
     },
     body: JSON.stringify({
-      _subject: "Новая заявка — Станислав | Сайты для бизнеса",
+      _subject: "Новая заявка — Станислав",
       _template: "box",
       name: payload.name || "—",
       contact: payload.contact,

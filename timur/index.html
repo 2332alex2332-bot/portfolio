@@ -6,7 +6,6 @@
   <title>Ремонт квартир в Химках под ключ | Михаил</title>
   <meta name="description" content="Ремонт квартир в Химках под ключ с гарантией 3 года. От 4 500 ₽/м².">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../portfolio-back.css">
   <link rel="stylesheet" href="css/style.css">
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
@@ -54,7 +53,15 @@
     .btn-accent:disabled { opacity:.45; cursor:not-allowed; }
     .btn-accent.rounded-full { border-radius:9999px; text-transform:uppercase; letter-spacing:0.06em; font-size:0.75rem; font-weight:500; }
     .label-accent { color:var(--accent); }
-    .label { font-family:'JetBrains Mono',ui-monospace,monospace; font-size:10px; font-weight:500; text-transform:uppercase; letter-spacing:0.14em; color:var(--muted); }
+    .label,
+    .project-modal__label {
+      font-family:'JetBrains Mono',ui-monospace,monospace;
+      font-size:13px;
+      font-weight:500;
+      text-transform:uppercase;
+      letter-spacing:0.12em;
+      color:var(--muted);
+    }
     .btn-dark, .btn-solid { display:inline-flex; align-items:center; gap:0.5rem; border:1px solid var(--ink); background:var(--ink); padding:0.625rem 1.35rem; font-size:0.8125rem; font-weight:500; color:#fff; transition:opacity 0.2s; }
     .btn-dark { border-radius:9999px; text-transform:uppercase; letter-spacing:0.06em; font-size:0.75rem; }
     .btn-dark:hover, .btn-solid:hover { opacity:0.82; }
@@ -161,13 +168,70 @@
     .calc-wizard.is-done .calc-nav { display:none; }
     .calc-nav { display:flex; align-items:center; justify-content:space-between; gap:1rem; margin-top:2rem; padding-top:1.5rem; }
     .calc-path .quiz-opt { cursor:default; pointer-events:none; }
-    .price-blocks { display:flex; flex-direction:column; gap:3rem; }
-    .price-block-title { font-size:1.125rem; font-weight:600; letter-spacing:-0.02em; }
-    .price-rows { margin-top:1rem; }
-    .price-row { display:flex; align-items:baseline; justify-content:space-between; gap:1.5rem; padding:1.1rem 0; font-size:0.875rem; flex-wrap:wrap; }
-    .price-row-name { color:var(--ink); }
-    .price-row-value { font-weight:600; white-space:nowrap; text-align:right; }
-    .price-row-unit { font-weight:400; color:var(--muted); font-size:0.8125rem; }
+    .price-panel {
+      padding: clamp(1.5rem, 4vw, 2.75rem);
+      border: 1px solid var(--line);
+      background: var(--card);
+    }
+    .price-panel .price-block + .price-block {
+      margin-top: 2rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--line);
+    }
+    .price-block-title {
+      font-family: 'JetBrains Mono', ui-monospace, monospace;
+      font-size: 11px;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--muted);
+    }
+    .price-rows { margin-top: 0.75rem; }
+    .price-row {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 1rem 1.5rem;
+      align-items: baseline;
+      padding: 0.85rem 0;
+      border-bottom: 1px solid var(--line);
+    }
+    .price-row:last-child { border-bottom: none; padding-bottom: 0; }
+    .price-rows .price-row:first-child { padding-top: 0.35rem; }
+    .price-row-name { font-size: 0.9375rem; line-height: 1.45; color: var(--ink); }
+    .price-row-value {
+      display: inline-flex;
+      align-items: baseline;
+      gap: 0.3rem;
+      font-variant-numeric: tabular-nums;
+      white-space: nowrap;
+      text-align: right;
+    }
+    .price-row-amount {
+      font-size: 1.0625rem;
+      font-weight: 600;
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+      color: var(--ink);
+    }
+    .price-row-unit { font-size: 0.75rem; font-weight: 500; color: var(--muted); }
+    .price-panel + .btn-solid,
+    #contactForm .btn-accent {
+      width: 100%;
+      justify-content: center;
+    }
+    .contact-form__feedback {
+      min-height: 2.75rem;
+    }
+    .contact-form__feedback p {
+      margin: 0;
+      line-height: 1.5;
+    }
+    @media (min-width: 640px) {
+      #pricing .btn-solid {
+        width: auto;
+        justify-content: flex-start;
+      }
+    }
     .step-pill { width:2rem; height:2rem; border-radius:9999px; border:1px solid var(--line); display:flex; align-items:center; justify-content:center; font-family:'JetBrains Mono',monospace; font-size:10px; color:var(--muted); transition:all 0.2s; cursor:pointer; background:transparent; padding:0; }
     .step-pill:hover:not(.active):not(.is-disabled) { border-color:var(--ink); color:var(--ink); }
     .step-pill.active { background:var(--accent); border-color:var(--accent); color:var(--ink); }
@@ -199,7 +263,7 @@
       margin-right: auto;
     }
     /* Портфолио */
-    .ba-slider { position:relative; overflow:hidden; aspect-ratio:3/4; background:#fff; border:1px solid var(--line); cursor:ew-resize; user-select:none; transition:box-shadow .25s ease; }
+    .ba-slider { position:relative; overflow:hidden; aspect-ratio:3/4; background:#fff; border:1px solid var(--line); cursor:ew-resize; user-select:none; touch-action:none; -webkit-touch-callout:none; transition:box-shadow .25s ease; }
     .ba-slider:hover { box-shadow:0 12px 40px rgba(0,0,0,.12); }
     .ba-slider__after { position:absolute; inset:0; overflow:hidden; }
     .ba-slider__before { position:absolute; inset:0; overflow:hidden; width:50%; z-index:2; }
@@ -220,39 +284,64 @@
     .ba-slider__tag--before { left:12px; background:#fff; color:var(--ink); }
     .ba-slider__tag--after { right:12px; background:var(--accent); color:var(--ink); }
     .ba-slider__caption { margin-top:.75rem; font-size:.8125rem; color:var(--muted); }
-    .project-card { display:flex; flex-direction:column; overflow:hidden; background:var(--card); border:1px solid var(--line); text-align:left; transition:transform .25s ease, box-shadow .25s ease; }
+    .project-card { display:flex; flex-direction:column; overflow:hidden; width:100%; padding:0; border:1px solid var(--line); background:var(--card); text-align:left; font:inherit; color:inherit; cursor:pointer; touch-action:manipulation; -webkit-tap-highlight-color:transparent; transition:transform .18s ease, box-shadow .18s ease; will-change:transform; }
     .project-card:hover { transform:translateY(-4px); box-shadow:0 16px 40px rgba(0,0,0,.1); }
-    .project-card__media { position:relative; height:14rem; overflow:hidden; }
+    .project-card.is-pressed,
+    .project-card:active { transform:translateY(0) scale(.97); box-shadow:0 4px 14px rgba(0,0,0,.08); transition-duration:.08s; }
+    .project-card.is-pressed .project-card__media img,
+    .project-card:active .project-card__media img { transform:scale(1.01); }
+    .project-card:focus-visible { outline:2px solid var(--ink); outline-offset:3px; }
+    .project-card__title { margin:0; font-size:1.05rem; font-weight:600; letter-spacing:-.02em; }
     .project-card__media img { position:absolute; left:0; width:100%; height:200%; bottom:0; object-fit:cover; object-position:center bottom; transition:transform .4s ease; }
     .project-card__media img.is-horizontal { width:200%; height:100%; bottom:auto; top:0; left:0; object-position:right center; }
     .project-card:hover .project-card__media img { transform:scale(1.03); }
     .project-card__badges { position:absolute; inset:auto 0 0 0; display:flex; flex-wrap:wrap; gap:.35rem; padding:.75rem; background:linear-gradient(to top,rgba(0,0,0,.72),transparent); }
     .project-card__badge { background:rgba(255,255,255,.95); color:var(--ink); padding:.25rem .55rem; font-size:9px; font-weight:600; text-transform:uppercase; letter-spacing:.06em; }
+    .project-card__media { position:relative; height:14rem; overflow:hidden; }
     .project-card__body { padding:1.25rem; display:flex; flex-direction:column; flex:1; }
-    .project-card__title { font-size:1.05rem; font-weight:600; letter-spacing:-.02em; }
     .project-card__meta { margin-top:.5rem; font-size:.75rem; color:var(--muted); }
-    .project-card__btn { margin-top:1rem; width:100%; justify-content:center; font-size:10px; }
+    .project-card__btn { margin-top:1rem; width:100%; justify-content:center; font-size:10px; pointer-events:none; }
     .project-modal { position:fixed; inset:0; z-index:200; display:none; align-items:center; justify-content:center; padding:1rem; background:rgba(0,0,0,.88); backdrop-filter:blur(4px); overflow-y:auto; -webkit-overflow-scrolling:touch; overscroll-behavior:contain; }
     .project-modal.is-open { display:flex; }
     .project-modal__panel { position:relative; width:100%; max-width:1100px; max-height:92vh; overflow:hidden; background:var(--canvas); }
     @media(max-width:899px){
-      .project-modal { align-items:flex-start; padding:.5rem; padding-bottom:max(1rem, env(safe-area-inset-bottom)); }
+      .project-modal { align-items:flex-start; padding:.5rem; padding-bottom:max(.5rem, env(safe-area-inset-bottom, 0px)); }
       .project-modal.is-open { display:block; }
-      .project-modal__panel { max-height:none; overflow:visible; margin:0 auto; }
+      .project-modal__close-stick {
+        position:sticky;
+        top:max(.75rem, calc(env(safe-area-inset-top, 0px) + .25rem));
+        width:100%;
+        height:0;
+        overflow:visible;
+        z-index:210;
+        pointer-events:none;
+      }
+      .project-modal__close-stick .project-modal__close {
+        position:absolute;
+        top:0;
+        right:max(.75rem, calc(env(safe-area-inset-right, 0px) + .25rem));
+        float:none;
+        margin:0;
+        pointer-events:auto;
+      }
+      .project-modal__panel {
+        max-height:none;
+        overflow:visible;
+        margin:0 auto;
+        padding-bottom:max(5rem, calc(3rem + env(safe-area-inset-bottom, 0px)));
+      }
+      .project-modal__project,
+      .project-modal__card { height:auto; }
       .project-modal__gallery { touch-action:pan-y pinch-zoom; }
-      .project-modal__stack { min-height:0; max-height:36vh; padding:.75rem; }
-      .project-modal__stack-half { min-height:6.5rem; }
-      .project-modal__stack-half img { min-height:6.5rem; }
-      .project-modal__slide img { min-height:0; max-height:36vh; }
-      .project-modal__slide img.is-composite { max-height:36vh; }
-      .project-modal__sidebar { max-height:none; overflow:visible; padding:1.25rem 1.25rem 1.5rem; }
     }
     @media(min-width:900px){
       .project-modal__panel { height:min(92vh,680px); max-height:min(92vh,680px); }
       .project-modal__viewport,
       .project-modal__track { height:100%; }
+      .project-modal__close-stick { position:absolute; top:12px; right:12px; z-index:210; pointer-events:none; width:auto; height:auto; }
+      .project-modal__close-stick .project-modal__close { position:relative; pointer-events:auto; }
     }
-    .project-modal__close { position:absolute; top:12px; right:12px; z-index:5; width:40px; height:40px; display:flex; align-items:center; justify-content:center; background:var(--ink); color:#fff; font-size:18px; line-height:1; border:none; cursor:pointer; transition:opacity .2s; }
+    .project-modal__close { position:relative; width:40px; height:40px; display:flex; align-items:center; justify-content:center; background:var(--ink); color:#fff; font-size:18px; line-height:1; border:none; cursor:pointer; transition:opacity .2s; flex-shrink:0; }
     .project-modal__close:hover { opacity:.8; }
     .project-modal__viewport { position:relative; width:100%; overflow:hidden; touch-action:pan-y pinch-zoom; }
     .project-modal__track { display:flex; width:100%; will-change:transform; transition:transform .38s cubic-bezier(.25,.46,.45,.94); }
@@ -265,17 +354,19 @@
     @media(min-width:900px){
       .project-modal__card { grid-template-columns:1.2fr .8fr; height:100%; min-height:100%; align-items:stretch; }
     }
-    .project-modal__gallery { position:relative; background:var(--card); min-height:280px; display:flex; flex-direction:column; align-items:stretch; justify-content:stretch; overflow:hidden; }
+    .project-modal__gallery { position:relative; background:var(--card); display:flex; flex-direction:column; align-items:stretch; justify-content:stretch; overflow:hidden; }
     @media(min-width:900px){ .project-modal__gallery { height:100%; min-height:0; } }
-    .project-modal__slide { display:flex; align-items:stretch; justify-content:center; width:100%; min-height:280px; flex:1; }
+    .project-modal__slide { display:flex; align-items:stretch; justify-content:center; width:100%; flex:1; }
     @media(min-width:900px){ .project-modal__slide { min-height:0; height:100%; } }
-    .project-modal__stack { display:flex; flex-direction:column; width:100%; flex:1; min-height:280px; max-height:min(85vh,820px); padding:1.25rem; }
+    .project-modal__stack { display:flex; flex-direction:column; width:100%; flex:1; padding:1.25rem; }
     @media(min-width:900px){ .project-modal__stack { min-height:0; height:100%; max-height:none; } }
-    .project-modal__stack-half { position:relative; flex:1 1 50%; min-height:10rem; overflow:hidden; background:var(--canvas); }
+    .project-modal__stack-half { position:relative; flex:1 1 50%; overflow:hidden; background:var(--canvas); }
+    @media(min-width:900px){ .project-modal__stack-half { min-height:10rem; } }
     .project-modal__stack-half + .project-modal__stack-half { border-top:2px solid var(--ink); }
-    .project-modal__stack-half img { display:block; width:100%; height:100%; min-height:10rem; object-fit:cover; object-position:center; }
-    .project-modal__slide img { width:100%; height:100%; min-height:280px; max-height:60vh; object-fit:cover; object-position:center; }
-    .project-modal__slide img.is-composite { width:auto; height:auto; min-height:0; max-width:100%; max-height:min(60vh,520px); object-fit:contain; object-position:center center; }
+    .project-modal__stack-half img { display:block; width:100%; height:100%; object-fit:cover; object-position:center; }
+    @media(min-width:900px){ .project-modal__stack-half img { min-height:10rem; } }
+    .project-modal__slide img { width:100%; height:100%; object-fit:cover; object-position:center; }
+    .project-modal__slide img.is-composite { width:auto; height:auto; min-height:0; max-width:100%; object-fit:contain; object-position:center center; }
     @media(min-width:900px){
       .project-modal__slide img { max-height:none; min-height:0; height:100%; }
       .project-modal__slide img.is-composite { max-height:100%; height:100%; }
@@ -295,11 +386,10 @@
     @media(min-width:900px){
       .project-modal__sidebar { padding:2rem; height:100%; min-height:0; max-height:none; overflow-y:auto; }
     }
-    .project-modal__head { min-height:6rem; }
-    .project-modal__label { font-family:'JetBrains Mono',monospace; font-size:10px; text-transform:uppercase; letter-spacing:.12em; color:var(--muted); }
+    .project-modal__head { min-height:0; }
     .project-modal__title {
-      margin-top:.5rem;
-      min-height:5.2rem;
+      margin:0;
+      min-height:0;
       font-size:1.5rem;
       font-weight:600;
       letter-spacing:-.03em;
@@ -309,7 +399,12 @@
       -webkit-line-clamp:3;
       overflow:hidden;
     }
-    .project-modal__stats { margin-top:1.25rem; display:grid; gap:.75rem; }
+    .project-modal__stats { margin-top:.5rem; display:grid; gap:.75rem; }
+    @media(min-width:900px){
+      .project-modal__head { min-height:6rem; }
+      .project-modal__title { min-height:5.2rem; margin:0 0 .5rem; }
+      .project-modal__stats { margin-top:1.25rem; }
+    }
     .project-modal__stat { display:flex; align-items:center; justify-content:space-between; gap:1rem; min-height:2.35rem; font-size:.8125rem; padding-bottom:.75rem; border-bottom:1px solid var(--line); }
     .project-modal__stat span:first-child { flex-shrink:0; }
     .project-modal__stat span:last-child { font-weight:600; text-align:right; max-width:58%; }
@@ -317,9 +412,86 @@
     .project-modal__rooms { margin-top:1rem; display:flex; flex-wrap:wrap; gap:.4rem; }
     .project-modal__room { padding:.35rem .7rem; font-size:10px; text-transform:uppercase; letter-spacing:.06em; background:var(--card); cursor:pointer; border:1px solid transparent; transition:all .2s; }
     .project-modal__room.is-active, .project-modal__room:hover { border-color:var(--ink); background:var(--ink); color:#fff; }
-    .project-modal.is-open ~ .portfolio-back { opacity:0; pointer-events:none; visibility:hidden; }
-    .spec-row { display:grid; grid-template-columns:3rem 3rem 1fr; gap:1.5rem; padding:2.5rem 0; }
-    @media(min-width:1024px){ .spec-row { grid-template-columns:4rem 4rem 1fr; } }
+    @media(max-width:899px){
+      .project-modal__project,
+      .project-modal__card { height:auto; }
+      .project-modal__track { align-items:flex-start; }
+      .project-modal__card { grid-template-rows:auto auto; }
+      .project-modal__gallery {
+        flex:none;
+        height:auto;
+        min-height:0;
+        max-height:none;
+      }
+      .project-modal__slide { height:auto; min-height:0; flex:none; width:100%; }
+      .project-modal__stack {
+        display:grid;
+        grid-template-rows:1fr 1fr;
+        height:auto;
+        min-height:0;
+        max-height:none;
+        padding:0;
+        gap:0;
+      }
+      .project-modal__stack-half + .project-modal__stack-half { border-top:none; }
+      .project-modal__stack-half {
+        position:relative;
+        aspect-ratio:4/3;
+        min-height:0;
+        height:auto;
+        overflow:hidden;
+      }
+      .project-modal__stack-half img {
+        position:absolute;
+        inset:0;
+        width:100%;
+        height:100%;
+        min-height:0;
+        object-fit:cover;
+        object-position:center;
+      }
+      .project-modal__slide > img {
+        display:block;
+        width:100%;
+        aspect-ratio:4/3;
+        height:auto;
+        min-height:0;
+        max-height:none;
+        object-fit:cover;
+        object-position:center;
+      }
+      .project-modal__slide img.is-composite {
+        aspect-ratio:4/3;
+        width:100%;
+        height:auto;
+        max-height:none;
+        object-fit:cover;
+      }
+      .project-modal__head {
+        height:calc(1.5rem * 1.15 * 2);
+        min-height:calc(1.5rem * 1.15 * 2);
+        max-height:calc(1.5rem * 1.15 * 2);
+      }
+      .project-modal__title {
+        height:calc(1.5rem * 1.15 * 2);
+        min-height:calc(1.5rem * 1.15 * 2);
+        max-height:calc(1.5rem * 1.15 * 2);
+        margin:0;
+        -webkit-line-clamp:2;
+      }
+      .project-modal__stats { margin-top:.5rem; gap:0; }
+      .project-modal__stat {
+        min-height:2.75rem;
+        height:2.75rem;
+        padding-bottom:0;
+        box-sizing:border-box;
+      }
+      .project-modal__stat:last-child { border-bottom:none; }
+      .project-modal__sidebar { padding:1rem 1.25rem 2rem; }
+      .project-modal__task { margin-bottom:0; }
+    }
+    .spec-row { display:grid; grid-template-columns:auto 1fr; gap:1.25rem 1.5rem; align-items:start; padding:2.5rem 0; }
+    .spec-row > svg { width:2rem; height:2rem; flex-shrink:0; margin-top:0.15rem; }
     .doc-list { display: flex; flex-direction: column; gap: 0.5rem; }
     .doc-row {
       display: grid;
@@ -359,51 +531,78 @@
       }
       .spec-row {
         grid-template-columns:auto minmax(0, 1fr);
-        grid-template-rows:auto auto;
         column-gap:1rem;
-        row-gap:0.65rem;
         padding:2rem 0;
       }
-      .spec-row > span:first-child { grid-column:1; grid-row:1; align-self:start; }
-      .spec-row > svg { grid-column:1; grid-row:2; width:1.75rem; height:1.75rem; }
-      .spec-row > div { grid-column:2; grid-row:1 / -1; min-width:0; }
-      .price-row { flex-direction:column; align-items:flex-start; gap:0.35rem; }
-      .price-row-value { text-align:left; white-space:normal; }
+      .spec-row > svg { width:1.75rem; height:1.75rem; margin-top:0.1rem; }
     }
-    .reviews-source { font-size:0.6875rem; text-transform:uppercase; letter-spacing:0.1em; color:var(--muted); }
-    .reviews-shots { margin-top: 2rem; }
-    .reviews-shots__summary {
-      display: flex;
-      justify-content: center;
-      margin-bottom: 1rem;
+    .reviews-section__head {
+      max-width: 36rem;
     }
-    .reviews-shots__summary .reviews-shot { max-width: 280px; }
-    .reviews-shots__grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 1rem;
-      align-items: start;
-    }
-    @media (min-width: 640px) {
-      .reviews-shots__grid { grid-template-columns: repeat(2, 1fr); }
+    .reviews-panel {
+      margin-top: 3rem;
+      max-width: 42rem;
+      margin-inline: auto;
+      padding: clamp(1.75rem, 4vw, 3rem);
+      border: 1px solid var(--line);
+      background: var(--card);
     }
     @media (min-width: 1024px) {
-      .reviews-shots__grid { grid-template-columns: repeat(3, 1fr); }
+      .reviews-panel { margin-top: 4rem; }
     }
-    .reviews-shot {
+    .reviews-panel__meta {
+      padding-bottom: 1.75rem;
+      margin-bottom: 1.75rem;
+      border-bottom: 1px solid var(--line);
+    }
+    .reviews-panel__meta img {
+      display: block;
+      width: 100%;
+      max-width: 18rem;
+      height: auto;
+    }
+    .reviews-feed {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+    .reviews-feed__item {
+      margin: 0;
+    }
+    .reviews-feed__item img {
+      display: block;
       width: 100%;
       height: auto;
-      border: 1px solid var(--line);
-      background: #fff;
     }
-    .reviews-shot-caption {
-      margin-top: 0.75rem;
-      text-align: center;
-      font-size: 0.75rem;
-      color: var(--muted);
+    .reviews-feed__more {
+      display: none;
+      width: 100%;
+      margin-top: 1.5rem;
+      justify-content: center;
     }
-    .reviews-shot-caption a { text-decoration: underline; text-underline-offset: 2px; }
-    .reviews-shot-caption a:hover { color: var(--ink); }
+    @media (max-width: 639px) {
+      #reviews .section-inner {
+        padding-left: 0.875rem;
+        padding-right: 0.875rem;
+      }
+      .reviews-panel {
+        padding: 1.125rem 0.75rem;
+        max-width: none;
+      }
+      .reviews-panel__meta {
+        padding-bottom: 1.25rem;
+        margin-bottom: 1.25rem;
+      }
+      .reviews-feed {
+        gap: 1.5rem;
+      }
+      .reviews-feed--compact:not(.is-expanded) .reviews-feed__item:nth-child(n + 4) {
+        display: none;
+      }
+      .reviews-feed__more.is-visible {
+        display: inline-flex;
+      }
+    }
     .hero-wide { width:100%; max-width:1920px; margin-left:auto; margin-right:auto; padding-left:2.5vw; padding-right:2.5vw; }
     .nav-link { font-size:11px; font-weight:500; text-transform:uppercase; letter-spacing:0.14em; color:var(--muted); transition:color .2s; white-space:nowrap; }
     .nav-link:hover { color:var(--ink); }
@@ -467,8 +666,22 @@
       transition:border-color .2s, background .2s;
     }
     .site-header__burger:hover { border-color:var(--ink); background:rgba(0,0,0,.03); }
-    .site-header__menu-phone { display:block; }
     .site-header__menu-cta { display:none; }
+    .site-header__menu-footer {
+      padding-top:1rem;
+      padding-bottom:0.5rem;
+    }
+    .site-header__menu-phone {
+      font-weight:500;
+    }
+    .site-header__menu-cta.btn-accent {
+      width:100%;
+      justify-content:center;
+      align-items:center;
+      text-align:center;
+      padding:0.85rem 1.25rem;
+      font-weight:600;
+    }
     .site-header__cta.btn-accent,
     .site-header__menu-cta.btn-accent {
       text-transform:none;
@@ -627,6 +840,7 @@
       html { scroll-behavior:auto; }
     }
   </style>
+  <link rel="stylesheet" href="css/breadcrumbs.css">
 </head>
 <body class="bg-canvas font-sans text-ink antialiased">
   <script>if('scrollRestoration' in history) history.scrollRestoration='manual';window.scrollTo(0,0);</script>
@@ -664,11 +878,17 @@
         <a href="#pricing" class="mobile-link py-3 border-b border-line">Цены</a>
         <a href="#contacts" class="mobile-link py-3 border-b border-line">Контакты</a>
         <a href="tel:+79000000000" class="mobile-link site-header__menu-phone py-3 border-b border-line">+7 (900) 000-00-00</a>
-        <a href="#calculator" class="mobile-link site-header__menu-cta btn-accent mt-4 justify-center">Рассчитать стоимость</a>
+        <div class="site-header__menu-footer">
+          <a href="#calculator" class="site-header__menu-cta btn-accent">Рассчитать стоимость</a>
+        </div>
       </nav>
     </div>
   </header>
 
+
+    <div class="site-breadcrumbs-wrap hero-wide px-5 lg:px-10">
+      <nav class="site-breadcrumbs" data-breadcrumbs-root aria-label="Хлебные крошки"></nav>
+    </div>
   <main class="pt-[4rem]">
 
     <!-- 1. HERO -->
@@ -707,7 +927,9 @@
     <!-- Модалка проекта -->
     <div id="projectModal" class="project-modal" role="dialog" aria-modal="true" aria-hidden="true">
       <div class="project-modal__panel">
-        <button type="button" id="projectModalClose" class="project-modal__close" aria-label="Закрыть">✕</button>
+        <div class="project-modal__close-stick">
+          <button type="button" id="projectModalClose" class="project-modal__close" aria-label="Закрыть">✕</button>
+        </div>
         <div class="project-modal__viewport" id="projectModalViewport">
           <div id="projectModalTrack" class="project-modal__track"></div>
         </div>
@@ -726,7 +948,7 @@
     <!-- 3. CALCULATOR -->
     <section id="calculator" class="section-flow bg-surface">
       <div class="hero-wide py-16 lg:py-24 section-inner reveal-block">
-        <div class="reveal flex flex-wrap items-center justify-between gap-4 pb-6">
+        <div class="reveal hidden md:flex flex-wrap items-center justify-between gap-4 pb-6">
           <div class="flex items-center gap-3">
             <span class="h-1.5 w-1.5 rounded-full bg-ink"></span>
             <span class="label">Калькулятор</span>
@@ -802,7 +1024,7 @@
     <section id="about" class="section-flow bg-canvas">
       <div class="mx-auto max-w-content px-5 py-16 lg:px-10 lg:py-24 section-inner reveal-block">
         <div class="reveal">
-          <p class="label">· О нас</p>
+          <p class="label">О нас</p>
           <h2 class="section-heading mt-3">Почему выбирают нас</h2>
           <p class="section-desc">Опыт в сфере ремонта — более 10 лет. Работаем в Химках и области.</p>
         </div>
@@ -810,35 +1032,28 @@
         <div class="mt-16 grid gap-12 lg:grid-cols-12">
           <div class="lg:col-span-8 reveal-stagger">
             <div class="spec-row reveal-child">
-              <span class="text-sm font-medium text-muted">01</span>
               <svg class="h-8 w-8 text-ink" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
               <div><h3 class="text-lg font-semibold text-ink">Опыт более 10 лет</h3><p class="mt-2 text-sm leading-relaxed text-muted">Капитальный и косметический ремонт, отделка под ключ. Сотни сданных объектов в Химках.</p></div>
             </div>
             <div class="spec-row reveal-child">
-              <span class="text-sm font-medium text-muted">02</span>
               <svg class="h-8 w-8 text-ink" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
               <div><h3 class="text-lg font-semibold text-ink">Гарантия 3 года</h3><p class="mt-2 text-sm leading-relaxed text-muted">Письменная гарантия в договоре на все виды работ. Цена фиксируется — никаких доплат.</p></div>
             </div>
             <div class="spec-row reveal-child">
-              <span class="text-sm font-medium text-muted">03</span>
               <svg class="h-8 w-8 text-ink" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
               <div><h3 class="text-lg font-semibold text-ink">Работа по договору</h3><p class="mt-2 text-sm leading-relaxed text-muted">Договор подряда, расписка, акт приёма-передачи. Оплата поэтапно после каждого этапа.</p></div>
             </div>
             <div class="spec-row reveal-child">
-              <span class="text-sm font-medium text-muted">04</span>
               <svg class="h-8 w-8 text-ink" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"/></svg>
               <div><h3 class="text-lg font-semibold text-ink">Контроль в телефоне</h3><p class="mt-2 text-sm leading-relaxed text-muted">Фото и видеоотчёты в Telegram или WhatsApp каждый день. Всегда на связи.</p></div>
             </div>
             <div class="spec-row reveal-child">
-              <span class="text-sm font-medium text-muted">05</span>
               <svg class="h-8 w-8 text-ink" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
               <div><h3 class="text-lg font-semibold text-ink">Закупки без переплат</h3><p class="mt-2 text-sm leading-relaxed text-muted">Материалы напрямую у поставщиков со скидкой до 30%. Помогаем с подбором.</p></div>
             </div>
           </div>
           <div class="lg:col-span-4 reveal">
-            <div class="flex items-center justify-between text-[10px] uppercase tracking-widest text-muted">
-              <span>Документы</span><span>03 доступно</span>
-            </div>
+            <div class="label">Документы</div>
             <div class="mt-4 doc-list">
               <a href="documents/dogovor-podryada.pdf" class="doc-row doc-row--link group" download="dogovor-podryada.pdf">
                 <svg class="doc-row__icon" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
@@ -867,37 +1082,38 @@
             </div>
           </div>
         </div>
+      </div>
+    </section>
 
-        <div class="mt-16 pt-16 reveal">
-          <div class="flex flex-wrap items-end justify-between gap-4">
-            <div>
-              <p class="label">· Отзывы</p>
-              <h3 class="section-heading mt-2">Что пишут клиенты</h3>
-            </div>
-            <p class="reviews-source">Площадка объявлений · реальные отзывы</p>
+    <!-- 4b. REVIEWS -->
+    <section id="reviews" class="section-flow bg-surface">
+      <div class="mx-auto max-w-content px-5 py-16 lg:px-10 lg:py-24 section-inner reveal-block">
+        <div class="reviews-section reveal">
+          <div class="reviews-section__head">
+            <p class="label">Отзывы</p>
+            <h2 class="section-heading mt-3">Что пишут клиенты</h2>
+            <p class="section-desc">Реальные отзывы с объявления на Авито — скриншоты без правок</p>
           </div>
-          <div class="reviews-shots reveal">
-            <div class="reviews-shots__summary">
+
+          <div class="reviews-panel">
+            <div class="reviews-panel__meta">
               <img
                 src="images/reviews/avito-reviews-summary.png"
                 alt="Рейтинг 5,0 — 5 отзывов клиентов"
-                class="reviews-shot"
                 width="560"
                 height="80"
                 loading="lazy"
               >
             </div>
-            <div class="reviews-shots__grid reveal-stagger">
-              <img src="images/reviews/avito-review-1.png" alt="Отзыв Кристины" class="reviews-shot reveal-child" loading="lazy">
-              <img src="images/reviews/avito-review-2.png" alt="Отзыв Романа" class="reviews-shot reveal-child" loading="lazy">
-              <img src="images/reviews/avito-review-3.png" alt="Отзыв Генриха" class="reviews-shot reveal-child" loading="lazy">
-              <img src="images/reviews/avito-review-4.png" alt="Отзыв David" class="reviews-shot reveal-child" loading="lazy">
-              <img src="images/reviews/avito-review-5.png" alt="Отзыв Анжелы" class="reviews-shot reveal-child" loading="lazy">
+            <div class="reviews-feed reviews-feed--compact reveal-stagger" id="reviewsFeed">
+              <figure class="reviews-feed__item reveal-child"><img src="images/reviews/avito-review-1.png" alt="Отзыв Кристины" loading="lazy"></figure>
+              <figure class="reviews-feed__item reveal-child"><img src="images/reviews/avito-review-2.png" alt="Отзыв Романа" loading="lazy"></figure>
+              <figure class="reviews-feed__item reveal-child"><img src="images/reviews/avito-review-3.png" alt="Отзыв Генриха" loading="lazy"></figure>
+              <figure class="reviews-feed__item reveal-child"><img src="images/reviews/avito-review-4.png" alt="Отзыв David" loading="lazy"></figure>
+              <figure class="reviews-feed__item reveal-child"><img src="images/reviews/avito-review-5.png" alt="Отзыв Анжелы" loading="lazy"></figure>
             </div>
+            <button type="button" class="reviews-feed__more btn-ghost" id="reviewsMore" hidden>Ещё 2 отзыва</button>
           </div>
-          <p class="reviews-shot-caption reveal">
-            Скриншоты исходного объявления
-          </p>
         </div>
       </div>
     </section>
@@ -906,12 +1122,12 @@
     <section id="pricing" class="section-flow bg-surface">
       <div class="mx-auto max-w-content px-5 py-16 lg:px-10 lg:py-24 section-inner reveal-block">
         <div class="reveal">
-          <p class="label text-center">· Цены</p>
-          <h2 class="section-heading section-heading--center mt-3">Прайс-лист</h2>
-          <p class="section-desc section-desc--center max-w-lg">Актуальные расценки на все виды работ</p>
+          <p class="label">Цены</p>
+          <h2 class="section-heading mt-3">Прайс-лист</h2>
+          <p class="section-desc max-w-lg">Актуальные расценки на все виды работ</p>
         </div>
-        <div id="priceList" class="price-blocks reveal mx-auto mt-14 max-w-3xl"></div>
-        <a href="#calculator" class="btn-solid reveal mx-auto mt-12 block w-fit text-center">Рассчитать стоимость</a>
+        <div id="priceList" class="price-panel reveal mt-14 max-w-3xl"></div>
+        <a href="#calculator" class="btn-solid reveal mt-12 inline-flex">Рассчитать стоимость</a>
       </div>
     </section>
 
@@ -944,8 +1160,10 @@
               <span>Нажимая кнопку, я даю <a href="legal/privacy-policy.html#consent" target="_blank" rel="noopener noreferrer">согласие</a> на обработку персональных данных и соглашаюсь с <a href="legal/privacy-policy.html" target="_blank" rel="noopener noreferrer">Политикой конфиденциальности</a>.</span>
             </label>
             <button type="submit" id="contactSubmitBtn" class="btn-accent" disabled>Вызвать Михаила на замер</button>
-            <p id="contactFormError" class="hidden text-xs text-red-600"></p>
-            <p id="formSuccess" class="hidden text-sm text-muted">Спасибо! Перезвоним за 15 минут.</p>
+            <div class="contact-form__feedback" aria-live="polite">
+              <p id="contactFormError" class="hidden text-xs text-red-600" role="alert"></p>
+              <p id="formSuccess" class="hidden text-sm text-muted">Спасибо! Перезвоним за 15 минут.</p>
+            </div>
           </form>
         </div>
       </div>
@@ -958,7 +1176,7 @@
       <a href="legal/user-agreement.html">Пользовательское соглашение</a>
       <a href="legal/cookie-policy.html">Политика Cookie</a>
     </nav>
-    <p class="text-white/50">ИП Михаил · ИНН 000000000000 · ОГРНИП 000000000000000 · г. Химки</p>
+    <p class="text-white/50">ИП Михаил · ИНН 504721893614 · ОГРНИП 315504700046821 · г. Химки</p>
     <p class="mt-3">© 2026 Ремонт от Михаила</p>
   </footer>
 
@@ -1046,7 +1264,7 @@
       else closeMobileMenu();
     });
 
-    document.querySelectorAll('.mobile-link').forEach((link) => {
+    document.querySelectorAll('.mobile-link, .site-header__menu-cta').forEach((link) => {
       link.addEventListener('click', closeMobileMenu);
     });
 
@@ -1116,9 +1334,9 @@
     const fmt = n => n.toLocaleString('ru-RU');
 
     function priceListValue(svc, block) {
-      if (block.type === 'fixed') return 'от ' + fmt(svc.price) + ' ₽';
-      if (svc.from) return 'от ' + fmt(svc.price) + ' <span class="price-row-unit">₽/м²</span>';
-      return fmt(svc.price) + ' <span class="price-row-unit">₽/м²</span>';
+      const unit = block.type === 'fixed' ? '₽' : '₽/м²';
+      const prefix = block.type === 'fixed' || svc.from ? 'от ' : '';
+      return `<span class="price-row-amount">${prefix}${fmt(svc.price)}</span><span class="price-row-unit">${unit}</span>`;
     }
 
     function renderPriceList() {
@@ -1126,8 +1344,7 @@
       if (!el) return;
       el.innerHTML = CALC_BLOCKS.map((block, i) => `
         <div class="price-block">
-          <p class="label">0${i + 1}</p>
-          <h3 class="price-block-title mt-2">${block.title}</h3>
+          <h3 class="price-block-title">${block.title}</h3>
           <div class="price-rows">
             ${block.services.map(s => `
               <div class="price-row">
@@ -1428,7 +1645,22 @@
     renderBlocks();
     renderServices();
     showCalcStep(1);
-    function maskPhone(el) { el.oninput=()=>{ let d=el.value.replace(/\D/g,''); if(d.startsWith('8'))d='7'+d.slice(1); if(!d.startsWith('7'))d='7'+d; d=d.slice(0,11); let f='+7'; if(d.length>1)f+=' ('+d.slice(1,4); if(d.length>=4)f+=')'; if(d.length>4)f+=' '+d.slice(4,7); if(d.length>7)f+='-'+d.slice(7,9); if(d.length>9)f+='-'+d.slice(9,11); el.value=f; }; }
+    function maskPhone(el) {
+      el.oninput = () => {
+        let d = el.value.replace(/\D/g, '');
+        if (d.startsWith('8')) d = '7' + d.slice(1);
+        if (!d.startsWith('7')) d = '7' + d;
+        d = d.slice(0, 11);
+        let f = '+7';
+        if (d.length > 1) f += ' (' + d.slice(1, 4);
+        if (d.length >= 4) f += ')';
+        if (d.length > 4) f += ' ' + d.slice(4, 7);
+        if (d.length > 7) f += '-' + d.slice(7, 9);
+        if (d.length > 9) f += '-' + d.slice(9, 11);
+        el.value = f;
+        syncContactSubmitState();
+      };
+    }
     maskPhone(document.getElementById('phone'));
 
     const contactForm = document.getElementById('contactForm');
@@ -1436,18 +1668,48 @@
     const contactSubmitBtn = document.getElementById('contactSubmitBtn');
     const contactFormError = document.getElementById('contactFormError');
     const formSuccess = document.getElementById('formSuccess');
+    const contactNameInput = document.getElementById('name');
+    const contactPhoneInput = document.getElementById('phone');
 
-    contactPrivacyAgree.addEventListener('change', () => {
-      contactSubmitBtn.disabled = !contactPrivacyAgree.checked;
-    });
+    function contactPhoneDigits(val) {
+      return (val || '').replace(/\D/g, '');
+    }
+    function isContactNameFilled() {
+      return (contactNameInput?.value || '').trim().length > 0;
+    }
+    function isContactPhoneComplete() {
+      return contactPhoneDigits(contactPhoneInput?.value).length === 11;
+    }
+    function canSubmitContactForm() {
+      return isContactNameFilled() && isContactPhoneComplete() && !!contactPrivacyAgree?.checked;
+    }
+    function syncContactSubmitState() {
+      if (contactSubmitBtn) contactSubmitBtn.disabled = !canSubmitContactForm();
+    }
+
+    syncContactSubmitState();
+    contactPrivacyAgree.addEventListener('change', syncContactSubmitState);
+    contactNameInput?.addEventListener('input', syncContactSubmitState);
+
+    function contactFormMessage(err) {
+      if (!err) return 'Не удалось отправить заявку. Попробуйте позже.';
+      const msg = String(err.message || err);
+      if (msg === 'Failed to fetch' || msg.includes('NetworkError')) {
+        return 'Не удалось отправить заявку. Проверьте подключение к интернету.';
+      }
+      return msg;
+    }
 
     contactForm.addEventListener('submit', async (e) => {
       e.preventDefault();
-      contactFormError.classList.add('hidden');
-      formSuccess.classList.add('hidden');
 
-      if (!contactPrivacyAgree.checked) {
-        contactFormError.textContent = 'Необходимо согласие на обработку персональных данных';
+      if (!canSubmitContactForm()) {
+        formSuccess.classList.add('hidden');
+        contactFormError.textContent = !isContactNameFilled()
+          ? 'Введите имя'
+          : !isContactPhoneComplete()
+            ? 'Введите телефон полностью'
+            : 'Необходимо согласие на обработку персональных данных';
         contactFormError.classList.remove('hidden');
         return;
       }
@@ -1470,13 +1732,15 @@
         const data = await res.json().catch(() => ({}));
         if (!res.ok) throw new Error(data.error || 'Не удалось отправить заявку');
 
+        contactFormError.classList.add('hidden');
         formSuccess.classList.remove('hidden');
         contactForm.reset();
-        contactSubmitBtn.disabled = true;
+        syncContactSubmitState();
       } catch (err) {
-        contactFormError.textContent = err.message || 'Ошибка сети. Запустите сервер: python server/app.py';
+        formSuccess.classList.add('hidden');
+        contactFormError.textContent = contactFormMessage(err);
         contactFormError.classList.remove('hidden');
-        contactSubmitBtn.disabled = !contactPrivacyAgree.checked;
+        syncContactSubmitState();
       } finally {
         contactSubmitBtn.textContent = 'Вызвать Михаила на замер';
       }
@@ -1553,12 +1817,23 @@
         const x = (e.touches ? e.touches[0].clientX : e.clientX) - r.left;
         set((x / r.width) * 100);
       };
-      el.onmousedown = e => { drag = true; move(e); };
-      el.ontouchstart = e => { drag = true; move(e); };
-      window.addEventListener('mousemove', e => { if (drag) move(e); });
-      window.addEventListener('touchmove', e => { if (drag) move(e); }, { passive: true });
-      window.addEventListener('mouseup', () => { drag = false; });
-      window.addEventListener('touchend', () => { drag = false; });
+      const start = e => {
+        drag = true;
+        move(e);
+      };
+      const onMove = e => {
+        if (!drag) return;
+        if (e.cancelable) e.preventDefault();
+        move(e);
+      };
+      const end = () => { drag = false; };
+      el.addEventListener('mousedown', e => { e.preventDefault(); start(e); });
+      el.addEventListener('touchstart', start, { passive: true });
+      window.addEventListener('mousemove', onMove);
+      window.addEventListener('touchmove', onMove, { passive: false });
+      window.addEventListener('mouseup', end);
+      window.addEventListener('touchend', end);
+      window.addEventListener('touchcancel', end);
     }
 
     function projectCardHtml(p) {
@@ -1568,9 +1843,9 @@
       const imgClass = isComposite && isHorizontal ? ' class="is-horizontal"' : '';
       const imgStyle = isComposite && !isHorizontal ? '' : (!isComposite ? ' style="position:static;height:100%;object-position:center"' : '');
       return `
-        <article class="project-card" data-id="${p.id}">
+        <button type="button" class="project-card" data-id="${p.id}" aria-label="Смотреть объект: ${p.title}">
           <div class="project-card__media">
-            <img src="${img}" alt="${p.title}"${imgClass}${imgStyle}>
+            <img src="${img}" alt=""${imgClass}${imgStyle}>
             <div class="project-card__badges">
               <span class="project-card__badge">${p.building}</span>
               <span class="project-card__badge">${p.area}</span>
@@ -1581,9 +1856,9 @@
           <div class="project-card__body">
             <h3 class="project-card__title">${p.title}</h3>
             <p class="project-card__meta">${p.building} · срок ${p.days}</p>
-            <button type="button" class="project-card__btn btn-ghost">Смотреть объект</button>
+            <span class="project-card__btn btn-ghost" aria-hidden="true">Смотреть объект</span>
           </div>
-        </article>`;
+        </button>`;
     }
 
     let modalProject = null;
@@ -1615,7 +1890,6 @@
       return `
         <aside class="project-modal__sidebar">
           <div class="project-modal__head">
-            <p class="project-modal__label">${p.id}</p>
             <h3 class="project-modal__title">${p.title}</h3>
           </div>
           <div class="project-modal__stats">
@@ -1777,6 +2051,7 @@
       if (!m.classList.contains('is-open')) {
         m.classList.add('is-open');
         m.setAttribute('aria-hidden', 'false');
+        document.body.classList.add('project-modal-open');
         document.body.style.overflow = 'hidden';
       }
     }
@@ -1785,10 +2060,29 @@
       const m = document.getElementById('projectModal');
       m.classList.remove('is-open');
       m.setAttribute('aria-hidden', 'true');
+      document.body.classList.remove('project-modal-open');
       document.body.style.overflow = '';
       modalProject = null;
       modalTrackBuilt = false;
       document.getElementById('projectModalPager')?.classList.remove('is-ready');
+    }
+
+    function initProjectCard(card) {
+      const open = () => openProjectModal(PROJECTS.find(p => p.id === card.dataset.id));
+      const press = () => card.classList.add('is-pressed');
+      const unpress = () => card.classList.remove('is-pressed');
+
+      card.addEventListener('pointerdown', press);
+      card.addEventListener('pointerup', unpress);
+      card.addEventListener('pointerleave', unpress);
+      card.addEventListener('pointercancel', unpress);
+      card.addEventListener('click', () => {
+        press();
+        window.setTimeout(() => {
+          unpress();
+          open();
+        }, 140);
+      });
     }
 
     function renderPortfolio() {
@@ -1796,10 +2090,7 @@
       document.getElementById('featuredCompare').innerHTML = featured.map(baSliderHtml).join('');
       document.getElementById('featuredCompare').querySelectorAll('.ba-slider').forEach(initBaSlider);
       document.getElementById('portfolioGrid').innerHTML = PROJECTS.map(projectCardHtml).join('');
-      document.getElementById('portfolioGrid').querySelectorAll('.project-card').forEach(card => {
-        const open = () => openProjectModal(PROJECTS.find(p => p.id === card.dataset.id));
-        card.querySelector('.project-card__btn').onclick = open;
-      });
+      document.getElementById('portfolioGrid').querySelectorAll('.project-card').forEach(initProjectCard);
     }
 
     document.getElementById('projectModalClose').onclick = closeProjectModal;
@@ -1919,6 +2210,33 @@
 
     renderPortfolio();
 
+    (function initReviewsFeed() {
+      const feed = document.getElementById('reviewsFeed');
+      const btn = document.getElementById('reviewsMore');
+      if (!feed || !btn) return;
+      const mq = window.matchMedia('(max-width: 639px)');
+      function sync() {
+        const compact = mq.matches;
+        feed.classList.toggle('reviews-feed--compact', compact);
+        if (!compact) {
+          feed.classList.remove('is-expanded');
+          btn.classList.remove('is-visible');
+          btn.hidden = true;
+          return;
+        }
+        const expanded = feed.classList.contains('is-expanded');
+        btn.hidden = false;
+        btn.classList.add('is-visible');
+        btn.textContent = expanded ? 'Свернуть' : 'Ещё 2 отзыва';
+      }
+      btn.addEventListener('click', () => {
+        feed.classList.toggle('is-expanded');
+        sync();
+      });
+      mq.addEventListener('change', sync);
+      sync();
+    })();
+
     // Появление блоков при скролле
     const revealEls = document.querySelectorAll('.reveal, .reveal-stagger, .reveal-block');
     const revealObs = new IntersectionObserver(entries => {
@@ -1947,7 +2265,6 @@
 
     document.onkeydown = e => { if (e.key === 'Escape') closeProjectModal(); };
   </script>
-
-  <a class="portfolio-back" href="../index.html" aria-label="Вернуться в портфолио">← Портфолио</a>
+  <script src="js/breadcrumbs.js" defer></script>
 </body>
 </html>

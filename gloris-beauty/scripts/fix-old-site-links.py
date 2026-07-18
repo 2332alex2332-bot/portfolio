@@ -35,11 +35,29 @@ def fix_html(html: str) -> str:
     return re.sub(r"<a\b[^>]*>", fix_anchor_tag, html, flags=re.IGNORECASE)
 
 
-PORTFOLIO_SNIPPET = (
-    '\n<a class="portfolio-back" href="{href}" aria-label="Вернуться в портфолио">'
-    "← Портфолио</a>\n"
+BREADCRUMBS_SNIPPET = (
+    '\n    <div class="site-breadcrumbs-wrap page-shell">\n'
+    '      <nav class="site-breadcrumbs" data-breadcrumbs-root aria-label="Хлебные крошки"></nav>\n'
+    "    </div>\n"
     '<link rel="stylesheet" href="{css}">\n'
+    '<script src="{js}" defer></script>\n'
 )
+
+
+def portfolio_paths(_html_file: Path) -> tuple[str, str]:
+    # All pages use <base href> pointing at old-site root.
+    return "../css/breadcrumbs.css", "../js/breadcrumbs.js"
+
+
+def inject_breadcrumbs(html: str, html_file: Path) -> str:
+    if "data-breadcrumbs-root" in html:
+        return html
+    css, js = portfolio_paths(html_file)
+    snippet = BREADCRUMBS_SNIPPET.format(css=css, js=js)
+    if "<body" in html:
+        html = re.sub(r"(<body[^>]*>\s*\n)", r"\1" + snippet, html, count=1)
+        return html
+    return html.replace("</body>", snippet + "</body>")
 
 
 def has_asset_extension(path: str) -> bool:
@@ -79,25 +97,12 @@ def to_index_link(url: str) -> str:
     return f"./{path_part.as_posix()}/index.html" + fragment
 
 
-def portfolio_paths(_html_file: Path) -> tuple[str, str]:
-    # All pages use <base href> pointing at old-site root.
-    return "../../index.html", "../../portfolio-back.css"
-
-
-def inject_portfolio_back(html: str, html_file: Path) -> str:
-    if "portfolio-back" in html:
-        return html
-    href, css = portfolio_paths(html_file)
-    snippet = PORTFOLIO_SNIPPET.format(href=href, css=css)
-    return html.replace("</body>", snippet + "</body>")
-
-
 def main() -> None:
     updated = 0
     for html_file in ROOT.rglob("*.html"):
         original = html_file.read_text(encoding="utf-8", errors="ignore")
         text = fix_html(original)
-        text = inject_portfolio_back(text, html_file)
+        text = inject_breadcrumbs(text, html_file)
         if text != original:
             html_file.write_text(text, encoding="utf-8")
             updated += 1

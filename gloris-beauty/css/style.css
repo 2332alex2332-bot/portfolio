@@ -1,7 +1,7 @@
 /* ===== GLORIS BEAUTY — Swiss Minimal Design System ===== */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 @import url('design-system.css');
-@import url('../../portfolio-back.css');
+@import url('breadcrumbs.css');
 
 *, *::before, *::after { box-sizing: border-box; }
 
@@ -299,49 +299,46 @@ body:not([data-page="home"]):not([data-page="services"]):not([data-page="masters
   display: none;
   position: relative;
   grid-area: burger;
-  width: 40px;
-  height: 40px;
+  width: 32px;
+  height: 32px;
   padding: 0;
   margin: 0;
-  border: 1px solid rgba(0, 0, 0, 0.12);
-  border-radius: 50%;
-  background: var(--white);
+  border: none;
+  border-radius: 0;
+  background: transparent;
   cursor: pointer;
   flex-shrink: 0;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
   z-index: 3;
   -webkit-tap-highlight-color: transparent;
 }
 
 .top-nav-burger__line {
-  position: absolute;
-  left: 50%;
+  position: relative;
   display: block;
-  width: 14px;
+  width: 24px;
   height: 2px;
   margin: 0;
-  border-radius: 999px;
+  border-radius: 0;
   background: var(--charcoal);
-  transform: translateX(-50%);
+  transform: none;
   transform-origin: center;
-  transition: transform 0.25s ease, top 0.25s ease;
+  transition: transform 0.25s ease;
 }
 
-.top-nav-burger__line:nth-child(1) {
-  top: calc(50% - 4px);
-}
-
-.top-nav-burger__line:nth-child(2) {
-  top: calc(50% + 4px);
+.top-nav-burger[aria-expanded="true"] {
+  gap: 0;
 }
 
 .top-nav-burger[aria-expanded="true"] .top-nav-burger__line:nth-child(1) {
-  top: 50%;
-  transform: translate(-50%, -50%) rotate(45deg);
+  transform: translateY(4.5px) rotate(45deg);
 }
 
 .top-nav-burger[aria-expanded="true"] .top-nav-burger__line:nth-child(2) {
-  top: 50%;
-  transform: translate(-50%, -50%) rotate(-45deg);
+  transform: translateY(-4.5px) rotate(-45deg);
 }
 
 /* —— Header adaptives: всё видно, без наслоения —— */
@@ -518,8 +515,8 @@ body:not([data-page="home"]):not([data-page="services"]):not([data-page="masters
   }
 
   .top-nav-burger {
-    width: 36px;
-    height: 36px;
+    width: 32px;
+    height: 32px;
   }
 
   .top-nav-logo {
@@ -795,13 +792,13 @@ body.menu-open .top-nav-cta.yc-widget-open {
 
 .side-menu-social a:hover { color: var(--gold); }
 
-body.menu-open .portfolio-back {
+body.menu-open .site-breadcrumbs-wrap {
   opacity: 0;
   pointer-events: none;
   visibility: hidden;
 }
 
-body.yc-widget-body-open .portfolio-back {
+body.yc-widget-body-open .site-breadcrumbs-wrap {
   opacity: 0;
   pointer-events: none;
   visibility: hidden;
@@ -1452,10 +1449,11 @@ body.yc-widget-body-open .portfolio-back {
 .section-block.lo-words .text-4xl {
   font-size: 2rem !important;
   font-weight: 300 !important;
-  letter-spacing: 0.2em;
+  letter-spacing: -0.03em;
   color: var(--gold) !important;
   font-family: var(--font-display) !important;
   margin-bottom: 8px !important;
+  font-variant-numeric: tabular-nums;
 }
 
 .section-block.lo-words h3 {

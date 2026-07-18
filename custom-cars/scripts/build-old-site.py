@@ -84,9 +84,9 @@ PAGES = {
         "body": """
         <h1>Контакты</h1>
         <p class="lead">Свяжитесь с нами</p>
-        <p><strong>Телефон:</strong> +7 (499) XXX-XX-XX</p>
-        <p><strong>Email:</strong> info@exXXXX.com</p>
-        <p><strong>Адрес:</strong> Москва, ул. XXX, д. XX</p>
+        <p><strong>Телефон:</strong> +7 (499) 397-73-18</p>
+        <p><strong>Email:</strong> info@detail-lab.ru</p>
+        <p><strong>Адрес:</strong> Москва, ул. Островитянова, д. 14</p>
         <p><strong>Режим работы:</strong> ежедневно с 10:00 до 20:00</p>
         """,
     },
@@ -136,15 +136,15 @@ def render(page_path: str, data: dict) -> str:
         <div class="contacts">
           <div class="contact-item">
             <svg class="contact-item__icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="#666" d="M6.6 10.8c1.5 3.1 3.8 5.5 6.9 6.9l2.3-2.3c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.5.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.2.2 2.4.6 3.5.1.3 0 .7-.2 1L6.6 10.8z"/></svg>
-            <span class="contact-item__text">+7 (499) XXX-XX-XX</span>
+            <span class="contact-item__text">+7 (499) 397-73-18</span>
           </div>
           <div class="contact-item">
             <svg class="contact-item__icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="#666" d="M12 2C8.1 2 5 5.1 5 9c0 5.2 7 13 7 13s7-7.8 7-13c0-3.9-3.1-7-7-7zm0 9.5c-1.4 0-2.5-1.1-2.5-2.5S10.6 6.5 12 6.5s2.5 1.1 2.5 2.5S13.4 11.5 12 11.5z"/></svg>
-            <span class="contact-item__text">Москва, ул. XXX, д. XX</span>
+            <span class="contact-item__text">Москва, ул. Островитянова, д. 14</span>
           </div>
           <div class="contact-item">
             <svg class="contact-item__icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="#666" d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5L4 8V6l8 5 8-5v2z"/></svg>
-            <a class="contact-item__text" href="mailto:info@exXXXX.com">info@exXXXX.com</a>
+            <a class="contact-item__text" href="mailto:info@detail-lab.ru">info@detail-lab.ru</a>
           </div>
           <div class="contact-item">
             <svg class="contact-item__icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="#666" d="M18.92 6.01C18.72 5.42 18.16 5 17.5 5h-11c-.66 0-1.22.42-1.42 1.01L3 12v8c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-1h12v1c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-8l-2.08-5.99zM6.5 16c-.83 0-1.5-.67-1.5-1.5S5.67 13 6.5 13s1.5.67 1.5 1.5S7.33 16 6.5 16zm11 0c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zM5 11l1.5-4.5h11L19 11H5z"/></svg>

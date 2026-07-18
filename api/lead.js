@@ -37,7 +37,7 @@ export default async function handler(request, response) {
   }
 
   const socialLabel = social === "vk" ? "VK" : "Telegram";
-  const lines = ["🆕 <b>Новая заявка — Сайты для бизнеса</b>", ""];
+  const lines = ["🆕 <b>Новая заявка — Станислав</b>", ""];
 
   if (name) {
     lines.push(`<b>Имя:</b> ${escapeHtml(name)}`);

@@ -93,3 +93,87 @@ if (contactPrivacyAgree && contactSubmitBtn) {
     contactSubmitBtn.disabled = !contactPrivacyAgree.checked;
   });
 }
+
+function buildAnySizeBlock(wrap, items) {
+  const anySize = document.createElement("div");
+  anySize.className = "price-any-size";
+  if (wrap.classList.contains("dark-table")) {
+    anySize.classList.add("dark-table");
+  }
+
+  const title = document.createElement("p");
+  title.className = "price-any-size__title";
+  title.textContent = "Любой размер";
+  anySize.appendChild(title);
+
+  const list = document.createElement("ul");
+  list.className = "price-any-size__list";
+
+  items.forEach((item) => {
+    const listItem = document.createElement("li");
+    listItem.className = "price-any-size__item";
+
+    const name = document.createElement("span");
+    name.className = "price-any-size__name";
+    name.textContent = item.name;
+
+    const price = document.createElement("span");
+    price.className = "price-any-size__price";
+    price.textContent = item.price;
+
+    listItem.append(name, price);
+    list.appendChild(listItem);
+  });
+
+  anySize.appendChild(list);
+  return anySize;
+}
+
+function processSamePriceRows() {
+  document.querySelectorAll(".price-table-wrap").forEach((wrap) => {
+    const tbody = wrap.querySelector(".price-table tbody");
+    if (!tbody) {
+      return;
+    }
+
+    const parsed = [...tbody.querySelectorAll("tr")]
+      .map((row) => {
+        const cells = [...row.querySelectorAll("td")];
+        if (cells.length < 4) {
+          return null;
+        }
+
+        const prices = cells.slice(1, 4).map((cell) => cell.textContent.trim());
+        return {
+          name: cells[0].textContent.trim(),
+          price: prices[0],
+          row,
+          isSame: prices[0] === prices[1] && prices[1] === prices[2],
+        };
+      })
+      .filter(Boolean);
+
+    const sameRows = parsed.filter((item) => item.isSame);
+    const variableRows = parsed.filter((item) => !item.isSame);
+
+    if (!sameRows.length) {
+      return;
+    }
+
+    const anySize = buildAnySizeBlock(
+      wrap,
+      sameRows.map(({ name, price }) => ({ name, price }))
+    );
+
+    if (!variableRows.length) {
+      anySize.classList.add("price-any-size--only");
+      wrap.replaceWith(anySize);
+      return;
+    }
+
+    wrap.insertAdjacentElement("afterend", anySize);
+    sameRows.forEach(({ row }) => row.remove());
+  });
+}
+
+processSamePriceRows();

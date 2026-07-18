@@ -64,9 +64,9 @@
   function getSalonAddress() {
     if (typeof SERVICE_VENUES !== 'undefined') {
       const venue = document.body.dataset.catalogVenue || 'salon';
-      return SERVICE_VENUES[venue]?.addressFull || 'ул. XXX, д. 27';
+      return SERVICE_VENUES[venue]?.addressFull || 'ул. Кантемировская, д. 27';
     }
-    return 'ул. XXX, д. 27';
+    return 'ул. Кантемировская, д. 27';
   }
 
   function promoBlock() {

@@ -294,6 +294,7 @@
       }
     }
   </style>
+  <link rel="stylesheet" href="css/breadcrumbs.css">
 </head>
 <body>
   <div class="tg-app">
@@ -318,6 +319,10 @@
       </div>
     </header>
 
+
+    <div class="site-breadcrumbs-wrap hero-wide px-5 lg:px-10">
+      <nav class="site-breadcrumbs" data-breadcrumbs-root aria-label="Хлебные крошки"></nav>
+    </div>
     <main id="chatArea" class="tg-chat">
       <div class="tg-date"><span id="chatDate">Сегодня</span></div>
     </main>
@@ -390,7 +395,6 @@
       document.getElementById('sendBtn').href = buildTelegramDeepLink(userText);
     })();
   </script>
-
-  <a class="portfolio-back" href="../index.html" aria-label="Вернуться в портфолио">← Портфолио</a>
+  <script src="js/breadcrumbs.js" defer></script>
 </body>
 </html>

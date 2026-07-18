@@ -38,7 +38,7 @@ function getServiceAddress(venueId) {
   if (typeof SERVICE_VENUES !== 'undefined' && SERVICE_VENUES[venueId]) {
     return SERVICE_VENUES[venueId].addressFull;
   }
-  return venueId === 'medical' ? 'пр-т XXX, д. 26' : 'ул. XXX, д. 27';
+  return venueId === 'medical' ? 'пр-т Андропова, д. 26' : 'ул. Кантемировская, д. 27';
 }
 
 function loadBookedSlots() {

@@ -9,6 +9,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/breadcrumbs.css">
 </head>
 <body>
   <header class="site-header">
@@ -54,11 +55,22 @@
     </nav>
   </header>
 
+  <div class="site-breadcrumbs-wrap">
+    <nav class="site-breadcrumbs" data-breadcrumbs-root aria-label="Хлебные крошки"></nav>
+  </div>
+
   <main id="top">
     <section class="hero section-dark">
       <div class="noise"></div>
-      <div class="hero-media media-panel" aria-hidden="true">
-        <span>DETAILING / MOSCOW</span>
+    <div class="hero-media media-panel">
+        <img
+          class="hero-media__image"
+          src="images/hero-main.png"
+          alt="Детейлинг — блестящий кузов после полировки"
+          width="1600"
+          height="1000"
+          fetchpriority="high"
+        >
       </div>
       <div class="hero-copy">
         <p class="kicker">Detail Lab / Москва</p>
@@ -70,7 +82,7 @@
         </h1>
       </div>
       <aside class="hero-intro">
-        <p>+7 (499) 397-73-XXXX<br>info@detail-labXXXX.ru<br>Москва, ул. Островитянова, д. XX</p>
+        <p>+7 (499) 397-73-18<br>info@detail-lab.ru<br>Москва, ул. Островитянова, д. 14</p>
         <p>Ежедневно с 10:00 до 20:00</p>
         <div class="social-row" aria-label="Социальные сети">
           <a class="social-youtube" href="#" aria-label="YouTube"></a>
@@ -84,9 +96,7 @@
       <div class="engine-grid">
         <div>
           <h2>Детейлинг центр Detail Lab.</h2>
-          <div class="inline-media media-panel" aria-hidden="true">
-            <span>PAINT / INTERIOR / PROTECTION</span>
-          </div>
+          <div class="inline-media media-panel" aria-hidden="true"></div>
         </div>
         <div class="lead-copy">
           <p>
@@ -210,11 +220,29 @@
           <img src="images/wash-detail.png" alt="Мойка автомобиля">
         </div>
       </div>
+      <aside class="price-class-legend" aria-label="Как читать цены по размеру автомобиля">
+        <p class="price-class-legend__title">Цена зависит от размера автомобиля</p>
+        <div class="price-class-legend__grid">
+          <div class="price-class-legend__item">
+            <span class="price-class-legend__badge">Компакт</span>
+            <span class="price-class-legend__desc">седан, хэтчбек · Polo, Solaris, Corolla</span>
+          </div>
+          <div class="price-class-legend__item">
+            <span class="price-class-legend__badge">Средний</span>
+            <span class="price-class-legend__desc">кроссовер · Tiguan, RAV4, Camry</span>
+          </div>
+          <div class="price-class-legend__item">
+            <span class="price-class-legend__badge">Крупный</span>
+            <span class="price-class-legend__desc">внедорожник · X5, Cayenne, Land Cruiser</span>
+          </div>
+        </div>
+      </aside>
       <div class="price-table-wrap dark-table">
         <table class="price-table">
-          <thead><tr><th>Стоимость услуги</th><th>Класс I</th><th>Класс II</th><th>Класс III</th></tr></thead>
+          <thead><tr><th>Услуга</th><th><span class="price-col-label">Компакт</span><span class="price-col-hint">седан, хэтчбек</span></th><th><span class="price-col-label">Средний</span><span class="price-col-hint">кроссовер</span></th><th><span class="price-col-label">Крупный</span><span class="price-col-hint">внедорожник</span></th></tr></thead>
           <tbody>
             <tr><td>Детейлинг-комплекс: мойка кузова и лёгкая уборка салона</td><td>4 000 ₽</td><td>5 000 ₽</td><td>6 000 ₽</td></tr>
+            <tr><td>Мойка арок и видимых элементов подвески с консервацией</td><td>12 000 ₽</td><td>14 000 ₽</td><td>16 000 ₽</td></tr>
             <tr><td>Химчистка колесных дисков без снятия, 1 шт.</td><td>500 ₽</td><td>500 ₽</td><td>500 ₽</td></tr>
             <tr><td>Химчистка колесных дисков со снятием, 1 шт.</td><td>1 000 ₽</td><td>1 000 ₽</td><td>1 000 ₽</td></tr>
             <tr><td>Удаление битума и смолы, весь кузов</td><td>2 000 ₽</td><td>2 000 ₽</td><td>2 000 ₽</td></tr>
@@ -222,7 +250,6 @@
             <tr><td>Удаление металлического налёта, весь кузов</td><td>2 000 ₽</td><td>2 000 ₽</td><td>2 000 ₽</td></tr>
             <tr><td>Очистка хромированных деталей кузова</td><td>2 000 ₽</td><td>2 000 ₽</td><td>2 000 ₽</td></tr>
             <tr><td>Детейлинг-мойка моторного отсека с консервацией</td><td>8 000 ₽</td><td>8 000 ₽</td><td>8 000 ₽</td></tr>
-            <tr><td>Мойка арок и видимых элементов подвески с консервацией</td><td>12 000 ₽</td><td>14 000 ₽</td><td>16 000 ₽</td></tr>
           </tbody>
         </table>
       </div>
@@ -253,7 +280,7 @@
         <div class="price-table-wrap">
           <table class="price-table">
             <thead>
-              <tr><th>Антигравийная пленка Llumar (USA)</th><th>Класс I</th><th>Класс II</th><th>Класс III</th></tr>
+              <tr><th>Антигравийная пленка Llumar (USA)</th><th><span class="price-col-label">Компакт</span><span class="price-col-hint">седан, хэтчбек</span></th><th><span class="price-col-label">Средний</span><span class="price-col-hint">кроссовер</span></th><th><span class="price-col-label">Крупный</span><span class="price-col-hint">внедорожник</span></th></tr>
             </thead>
             <tbody>
               <tr><td>Передние фары</td><td>7 000 ₽</td><td>8 000 ₽</td><td>9 000 ₽</td></tr>
@@ -268,7 +295,7 @@
         <div class="price-table-wrap">
           <table class="price-table">
             <thead>
-              <tr><th>Антигравийная пленка Crystal</th><th>Класс I</th><th>Класс II</th><th>Класс III</th></tr>
+              <tr><th>Антигравийная пленка Crystal</th><th><span class="price-col-label">Компакт</span><span class="price-col-hint">седан, хэтчбек</span></th><th><span class="price-col-label">Средний</span><span class="price-col-hint">кроссовер</span></th><th><span class="price-col-label">Крупный</span><span class="price-col-hint">внедорожник</span></th></tr>
             </thead>
             <tbody>
               <tr><td>Передние фары</td><td>6 000 ₽</td><td>7 000 ₽</td><td>8 000 ₽</td></tr>
@@ -314,7 +341,7 @@
 
       <div class="price-table-wrap dark-table">
         <table class="price-table">
-          <thead><tr><th>Стоимость услуги</th><th>Класс I</th><th>Класс II</th><th>Класс III</th></tr></thead>
+          <thead><tr><th>Услуга</th><th><span class="price-col-label">Компакт</span><span class="price-col-hint">седан, хэтчбек</span></th><th><span class="price-col-label">Средний</span><span class="price-col-hint">кроссовер</span></th><th><span class="price-col-label">Крупный</span><span class="price-col-hint">внедорожник</span></th></tr></thead>
           <tbody>
             <tr><td>Жидкое стекло</td><td>35 000 ₽</td><td>40 000 ₽</td><td>45 000 ₽</td></tr>
             <tr><td>Керамика 2 слоя</td><td>50 000 ₽</td><td>60 000 ₽</td><td>70 000 ₽</td></tr>
@@ -367,7 +394,7 @@
       </div>
       <div class="price-table-wrap">
         <table class="price-table">
-          <thead><tr><th>Стоимость услуги</th><th>Класс I</th><th>Класс II</th><th>Класс III</th></tr></thead>
+          <thead><tr><th>Услуга</th><th><span class="price-col-label">Компакт</span><span class="price-col-hint">седан, хэтчбек</span></th><th><span class="price-col-label">Средний</span><span class="price-col-hint">кроссовер</span></th><th><span class="price-col-label">Крупный</span><span class="price-col-hint">внедорожник</span></th></tr></thead>
           <tbody>
             <tr><td>Абразивная полировка кузова</td><td>от 25 000 ₽</td><td>от 30 000 ₽</td><td>от 35 000 ₽</td></tr>
             <tr><td>Локальная полировка детали</td><td>от 3 000 ₽</td><td>от 3 000 ₽</td><td>от 3 000 ₽</td></tr>
@@ -401,7 +428,7 @@
 
       <div class="price-table-wrap dark-table">
         <table class="price-table">
-          <thead><tr><th>Стоимость услуги</th><th>Класс I</th><th>Класс II</th><th>Класс III</th></tr></thead>
+          <thead><tr><th>Услуга</th><th><span class="price-col-label">Компакт</span><span class="price-col-hint">седан, хэтчбек</span></th><th><span class="price-col-label">Средний</span><span class="price-col-hint">кроссовер</span></th><th><span class="price-col-label">Крупный</span><span class="price-col-hint">внедорожник</span></th></tr></thead>
           <tbody>
             <tr><td>Детейлинг химчистка салона</td><td>25 000 ₽</td><td>28 000 ₽</td><td>34 000 ₽</td></tr>
             <tr><td>Деликатная чистка кожаных сидений</td><td>10 000 ₽</td><td>12 000 ₽</td><td>14 000 ₽</td></tr>
@@ -439,7 +466,7 @@
       </div>
       <div class="price-table-wrap">
         <table class="price-table">
-          <thead><tr><th>Стоимость услуги</th><th>Класс I</th><th>Класс II</th><th>Класс III</th></tr></thead>
+          <thead><tr><th>Услуга</th><th><span class="price-col-label">Компакт</span><span class="price-col-hint">седан, хэтчбек</span></th><th><span class="price-col-label">Средний</span><span class="price-col-hint">кроссовер</span></th><th><span class="price-col-label">Крупный</span><span class="price-col-hint">внедорожник</span></th></tr></thead>
           <tbody>
             <tr><td>Антидождь: передняя полусфера</td><td>3 000 ₽</td><td>3 000 ₽</td><td>3 000 ₽</td></tr>
             <tr><td>Антидождь: все стёкла автомобиля</td><td>6 000 ₽</td><td>6 000 ₽</td><td>6 000 ₽</td></tr>
@@ -470,7 +497,7 @@
       </div>
       <div class="price-table-wrap dark-table">
         <table class="price-table">
-          <thead><tr><th>Стоимость услуги</th><th>Класс I</th><th>Класс II</th><th>Класс III</th></tr></thead>
+          <thead><tr><th>Услуга</th><th><span class="price-col-label">Компакт</span><span class="price-col-hint">седан, хэтчбек</span></th><th><span class="price-col-label">Средний</span><span class="price-col-hint">кроссовер</span></th><th><span class="price-col-label">Крупный</span><span class="price-col-hint">внедорожник</span></th></tr></thead>
           <tbody>
             <tr><td>Комплекс OPTIMUM</td><td>40 000 ₽</td><td>50 000 ₽</td><td>60 000 ₽</td></tr>
             <tr><td>Комплекс PREMIUM</td><td>80 000 ₽</td><td>100 000 ₽</td><td>120 000 ₽</td></tr>
@@ -506,14 +533,14 @@
         <article>
           <p class="section-label">Телефон</p>
           <address>
-            <a href="#contact">+7 (499) 397-73-XXXX</a>
+            <a href="#contact">+7 (499) 397-73-18</a>
           </address>
         </article>
         <article>
           <p class="section-label">Почта и график</p>
           <address>
-            <a href="mailto:info@detail-labXXXX.ru">info@detail-labXXXX.ru</a><br>
-            <a href="mailto:studio@detail-labXXXX.ru">studio@detail-labXXXX.ru</a><br>
+            <a href="mailto:info@detail-lab.ru">info@detail-lab.ru</a><br>
+            <a href="mailto:studio@detail-lab.ru">studio@detail-lab.ru</a><br>
             ежедневно с 10:00 до 20:00
           </address>
         </article>
@@ -521,7 +548,7 @@
           <p class="section-label">Адрес</p>
           <address>
             Россия, Москва,<br>
-            ул. Островитянова, д. XX<br>
+            ул. Островитянова, д. 14<br>
             Место въезда на территорию Детейлинг центра
           </address>
         </article>
@@ -541,7 +568,7 @@
           <form class="mini-form" action="#" method="post">
             <label>Имя<input type="text" name="name" placeholder="Ваше имя" required></label>
             <label>Телефон<input type="tel" name="phone" placeholder="+7 (___) ___-__-__" required></label>
-            <label>Эл. почта<input type="email" name="email" placeholder="info@example.ru"></label>
+            <label>Эл. почта<input type="email" name="email" placeholder="info@detail-lab.ru"></label>
             <label>Сообщение<textarea name="message" rows="4" placeholder="Автомобиль и услуга"></textarea></label>
             <label class="privacy-check">
               <input type="checkbox" id="contact-privacy-agree" class="privacy-check__input" required>
@@ -558,7 +585,7 @@
     <div class="footer-main">
       <p>Detail Lab / Москва</p>
       <div class="footer-links">
-        <a href="#contact">+7 (499) 397-73-XXXX</a>
+        <a href="#contact">+7 (499) 397-73-18</a>
         <a href="#top">Наверх</a>
       </div>
     </div>
@@ -570,8 +597,7 @@
   </footer>
 
   <a class="cta-float" href="#contact">Оставить заявку</a>
-
-  <a class="portfolio-back" href="../index.html" aria-label="Вернуться в портфолио">← Портфолио</a>
   <script src="js/main.js"></script>
+  <script src="js/breadcrumbs.js" defer></script>
 </body>
 </html>

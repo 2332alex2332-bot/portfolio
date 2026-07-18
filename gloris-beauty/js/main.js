@@ -81,8 +81,8 @@ function groupCartByVenue(cart) {
   const venueInfo = typeof SERVICE_VENUES !== 'undefined'
     ? SERVICE_VENUES
     : {
-        salon: { addressFull: 'ул. XXX, д. 27', tabLabel: 'Немедицинские услуги' },
-        medical: { addressFull: 'пр-т XXX, д. 26', tabLabel: 'Медицинские услуги' },
+        salon: { addressFull: 'ул. Кантемировская, д. 27', tabLabel: 'Немедицинские услуги' },
+        medical: { addressFull: 'пр-т Андропова, д. 26', tabLabel: 'Медицинские услуги' },
       };
   const map = new Map();
   cart.forEach(item => {
@@ -765,7 +765,7 @@ function updateVisitPanelHint() {
   const otherLink = otherVenue === 'medical' ? 'services-medical.html' : 'services.html';
   const otherAddr = typeof SERVICE_VENUES !== 'undefined'
     ? SERVICE_VENUES[otherVenue].address
-    : (otherVenue === 'medical' ? 'пр-т XXX, д. 26' : 'ул. XXX, д. 27');
+    : (otherVenue === 'medical' ? 'пр-т Андропова, д. 26' : 'ул. Кантемировская, д. 27');
 
   panel.classList.toggle('has-multi-venue', groups.length > 1);
   panel.classList.toggle('has-items', plannerCart.length > 0);
@@ -973,7 +973,7 @@ function getMastersVenueAddress(venueId) {
   if (typeof SERVICE_VENUES !== 'undefined' && SERVICE_VENUES[venueId]) {
     return SERVICE_VENUES[venueId].addressFull;
   }
-  return venueId === 'medical' ? 'пр-т XXX, д. 26' : 'ул. XXX, д. 27';
+  return venueId === 'medical' ? 'пр-т Андропова, д. 26' : 'ул. Кантемировская, д. 27';
 }
 
 function renderMasterDirectoryItem(m) {

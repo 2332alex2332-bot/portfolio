@@ -460,15 +460,15 @@ const SERVICE_VENUES = {
   salon: {
     id: 'salon',
     tabLabel: 'Немедицинские услуги',
-    address: 'ул. XXX, д. 27',
-    addressFull: 'ул. XXX, д. 27',
+    address: 'ул. Кантемировская, д. 27',
+    addressFull: 'ул. Кантемировская, д. 27',
     sectionIds: ['barbershop', 'hair', 'nails', 'cosmetology', 'sugaring', 'massage'],
   },
   medical: {
     id: 'medical',
     tabLabel: 'Медицинские услуги',
-    address: 'пр-т XXX, д. 26',
-    addressFull: 'пр-т XXX, д. 26',
+    address: 'пр-т Андропова, д. 26',
+    addressFull: 'пр-т Андропова, д. 26',
     sectionIds: ['laser', 'apparatus'],
   },
 };
