@@ -2,7 +2,7 @@
 <html lang="ru" class="scroll-smooth">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, interactive-widget=overlays-content">
   <title>Ремонт квартир в Химках под ключ | Михаил</title>
   <meta name="description" content="Ремонт квартир в Химках под ключ с гарантией 3 года. От 4 500 ₽/м².">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -82,6 +82,14 @@
     .calc-input::-webkit-inner-spin-button { -webkit-appearance:none; margin:0; }
     .calc-price { font-size:clamp(2.5rem,6vw,4rem); font-weight:600; letter-spacing:-0.03em; line-height:1; color:var(--ink); }
     .calc-field { border:none; border-bottom:1px solid var(--line); background:transparent; padding:0.75rem 0; font-size:0.875rem; outline:none; width:100%; }
+    @media (max-width: 768px) {
+      .calc-field,
+      input:not([type="checkbox"]):not([type="radio"]):not([type="range"]):not([type="hidden"]),
+      select,
+      textarea {
+        font-size: 16px !important;
+      }
+    }
     .calc-dual { display:grid; gap:1.5rem; }
     @media(min-width:640px){ .calc-dual { grid-template-columns:1fr 1fr; } }
     .calc-dual .is-hidden { display:none; }
@@ -169,14 +177,72 @@
     .calc-nav { display:flex; align-items:center; justify-content:space-between; gap:1rem; margin-top:2rem; padding-top:1.5rem; }
     .calc-path .quiz-opt { cursor:default; pointer-events:none; }
     .price-panel {
-      padding: clamp(1.5rem, 4vw, 2.75rem);
+      --price-block-space: 3rem;
+      --price-row-space: 1rem;
+      display: flex;
+      flex-direction: column;
+      padding: clamp(1.75rem, 4vw, 3rem);
       border: 1px solid var(--line);
       background: var(--card);
+      width: 100%;
     }
-    .price-panel .price-block + .price-block {
-      margin-top: 2rem;
-      padding-top: 2rem;
+    .price-panel__grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+    }
+    .price-panel__col {
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+    }
+    .price-panel__col .price-block + .price-block {
+      margin-top: var(--price-block-space);
+      padding-top: var(--price-block-space);
       border-top: 1px solid var(--line);
+    }
+    @media (max-width: 1023px) {
+      .price-panel__col {
+        display: contents;
+      }
+      .price-block[data-pos="apartments"] { order: 1; }
+      .price-block[data-pos="houses"]     { order: 2; }
+      .price-block[data-pos="finishing"]  { order: 3; }
+      .price-block[data-pos="rooms"]      { order: 4; }
+      .price-panel__grid {
+        display: flex;
+        flex-direction: column;
+      }
+      .price-block[data-pos="houses"],
+      .price-block[data-pos="finishing"],
+      .price-block[data-pos="rooms"] {
+        margin-top: var(--price-block-space);
+        padding-top: var(--price-block-space);
+        border-top: 1px solid var(--line);
+      }
+    }
+    @media (min-width: 1024px) {
+      .price-panel {
+        padding: clamp(2.5rem, 4vw, 3.5rem) clamp(2.5rem, 5vw, 4.5rem);
+      }
+      .price-panel__grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        column-gap: clamp(3rem, 6vw, 7rem);
+        row-gap: 0;
+      }
+      .price-row {
+        gap: 1.25rem 3rem;
+      }
+    }
+    @media (min-width: 1280px) {
+      .price-panel {
+        --price-block-space: 3.5rem;
+        --price-row-space: 1.1rem;
+      }
+      .price-row-name { font-size: 1rem; }
+      .price-row-amount { font-size: 1.125rem; }
+      .price-row {
+        gap: 1.5rem 4rem;
+      }
     }
     .price-block-title {
       font-family: 'JetBrains Mono', ui-monospace, monospace;
@@ -186,35 +252,51 @@
       letter-spacing: 0.12em;
       color: var(--muted);
     }
-    .price-rows { margin-top: 0.75rem; }
+    .price-rows { margin-top: 0.875rem; }
     .price-row {
       display: grid;
-      grid-template-columns: minmax(0, 1fr) auto;
+      grid-template-columns: minmax(0, 1fr) max-content;
       gap: 1rem 1.5rem;
       align-items: baseline;
-      padding: 0.85rem 0;
+      padding: var(--price-row-space) 0;
       border-bottom: 1px solid var(--line);
     }
-    .price-row:last-child { border-bottom: none; padding-bottom: 0; }
-    .price-rows .price-row:first-child { padding-top: 0.35rem; }
-    .price-row-name { font-size: 0.9375rem; line-height: 1.45; color: var(--ink); }
+    .price-rows .price-row:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+    .price-rows .price-row:first-child {
+      padding-top: calc(var(--price-row-space) * 0.5);
+    }
+    .price-row-name { font-size: 0.9375rem; line-height: 1.45; color: var(--ink); min-width: 0; }
     .price-row-value {
       display: inline-flex;
       align-items: baseline;
+      justify-content: flex-end;
       gap: 0.3rem;
       font-variant-numeric: tabular-nums;
       white-space: nowrap;
       text-align: right;
+      flex-shrink: 0;
+      min-width: max-content;
     }
+    .price-row-unit { font-size: 0.75rem; font-weight: 500; color: var(--muted); white-space: nowrap; }
     .price-row-amount {
       font-size: 1.0625rem;
       font-weight: 600;
       line-height: 1.2;
       letter-spacing: -0.02em;
       color: var(--ink);
+      white-space: nowrap;
     }
-    .price-row-unit { font-size: 0.75rem; font-weight: 500; color: var(--muted); }
-    .price-panel + .btn-solid,
+    .pricing-cta {
+      display: flex;
+      justify-content: center;
+      margin-top: var(--price-block-space);
+      padding-top: var(--price-block-space);
+      border-top: 1px solid var(--line);
+    }
+    .pricing-cta .btn-solid,
     #contactForm .btn-accent {
       width: 100%;
       justify-content: center;
@@ -227,9 +309,11 @@
       line-height: 1.5;
     }
     @media (min-width: 640px) {
-      #pricing .btn-solid {
+      .pricing-cta .btn-solid {
         width: auto;
-        justify-content: flex-start;
+        min-width: 15.5rem;
+        padding: 0.75rem 2.25rem;
+        justify-content: center;
       }
     }
     .step-pill { width:2rem; height:2rem; border-radius:9999px; border:1px solid var(--line); display:flex; align-items:center; justify-content:center; font-family:'JetBrains Mono',monospace; font-size:10px; color:var(--muted); transition:all 0.2s; cursor:pointer; background:transparent; padding:0; }
@@ -536,71 +620,115 @@
       }
       .spec-row > svg { width:1.75rem; height:1.75rem; margin-top:0.1rem; }
     }
-    .reviews-section__head {
-      max-width: 36rem;
-    }
-    .reviews-panel {
-      margin-top: 3rem;
-      max-width: 42rem;
-      margin-inline: auto;
-      padding: clamp(1.75rem, 4vw, 3rem);
-      border: 1px solid var(--line);
-      background: var(--card);
-    }
-    @media (min-width: 1024px) {
-      .reviews-panel { margin-top: 4rem; }
-    }
-    .reviews-panel__meta {
-      padding-bottom: 1.75rem;
-      margin-bottom: 1.75rem;
-      border-bottom: 1px solid var(--line);
-    }
-    .reviews-panel__meta img {
-      display: block;
-      width: 100%;
-      max-width: 18rem;
-      height: auto;
-    }
-    .reviews-feed {
+    .reviews-section {
       display: flex;
       flex-direction: column;
-      gap: 2rem;
+      align-items: center;
     }
-    .reviews-feed__item {
+    .reviews-section__head {
+      max-width: 36rem;
+      text-align: center;
+      margin-inline: auto;
+    }
+    .reviews-rating-bar {
+      margin-top: 1.5rem;
+      margin-inline: auto;
+      padding: 0.875rem 1.25rem;
+      border: 1px solid var(--line);
+      background: var(--card);
+      width: fit-content;
+      max-width: 100%;
+    }
+    .reviews-rating-bar img {
+      display: block;
+      width: clamp(10.5rem, 28vw, 14rem);
+      height: auto;
+      max-width: 100%;
+    }
+    .reviews-grid {
+      display: flex;
+      gap: 1rem;
+      margin-top: 2rem;
+      margin-inline: auto;
+      width: 100%;
+      max-width: 44rem;
+      justify-content: center;
+      overflow-x: auto;
+      padding-bottom: 0.35rem;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: thin;
+    }
+    .reviews-grid__card {
+      flex: 0 0 clamp(13.5rem, 58vw, 16rem);
       margin: 0;
+      padding: 0.75rem;
+      border: 1px solid var(--line);
+      background: var(--card);
+      scroll-snap-align: start;
     }
-    .reviews-feed__item img {
+    .reviews-grid__card img {
       display: block;
       width: 100%;
       height: auto;
+      max-height: 18rem;
+      object-fit: contain;
+      object-position: top left;
     }
-    .reviews-feed__more {
+    .reviews-grid__more {
       display: none;
       width: 100%;
       margin-top: 1.5rem;
       justify-content: center;
+      align-self: center;
+    }
+    @media (min-width: 768px) {
+      .reviews-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 1.5rem;
+        max-width: 44rem;
+        margin-inline: auto;
+        justify-content: center;
+        overflow: visible;
+        padding-bottom: 0;
+        scroll-snap-type: none;
+      }
+      .reviews-grid__card {
+        flex: none;
+        padding: 0.875rem 1rem;
+      }
+      .reviews-grid__card img {
+        max-height: 21rem;
+      }
+      .reviews-grid__more {
+        width: auto;
+      }
+    }
+    @media (min-width: 1024px) {
+      .reviews-grid {
+        max-width: 48rem;
+        gap: 1.75rem;
+      }
+      .reviews-grid--compact:not(.is-expanded) .reviews-grid__card:nth-child(n + 5) {
+        display: none;
+      }
+      .reviews-grid__more.is-visible {
+        display: inline-flex;
+      }
+    }
+    @media (max-width: 1023px) {
+      .reviews-grid--compact:not(.is-expanded) .reviews-grid__card:nth-child(n + 3) {
+        display: none;
+      }
+      .reviews-grid__more.is-visible {
+        display: inline-flex;
+      }
     }
     @media (max-width: 639px) {
       #reviews .section-inner {
         padding-left: 0.875rem;
         padding-right: 0.875rem;
-      }
-      .reviews-panel {
-        padding: 1.125rem 0.75rem;
-        max-width: none;
-      }
-      .reviews-panel__meta {
-        padding-bottom: 1.25rem;
-        margin-bottom: 1.25rem;
-      }
-      .reviews-feed {
-        gap: 1.5rem;
-      }
-      .reviews-feed--compact:not(.is-expanded) .reviews-feed__item:nth-child(n + 4) {
-        display: none;
-      }
-      .reviews-feed__more.is-visible {
-        display: inline-flex;
       }
     }
     .hero-wide { width:100%; max-width:1920px; margin-left:auto; margin-right:auto; padding-left:2.5vw; padding-right:2.5vw; }
@@ -1087,7 +1215,7 @@
 
     <!-- 4b. REVIEWS -->
     <section id="reviews" class="section-flow bg-surface">
-      <div class="mx-auto max-w-content px-5 py-16 lg:px-10 lg:py-24 section-inner reveal-block">
+      <div class="hero-wide py-16 lg:py-24 section-inner reveal-block">
         <div class="reviews-section reveal">
           <div class="reviews-section__head">
             <p class="label">Отзывы</p>
@@ -1095,39 +1223,42 @@
             <p class="section-desc">Реальные отзывы с объявления на Авито — скриншоты без правок</p>
           </div>
 
-          <div class="reviews-panel">
-            <div class="reviews-panel__meta">
-              <img
-                src="images/reviews/avito-reviews-summary.png"
-                alt="Рейтинг 5,0 — 5 отзывов клиентов"
-                width="560"
-                height="80"
-                loading="lazy"
-              >
-            </div>
-            <div class="reviews-feed reviews-feed--compact reveal-stagger" id="reviewsFeed">
-              <figure class="reviews-feed__item reveal-child"><img src="images/reviews/avito-review-1.png" alt="Отзыв Кристины" loading="lazy"></figure>
-              <figure class="reviews-feed__item reveal-child"><img src="images/reviews/avito-review-2.png" alt="Отзыв Романа" loading="lazy"></figure>
-              <figure class="reviews-feed__item reveal-child"><img src="images/reviews/avito-review-3.png" alt="Отзыв Генриха" loading="lazy"></figure>
-              <figure class="reviews-feed__item reveal-child"><img src="images/reviews/avito-review-4.png" alt="Отзыв David" loading="lazy"></figure>
-              <figure class="reviews-feed__item reveal-child"><img src="images/reviews/avito-review-5.png" alt="Отзыв Анжелы" loading="lazy"></figure>
-            </div>
-            <button type="button" class="reviews-feed__more btn-ghost" id="reviewsMore" hidden>Ещё 2 отзыва</button>
+          <div class="reviews-rating-bar">
+            <img
+              src="images/reviews/avito-reviews-summary.png"
+              alt="Рейтинг 5,0 — 5 отзывов клиентов"
+              width="560"
+              height="80"
+              loading="lazy"
+            >
           </div>
+
+          <div class="reviews-grid reviews-grid--compact reveal-stagger" id="reviewsFeed">
+            <figure class="reviews-grid__card reveal-child"><img src="images/reviews/avito-review-1.png" alt="Отзыв Кристины" loading="lazy"></figure>
+            <figure class="reviews-grid__card reveal-child"><img src="images/reviews/avito-review-2.png" alt="Отзыв Романа" loading="lazy"></figure>
+            <figure class="reviews-grid__card reveal-child"><img src="images/reviews/avito-review-3.png" alt="Отзыв Генриха" loading="lazy"></figure>
+            <figure class="reviews-grid__card reveal-child"><img src="images/reviews/avito-review-4.png" alt="Отзыв David" loading="lazy"></figure>
+            <figure class="reviews-grid__card reveal-child"><img src="images/reviews/avito-review-5.png" alt="Отзыв Анжелы" loading="lazy"></figure>
+          </div>
+          <button type="button" class="reviews-grid__more btn-ghost" id="reviewsMore">Показать ещё отзывы</button>
         </div>
       </div>
     </section>
 
     <!-- 5. PRICING -->
     <section id="pricing" class="section-flow bg-surface">
-      <div class="mx-auto max-w-content px-5 py-16 lg:px-10 lg:py-24 section-inner reveal-block">
+      <div class="hero-wide py-16 lg:py-24 section-inner reveal-block">
         <div class="reveal">
           <p class="label">Цены</p>
           <h2 class="section-heading mt-3">Прайс-лист</h2>
           <p class="section-desc max-w-lg">Актуальные расценки на все виды работ</p>
         </div>
-        <div id="priceList" class="price-panel reveal mt-14 max-w-3xl"></div>
-        <a href="#calculator" class="btn-solid reveal mt-12 inline-flex">Рассчитать стоимость</a>
+        <div class="price-panel reveal mt-14">
+          <div class="price-panel__grid" id="priceList"></div>
+          <div class="pricing-cta reveal">
+            <a href="#calculator" class="btn-solid">Рассчитать стоимость</a>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -1339,11 +1470,9 @@
       return `<span class="price-row-amount">${prefix}${fmt(svc.price)}</span><span class="price-row-unit">${unit}</span>`;
     }
 
-    function renderPriceList() {
-      const el = document.getElementById('priceList');
-      if (!el) return;
-      el.innerHTML = CALC_BLOCKS.map((block, i) => `
-        <div class="price-block">
+    function renderPriceBlock(block) {
+      return `
+        <div class="price-block" data-pos="${block.id}">
           <h3 class="price-block-title">${block.title}</h3>
           <div class="price-rows">
             ${block.services.map(s => `
@@ -1354,7 +1483,22 @@
             `).join('')}
           </div>
         </div>
-      `).join('');
+      `;
+    }
+
+    function renderPriceList() {
+      const el = document.getElementById('priceList');
+      if (!el) return;
+      el.innerHTML = `
+        <div class="price-panel__col">
+          ${renderPriceBlock(CALC_BLOCKS[0])}
+          ${renderPriceBlock(CALC_BLOCKS[2])}
+        </div>
+        <div class="price-panel__col">
+          ${renderPriceBlock(CALC_BLOCKS[1])}
+          ${renderPriceBlock(CALC_BLOCKS[3])}
+        </div>
+      `;
     }
 
     renderPriceList();
@@ -2214,11 +2358,22 @@
       const feed = document.getElementById('reviewsFeed');
       const btn = document.getElementById('reviewsMore');
       if (!feed || !btn) return;
-      const mq = window.matchMedia('(max-width: 639px)');
+      const mqMobile = window.matchMedia('(max-width: 639px)');
+      const mqDesktop = window.matchMedia('(min-width: 1024px)');
+      const total = feed.querySelectorAll('.reviews-grid__card').length;
+
+      function initialVisible() {
+        if (mqDesktop.matches) return 4;
+        if (mqMobile.matches) return 2;
+        return total;
+      }
+
       function sync() {
-        const compact = mq.matches;
-        feed.classList.toggle('reviews-feed--compact', compact);
-        if (!compact) {
+        const visible = initialVisible();
+        const hiddenCount = Math.max(0, total - visible);
+        const useCompact = hiddenCount > 0;
+        feed.classList.toggle('reviews-grid--compact', useCompact);
+        if (!useCompact) {
           feed.classList.remove('is-expanded');
           btn.classList.remove('is-visible');
           btn.hidden = true;
@@ -2227,13 +2382,14 @@
         const expanded = feed.classList.contains('is-expanded');
         btn.hidden = false;
         btn.classList.add('is-visible');
-        btn.textContent = expanded ? 'Свернуть' : 'Ещё 2 отзыва';
+        btn.textContent = expanded ? 'Свернуть отзывы' : `Показать ещё ${hiddenCount} ${hiddenCount === 1 ? 'отзыв' : hiddenCount < 5 ? 'отзыва' : 'отзывов'}`;
       }
       btn.addEventListener('click', () => {
         feed.classList.toggle('is-expanded');
         sync();
       });
-      mq.addEventListener('change', sync);
+      mqMobile.addEventListener('change', sync);
+      mqDesktop.addEventListener('change', sync);
       sync();
     })();
 

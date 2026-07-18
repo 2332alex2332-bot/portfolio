@@ -1991,3 +1991,11 @@ body.menu-open .site-footer {
     min-height: 100dvh;
   }
 }
+
+@media (max-width: 768px) {
+  input:not([type="checkbox"]):not([type="radio"]):not([type="range"]):not([type="hidden"]),
+  select,
+  textarea {
+    font-size: 16px !important;
+  }
+}

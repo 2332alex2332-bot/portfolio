@@ -1,13 +1,23 @@
+:root {
+  --breadcrumbs-bar-height: 2.375rem;
+}
+
 .site-breadcrumbs-wrap {
-  position: sticky;
+  position: fixed;
   top: var(--site-header-height, 74px);
+  left: 0;
+  right: 0;
   z-index: 45;
-  margin-top: var(--site-header-height, 74px);
+  margin-top: 0;
   border-bottom: 1px solid var(--line-dark);
   background: rgba(5, 5, 5, 0.96);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
   padding: 0.625rem clamp(16px, 3vw, 28px);
+}
+
+.site-breadcrumbs-wrap + main {
+  padding-top: calc(var(--site-header-height, 74px) + var(--breadcrumbs-bar-height));
 }
 
 .site-breadcrumbs__list {
@@ -56,6 +66,10 @@
 body.breadcrumbs-legal .site-breadcrumbs-wrap {
   position: static;
   margin-top: 0;
+}
+
+body.breadcrumbs-legal .site-breadcrumbs-wrap + main {
+  padding-top: 0;
 }
 
 body.nav-open .site-breadcrumbs-wrap {

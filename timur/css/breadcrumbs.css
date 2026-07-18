@@ -1,15 +1,32 @@
+:root {
+  --breadcrumbs-bar-height: 2.25rem;
+}
+
 .site-breadcrumbs-wrap {
-  position: sticky;
+  position: fixed;
   top: 4rem;
+  left: 0;
+  right: 0;
   z-index: 40;
+  display: flex;
+  align-items: center;
+  min-height: var(--breadcrumbs-bar-height);
+  padding-block: 0.5rem;
   border-bottom: 1px solid var(--line, #e8e8e8);
   background: rgba(255, 255, 255, 0.96);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
 }
 
+.site-breadcrumbs-wrap + main {
+  padding-top: calc(4rem + var(--breadcrumbs-bar-height)) !important;
+}
+
 .site-breadcrumbs {
-  padding: calc(0.625rem + 1px) 0 calc(0.625rem - 1px);
+  width: 100%;
+  padding: 0;
+  position: relative;
+  top: 4px;
 }
 
 .site-breadcrumbs__list {
@@ -35,7 +52,7 @@
 .site-breadcrumbs__item:not(:last-child)::after {
   content: '›';
   margin: 0 0.45rem;
-  color: var(--line, #d0d0d0);
+  color: rgba(0, 0, 0, 0.2);
 }
 
 .site-breadcrumbs__item a {
@@ -57,7 +74,12 @@
 
 body.breadcrumbs-legal .site-breadcrumbs-wrap {
   position: static;
+  min-height: 0;
   padding: 0.75rem 1rem;
+}
+
+body.breadcrumbs-legal .site-breadcrumbs-wrap + main {
+  padding-top: 0 !important;
 }
 
 body.breadcrumbs-legal {
@@ -71,10 +93,6 @@ body.project-modal-open .site-breadcrumbs-wrap {
 }
 
 @media (max-width: 640px) {
-  .site-breadcrumbs {
-    padding: calc(0.5rem + 1px) 0 calc(0.5rem - 1px);
-  }
-
   .site-breadcrumbs__list {
     font-size: 0.6875rem;
   }

@@ -1,12 +1,22 @@
+:root {
+  --breadcrumbs-bar-height: 2.25rem;
+}
+
 .site-breadcrumbs-wrap {
-  position: sticky;
+  position: fixed;
   top: var(--site-header-height, 64px);
+  left: 0;
+  right: 0;
   z-index: 40;
   border-bottom: 1px solid var(--color-border, rgba(17, 17, 17, 0.1));
   background: rgba(255, 255, 255, 0.96);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
   padding-block: 0.5rem;
+}
+
+.page-main {
+  padding-top: calc(var(--site-header-height, 64px) + var(--breadcrumbs-bar-height)) !important;
 }
 
 .site-breadcrumbs {
