@@ -32,7 +32,7 @@ export default async function handler(request, response) {
   const contact = String(body?.contact ?? "").trim();
   const social = String(body?.social ?? "telegram").trim().toLowerCase();
 
-  if (!contact || contact.length < 3) {
+  if (!contact) {
     return response.status(400).json({ ok: false, error: "Contact is required" });
   }
 

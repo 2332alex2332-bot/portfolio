@@ -9,6 +9,8 @@
   --dim: #b8b8b8;
   --orange: #e85d04;
   --orange-glow: rgba(232, 93, 4, 0.55);
+  --form-error: #ff3b30;
+  --form-error-soft: rgba(255, 59, 48, 0.14);
   --line: rgba(255, 255, 255, 0.1);
   --container: min(1320px, calc(100% - 40px));
   --font-display: "Oswald", "Inter", sans-serif;
@@ -1015,6 +1017,7 @@ body.menu-open .site-footer {
   position: relative;
   z-index: 1;
   flex-shrink: 0;
+  width: 100%;
   margin-top: auto;
   padding: 24px 0 calc(28px + env(safe-area-inset-bottom, 0px));
   border-top: 1px solid rgba(255, 255, 255, 0.12);
@@ -1666,13 +1669,18 @@ body.menu-open .site-footer {
 }
 
 .lead-form__social-option:has(.lead-form__social-input:checked) {
-  border-color: rgba(232, 93, 4, 0.55);
-  background: rgba(232, 93, 4, 0.1);
-  color: var(--text);
+  border-color: var(--orange);
+  background: var(--orange);
+  color: var(--bg);
+  box-shadow: none;
+}
+
+.lead-form__social-option:has(.lead-form__social-input:checked) > span {
+  font-weight: 700;
 }
 
 .lead-form__social-option:has(.lead-form__social-input:focus-visible) {
-  box-shadow: 0 0 0 3px rgba(232, 93, 4, 0.14);
+  box-shadow: 0 0 0 2px rgba(232, 93, 4, 0.35);
 }
 
 .lead-form__label {
@@ -1703,14 +1711,26 @@ body.menu-open .site-footer {
 }
 
 .lead-form__input:focus {
-  border-color: rgba(232, 93, 4, 0.65);
+  border-color: rgba(255, 255, 255, 0.28);
   background: rgba(255, 255, 255, 0.05);
-  box-shadow: 0 0 0 3px rgba(232, 93, 4, 0.14);
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.06);
 }
 
-.lead-form__input--error {
-  border-color: #e74c3c;
-  box-shadow: 0 0 0 3px rgba(231, 76, 60, 0.12);
+.lead-form__input:-webkit-autofill,
+.lead-form__input:-webkit-autofill:hover,
+.lead-form__input:-webkit-autofill:focus,
+.lead-form__input:-webkit-autofill:active {
+  -webkit-text-fill-color: var(--text) !important;
+  caret-color: var(--text);
+  box-shadow: 0 0 0 1000px #0a0a0a inset !important;
+  -webkit-box-shadow: 0 0 0 1000px #0a0a0a inset !important;
+  transition: background-color 99999s ease-out 0s;
+}
+
+.lead-form__input--error,
+.lead-form__input--error:focus {
+  border-color: rgba(255, 59, 48, 0.9);
+  box-shadow: none;
 }
 
 .lead-form__consent {
@@ -1749,6 +1769,11 @@ body.menu-open .site-footer {
   color: var(--orange);
 }
 
+.lead-form__consent--error .lead-form__checkbox {
+  outline: 2px solid var(--form-error);
+  outline-offset: 2px;
+}
+
 .lead-form__submit {
   width: 100%;
   min-height: 56px;
@@ -1756,39 +1781,40 @@ body.menu-open .site-footer {
   border: none;
   border-radius: 999px;
   padding: 0 28px;
-  color: var(--bg);
-  background: var(--orange);
+  color: rgba(255, 255, 255, 0.38);
+  background: rgba(255, 255, 255, 0.08);
   font-family: inherit;
   font-size: 12px;
   font-weight: 700;
   letter-spacing: 0.14em;
   text-transform: uppercase;
   cursor: pointer;
-  box-shadow:
-    0 0 32px rgba(232, 93, 4, 0.45),
-    0 8px 24px rgba(232, 93, 4, 0.22);
-  transition: transform 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease;
+  box-shadow: none;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease, color 0.2s ease;
   -webkit-tap-highlight-color: transparent;
 }
 
-.lead-form__submit:hover:not(:disabled) {
-  transform: translateY(-1px);
+.lead-form__submit--ready {
+  color: var(--bg);
+  background: var(--orange);
+  box-shadow:
+    0 0 32px rgba(232, 93, 4, 0.45),
+    0 8px 24px rgba(232, 93, 4, 0.22);
+}
+
+.lead-form__submit--ready:hover:not(:disabled):not([aria-busy="true"]) {
   box-shadow:
     0 0 48px var(--orange-glow),
     0 12px 28px rgba(232, 93, 4, 0.28);
 }
 
-.lead-form__submit:active:not(:disabled) {
-  transform: translateY(0);
+.lead-form__submit--ready:active:not(:disabled):not([aria-busy="true"]) {
+  opacity: 0.96;
 }
 
-.lead-form__submit:disabled {
-  opacity: 1;
-  cursor: not-allowed;
-  color: rgba(255, 255, 255, 0.38);
-  background: rgba(255, 255, 255, 0.08);
-  box-shadow: none;
-  transform: none;
+.lead-form__submit[aria-busy="true"] {
+  opacity: 0.88;
+  cursor: wait;
 }
 
 .lead-form__fallback {
@@ -1811,9 +1837,14 @@ body.menu-open .site-footer {
 
 .lead-form__status {
   margin: 0;
+  min-height: calc(1.45em * 2 + 4px);
   font-size: 13px;
   line-height: 1.45;
   text-align: center;
+}
+
+.lead-form__status.is-empty {
+  visibility: hidden;
 }
 
 .lead-form__status--success {
@@ -1821,7 +1852,11 @@ body.menu-open .site-footer {
 }
 
 .lead-form__status--error {
-  color: #e74c3c;
+  color: var(--form-error);
+}
+
+.lead-form__status--info {
+  color: var(--orange);
 }
 
 /* ============================================================

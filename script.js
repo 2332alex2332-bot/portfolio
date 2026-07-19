@@ -1,22 +1,9 @@
 const TELEGRAM_USERNAME = "stanislav5621";
-const VK_PROFILE_URL = "https://vk.ru/id1025918815";
 const TELEGRAM_START_MESSAGE =
   "Здравствуйте! Хочу обсудить сайт для бизнеса. Подскажите, с чего лучше начать?";
 
 const buildTelegramLink = (text = TELEGRAM_START_MESSAGE) =>
   `https://t.me/${TELEGRAM_USERNAME}?text=${encodeURIComponent(text)}`;
-
-const buildTelegramLinkFromForm = ({ name, contact, social = "telegram" }) => {
-  const lines = ["Здравствуйте! Хочу обсудить сайт для бизнеса.", ""];
-
-  if (name) lines.push(`Имя: ${name}`);
-  if (contact) {
-    lines.push(`${social === "vk" ? "VK" : "Telegram"}: ${contact}`);
-  }
-
-  lines.push("", "Подскажите, с чего лучше начать?");
-  return buildTelegramLink(lines.join("\n"));
-};
 
 document.querySelectorAll("[data-telegram-link]").forEach((link) => {
   link.setAttribute("href", buildTelegramLink());
@@ -115,14 +102,30 @@ siteHeader?.classList.toggle("is-scrolled", window.scrollY > 24);
 
 const form = document.getElementById("lead-form");
 const formStatus = document.getElementById("lead-form-status");
+let isSubmitting = false;
 const nameInput = document.getElementById("lead-name");
 const contactInput = document.getElementById("lead-contact");
 const consentCheckbox = document.getElementById("lead-consent");
 const submitBtn = document.getElementById("lead-submit");
 
 const SOCIAL_PLACEHOLDERS = {
-  telegram: "@username в Telegram",
+  telegram: "username",
   vk: "Ссылка на профиль VK",
+};
+
+const normalizeContact = (contact, social) => {
+  const trimmed = contact.trim();
+  if (!trimmed) return trimmed;
+
+  if (social === "telegram") {
+    if (/^https?:\/\//i.test(trimmed) || trimmed.includes("t.me/")) {
+      return trimmed;
+    }
+    const username = trimmed.replace(/^@+/, "");
+    return username ? `@${username}` : "";
+  }
+
+  return trimmed;
 };
 
 const getSelectedSocial = () => {
@@ -132,8 +135,9 @@ const getSelectedSocial = () => {
 
 const syncSocialPlaceholder = () => {
   if (!(contactInput instanceof HTMLInputElement)) return;
+  const social = getSelectedSocial();
   contactInput.placeholder =
-    SOCIAL_PLACEHOLDERS[getSelectedSocial()] ?? SOCIAL_PLACEHOLDERS.telegram;
+    SOCIAL_PLACEHOLDERS[social] ?? SOCIAL_PLACEHOLDERS.telegram;
 };
 
 form?.querySelectorAll('input[name="social"]').forEach((radio) => {
@@ -155,23 +159,31 @@ const buildLeadSummary = ({ name, contact, social = "telegram" }) => {
 const setFormStatus = (message, type = "success") => {
   if (!formStatus) return;
 
-  formStatus.hidden = !message;
+  const hasMessage = Boolean(message);
   formStatus.textContent = message;
-  formStatus.classList.remove("lead-form__status--success", "lead-form__status--error");
+  formStatus.classList.toggle("is-empty", !hasMessage);
+  formStatus.setAttribute("aria-hidden", hasMessage ? "false" : "true");
+  formStatus.classList.remove("lead-form__status--success", "lead-form__status--error", "lead-form__status--info");
+
+  if (!hasMessage) {
+    return;
+  }
+
   formStatus.classList.add(
-    type === "error" ? "lead-form__status--error" : "lead-form__status--success"
+    type === "error"
+      ? "lead-form__status--error"
+      : type === "info"
+        ? "lead-form__status--info"
+        : "lead-form__status--success"
   );
 };
 
 const isLeadFormReady = () => {
-  if (!(consentCheckbox instanceof HTMLInputElement) || !consentCheckbox.checked) {
-    return false;
-  }
-
   const name = nameInput instanceof HTMLInputElement ? nameInput.value.trim() : "";
   const contact = contactInput instanceof HTMLInputElement ? contactInput.value.trim() : "";
+  const hasConsent = consentCheckbox instanceof HTMLInputElement && consentCheckbox.checked;
 
-  return name.length > 0 && contact.length >= 3;
+  return name.length > 0 && contact.length > 0 && hasConsent;
 };
 
 const syncSubmitState = () => {
@@ -179,31 +191,111 @@ const syncSubmitState = () => {
     return;
   }
 
-  submitBtn.disabled = !isLeadFormReady();
+  submitBtn.classList.toggle(
+    "lead-form__submit--ready",
+    isLeadFormReady() && !isSubmitting
+  );
 };
-
-consentCheckbox?.addEventListener("change", syncSubmitState);
-nameInput?.addEventListener("input", syncSubmitState);
-contactInput?.addEventListener("input", () => {
-  contactInput.classList.remove("lead-form__input--error");
-  syncSubmitState();
-});
-syncSubmitState();
 
 const clearFieldErrors = () => {
   form?.querySelectorAll(".lead-form__input--error").forEach((field) => {
     field.classList.remove("lead-form__input--error");
   });
+  form?.querySelectorAll(".lead-form__consent--error").forEach((consent) => {
+    consent.classList.remove("lead-form__consent--error");
+  });
 };
 
-const markFieldError = (field) => {
+const markFieldError = (field, { focus = true } = {}) => {
   if (field instanceof HTMLInputElement) {
     field.readOnly = false;
     field.closest(".lead-form__input-wrap")?.classList.add("is-editing");
   }
   field?.classList.add("lead-form__input--error");
-  field?.focus();
+  if (focus) {
+    field?.focus();
+  }
 };
+
+const markConsentError = () => {
+  consentCheckbox?.closest(".lead-form__consent")?.classList.add("lead-form__consent--error");
+};
+
+const validateLeadForm = () => {
+  clearFieldErrors();
+
+  const name = nameInput instanceof HTMLInputElement ? nameInput.value.trim() : "";
+  const contact = contactInput instanceof HTMLInputElement ? contactInput.value.trim() : "";
+  const social = getSelectedSocial();
+  const hasConsent = consentCheckbox instanceof HTMLInputElement && consentCheckbox.checked;
+
+  let isValid = true;
+
+  if (!name) {
+    markFieldError(nameInput, { focus: false });
+    isValid = false;
+  }
+
+  if (!contact) {
+    markFieldError(contactInput, { focus: false });
+    isValid = false;
+  }
+
+  if (!hasConsent) {
+    markConsentError();
+    isValid = false;
+  }
+
+  if (!isValid) {
+    const missing = [];
+    if (!name) missing.push("name");
+    if (!contact) missing.push("contact");
+    if (!hasConsent) missing.push("consent");
+
+    if (missing.length > 1) {
+      setFormStatus("Заполните обязательные поля и отметьте согласие.", "error");
+    } else if (!name) {
+      setFormStatus("Укажите имя.", "error");
+    } else if (!contact) {
+      setFormStatus(
+        social === "vk"
+          ? "Укажите ссылку на профиль VK."
+          : "Укажите username в Telegram.",
+        "error"
+      );
+    } else {
+      setFormStatus("Для отправки нужно согласие на обработку персональных данных.", "error");
+    }
+
+    const firstInvalid = !name
+      ? nameInput
+      : !contact
+        ? contactInput
+        : consentCheckbox;
+
+    if (firstInvalid instanceof HTMLInputElement) {
+      firstInvalid.focus({ preventScroll: true });
+    }
+
+    return null;
+  }
+
+  return { name, contact, social };
+};
+
+nameInput?.addEventListener("input", () => {
+  nameInput.classList.remove("lead-form__input--error");
+  syncSubmitState();
+});
+contactInput?.addEventListener("input", () => {
+  contactInput.classList.remove("lead-form__input--error");
+  syncSubmitState();
+});
+consentCheckbox?.addEventListener("change", () => {
+  consentCheckbox.closest(".lead-form__consent")?.classList.remove("lead-form__consent--error");
+  syncSubmitState();
+});
+syncSubmitState();
 
 const initMobileFormUx = () => {
   if (!form) return;
@@ -331,7 +423,7 @@ const initMobileFormUx = () => {
 
 initMobileFormUx();
 
-const sendLeadToTelegram = async (payload, leadApi) => {
+const sendLeadToApi = async (payload, leadApi) => {
   const response = await fetch(leadApi, {
     method: "POST",
     headers: {
@@ -370,93 +462,80 @@ const sendLeadToEmail = async (payload, summary, endpointEmail) => {
 
 form?.addEventListener("submit", async (event) => {
   event.preventDefault();
-  setFormStatus("");
-  clearFieldErrors();
+  if (isSubmitting) return;
 
-  if (!(consentCheckbox instanceof HTMLInputElement) || !consentCheckbox.checked) {
-    setFormStatus("Для отправки нужно согласие на обработку персональных данных.", "error");
+  if (document.activeElement instanceof HTMLElement && form.contains(document.activeElement)) {
+    document.activeElement.blur();
+  }
+
+  const validated = validateLeadForm();
+  if (!validated) {
     syncSubmitState();
     return;
   }
 
-  const name = nameInput instanceof HTMLInputElement ? nameInput.value.trim() : "";
-  const contact = contactInput instanceof HTMLInputElement ? contactInput.value.trim() : "";
-  const social = getSelectedSocial();
-
-  if (!contact || contact.length < 3) {
-    markFieldError(contactInput);
-    setFormStatus("Укажите @username в Telegram или ссылку на VK.", "error");
-    return;
-  }
-
-  if (!name) {
-    markFieldError(nameInput);
-    setFormStatus("Укажите имя.", "error");
-    return;
-  }
-
-  const payload = { name, contact, social };
+  const { name, contact, social } = validated;
+  const payload = {
+    name,
+    contact: normalizeContact(contact, social),
+    social,
+  };
   const summary = buildLeadSummary(payload);
   const leadApi = form.dataset.leadApi?.trim();
   const endpointEmail = form.dataset.endpointEmail?.trim();
 
+  isSubmitting = true;
   if (submitBtn instanceof HTMLButtonElement) {
-    submitBtn.disabled = true;
+    submitBtn.setAttribute("aria-busy", "true");
   }
 
   let telegramSent = false;
   let emailSent = false;
 
-  if (leadApi) {
-    try {
-      await sendLeadToTelegram(payload, leadApi);
-      telegramSent = true;
-    } catch {
-      telegramSent = false;
+  try {
+    if (leadApi) {
+      try {
+        await sendLeadToApi(payload, leadApi);
+        telegramSent = true;
+      } catch {
+        telegramSent = false;
+      }
     }
-  }
 
-  if (endpointEmail && !endpointEmail.includes("xxx")) {
-    try {
-      await sendLeadToEmail(payload, summary, endpointEmail);
-      emailSent = true;
-    } catch {
-      emailSent = false;
+    if (endpointEmail && !endpointEmail.includes("xxx")) {
+      try {
+        await sendLeadToEmail(payload, summary, endpointEmail);
+        emailSent = true;
+      } catch {
+        emailSent = false;
+      }
     }
-  }
 
-  if (telegramSent || emailSent) {
-    form.reset();
-    if (consentCheckbox instanceof HTMLInputElement) {
-      consentCheckbox.checked = false;
+    if (telegramSent || emailSent) {
+      form.reset();
+      clearFieldErrors();
+      if (consentCheckbox instanceof HTMLInputElement) {
+        consentCheckbox.checked = false;
+      }
+      const telegramRadio = form?.querySelector('input[name="social"][value="telegram"]');
+      if (telegramRadio instanceof HTMLInputElement) {
+        telegramRadio.checked = true;
+      }
+      syncSocialPlaceholder();
+      setFormStatus("Заявка отправлена. Напишу вам в Telegram или VK в течение рабочего дня.");
+      syncSubmitState();
+      return;
     }
-    const telegramRadio = form?.querySelector('input[name="social"][value="telegram"]');
-    if (telegramRadio instanceof HTMLInputElement) {
-      telegramRadio.checked = true;
-    }
-    syncSocialPlaceholder();
-    syncSubmitState();
-    setFormStatus("Заявка отправлена. Отвечу в Telegram или VK в течение рабочего дня.");
-    return;
-  }
 
-  syncSubmitState();
-  if (social === "vk") {
-    window.open(VK_PROFILE_URL, "_blank", "noopener,noreferrer");
     setFormStatus(
-      "Открыл VK — напишите там с вашей задачей. Если окно не открылось, ссылка под кнопкой.",
+      "Не удалось отправить заявку. Попробуйте ещё раз или напишите напрямую — ссылки под формой.",
       "error"
     );
-    return;
+  } finally {
+    isSubmitting = false;
+    if (submitBtn instanceof HTMLButtonElement) {
+      submitBtn.removeAttribute("aria-busy");
+    }
+    syncSubmitState();
   }
-
-  const telegramUrl = buildTelegramLinkFromForm({ name, contact, social });
-  document.querySelectorAll("[data-telegram-link]").forEach((link) => {
-    link.setAttribute("href", telegramUrl);
-  });
-  window.open(telegramUrl, "_blank", "noopener,noreferrer");
-  setFormStatus(
-    "Открыл Telegram с вашей заявкой — нажмите «Отправить». Если окно не открылось, ссылка под кнопкой.",
-    "error"
-  );
 });

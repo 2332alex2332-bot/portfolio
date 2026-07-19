@@ -16,7 +16,7 @@
       content="Сайты под ключ — с телефона просто найти услугу и оставить заявку. Лендинг 9–12 дней, каталог 12–16."
     />
     <meta property="og:type" content="website" />
-    <meta property="og:image" content="./gloris-beauty/images/salon-kolomenskaya.png" />
+    <meta property="og:image" content="/gloris-beauty/images/salon-kolomenskaya.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -33,9 +33,10 @@
           <a href="#top" class="top-nav-logo">Станислав</a>
         </div>
         <nav class="top-nav-center top-nav-menu" id="site-nav" aria-label="Основная навигация">
-          <a class="top-nav-link" href="#about">Обо мне</a>
           <a class="top-nav-link" href="#cases">Кейсы</a>
+          <a class="top-nav-link" href="#about">Обо мне</a>
           <a class="top-nav-link" href="#pricing">Цены</a>
+          <a class="top-nav-link" href="#process">Как я работаю</a>
           <a class="top-nav-link" href="#contact">Контакты</a>
         </nav>
         <div class="top-nav-end top-nav-actions">
@@ -61,8 +62,8 @@
         <a href="#top" class="side-menu-brand">Станислав</a>
       </div>
       <ul class="side-menu-links">
-        <li><a class="side-nav-link" href="#about">Обо мне</a></li>
         <li><a class="side-nav-link" href="#cases">Кейсы</a></li>
+        <li><a class="side-nav-link" href="#about">Обо мне</a></li>
         <li><a class="side-nav-link" href="#pricing">Цены</a></li>
         <li><a class="side-nav-link" href="#process">Как я работаю</a></li>
         <li><a class="side-nav-link" href="#contact">Контакты</a></li>
@@ -99,7 +100,7 @@
                 Лендинг 9–12 дней, каталог 12–16.
               </p>
               <p class="hero__offer">
-                Отвечу в Telegram или VK в течение рабочего дня. Срок и цену — после разбора задачи.
+                Напишу вам в Telegram или VK в течение рабочего дня. Срок и цену — после разбора задачи.
               </p>
             </div>
 
@@ -117,12 +118,14 @@
           </div>
         </div>
 
-        <div class="container hero__trust" aria-label="Клиенты">
-          <ul class="hero__trust-list">
-            <li>Салон красоты</li>
-            <li>Детейлинг</li>
-            <li>Ремонт квартир</li>
-          </ul>
+        <div class="hero__trust" aria-label="Клиенты">
+          <div class="container">
+            <ul class="hero__trust-list">
+              <li>Салон красоты</li>
+              <li>Детейлинг</li>
+              <li>Ремонт квартир</li>
+            </ul>
+          </div>
         </div>
       </section>
 
@@ -230,6 +233,28 @@
         </div>
       </section>
 
+      <section class="about" id="about" aria-labelledby="about-title">
+        <div class="container about__layout">
+          <header class="section-heading section-heading--compact">
+            <p class="section-heading__eyebrow">Обо мне</p>
+            <h2 id="about-title" class="section-heading__title">
+              Один человек — весь проект
+            </h2>
+          </header>
+          <div class="about__body">
+            <p class="about__lead">
+              Я Станислав. Делаю сайты для малого и среднего бизнеса: структура, тексты,
+              адаптив, формы и запуск. Не агентство — все решения принимаю и делаю сам.
+            </p>
+            <ul class="about__facts">
+              <li>Салоны, сервисы, локальные компании и частные специалисты</li>
+              <li>Сначала смотрю ваш сайт или задачу — потом называю срок и цену</li>
+              <li>Пишу лично в Telegram и VK, без менеджеров</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
       <section class="pricing" id="pricing" aria-labelledby="pricing-title">
         <div class="container">
           <header class="section-heading">
@@ -281,8 +306,8 @@
           </div>
 
           <p class="pricing__note">
-            Цены ниже — ориентир, не прайс-лист. Калькулятор, интеграции
-            и нестандартный объём считаю отдельно после короткого разбора.
+            Цены ниже — ориентир, не прайс-лист. Нестандартный объём и интеграции
+            считаю отдельно после короткого разбора.
           </p>
         </div>
       </section>
@@ -312,8 +337,9 @@
               </h3>
               <p class="process-step__text">
                 Собираю сайт в коде — не статичный макет, а то, что уже кликается.
-                Через 9–12 дней отправлю ссылку: можно смотреть с телефона и давать правки.
-                Дальше — доводка, адаптив и запуск в согласованный срок.
+                Лендинг — через 9–12 дней, сайт-каталог — через 12–16 дней отправлю ссылку:
+                можно смотреть с телефона и давать правки. Дальше — доводка, адаптив и запуск
+                в согласованный срок.
               </p>
             </li>
             <li class="process-step">
@@ -338,46 +364,25 @@
         </div>
       </section>
 
-      <section class="about" id="about" aria-labelledby="about-title">
-        <div class="container about__layout">
-          <header class="section-heading section-heading--compact">
-            <p class="section-heading__eyebrow">Обо мне</p>
-            <h2 id="about-title" class="section-heading__title">
-              Один человек — весь проект
-            </h2>
-          </header>
-          <div class="about__body">
-            <p class="about__lead">
-              Я Станислав. Делаю сайты для малого и среднего бизнеса: структура, тексты,
-              адаптив, формы и запуск. Не агентство — все решения принимаю и делаю сам.
-            </p>
-            <ul class="about__facts">
-              <li>Салоны, сервисы, локальные компании и частные специалисты</li>
-              <li>Сначала смотрю ваш сайт или задачу — потом называю срок и цену</li>
-              <li>Отвечаю лично в Telegram и VK, без менеджеров</li>
-            </ul>
-          </div>
-        </div>
-      </section>
-
       <section class="contact" id="contact" aria-labelledby="contact-title">
         <div class="container contact__layout">
           <div class="contact__intro">
             <header class="section-heading section-heading--compact">
               <p class="section-heading__eyebrow">Связаться</p>
               <h2 id="contact-title" class="section-heading__title">
-                Расскажите о проекте
+                Оставить заявку
               </h2>
             </header>
             <p class="contact__text">
-              Опишите задачу или скиньте ссылку на текущий сайт. Отвечу лично — обычно
-              в течение рабочего дня. Срок и цену назову после разбора, не наугад.
+              Не обязательно писать первым — оставьте имя и ник в форме справа.
+              Заявка придёт мне, напишу вам в Telegram или VK. Обычно в течение
+              рабочего дня.
             </p>
             <nav class="contact__channels" aria-label="Быстрая связь">
               <a class="contact__channel" id="contact-telegram" data-telegram-link href="https://t.me/stanislav5621" target="_blank" rel="noopener noreferrer">Telegram</a>
               <a class="contact__channel contact__channel--vk" href="https://vk.ru/id1025918815" target="_blank" rel="noopener noreferrer">VK</a>
             </nav>
-            <p class="contact__channels-note">Или оставьте заявку — укажите, куда ответить.</p>
+            <p class="contact__channels-note">Удобнее написать сами — Telegram или VK.</p>
           </div>
 
           <form
@@ -398,6 +403,7 @@
                   id="lead-name"
                   placeholder="Иван"
                   autocomplete="name"
+                  required
                 />
               </div>
             </div>
@@ -431,10 +437,12 @@
                   type="text"
                   id="lead-contact"
                   name="contact"
-                  placeholder="@username в Telegram"
+                  placeholder="username"
                   required
                   autocomplete="off"
-                  minlength="3"
+                  autocapitalize="off"
+                  autocorrect="off"
+                  spellcheck="false"
                 />
               </div>
             </div>
@@ -453,18 +461,24 @@
               </span>
             </label>
 
-            <button class="lead-form__submit" type="submit" id="lead-submit" disabled>
+            <button class="lead-form__submit" type="submit" id="lead-submit">
               Оставить заявку
             </button>
 
             <p class="lead-form__fallback">
-              Проще написать напрямую —
+              Удобнее написать сами —
               <a data-telegram-link href="https://t.me/stanislav5621" target="_blank" rel="noopener noreferrer">Telegram</a>
               или
               <a href="https://vk.ru/id1025918815" target="_blank" rel="noopener noreferrer">VK</a>.
             </p>
 
-            <p class="lead-form__status" id="lead-form-status" role="status" aria-live="polite" hidden></p>
+            <p
+              class="lead-form__status is-empty"
+              id="lead-form-status"
+              role="status"
+              aria-live="polite"
+              aria-hidden="true"
+            ></p>
           </form>
         </div>
       </section>
@@ -474,8 +488,8 @@
       <div class="container site-footer__inner">
         <p>© Станислав, 2026</p>
         <nav aria-label="Подвал">
-          <a href="#about">Обо мне</a>
           <a href="#cases">Кейсы</a>
+          <a href="#about">Обо мне</a>
           <a href="#pricing">Цены</a>
           <a href="#process">Как я работаю</a>
           <a href="#contact">Контакты</a>
