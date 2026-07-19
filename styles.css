@@ -790,15 +790,11 @@ body.menu-open .site-header.top-nav::before {
 html.is-menu-scroll-locked {
   overflow: hidden;
   scroll-behavior: auto;
+  height: 100%;
 }
 
 html.is-menu-scroll-locked body {
   overflow: hidden;
-  position: fixed;
-  top: calc(-1 * var(--menu-scroll-y, 0px));
-  left: 0;
-  right: 0;
-  width: 100%;
   touch-action: none;
   overscroll-behavior: none;
 }

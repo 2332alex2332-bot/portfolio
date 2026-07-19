@@ -25,7 +25,6 @@ document.querySelectorAll("[data-telegram-link]").forEach((link) => {
 const menuBtn = document.getElementById("burger");
 const sideMenu = document.getElementById("side-menu");
 const menuOverlay = document.getElementById("menu-overlay");
-let menuScrollY = 0;
 
 const updateSiteHeaderHeight = () => {
   const header = document.querySelector(".site-header");
@@ -44,16 +43,11 @@ const initSiteHeaderHeight = () => {
 };
 
 const lockPageScroll = () => {
-  menuScrollY = window.scrollY || document.documentElement.scrollTop || 0;
-  document.body.style.setProperty("--menu-scroll-y", `${menuScrollY}px`);
   document.documentElement.classList.add("is-menu-scroll-locked");
 };
 
 const unlockPageScroll = () => {
-  const scrollY = menuScrollY;
   document.documentElement.classList.remove("is-menu-scroll-locked");
-  document.body.style.removeProperty("--menu-scroll-y");
-  window.scrollTo({ top: scrollY, left: 0, behavior: "auto" });
 };
 
 const setMenuOpen = (isOpen) => {
@@ -70,11 +64,9 @@ const setMenuOpen = (isOpen) => {
     return;
   }
 
+  document.body.classList.remove("menu-open");
   unlockPageScroll();
   menuBtn.blur();
-  requestAnimationFrame(() => {
-    document.body.classList.remove("menu-open");
-  });
 };
 
 const toggleMenu = (forceOpen) => {
