@@ -1,5 +1,5 @@
 :root {
-  --breadcrumbs-bar-height: 2.25rem;
+  --breadcrumbs-bar-height: calc(1rem + 0.75rem * 1.4 + 1px);
 }
 
 .site-breadcrumbs-wrap {
@@ -74,6 +74,10 @@ body.yc-widget-body-open .site-breadcrumbs-wrap {
 }
 
 @media (max-width: 640px) {
+  :root {
+    --breadcrumbs-bar-height: calc(1rem + 0.6875rem * 1.4 + 1px);
+  }
+
   .site-breadcrumbs__list {
     font-size: 0.6875rem;
   }
