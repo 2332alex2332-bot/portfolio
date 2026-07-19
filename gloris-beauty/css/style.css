@@ -3364,10 +3364,11 @@ body[data-page="contacts"] .map-embed {
   padding-top: 0.5rem;
 }
 
-/* Кнопки контактов: чёрный фон, белый текст (На карте, WhatsApp, Telegram, Позвонить) */
+/* Кнопки контактов: чёрный фон, белый текст (На карте, Telegram) */
 body[data-page="contacts"] .venue-card__body a.lo-pill-btn,
 body[data-page="contacts"] .venue-card__body a.contact-map-btn,
-body[data-page="contacts"] .contact-actions a.lo-pill-btn {
+body[data-page="contacts"] .contact-actions a.lo-pill-btn,
+body[data-page="contacts"] .contact-actions a.contact-map-btn {
   background: #000000 !important;
   color: #ffffff !important;
   border-color: #000000 !important;
@@ -3377,7 +3378,8 @@ body[data-page="contacts"] .contact-actions a.lo-pill-btn {
 
 body[data-page="contacts"] .venue-card__body a.lo-pill-btn:hover,
 body[data-page="contacts"] .venue-card__body a.contact-map-btn:hover,
-body[data-page="contacts"] .contact-actions a.lo-pill-btn:hover {
+body[data-page="contacts"] .contact-actions a.lo-pill-btn:hover,
+body[data-page="contacts"] .contact-actions a.contact-map-btn:hover {
   background: #1a1a1a !important;
   color: #ffffff !important;
   border-color: #1a1a1a !important;
