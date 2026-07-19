@@ -388,20 +388,22 @@
             novalidate
             data-lead-api="/api/lead"
           >
-            <label class="lead-form__field">
-              <span class="lead-form__label">Имя</span>
-              <input
-                class="lead-form__input"
-                type="text"
-                name="name"
-                id="lead-name"
-                placeholder="Иван"
-                autocomplete="name"
-              />
-            </label>
+            <div class="lead-form__field">
+              <label class="lead-form__label" for="lead-name">Имя</label>
+              <div class="lead-form__input-wrap">
+                <input
+                  class="lead-form__input"
+                  type="text"
+                  name="name"
+                  id="lead-name"
+                  placeholder="Иван"
+                  autocomplete="name"
+                />
+              </div>
+            </div>
 
-            <label class="lead-form__field">
-              <span class="lead-form__label">Telegram или VK</span>
+            <div class="lead-form__field">
+              <label class="lead-form__label" for="lead-contact">Telegram или VK</label>
               <div class="lead-form__social" role="radiogroup" aria-label="Способ связи">
                 <label class="lead-form__social-option">
                   <input
@@ -423,17 +425,19 @@
                   <span>VK</span>
                 </label>
               </div>
-              <input
-                class="lead-form__input"
-                type="text"
-                id="lead-contact"
-                name="contact"
-                placeholder="@username в Telegram"
-                required
-                autocomplete="off"
-                minlength="3"
-              />
-            </label>
+              <div class="lead-form__input-wrap">
+                <input
+                  class="lead-form__input"
+                  type="text"
+                  id="lead-contact"
+                  name="contact"
+                  placeholder="@username в Telegram"
+                  required
+                  autocomplete="off"
+                  minlength="3"
+                />
+              </div>
+            </div>
 
             <label class="lead-form__consent">
               <input

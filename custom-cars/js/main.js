@@ -94,6 +94,134 @@ if (contactPrivacyAgree && contactSubmitBtn) {
   });
 }
 
+const initMobileFormUx = () => {
+  const contactForm = document.querySelector(".mini-form");
+  const ctaFloat = document.querySelector(".cta-float");
+  const contactSection = document.getElementById("contact");
+
+  if (!contactForm) return;
+
+  const formFields = contactForm.querySelectorAll(
+    'input:not([type="checkbox"]), textarea'
+  );
+  const isTouchDevice = window.matchMedia("(hover: none) and (pointer: coarse)").matches;
+
+  const syncFormFocusState = () => {
+    const active = document.activeElement;
+    const focusedInForm =
+      active instanceof HTMLElement && contactForm.contains(active);
+    document.body.classList.toggle("is-form-focused", focusedInForm);
+  };
+
+  const syncKeyboardState = () => {
+    const viewport = window.visualViewport;
+    if (!viewport) return;
+    const keyboardOpen = viewport.height < window.innerHeight * 0.82;
+    document.body.classList.toggle("is-keyboard-open", keyboardOpen);
+  };
+
+  const blurFieldIfScrolledAway = () => {
+    const active = document.activeElement;
+    if (!(active instanceof HTMLElement) || !contactForm.contains(active)) return;
+
+    const viewport = window.visualViewport;
+    const viewportHeight = viewport?.height ?? window.innerHeight;
+    const viewportTop = viewport?.offsetTop ?? 0;
+    const rect = active.getBoundingClientRect();
+    const visibleTop = viewportTop + 12;
+    const visibleBottom = viewportTop + viewportHeight - 12;
+
+    if (rect.bottom < visibleTop || rect.top > visibleBottom) {
+      active.blur();
+    }
+  };
+
+  formFields.forEach((field) => {
+    if (!(field instanceof HTMLInputElement || field instanceof HTMLTextAreaElement)) {
+      return;
+    }
+
+    field.addEventListener("focus", () => {
+      syncFormFocusState();
+      syncKeyboardState();
+    });
+
+    field.addEventListener("blur", () => {
+      window.setTimeout(syncFormFocusState, 0);
+    });
+
+    if (!isTouchDevice) return;
+
+    field.readOnly = true;
+    let startX = 0;
+    let startY = 0;
+    let moved = false;
+
+    field.addEventListener(
+      "touchstart",
+      (event) => {
+        const touch = event.touches[0];
+        if (!touch) return;
+        startX = touch.clientX;
+        startY = touch.clientY;
+        moved = false;
+      },
+      { passive: true }
+    );
+
+    field.addEventListener(
+      "touchmove",
+      (event) => {
+        const touch = event.touches[0];
+        if (!touch) return;
+        if (
+          Math.abs(touch.clientX - startX) > 8 ||
+          Math.abs(touch.clientY - startY) > 8
+        ) {
+          moved = true;
+          if (document.activeElement === field) {
+            field.blur();
+          }
+        }
+      },
+      { passive: true }
+    );
+
+    field.addEventListener("touchend", () => {
+      if (moved) return;
+      field.readOnly = false;
+      field.focus();
+    });
+
+    field.addEventListener("blur", () => {
+      field.readOnly = true;
+    });
+  });
+
+  window.addEventListener("scroll", blurFieldIfScrolledAway, { passive: true });
+
+  if (window.visualViewport) {
+    window.visualViewport.addEventListener("resize", () => {
+      syncKeyboardState();
+      blurFieldIfScrolledAway();
+    });
+    window.visualViewport.addEventListener("scroll", blurFieldIfScrolledAway);
+    syncKeyboardState();
+  }
+
+  if (ctaFloat && contactSection && "IntersectionObserver" in window) {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        ctaFloat.classList.toggle("is-hidden", entry.isIntersecting);
+      },
+      { threshold: 0.12, rootMargin: "0px 0px -72px 0px" }
+    );
+    observer.observe(contactSection);
+  }
+};
+
+initMobileFormUx();
+
 function buildAnySizeBlock(wrap, items) {
   const anySize = document.createElement("div");
   anySize.className = "price-any-size";

@@ -181,9 +181,139 @@ const clearFieldErrors = () => {
 };
 
 const markFieldError = (field) => {
+  if (field instanceof HTMLInputElement) {
+    field.readOnly = false;
+    field.closest(".lead-form__input-wrap")?.classList.add("is-editing");
+  }
   field?.classList.add("lead-form__input--error");
   field?.focus();
 };
+
+const initMobileFormUx = () => {
+  if (!form) return;
+
+  const isTouchDevice = window.matchMedia("(hover: none) and (pointer: coarse)").matches;
+
+  const syncKeyboardState = () => {
+    const viewport = window.visualViewport;
+    if (!viewport) return;
+    document.body.classList.toggle(
+      "is-keyboard-open",
+      viewport.height < window.innerHeight * 0.82
+    );
+  };
+
+  const blurFieldIfScrolledAway = () => {
+    const active = document.activeElement;
+    if (!(active instanceof HTMLElement) || !form.contains(active)) return;
+
+    const viewport = window.visualViewport;
+    const viewportHeight = viewport?.height ?? window.innerHeight;
+    const viewportTop = viewport?.offsetTop ?? 0;
+    const rect = active.getBoundingClientRect();
+    const visibleTop = viewportTop + 12;
+    const visibleBottom = viewportTop + viewportHeight - 12;
+
+    if (rect.bottom < visibleTop || rect.top > visibleBottom) {
+      active.blur();
+    }
+  };
+
+  const bindFieldFocusTracking = (field) => {
+    field.addEventListener("focus", syncKeyboardState);
+    field.addEventListener("blur", () => {
+      window.setTimeout(syncKeyboardState, 0);
+    });
+  };
+
+  if (!isTouchDevice) {
+    form.querySelectorAll(".lead-form__input").forEach((field) => {
+      if (field instanceof HTMLInputElement) {
+        bindFieldFocusTracking(field);
+      }
+    });
+    window.addEventListener("scroll", blurFieldIfScrolledAway, { passive: true });
+    if (window.visualViewport) {
+      window.visualViewport.addEventListener("resize", syncKeyboardState);
+    }
+    return;
+  }
+
+  form.querySelectorAll(".lead-form__input-wrap").forEach((wrap) => {
+    const input = wrap.querySelector(".lead-form__input");
+    if (!(input instanceof HTMLInputElement)) return;
+
+    input.readOnly = true;
+    let startX = 0;
+    let startY = 0;
+    let moved = false;
+
+    const enableEditing = () => {
+      input.readOnly = false;
+      wrap.classList.add("is-editing");
+      input.focus();
+    };
+
+    const disableEditing = () => {
+      input.readOnly = true;
+      wrap.classList.remove("is-editing");
+    };
+
+    wrap.addEventListener(
+      "touchstart",
+      (event) => {
+        const touch = event.touches[0];
+        if (!touch) return;
+        startX = touch.clientX;
+        startY = touch.clientY;
+        moved = false;
+      },
+      { passive: true }
+    );
+
+    wrap.addEventListener(
+      "touchmove",
+      (event) => {
+        const touch = event.touches[0];
+        if (!touch) return;
+        if (
+          Math.abs(touch.clientX - startX) > 8 ||
+          Math.abs(touch.clientY - startY) > 8
+        ) {
+          moved = true;
+        }
+      },
+      { passive: true }
+    );
+
+    wrap.addEventListener("touchend", () => {
+      if (moved) return;
+      enableEditing();
+    });
+
+    input.addEventListener("blur", disableEditing);
+    bindFieldFocusTracking(input);
+
+    const label = wrap.closest(".lead-form__field")?.querySelector(".lead-form__label");
+    label?.addEventListener("click", (event) => {
+      event.preventDefault();
+      enableEditing();
+    });
+  });
+
+  window.addEventListener("scroll", blurFieldIfScrolledAway, { passive: true });
+
+  if (window.visualViewport) {
+    window.visualViewport.addEventListener("resize", () => {
+      syncKeyboardState();
+      blurFieldIfScrolledAway();
+    });
+    window.visualViewport.addEventListener("scroll", blurFieldIfScrolledAway);
+    syncKeyboardState();
+  }
+};
+
+initMobileFormUx();
 
 const sendLeadToTelegram = async (payload, leadApi) => {
   const response = await fetch(leadApi, {
