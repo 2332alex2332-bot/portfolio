@@ -3364,33 +3364,25 @@ body[data-page="contacts"] .map-embed {
   padding-top: 0.5rem;
 }
 
-/* Контакты: кнопки На карте / Telegram — белый текст (в т.ч. во встроенном браузере VK) */
-body[data-page="contacts"] .venue-card .contact-action-btn,
-body[data-page="contacts"] .venue-card .contact-action-btn:link,
-body[data-page="contacts"] .venue-card .contact-action-btn:visited,
-body[data-page="contacts"] .venue-card .contact-action-btn:hover,
-body[data-page="contacts"] .venue-card .contact-action-btn:active,
-body[data-page="contacts"] .venue-card .contact-action-btn:focus,
-body[data-page="contacts"] .venue-card .contact-action-btn:focus-visible {
-  background-color: #000000 !important;
+/* Кнопки контактов: чёрный фон, белый текст (На карте, Telegram) */
+body[data-page="contacts"] .venue-card__body a.lo-pill-btn,
+body[data-page="contacts"] .venue-card__body a.contact-map-btn,
+body[data-page="contacts"] .contact-actions a.lo-pill-btn,
+body[data-page="contacts"] .contact-actions a.contact-map-btn {
   background: #000000 !important;
-  border: 1px solid #000000 !important;
-  border-color: #000000 !important;
   color: #ffffff !important;
+  border-color: #000000 !important;
   -webkit-text-fill-color: #ffffff !important;
   opacity: 1 !important;
-  text-decoration: none !important;
-  box-shadow: none !important;
 }
 
-body[data-page="contacts"] .venue-card--salon .contact-action-btn:hover,
-body[data-page="contacts"] .venue-card--salon .contact-action-btn:active,
-body[data-page="contacts"] .venue-card--medical .contact-action-btn:hover,
-body[data-page="contacts"] .venue-card--medical .contact-action-btn:active {
-  background-color: #1a1a1a !important;
+body[data-page="contacts"] .venue-card__body a.lo-pill-btn:hover,
+body[data-page="contacts"] .venue-card__body a.contact-map-btn:hover,
+body[data-page="contacts"] .contact-actions a.lo-pill-btn:hover,
+body[data-page="contacts"] .contact-actions a.contact-map-btn:hover {
   background: #1a1a1a !important;
-  border-color: #1a1a1a !important;
   color: #ffffff !important;
+  border-color: #1a1a1a !important;
   -webkit-text-fill-color: #ffffff !important;
   opacity: 1 !important;
 }
