@@ -10,6 +10,8 @@ html {
   overflow-x: hidden;
   max-width: 100%;
   overscroll-behavior-x: none;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
   background: var(--charcoal);
 }
 
@@ -25,7 +27,7 @@ body {
   max-width: 100%;
   width: 100%;
   overscroll-behavior-x: none;
-  min-height: 100dvh;
+  min-height: 100svh;
   display: flex;
   flex-direction: column;
 }
@@ -652,8 +654,7 @@ body.menu-open .top-nav-cta.yc-widget-open {
   top: 0;
   left: 0;
   width: min(300px, 88vw);
-  height: 100vh;
-  height: 100dvh;
+  height: 100svh;
   background: var(--white);
   z-index: 1250;
   display: flex;
@@ -827,8 +828,7 @@ body.yc-widget-body-open .site-breadcrumbs-wrap {
 /* ===== HERO (fullscreen) ===== */
 .main-content {
   position: relative;
-  min-height: calc(100vh - var(--site-header-height, 64px));
-  min-height: calc(100dvh - var(--site-header-height, 64px));
+  min-height: calc(100svh - var(--site-header-height, 64px));
   min-height: 700px;
   display: block;
   margin-bottom: 0;
@@ -916,8 +916,7 @@ body.yc-widget-body-open .site-breadcrumbs-wrap {
   flex-direction: column;
   align-items: center;
   justify-content: flex-end;
-  min-height: calc(100vh - var(--site-header-height, 64px));
-  min-height: calc(100dvh - var(--site-header-height, 64px));
+  min-height: calc(100svh - var(--site-header-height, 64px));
   min-height: 700px;
   padding: 120px 40px 100px;
   text-align: center;
@@ -2601,10 +2600,7 @@ body[data-page="home"] .visit-btn.purple:hover {
   body[data-page="home"] .home-first-screen {
     display: flex;
     flex-direction: column;
-    height: calc(100svh - var(--site-header-height, 56px));
-    height: calc(100dvh - var(--site-header-height, 56px));
-    max-height: calc(100svh - var(--site-header-height, 56px));
-    max-height: calc(100dvh - var(--site-header-height, 56px));
+    min-height: calc(100svh - var(--site-header-height, 56px));
     overflow: hidden;
   }
 

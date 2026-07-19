@@ -789,6 +789,7 @@ body.menu-open .site-header.top-nav::before {
 /* Mobile menu — scroll lock + blur фона */
 html.is-menu-scroll-locked {
   overflow: hidden;
+  scroll-behavior: auto;
 }
 
 html.is-menu-scroll-locked body {
@@ -799,6 +800,7 @@ html.is-menu-scroll-locked body {
   right: 0;
   width: 100%;
   touch-action: none;
+  overscroll-behavior: none;
 }
 
 body.menu-open main,

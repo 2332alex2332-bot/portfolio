@@ -44,7 +44,7 @@ const initSiteHeaderHeight = () => {
 };
 
 const lockPageScroll = () => {
-  menuScrollY = window.scrollY;
+  menuScrollY = window.scrollY || document.documentElement.scrollTop || 0;
   document.body.style.setProperty("--menu-scroll-y", `${menuScrollY}px`);
   document.documentElement.classList.add("is-menu-scroll-locked");
 };
@@ -53,28 +53,37 @@ const unlockPageScroll = () => {
   const scrollY = menuScrollY;
   document.documentElement.classList.remove("is-menu-scroll-locked");
   document.body.style.removeProperty("--menu-scroll-y");
-  window.scrollTo(0, scrollY);
+  window.scrollTo({ top: scrollY, left: 0, behavior: "auto" });
 };
 
-const toggleMenu = (forceOpen) => {
+const setMenuOpen = (isOpen) => {
   if (!menuBtn || !sideMenu || !menuOverlay) return;
-
-  const isOpen =
-    typeof forceOpen === "boolean"
-      ? forceOpen
-      : !sideMenu.classList.contains("open");
 
   sideMenu.classList.toggle("open", isOpen);
   menuOverlay.classList.toggle("open", isOpen);
   menuOverlay.setAttribute("aria-hidden", isOpen ? "false" : "true");
   menuBtn.setAttribute("aria-expanded", isOpen ? "true" : "false");
-  document.body.classList.toggle("menu-open", isOpen);
 
   if (isOpen) {
+    document.body.classList.add("menu-open");
     lockPageScroll();
-  } else {
-    unlockPageScroll();
+    return;
   }
+
+  unlockPageScroll();
+  menuBtn.blur();
+  requestAnimationFrame(() => {
+    document.body.classList.remove("menu-open");
+  });
+};
+
+const toggleMenu = (forceOpen) => {
+  const isOpen =
+    typeof forceOpen === "boolean"
+      ? forceOpen
+      : !sideMenu?.classList.contains("open");
+
+  setMenuOpen(isOpen);
 };
 
 menuBtn?.addEventListener("click", () => toggleMenu());
