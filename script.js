@@ -163,15 +163,31 @@ const setFormStatus = (message, type = "success") => {
   );
 };
 
+const isLeadFormReady = () => {
+  if (!(consentCheckbox instanceof HTMLInputElement) || !consentCheckbox.checked) {
+    return false;
+  }
+
+  const name = nameInput instanceof HTMLInputElement ? nameInput.value.trim() : "";
+  const contact = contactInput instanceof HTMLInputElement ? contactInput.value.trim() : "";
+
+  return name.length > 0 && contact.length >= 3;
+};
+
 const syncSubmitState = () => {
-  if (!(submitBtn instanceof HTMLButtonElement) || !(consentCheckbox instanceof HTMLInputElement)) {
+  if (!(submitBtn instanceof HTMLButtonElement)) {
     return;
   }
 
-  submitBtn.disabled = !consentCheckbox.checked;
+  submitBtn.disabled = !isLeadFormReady();
 };
 
 consentCheckbox?.addEventListener("change", syncSubmitState);
+nameInput?.addEventListener("input", syncSubmitState);
+contactInput?.addEventListener("input", () => {
+  contactInput.classList.remove("lead-form__input--error");
+  syncSubmitState();
+});
 syncSubmitState();
 
 const clearFieldErrors = () => {
@@ -373,6 +389,12 @@ form?.addEventListener("submit", async (event) => {
     return;
   }
 
+  if (!name) {
+    markFieldError(nameInput);
+    setFormStatus("Укажите имя.", "error");
+    return;
+  }
+
   const payload = { name, contact, social };
   const summary = buildLeadSummary(payload);
   const leadApi = form.dataset.leadApi?.trim();
@@ -437,8 +459,4 @@ form?.addEventListener("submit", async (event) => {
     "Открыл Telegram с вашей заявкой — нажмите «Отправить». Если окно не открылось, ссылка под кнопкой.",
     "error"
   );
-});
-
-contactInput?.addEventListener("input", () => {
-  contactInput.classList.remove("lead-form__input--error");
 });

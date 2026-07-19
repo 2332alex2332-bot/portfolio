@@ -96,15 +96,18 @@ body:not([data-page="home"]):not([data-page="services"]):not([data-page="masters
   width: 100%;
   max-width: 100%;
   box-sizing: border-box;
+  transform: translateZ(0);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
 }
 
 .page-main {
   flex: 1 0 auto;
-  padding-top: var(--site-header-height, 64px);
+  padding-top: var(--site-header-height, calc(4rem + 1.75rem));
 }
 
 .site-header.top-nav {
-  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+  border-bottom: none;
 }
 
 .top-nav-bar {
@@ -912,18 +915,6 @@ body.menu-open .top-nav-cta.yc-widget-open {
 }
 
 .side-menu-social a:hover { color: var(--gold); }
-
-body.menu-open .site-breadcrumbs-wrap {
-  opacity: 0;
-  pointer-events: none;
-  visibility: hidden;
-}
-
-body.yc-widget-body-open .site-breadcrumbs-wrap {
-  opacity: 0;
-  pointer-events: none;
-  visibility: hidden;
-}
 
 .site-logo {
   text-decoration: none;

@@ -85,14 +85,92 @@ document.querySelectorAll(".youtube-widget").forEach((widget) => {
   });
 });
 
+const formatPhone = (value) => {
+  let digits = value.replace(/\D/g, "");
+  if (digits.startsWith("8")) digits = `7${digits.slice(1)}`;
+  else if (digits.length && digits[0] !== "7") digits = `7${digits}`;
+  digits = digits.slice(0, 11);
+
+  if (!digits.length) return "";
+  if (digits.length <= 1) return "+7";
+  if (digits.length <= 4) return `+7 (${digits.slice(1)}`;
+  if (digits.length <= 7) return `+7 (${digits.slice(1, 4)}) ${digits.slice(4)}`;
+  if (digits.length <= 9) {
+    return `+7 (${digits.slice(1, 4)}) ${digits.slice(4, 7)}-${digits.slice(7)}`;
+  }
+  return `+7 (${digits.slice(1, 4)}) ${digits.slice(4, 7)}-${digits.slice(7, 9)}-${digits.slice(9, 11)}`;
+};
+
+const initPhoneMask = () => {
+  document.querySelectorAll('input[type="tel"]').forEach((input) => {
+    if (input.dataset.phoneMask) return;
+    input.dataset.phoneMask = "1";
+    if (!input.placeholder) input.placeholder = "+7 (___) ___-__-__";
+
+    input.addEventListener("input", () => {
+      const pos = input.selectionStart || 0;
+      const prev = input.value;
+      const formatted = formatPhone(prev);
+      input.value = formatted;
+      const diff = formatted.length - prev.length;
+      const newPos = Math.max(0, Math.min(formatted.length, pos + diff));
+      input.setSelectionRange(newPos, newPos);
+    });
+
+    input.addEventListener("focus", () => {
+      if (!input.value) input.value = "+7 ";
+    });
+
+    input.addEventListener("blur", () => {
+      if (input.value === "+7" || input.value === "+7 ") input.value = "";
+    });
+  });
+};
+
+const contactForm = document.querySelector(".mini-form");
 const contactPrivacyAgree = document.getElementById("contact-privacy-agree");
 const contactSubmitBtn = document.getElementById("contact-submit-btn");
+const contactNameInput = document.getElementById("contact-name");
+const contactPhoneInput = document.getElementById("contact-phone");
+const contactEmailInput = document.getElementById("contact-email");
 
-if (contactPrivacyAgree && contactSubmitBtn) {
-  contactPrivacyAgree.addEventListener("change", () => {
-    contactSubmitBtn.disabled = !contactPrivacyAgree.checked;
-  });
-}
+const isValidEmail = (value) => {
+  const email = value.trim();
+  if (!email) return false;
+  return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i.test(email);
+};
+
+const isContactFormReady = () => {
+  if (!(contactPrivacyAgree instanceof HTMLInputElement) || !contactPrivacyAgree.checked) {
+    return false;
+  }
+
+  const name = contactNameInput instanceof HTMLInputElement ? contactNameInput.value.trim() : "";
+  const phone = contactPhoneInput instanceof HTMLInputElement ? contactPhoneInput.value.trim() : "";
+  const email = contactEmailInput instanceof HTMLInputElement ? contactEmailInput.value : "";
+  const phoneDigits = phone.replace(/\D/g, "");
+
+  return name.length > 0 && phoneDigits.length >= 11 && isValidEmail(email);
+};
+
+const syncContactSubmitState = () => {
+  if (!(contactSubmitBtn instanceof HTMLButtonElement)) return;
+  contactSubmitBtn.disabled = !isContactFormReady();
+};
+
+contactPrivacyAgree?.addEventListener("change", syncContactSubmitState);
+contactNameInput?.addEventListener("input", syncContactSubmitState);
+contactPhoneInput?.addEventListener("input", syncContactSubmitState);
+contactEmailInput?.addEventListener("input", syncContactSubmitState);
+syncContactSubmitState();
+initPhoneMask();
+
+contactForm?.addEventListener("submit", (event) => {
+  if (!isContactFormReady()) {
+    event.preventDefault();
+    contactEmailInput?.reportValidity?.();
+  }
+});
 
 const initMobileFormUx = () => {
   const contactForm = document.querySelector(".mini-form");
