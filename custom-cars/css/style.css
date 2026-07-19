@@ -916,23 +916,23 @@ h1 span,
 }
 
 .mark-boost::before {
-  left: 6px;
-  top: 9px;
-  width: 82px;
+  left: 10px;
+  top: 11px;
+  width: 70px;
   transform: rotate(27deg);
 }
 
 .mark-boost::after {
-  left: 6px;
-  bottom: 9px;
-  width: 82px;
+  left: 10px;
+  bottom: 11px;
+  width: 70px;
   transform: rotate(-27deg);
 }
 
 .mark-boost div {
-  left: 0;
+  left: 8px;
   top: 50%;
-  width: 64px;
+  width: 54px;
   opacity: 0.72;
   transform: translateY(-50%);
 }
@@ -2027,6 +2027,21 @@ address {
 .mini-form input:not([type="checkbox"]):focus,
 .mini-form textarea:focus {
   border-color: var(--muted);
+}
+
+.mini-form input:not([type="checkbox"]):-webkit-autofill,
+.mini-form input:not([type="checkbox"]):-webkit-autofill:hover,
+.mini-form input:not([type="checkbox"]):-webkit-autofill:focus,
+.mini-form input:not([type="checkbox"]):-webkit-autofill:active,
+.mini-form textarea:-webkit-autofill,
+.mini-form textarea:-webkit-autofill:hover,
+.mini-form textarea:-webkit-autofill:focus,
+.mini-form textarea:-webkit-autofill:active {
+  -webkit-text-fill-color: var(--ink) !important;
+  caret-color: var(--ink);
+  box-shadow: 0 0 0 1000px var(--paper) inset !important;
+  -webkit-box-shadow: 0 0 0 1000px var(--paper) inset !important;
+  transition: background-color 99999s ease-out 0s;
 }
 
 .mini-form button {
