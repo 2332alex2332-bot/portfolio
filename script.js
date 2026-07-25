@@ -90,6 +90,39 @@ document.addEventListener(
 
 initSiteHeaderHeight();
 
+const initDiscussCtaState = () => {
+  const contactSection = document.getElementById("contact");
+  const discussLinks = document.querySelectorAll('a[href="#contact"]');
+  if (!contactSection || !discussLinks.length) return;
+
+  const setDiscussLit = (isLit) => {
+    discussLinks.forEach((link) => {
+      link.classList.toggle("is-section-active", isLit);
+    });
+  };
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => setDiscussLit(entry.isIntersecting));
+    },
+    {
+      root: null,
+      threshold: 0.12,
+      rootMargin: "-8% 0px -35% 0px",
+    }
+  );
+
+  observer.observe(contactSection);
+
+  discussLinks.forEach((link) => {
+    link.addEventListener("click", () => {
+      window.setTimeout(() => link.blur(), 0);
+    });
+  });
+};
+
+initDiscussCtaState();
+
 const siteHeader = document.querySelector(".site-header");
 window.addEventListener(
   "scroll",

@@ -389,24 +389,27 @@
     .project-modal.is-open { display:flex; }
     .project-modal__panel { position:relative; width:100%; max-width:1100px; max-height:92vh; overflow:hidden; background:var(--canvas); }
     @media(max-width:899px){
-      .project-modal { align-items:flex-start; padding:.5rem; padding-bottom:max(.5rem, env(safe-area-inset-bottom, 0px)); }
+      .project-modal { align-items:flex-start; padding:.5rem; padding-bottom:max(.5rem, env(safe-area-inset-bottom, 0px)); --modal-close-offset:.75rem; }
       .project-modal.is-open { display:block; }
       .project-modal__close-stick {
-        position:sticky;
-        top:max(.75rem, calc(env(safe-area-inset-top, 0px) + .25rem));
-        width:100%;
-        height:0;
-        overflow:visible;
-        z-index:210;
+        position:fixed;
+        top:calc(env(safe-area-inset-top, 0px) + var(--modal-close-offset));
+        right:calc(env(safe-area-inset-right, 0px) + var(--modal-close-offset));
+        left:auto;
+        width:auto;
+        height:auto;
+        z-index:220;
         pointer-events:none;
       }
       .project-modal__close-stick .project-modal__close {
-        position:absolute;
-        top:0;
-        right:max(.75rem, calc(env(safe-area-inset-right, 0px) + .25rem));
+        position:relative;
+        top:auto;
+        right:auto;
         float:none;
         margin:0;
         pointer-events:auto;
+        -webkit-transform:translateZ(0);
+        transform:translateZ(0);
       }
       .project-modal__panel {
         max-height:none;

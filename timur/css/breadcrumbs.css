@@ -40,8 +40,13 @@
   font-size: 0.75rem;
   line-height: 1.4;
   color: var(--muted, #666);
-  position: relative;
-  top: 1px;
+}
+
+@media (min-width: 1025px) {
+  .site-breadcrumbs__list {
+    position: relative;
+    top: 2px;
+  }
 }
 
 .site-breadcrumbs__item {
