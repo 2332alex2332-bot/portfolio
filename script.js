@@ -1,3 +1,26 @@
+if ("scrollRestoration" in history) {
+  history.scrollRestoration = "manual";
+}
+
+const resetScrollPosition = () => {
+  window.scrollTo(0, 0);
+};
+
+resetScrollPosition();
+window.addEventListener(
+  "pageshow",
+  (event) => {
+    if (event.persisted) resetScrollPosition();
+  },
+  { passive: true }
+);
+
+document.addEventListener("hero-enter-complete", () => {
+  window.setTimeout(() => {
+    document.documentElement.classList.add("is-scroll-smooth");
+  }, 100);
+});
+
 const TELEGRAM_USERNAME = "stanislav5621";
 const TELEGRAM_START_MESSAGE =
   "Здравствуйте! Хочу обсудить сайт для бизнеса. Подскажите, с чего лучше начать?";
@@ -10,10 +33,113 @@ document.querySelectorAll("[data-telegram-link]").forEach((link) => {
 });
 
 const menuBtn = document.getElementById("burger");
+const menuCloseBtn = document.getElementById("menu-close");
 const sideMenu = document.getElementById("side-menu");
 const menuOverlay = document.getElementById("menu-overlay");
+const burgerLabel = menuBtn?.querySelector(".top-nav-burger__label");
+const siteHeader = document.querySelector(".site-header");
+
+const HEADER_MORPH_THRESHOLD = 20;
+const HEADER_MORPH_DURATION = 420;
+
+let headerMorphValue = 0;
+let headerMorphAnimating = false;
+let headerMorphFrameId = 0;
+
+const getHeaderMorphTarget = () => (window.scrollY > HEADER_MORPH_THRESHOLD ? 1 : 0);
+
+const applyHeaderMorph = (value) => {
+  const isMobile = window.matchMedia("(max-width: 1024px)").matches;
+  const clamped = Math.min(1, Math.max(0, value));
+  const split = isMobile && !document.body.classList.contains("menu-open") ? clamped : 0;
+  const fixed = clamped.toFixed(4);
+  const splitFixed = split.toFixed(4);
+
+  document.documentElement.style.setProperty("--header-morph", fixed);
+  document.documentElement.style.setProperty("--header-morph-slim", fixed);
+  document.documentElement.style.setProperty("--header-morph-radius", fixed);
+  document.documentElement.style.setProperty("--header-morph-split", splitFixed);
+};
+
+const animateHeaderMorphTo = (target) => {
+  headerMorphAnimating = true;
+  const from = headerMorphValue;
+  const start = performance.now();
+  const animId = ++headerMorphFrameId;
+
+  const step = (now) => {
+    if (animId !== headerMorphFrameId) return;
+
+    const progress = Math.min(1, (now - start) / HEADER_MORPH_DURATION);
+    headerMorphValue = from + (target - from) * progress;
+    applyHeaderMorph(headerMorphValue);
+
+    if (progress < 1) {
+      requestAnimationFrame(step);
+      return;
+    }
+
+    headerMorphValue = target;
+    applyHeaderMorph(target);
+    headerMorphAnimating = false;
+  };
+
+  requestAnimationFrame(step);
+};
+
+const syncHeaderIslandFromScroll = () => {
+  const target = getHeaderMorphTarget();
+
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    headerMorphAnimating = false;
+    headerMorphFrameId += 1;
+    headerMorphValue = target;
+    applyHeaderMorph(target);
+    return;
+  }
+
+  if (headerMorphAnimating) return;
+
+  if (Math.abs(headerMorphValue - target) < 0.001) {
+    applyHeaderMorph(target);
+    return;
+  }
+
+  animateHeaderMorphTo(target);
+};
+
+const updateHeaderIsland = () => {
+  if (headerMorphAnimating) {
+    applyHeaderMorph(headerMorphValue);
+    return;
+  }
+  syncHeaderIslandFromScroll();
+};
+
+let headerMorphTicking = false;
+
+window.addEventListener(
+  "scroll",
+  () => {
+    if (headerMorphTicking) return;
+    headerMorphTicking = true;
+    requestAnimationFrame(() => {
+      syncHeaderIslandFromScroll();
+      headerMorphTicking = false;
+    });
+  },
+  { passive: true }
+);
+
+window.addEventListener("resize", syncHeaderIslandFromScroll, { passive: true });
+
+headerMorphValue = getHeaderMorphTarget();
+applyHeaderMorph(headerMorphValue);
+
+let headerMetricsReady = false;
 
 const updateSiteHeaderHeight = () => {
+  if (!headerMetricsReady) return;
   const header = document.querySelector(".site-header");
   if (!header) return;
   const height = Math.ceil(header.getBoundingClientRect().height);
@@ -21,7 +147,15 @@ const updateSiteHeaderHeight = () => {
 };
 
 const initSiteHeaderHeight = () => {
-  updateSiteHeaderHeight();
+  window.addEventListener(
+    "hero-enter-complete",
+    () => {
+      headerMetricsReady = true;
+      updateSiteHeaderHeight();
+    },
+    { once: true }
+  );
+
   window.addEventListener("resize", updateSiteHeaderHeight, { passive: true });
   const header = document.querySelector(".site-header");
   if (header && typeof ResizeObserver !== "undefined") {
@@ -44,16 +178,21 @@ const setMenuOpen = (isOpen) => {
   menuOverlay.classList.toggle("open", isOpen);
   menuOverlay.setAttribute("aria-hidden", isOpen ? "false" : "true");
   menuBtn.setAttribute("aria-expanded", isOpen ? "true" : "false");
+  menuBtn.setAttribute("aria-label", isOpen ? "Закрыть меню" : "Открыть меню");
+  if (burgerLabel) burgerLabel.textContent = isOpen ? "Закрыть" : "Меню";
+  document.documentElement.classList.toggle("has-mobile-menu-open", isOpen);
 
   if (isOpen) {
     document.body.classList.add("menu-open");
     lockPageScroll();
+    updateHeaderIsland();
     return;
   }
 
   document.body.classList.remove("menu-open");
   unlockPageScroll();
   menuBtn.blur();
+  updateHeaderIsland();
 };
 
 const toggleMenu = (forceOpen) => {
@@ -66,7 +205,10 @@ const toggleMenu = (forceOpen) => {
 };
 
 menuBtn?.addEventListener("click", () => toggleMenu());
-menuOverlay?.addEventListener("click", () => toggleMenu(false));
+menuCloseBtn?.addEventListener("click", () => toggleMenu(false));
+menuOverlay?.addEventListener("click", (event) => {
+  if (event.target === menuOverlay) toggleMenu(false);
+});
 
 sideMenu?.querySelectorAll("a").forEach((link) => {
   link.addEventListener("click", () => toggleMenu(false));
@@ -122,16 +264,6 @@ const initDiscussCtaState = () => {
 };
 
 initDiscussCtaState();
-
-const siteHeader = document.querySelector(".site-header");
-window.addEventListener(
-  "scroll",
-  () => {
-    siteHeader?.classList.toggle("is-scrolled", window.scrollY > 24);
-  },
-  { passive: true }
-);
-siteHeader?.classList.toggle("is-scrolled", window.scrollY > 24);
 
 const form = document.getElementById("lead-form");
 const formStatus = document.getElementById("lead-form-status");

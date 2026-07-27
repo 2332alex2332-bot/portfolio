@@ -2,76 +2,140 @@
 <html lang="ru">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, interactive-widget=overlays-content, viewport-fit=cover" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#050505" />
     <meta
       name="description"
-      content="Станислав — разработка сайтов под ключ. Пересборка или запуск с нуля. Лендинг 9–12 дней, каталог 12–16. От 30 000 ₽."
+      content="Станислав — разработка и запуск сайтов до полной готовности. От идеи до первых заявок. Лендинг 9–12 дней, каталог 12–16. От 30 000 ₽."
     />
-    <title>Станислав — разработка сайтов</title>
+    <title>Станислав — разработка и запуск сайтов</title>
     <link rel="icon" href="./assets/favicon.svg" type="image/svg+xml" />
-    <meta property="og:title" content="Станислав — разработка сайтов" />
+    <meta property="og:title" content="Станислав — разработка и запуск сайтов" />
     <meta
       property="og:description"
-      content="Сайты под ключ — с телефона просто найти услугу и оставить заявку. Лендинг 9–12 дней, каталог 12–16."
+      content="Разработка и запуск сайтов до полной готовности — от идеи до первых заявок. Лендинг 9–12 дней, каталог 12–16."
     />
     <meta property="og:type" content="website" />
     <meta property="og:image" content="/gloris-beauty/images/salon-kolomenskaya.png" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Oswald:wght@500;600;700&display=swap"
-      rel="stylesheet"
+      rel="preload"
+      as="font"
+      type="font/woff2"
+      crossorigin
+      href="https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa0ZL7SUc.woff2"
     />
-    <link rel="stylesheet" href="styles.css" />
+    <link
+      rel="preload"
+      as="font"
+      type="font/woff2"
+      crossorigin
+      href="https://fonts.gstatic.com/s/oswald/v57/TK3IWkUHHAIjg75cFRf3bXL8LICs1_Fv40pKlN4NNSeSASz7FmlSHYjedg.woff2"
+    />
+    <link
+      rel="preload"
+      as="font"
+      type="font/woff2"
+      crossorigin
+      href="https://fonts.gstatic.com/s/oswald/v57/TK3IWkUHHAIjg75cFRf3bXL8LICs1_Fv40pKlN4NNSeSASz7FmlWHYg.woff2"
+    />
+    <link rel="stylesheet" href="./fonts-critical.css" />
+    <link rel="stylesheet" href="./styles.css" />
+    <script>
+      document.documentElement.classList.add("is-booting");
+      if ("scrollRestoration" in history) history.scrollRestoration = "manual";
+      window.scrollTo(0, 0);
+      window.addEventListener(
+        "pageshow",
+        (event) => {
+          if (event.persisted) {
+            window.scrollTo(0, 0);
+          }
+        },
+        { passive: true }
+      );
+    </script>
   </head>
 
   <body>
     <header id="header" class="site-header top-nav">
-      <div class="top-nav-bar">
-        <div class="top-nav-start">
-          <a href="#top" class="top-nav-logo">Станислав</a>
+      <div class="top-nav-shell">
+        <div class="top-nav-bg" aria-hidden="true"></div>
+        <div class="top-nav-bar">
+          <div class="top-nav-start">
+            <a href="#top" class="top-nav-logo" aria-label="Станислав">
+              <span class="top-nav-logo-wordmark">
+                <span class="top-nav-logo-name">Станислав</span>
+              </span>
+              <span class="top-nav-logo-divider" aria-hidden="true"></span>
+              <img
+                class="top-nav-logo-img"
+                src="images/logo-stanislav.png"
+                alt=""
+                width="64"
+                height="58"
+                decoding="async"
+              />
+            </a>
+          </div>
+          <nav class="top-nav-center top-nav-menu" id="site-nav" aria-label="Основная навигация">
+            <a class="top-nav-link" href="#cases">Кейсы</a>
+            <a class="top-nav-link" href="#about">Обо мне</a>
+            <a class="top-nav-link" href="#pricing">Цены</a>
+            <a class="top-nav-link" href="#process">Как я работаю</a>
+            <a class="top-nav-link" href="#contact">Контакты</a>
+          </nav>
+          <div class="top-nav-end top-nav-actions">
+            <a class="top-nav-cta" href="#contact">Обсудить</a>
+          </div>
+          <button
+            type="button"
+            id="burger"
+            class="top-nav-burger"
+            aria-label="Открыть меню"
+            aria-expanded="false"
+            aria-controls="side-menu"
+          >
+            <span class="top-nav-burger__label">Меню</span>
+            <span class="top-nav-burger__plus" aria-hidden="true">+</span>
+          </button>
         </div>
-        <nav class="top-nav-center top-nav-menu" id="site-nav" aria-label="Основная навигация">
-          <a class="top-nav-link" href="#cases">Кейсы</a>
-          <a class="top-nav-link" href="#about">Обо мне</a>
-          <a class="top-nav-link" href="#pricing">Цены</a>
-          <a class="top-nav-link" href="#process">Как я работаю</a>
-          <a class="top-nav-link" href="#contact">Контакты</a>
-        </nav>
-        <div class="top-nav-end top-nav-actions">
-          <a class="top-nav-cta" href="#contact">Обсудить</a>
-        </div>
-        <button
-          type="button"
-          id="burger"
-          class="top-nav-burger"
-          aria-label="Открыть меню"
-          aria-expanded="false"
-          aria-controls="side-menu"
-        >
-          <span class="top-nav-burger__line" aria-hidden="true"></span>
-          <span class="top-nav-burger__line" aria-hidden="true"></span>
-        </button>
       </div>
     </header>
 
-    <div id="menu-overlay" class="menu-overlay" aria-hidden="true"></div>
-    <aside id="side-menu" class="side-menu" aria-label="Меню сайта">
-      <div class="side-menu-head">
-        <a href="#top" class="side-menu-brand">Станислав</a>
-      </div>
-      <ul class="side-menu-links">
-        <li><a class="side-nav-link" href="#cases">Кейсы</a></li>
-        <li><a class="side-nav-link" href="#about">Обо мне</a></li>
-        <li><a class="side-nav-link" href="#pricing">Цены</a></li>
-        <li><a class="side-nav-link" href="#process">Как я работаю</a></li>
-        <li><a class="side-nav-link" href="#contact">Контакты</a></li>
-      </ul>
-      <div class="side-menu-foot">
-        <a class="side-menu-book" href="#contact">Обсудить</a>
-      </div>
-    </aside>
+    <div id="menu-overlay" class="menu-overlay" aria-hidden="true">
+      <nav id="side-menu" class="side-menu" aria-label="Меню сайта">
+        <button type="button" id="menu-close" class="side-menu-close" aria-label="Закрыть меню">
+          <span class="side-menu-close__label">Закрыть</span>
+          <span class="side-menu-close__icon" aria-hidden="true">×</span>
+        </button>
+
+        <div class="side-menu-inner">
+          <a href="#top" class="side-menu-logo" aria-label="Станислав">
+            <img
+              class="side-menu-logo-img"
+              src="images/logo-stanislav.png"
+              alt=""
+              width="72"
+              height="64"
+              decoding="async"
+            />
+          </a>
+
+          <ul class="side-menu-links">
+            <li><a class="side-nav-link" href="#cases">Кейсы <span class="side-nav-link__arrow" aria-hidden="true">→</span></a></li>
+            <li><a class="side-nav-link" href="#about">Обо мне <span class="side-nav-link__arrow" aria-hidden="true">→</span></a></li>
+            <li><a class="side-nav-link" href="#pricing">Цены <span class="side-nav-link__arrow" aria-hidden="true">→</span></a></li>
+            <li><a class="side-nav-link" href="#process">Как я работаю <span class="side-nav-link__arrow" aria-hidden="true">→</span></a></li>
+            <li><a class="side-nav-link" href="#contact">Контакты <span class="side-nav-link__arrow" aria-hidden="true">→</span></a></li>
+          </ul>
+
+          <div class="side-menu-foot">
+            <a class="side-menu-book" href="#contact">Обсудить проект</a>
+          </div>
+        </div>
+      </nav>
+    </div>
 
     <main id="top">
       <section class="hero" aria-labelledby="hero-title">
@@ -85,46 +149,50 @@
           </div>
         </div>
 
-        <div class="container hero__inner">
-          <div class="hero__content">
-            <div class="hero__block hero__block--hook">
-              <h1 id="hero-title" class="hero__title hero__title--prose">
-                Большинство заходят с телефона.<br />
-                Не находят услугу или закрывают вкладку?
-              </h1>
-            </div>
+        <div class="hero__enter">
+          <div class="container hero__inner">
+            <div class="hero__content">
+              <div class="hero__block hero__block--hook">
+                <h1 id="hero-title" class="hero__title hero__title--prose">
+                  <span
+                    class="hero-typewriter"
+                    data-typewriter-source="Большинство заходят&#10;с телефона.&#10;Не находят услугу&#10;или закрывают вкладку?"
+                  ></span>
+                </h1>
+              </div>
 
-            <div class="hero__block hero__block--pitch">
-              <p class="hero__lead">
-                Сайты под ключ: услуги на виду, заявка в пару кликов.
-                Лендинг 9–12 дней, каталог 12–16.
-              </p>
-              <p class="hero__offer">
-                Напишу вам в Telegram или VK в течение рабочего дня. Срок и цену — после разбора задачи.
-              </p>
-            </div>
+              <div class="hero__block hero__block--pitch hero__fade">
+                <p class="hero__lead">
+                  Разработка и запуск сайтов до полной готовности:
+                  от идеи до первых заявок. Лендинг 9–12 дней, каталог 12–16.
+                </p>
+                <p class="hero__offer">
+                  Напишу вам в Telegram или VK в течение рабочего дня. Срок и цену — после разбора задачи.
+                </p>
+              </div>
 
-            <div class="hero__block hero__block--cta">
-              <div class="hero__actions">
-                <a class="btn btn--primary btn--compact" href="#cases">
-                  Смотреть кейсы
-                  <span aria-hidden="true">↗</span>
-                </a>
-                <a class="btn btn--ghost btn--compact" href="#contact">
-                  Обсудить проект
-                </a>
+              <div class="hero__block hero__block--cta hero__fade">
+                <div class="hero__actions">
+                  <a class="btn btn--primary btn--compact btn--has-icon" href="#cases">
+                    <span class="btn__label">Смотреть кейсы</span>
+                    <span class="btn__icon" aria-hidden="true">↗</span>
+                  </a>
+                  <a class="btn btn--ghost btn--compact" href="#contact">
+                    Обсудить проект
+                  </a>
+                </div>
               </div>
             </div>
           </div>
-        </div>
 
-        <div class="hero__trust" aria-label="Клиенты">
-          <div class="container">
-            <ul class="hero__trust-list">
-              <li>Салон красоты</li>
-              <li>Детейлинг</li>
-              <li>Ремонт квартир</li>
-            </ul>
+          <div class="hero__trust hero__fade" aria-label="Клиенты">
+            <div class="container">
+              <ul class="hero__trust-list">
+                <li>Салон красоты</li>
+                <li>Детейлинг</li>
+                <li>Ремонт квартир</li>
+              </ul>
+            </div>
           </div>
         </div>
       </section>
@@ -353,7 +421,7 @@
             </li>
             <li class="process-step">
               <h3 class="process-step__title">
-                <span class="card-num">04.</span> Сдача под ключ
+                <span class="card-num">04.</span> Запуск и первые заявки
               </h3>
               <p class="process-step__text">
                 Покупаю и привязываю домен, настраиваю хостинг, тестирую формы и
@@ -379,8 +447,8 @@
               рабочего дня.
             </p>
             <nav class="contact__channels" aria-label="Быстрая связь">
-              <a class="contact__channel" id="contact-telegram" data-telegram-link href="https://t.me/stanislav5621" target="_blank" rel="noopener noreferrer">Telegram</a>
-              <a class="contact__channel contact__channel--vk" href="https://vk.ru/id1025918815" target="_blank" rel="noopener noreferrer">VK</a>
+              <a class="contact__channel" id="contact-telegram" data-telegram-link href="https://t.me/stanislav5621" target="_blank" rel="noopener noreferrer"><span>Telegram</span></a>
+              <a class="contact__channel contact__channel--vk" href="https://vk.ru/id1025918815" target="_blank" rel="noopener noreferrer"><span>VK</span></a>
             </nav>
             <p class="contact__channels-note">Удобнее написать сами — Telegram или VK.</p>
           </div>
@@ -500,6 +568,7 @@
       </div>
     </footer>
 
-    <script src="script.js" defer></script>
+    <script src="./js/page-enter.js" defer></script>
+    <script src="./script.js" defer></script>
   </body>
 </html>

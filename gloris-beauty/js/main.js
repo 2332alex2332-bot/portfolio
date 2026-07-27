@@ -958,6 +958,8 @@ function initVisitPanel() {
 
 function initMastersGrid() {
   if (!document.getElementById('masters-list')) return;
+  if (initMastersGrid._done) return;
+  initMastersGrid._done = true;
   renderMastersList();
 }
 
@@ -1046,6 +1048,8 @@ function scrollToServiceInCatalog(serviceName, { exactOnly = false } = {}) {
 
 function initServicesCatalogRender() {
   if (!document.getElementById('shop-grid')) return;
+  if (initServicesCatalogRender._done) return;
+  initServicesCatalogRender._done = true;
   initShopFilters();
 
   const params = new URLSearchParams(window.location.search);
@@ -1816,16 +1820,9 @@ function initMobileMenu() {
 
 /* ----- Scroll reveal ----- */
 function observeReveal() {
-  const reveals = document.querySelectorAll('.reveal:not(.visible)');
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-        observer.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
-  reveals.forEach(el => observer.observe(el));
+  if (typeof window.initPageEnter === 'function') {
+    window.initPageEnter();
+  }
 }
 
 /* ----- Booking modal ----- */
@@ -2176,14 +2173,34 @@ function initSiteHeaderHeight() {
   }
 }
 
-/* ----- Init ----- */
-document.addEventListener('DOMContentLoaded', () => {
+function bootDynamicContent() {
+  initServicesCatalogRender();
+  initMastersGrid();
+}
+
+function bootSiteUi() {
   initMobileMenu();
   initMobileHeaderCta();
   initSiteHeaderHeight();
   observeReveal();
   setActiveNav();
   initSubnavScroll();
-  initServicesCatalogRender();
-  initMastersGrid();
+}
+
+function markContentReady() {
+  if (typeof window.markGlorisContentReady === 'function') {
+    window.markGlorisContentReady();
+    return;
+  }
+  document.documentElement.classList.remove('is-booting');
+  document.documentElement.classList.add('is-content-ready');
+}
+
+/* ----- Init ----- */
+bootDynamicContent();
+markContentReady();
+document.addEventListener('DOMContentLoaded', () => {
+  bootDynamicContent();
+  bootSiteUi();
+  markContentReady();
 });

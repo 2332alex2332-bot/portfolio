@@ -16,15 +16,17 @@
   --color-border: rgba(17, 17, 17, 0.1);
 
   /* —— Typography scale —— */
-  --font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-display: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
+  --font-body: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-family: var(--font-body);
   --text-h2: clamp(1.5rem, 3.2vw, 2.5rem);
   --text-h2-lh: 1.2;
-  --text-h2-tracking: -0.02em;
+  --text-h2-tracking: 0.01em;
   --text-h2-weight: 600;
 
   --text-display: clamp(1.75rem, 2.5vw, 2rem);
-  --text-display-weight: 700;
-  --text-display-tracking: -0.01em;
+  --text-display-weight: 600;
+  --text-display-tracking: 0.01em;
 
   --text-body: clamp(0.9375rem, 1vw, 1rem);
   --text-body-lh: 1.6;
@@ -40,8 +42,8 @@
 
   --text-section-title: clamp(2rem, 3.8vw, 3.25rem);
   --text-section-title-lh: 1.12;
-  --text-section-title-tracking: -0.03em;
-  --text-section-title-weight: 700;
+  --text-section-title-tracking: 0.01em;
+  --text-section-title-weight: 600;
 
   --text-section-lead: clamp(1rem, 1.35vw, 1.2rem);
   --text-section-lead-lh: 1.5;
@@ -95,8 +97,6 @@
   --shadow-lift: none;
   --ease: var(--ease-swiss);
   --transition: var(--transition-swiss);
-  --font-display: var(--font-family);
-  --font-body: var(--font-family);
   --green-dark: var(--dusty-rose);
   --green-mid: var(--color-text-main);
   --green-light: var(--blush);
@@ -251,10 +251,11 @@
 
 .venue-card__title {
   margin: 0 0 var(--space-16);
+  font-family: var(--font-display);
   font-size: clamp(1.35rem, 2.4vw, 2.1rem);
-  font-weight: 500;
-  line-height: 1.2;
-  letter-spacing: -0.02em;
+  font-weight: 600;
+  line-height: 1.15;
+  letter-spacing: 0.01em;
   max-width: 22ch;
 }
 
@@ -389,7 +390,7 @@ button.lo-pill-btn {
 
 /* —— Typography utilities —— */
 .text-h2 {
-  font-family: var(--font-family);
+  font-family: var(--font-display);
   font-size: var(--text-h2);
   font-weight: var(--text-h2-weight);
   line-height: var(--text-h2-lh);
@@ -398,7 +399,7 @@ button.lo-pill-btn {
 }
 
 .text-display {
-  font-family: var(--font-family);
+  font-family: var(--font-display);
   font-size: var(--text-display);
   font-weight: var(--text-display-weight);
   letter-spacing: var(--text-display-tracking);
@@ -407,7 +408,7 @@ button.lo-pill-btn {
 }
 
 .text-body {
-  font-family: var(--font-family);
+  font-family: var(--font-body);
   font-size: var(--text-body);
   font-weight: var(--text-body-weight);
   line-height: var(--text-body-lh);
@@ -479,7 +480,7 @@ button.lo-pill-btn {
 .ds-section-header .section-title,
 .ds-section-header h1,
 .ds-section-header h2 {
-  font-family: var(--font-family);
+  font-family: var(--font-display);
   font-size: var(--text-section-title);
   font-weight: var(--text-section-title-weight);
   line-height: var(--text-section-title-lh);
@@ -493,7 +494,7 @@ button.lo-pill-btn {
 .ds-section-header .ds-lead,
 .ds-section-header .text-body,
 .ds-section-header .lo-lead {
-  font-family: var(--font-family);
+  font-family: var(--font-body);
   font-size: var(--text-section-lead);
   font-weight: var(--text-section-lead-weight);
   line-height: var(--text-section-lead-lh);

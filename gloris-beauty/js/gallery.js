@@ -67,7 +67,13 @@ function initWorksGallery() {
     if (!entering.length) return;
 
     requestAnimationFrame(() => {
-      entering.forEach((el) => el.classList.add('is-visible'));
+      requestAnimationFrame(() => {
+        if (typeof window.initPageEnter === 'function') {
+          window.initPageEnter(grid);
+          return;
+        }
+        entering.forEach((el) => el.classList.add('is-visible'));
+      });
     });
   }
 
@@ -77,8 +83,9 @@ function initWorksGallery() {
     if (previousCount === 0) {
       grid.replaceChildren();
       for (let i = 0; i < limit; i += 1) {
-        grid.appendChild(createGalleryItem(items[i], i));
+        grid.appendChild(createGalleryItem(items[i], i, { entering: true, stagger: i }));
       }
+      animateEnteringItems(grid);
     } else if (limit > previousCount) {
       for (let i = previousCount; i < limit; i += 1) {
         grid.appendChild(createGalleryItem(items[i], i, { entering: true, stagger: i - previousCount }));
@@ -180,4 +187,16 @@ function initWorksGallery() {
   });
 }
 
-document.addEventListener('DOMContentLoaded', initWorksGallery);
+let worksGalleryInitialized = false;
+
+function bootWorksGallery() {
+  if (worksGalleryInitialized) return;
+  if (!document.querySelector('[data-works-gallery]')) return;
+  worksGalleryInitialized = true;
+  initWorksGallery();
+}
+
+bootWorksGallery();
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', bootWorksGallery);
+}

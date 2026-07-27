@@ -5,12 +5,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, interactive-widget=overlays-content">
   <meta name="description" content="GLORIS BEAUTY — премиальный салон красоты у м. Третьяковская. Лазерная эпиляция, косметология, маникюр, парикмахерские услуги.">
   <title>GLORIS BEAUTY — Салон красоты премиум-класса</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="https://fonts.gstatic.com/s/cormorantgaramond/v21/co3umX5slCNuHLi8bLeY9MK7whWMhyjypVO7abI26QOD_iE9KnDOiss4.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa0ZL7SUc.woff2">
+  <link rel="stylesheet" href="css/fonts-critical.css">
+  <script>document.documentElement.classList.add('is-booting');</script>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@400;500;600;700;800;900&display=swap">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   <script src="js/tailwind-config.js"></script>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/clients-widget.css">
-  <link rel="stylesheet" href="css/breadcrumbs.css">
 </head>
 <body data-page="home">
 
@@ -47,6 +53,7 @@
       <div class="site-breadcrumbs-wrap">
         <nav class="site-breadcrumbs page-shell" data-breadcrumbs-root aria-label="Хлебные крошки"></nav>
       </div>
+      <script src="js/breadcrumbs.js"></script>
     </header>
 
     <div id="menu-overlay" class="menu-overlay" aria-hidden="true"></div>
@@ -73,6 +80,9 @@
       </div>
     </aside>
 
+    <script src="js/header-metrics.js"></script>
+    <script src="js/page-enter.js"></script>
+
     <main class="page-main">
 
       <!-- HERO -->
@@ -84,13 +94,9 @@
         <div class="hero-text hero-text-animate delay-1">
           <div class="hero-copy">
             <h1 class="hero-heading">
-              <span class="hero-line">Новый уровень красоты,</span>
-              <span class="hero-line">одна безупречная история за другой.</span>
+              <span class="hero-line hero-line--primary">Салон, в который</span>
+              <span class="hero-line hero-line--primary">хочется вернуться</span>
             </h1>
-            <p class="hero-lead">
-              <span class="hero-line">Создайте образ, который вдохновляет:</span>
-              <span class="hero-line">подберём процедуры и сервис под вашу уникальность.</span>
-            </p>
             <div class="hero-actions">
               <button type="button" class="hero-book-btn lo-pill-btn yc-widget-open">Записаться</button>
               <a href="services.html" class="explore-btn ds-btn lo-pill-btn">
@@ -308,6 +314,8 @@
         <div class="text-center works-gallery-cta reveal">
           <a href="works.html" class="lo-pill-btn lo-pill-btn--outline">Смотреть ещё</a>
         </div>
+        <script src="js/works-data.js"></script>
+        <script src="js/gallery.js"></script>
       </section>
 
       <!-- ПРЕИМУЩЕСТВА -->
@@ -418,11 +426,8 @@
 
   <script src="js/masters-data.js"></script>
   <script src="js/services-catalog.js"></script>
-  <script src="js/works-data.js"></script>
-  <script src="js/gallery.js"></script>
   <script src="js/clients-widget.js"></script>
   <script src="js/main.js"></script>
-  <script src="js/breadcrumbs.js" defer></script>
 </body>
 </html>
 

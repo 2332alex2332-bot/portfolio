@@ -1,4 +1,7 @@
 tailwind.config = {
+  corePlugins: {
+    preflight: false,
+  },
   theme: {
     extend: {
       fontFamily: {

@@ -5,12 +5,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, interactive-widget=overlays-content">
   <meta name="description" content="Акции и спецпредложения салона красоты GLORIS BEAUTY.">
   <title>Акции — GLORIS BEAUTY</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="https://fonts.gstatic.com/s/cormorantgaramond/v21/co3umX5slCNuHLi8bLeY9MK7whWMhyjypVO7abI26QOD_iE9KnDOiss4.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa0ZL7SUc.woff2">
+  <link rel="stylesheet" href="css/fonts-critical.css">
+  <script>document.documentElement.classList.add('is-booting');</script>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600;700&display=swap">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   <script src="js/tailwind-config.js"></script>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/clients-widget.css">
-  <link rel="stylesheet" href="css/breadcrumbs.css">
 </head>
 <body data-page="promo">
 
@@ -47,6 +53,7 @@
       <div class="site-breadcrumbs-wrap">
         <nav class="site-breadcrumbs page-shell" data-breadcrumbs-root aria-label="Хлебные крошки"></nav>
       </div>
+      <script src="js/breadcrumbs.js"></script>
     </header>
 
     <div id="menu-overlay" class="menu-overlay" aria-hidden="true"></div>
@@ -73,10 +80,13 @@
       </div>
     </aside>
 
+    <script src="js/header-metrics.js"></script>
+    <script src="js/page-enter.js"></script>
+
     <main class="page-main">
 
     <section class="section-block lo-promo-hero">
-      <header class="ds-section-header promo-page-intro page-intro reveal visible">
+      <header class="ds-section-header promo-page-intro page-intro reveal">
         <span class="ds-overline">Спецпредложения</span>
         <h1 class="ds-title">Акции и выгодные комплексы</h1>
         <p class="ds-lead text-body">Лазерная эпиляция, массаж и аппаратные процедуры — по специальным ценам для наших клиентов</p>
@@ -219,6 +229,5 @@
   <script src="js/services-catalog.js"></script>
   <script src="js/clients-widget.js"></script>
   <script src="js/main.js"></script>
-  <script src="js/breadcrumbs.js" defer></script>
 </body>
 </html>
