@@ -1035,15 +1035,67 @@ function getServicePageUrl(serviceName) {
   return `${page}?service=${encodeURIComponent(item?.name || serviceName)}`;
 }
 
+function getCatalogScrollOffset() {
+  const header = document.querySelector('.site-header');
+  const measured = header?.getBoundingClientRect().height || 0;
+  if (measured > 0) return Math.ceil(measured) + 12;
+
+  const stickyTop = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--catalog-sticky-top'));
+  return Math.ceil(Number.isNaN(stickyTop) ? 88 : stickyTop) + 12;
+}
+
+function scrollCatalogToElement(element, { behavior = 'auto' } = {}) {
+  if (!element) return;
+  const top = window.scrollY + element.getBoundingClientRect().top - getCatalogScrollOffset();
+  window.scrollTo({ top: Math.max(0, top), left: 0, behavior });
+}
+
+function scheduleCatalogScroll(callback) {
+  const run = () => callback();
+  if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+  window.scrollTo(0, 0);
+  requestAnimationFrame(() => requestAnimationFrame(run));
+  window.setTimeout(run, 50);
+  window.setTimeout(run, 200);
+  window.setTimeout(run, 500);
+}
+
+function findCatalogSectionIdForService(serviceName, { exactOnly = false } = {}) {
+  const needle = serviceName.toLowerCase();
+  for (const sec of getVenueSections()) {
+    for (const group of sec.groups) {
+      for (const item of group.items) {
+        const displayName = getServiceDisplayName(item).toLowerCase();
+        const rawName = String(item.name).toLowerCase();
+        const matches = exactOnly
+          ? displayName === needle || rawName === needle
+          : displayName === needle || rawName === needle
+            || displayName.includes(needle) || rawName.includes(needle);
+        if (matches) return sec.id;
+      }
+    }
+  }
+  return null;
+}
+
+function scrollToCatalogSectionStart(sectionId) {
+  const section = document.getElementById(sectionId);
+  if (!section) return;
+  const anchor = section.querySelector('.shop-list-group-title') || section;
+  scrollCatalogToElement(anchor, { behavior: 'auto' });
+}
+
+function scrollToCatalogListStart() {
+  scrollCatalogToElement(document.getElementById('shop-grid'), { behavior: 'auto' });
+}
+
 function scrollToServiceInCatalog(serviceName, { exactOnly = false } = {}) {
-  const item = findCatalogItem(serviceName, { exactOnly });
-  const displayName = item ? getServiceDisplayName(item) : serviceName;
-  const target = [...document.querySelectorAll('#shop-grid .shop-list-item')].find(
-    el => el.dataset.name === displayName
-  );
-  if (!target) return;
-  setShopListItemExpanded(target.querySelector('.shop-list-row'), true);
-  target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  const sectionId = findCatalogSectionIdForService(serviceName, { exactOnly });
+  if (sectionId) {
+    scrollToCatalogSectionStart(sectionId);
+    return;
+  }
+  scrollToCatalogListStart();
 }
 
 function initServicesCatalogRender() {
@@ -1056,6 +1108,12 @@ function initServicesCatalogRender() {
   const service = params.get('service');
   const query = params.get('q');
   const hash = window.location.hash.slice(1);
+
+  if (hash || service || query) {
+    if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+    window.scrollTo(0, 0);
+  }
+
   if (hash && !service && !query && getVenueSections().some(sec => sec.id === hash)) {
     shopFilterState.categories.add(hash);
   }
@@ -1064,25 +1122,37 @@ function initServicesCatalogRender() {
     const input = document.getElementById('shop-search-input');
     if (input) input.value = query;
   } else if (service) {
-    const item = findCatalogItem(service, { exactOnly: true });
-    const displayName = item ? getServiceDisplayName(item) : service;
-    shopFilterState.search = displayName;
-    const input = document.getElementById('shop-search-input');
-    if (input) input.value = displayName;
+    const sectionId = findCatalogSectionIdForService(service, { exactOnly: true });
+    if (sectionId) {
+      shopFilterState.categories.add(sectionId);
+    } else {
+      const item = findCatalogItem(service, { exactOnly: true });
+      const displayName = item ? getServiceDisplayName(item) : service;
+      shopFilterState.search = displayName;
+      const input = document.getElementById('shop-search-input');
+      if (input) input.value = displayName;
+    }
   }
 
   syncShopFilterUI();
   renderShopGrid();
 
   if (service) {
-    requestAnimationFrame(() => scrollToServiceInCatalog(service, { exactOnly: true }));
+    const sectionId = findCatalogSectionIdForService(service, { exactOnly: true });
+    scheduleCatalogScroll(() => {
+      if (sectionId) scrollToCatalogSectionStart(sectionId);
+      else scrollToCatalogListStart();
+    });
+    return;
+  }
+
+  if (query) {
+    scheduleCatalogScroll(scrollToCatalogListStart);
     return;
   }
 
   if (hash && shopFilterState.categories.has(hash)) {
-    requestAnimationFrame(() => {
-      document.getElementById(hash)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    });
+    scheduleCatalogScroll(() => scrollToCatalogSectionStart(hash));
   }
 }
 
@@ -1309,8 +1379,8 @@ function setShopListItemExpanded(rowBtn, expanded) {
   const showLabel = isMaster ? `Показать о мастере: ${name}` : `Показать описание: ${name}`;
   const hideLabel = isMaster ? `Скрыть описание: ${name}` : `Скрыть описание: ${name}`;
 
-  rowBtn.setAttribute('aria-expanded', String(expanded));
-  rowBtn.setAttribute('aria-label', expanded ? hideLabel : showLabel);
+  item?.setAttribute('aria-expanded', String(expanded));
+  item?.setAttribute('aria-label', expanded ? hideLabel : showLabel);
   if (icon) icon.textContent = expanded ? '−' : '+';
   if (desc) {
     desc.classList.toggle('is-open', expanded);
@@ -1328,14 +1398,25 @@ function collapseAllShopListItemsExcept(exceptItem) {
 
 function bindShopListAccordions(root) {
   if (!root) return;
-  root.querySelectorAll('.shop-list-item .shop-list-row').forEach(rowBtn => {
-    rowBtn.addEventListener('click', () => toggleShopListItem(rowBtn));
+  root.querySelectorAll('.shop-list-item').forEach((item) => {
+    const rowBtn = item.querySelector('.shop-list-row');
+    if (!rowBtn || item.dataset.accordionBound === 'true') return;
+    item.dataset.accordionBound = 'true';
+
+    const activate = () => toggleShopListItem(rowBtn);
+
+    item.addEventListener('click', activate);
+    item.addEventListener('keydown', (event) => {
+      if (event.key !== 'Enter' && event.key !== ' ') return;
+      event.preventDefault();
+      activate();
+    });
   });
 }
 
 function toggleShopListItem(rowBtn) {
-  const expanded = rowBtn.getAttribute('aria-expanded') === 'true';
   const item = rowBtn.closest('.shop-list-item');
+  const expanded = item?.getAttribute('aria-expanded') === 'true';
 
   if (!expanded) {
     collapseAllShopListItemsExcept(item);
@@ -1585,8 +1666,8 @@ function renderShopGrid() {
     const description = getServiceDescription(item);
 
     return `
-      <div class="shop-list-item reveal" data-name="${escAttr(displayName)}">
-        <button type="button" class="shop-list-row" aria-expanded="false" aria-label="Показать описание: ${escAttr(displayName)}">
+      <div class="shop-list-item reveal" data-name="${escAttr(displayName)}" tabindex="0" role="button" aria-expanded="false" aria-label="Показать описание: ${escAttr(displayName)}">
+        <div class="shop-list-row">
           <span class="shop-toggle-icon" aria-hidden="true">+</span>
           <span class="shop-list-name-wrap">
             <span class="shop-list-name">${displayName}</span>
@@ -1597,7 +1678,7 @@ function renderShopGrid() {
             ${item.duration ? `<span class="shop-list-meta">${formatDuration(item.duration)}</span>` : ''}
             <span class="shop-list-prices">${priceHtml}</span>
           </span>
-        </button>
+        </div>
         <div class="shop-list-desc" aria-hidden="true">
           <div class="shop-list-desc-inner">
             <p>${escAttr(description)}</p>
