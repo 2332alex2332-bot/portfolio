@@ -20,6 +20,7 @@
 
 .site-breadcrumbs-wrap + main {
   padding-top: calc(4rem + var(--breadcrumbs-bar-height)) !important;
+  background: var(--canvas, #ffffff);
 }
 
 .site-breadcrumbs {
@@ -91,6 +92,11 @@ body.breadcrumbs-legal .site-breadcrumbs-wrap + main {
 
 body.breadcrumbs-legal {
   padding-top: 0;
+}
+
+body.project-modal-open {
+  overflow: hidden;
+  overscroll-behavior: none;
 }
 
 body.project-modal-open .site-breadcrumbs-wrap {

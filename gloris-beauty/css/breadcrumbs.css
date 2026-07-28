@@ -61,7 +61,6 @@
   font-weight: 600;
 }
 
-body.menu-open .site-breadcrumbs-wrap,
 body.yc-widget-body-open .site-breadcrumbs-wrap {
   opacity: 0;
   pointer-events: none;

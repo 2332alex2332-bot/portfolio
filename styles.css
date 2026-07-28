@@ -190,6 +190,14 @@ select {
     visibility 0s linear 1.4s;
 }
 
+.hero__trust.hero__fade {
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+  filter: none;
+  transition: none;
+}
+
 .hero__fade.is-revealed {
   opacity: 1;
   visibility: visible;
@@ -1265,10 +1273,10 @@ body.menu-open .site-header.top-nav .top-nav-bg {
   width: 100%;
   min-height: 3rem;
   padding: 0.875rem 1.25rem;
-  border: 1px solid var(--orange);
+  border: 1px solid #e66700;
   border-radius: var(--header-island-radius);
-  background: var(--orange);
-  color: #fff;
+  background: #e66700;
+  color: #000;
   font-family: var(--font-body);
   font-size: 0.6875rem;
   font-weight: 600;
@@ -1276,36 +1284,38 @@ body.menu-open .site-header.top-nav .top-nav-bg {
   text-transform: uppercase;
   text-decoration: none;
   box-sizing: border-box;
-  box-shadow: 0 0 28px rgba(232, 93, 4, 0.38);
+  box-shadow: 0 0 28px rgba(230, 103, 0, 0.38);
   -webkit-tap-highlight-color: transparent;
   transition: background 0.25s ease, border-color 0.25s ease, color 0.25s ease, box-shadow 0.25s ease;
 }
 
 .side-menu-book:hover {
-  background: #f06810;
-  border-color: #f06810;
-  color: #fff;
-  box-shadow: 0 0 40px var(--orange-glow);
+  background: #f07820;
+  border-color: #f07820;
+  color: #000;
+  box-shadow: 0 0 40px rgba(230, 103, 0, 0.45);
 }
 
 .side-menu-book.is-section-active {
-  background: var(--orange);
-  border-color: var(--orange);
-  color: #fff;
-  box-shadow: 0 0 32px rgba(232, 93, 4, 0.45);
+  background: #e66700;
+  border-color: #e66700;
+  color: #000;
+  box-shadow: 0 0 32px rgba(230, 103, 0, 0.45);
 }
 
 .side-menu-book.is-section-active:hover {
-  background: #f06810;
-  border-color: #f06810;
-  box-shadow: 0 0 40px var(--orange-glow);
+  background: #f07820;
+  border-color: #f07820;
+  color: #000;
+  box-shadow: 0 0 40px rgba(230, 103, 0, 0.5);
 }
 
 @media (hover: none) {
   .side-menu-book:hover:not(.is-section-active) {
-    background: var(--orange);
-    border-color: var(--orange);
-    box-shadow: 0 0 28px rgba(232, 93, 4, 0.38);
+    background: #e66700;
+    border-color: #e66700;
+    color: #000;
+    box-shadow: 0 0 28px rgba(230, 103, 0, 0.38);
   }
 }
 
@@ -1557,12 +1567,20 @@ body.menu-open .site-footer {
 .hero__trust {
   position: relative;
   z-index: 1;
+  display: flex;
+  align-items: center;
   flex-shrink: 0;
   width: 100%;
   margin-top: auto;
-  padding: 24px 0 calc(28px + env(safe-area-inset-bottom, 0px));
+  min-height: calc(3.25rem + 10px);
+  padding: calc(1.125rem + 5px) 0;
   border-top: 1px solid rgba(255, 255, 255, 0.12);
   background: linear-gradient(180deg, transparent, rgba(5, 5, 5, 0.65));
+  box-sizing: border-box;
+}
+
+.hero__trust .container {
+  width: 100%;
 }
 
 .hero__trust-list {
@@ -1570,10 +1588,13 @@ body.menu-open .site-footer {
   flex-wrap: wrap;
   align-items: center;
   gap: clamp(16px, 4vw, 48px);
+  margin: 0;
+  padding: 0;
+  list-style: none;
   color: rgba(255, 255, 255, 0.88);
   font-size: clamp(11px, 1.4vw, 13px);
   font-weight: 600;
-  line-height: 1.5;
+  line-height: 1.2;
   letter-spacing: 0.1em;
   text-transform: uppercase;
 }
@@ -2377,14 +2398,14 @@ body.menu-open .site-footer {
   color: var(--bg);
   background: var(--orange);
   box-shadow:
-    0 0 32px rgba(232, 93, 4, 0.45),
-    0 8px 24px rgba(232, 93, 4, 0.22);
+    0 0 16px rgba(232, 93, 4, 0.45),
+    0 6px 14px rgba(232, 93, 4, 0.22);
 }
 
 .lead-form__submit--ready:hover:not(:disabled):not([aria-busy="true"]) {
   box-shadow:
-    0 0 48px var(--orange-glow),
-    0 12px 28px rgba(232, 93, 4, 0.28);
+    0 0 22px var(--orange-glow),
+    0 8px 16px rgba(232, 93, 4, 0.28);
 }
 
 .lead-form__submit--ready:active:not(:disabled):not([aria-busy="true"]) {
@@ -2470,7 +2491,7 @@ body.menu-open .site-footer {
 }
 
 .site-footer__legal {
-  padding-block-end: 28px;
+  padding-block-end: 33px;
 }
 
 .site-footer__legal a {
@@ -2764,7 +2785,7 @@ body.menu-open .site-footer {
   }
 
   .contact__channel > span {
-    transform: translateY(2px);
+    transform: translateY(1px);
   }
 
   .lead-form {

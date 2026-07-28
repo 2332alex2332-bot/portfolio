@@ -26,6 +26,10 @@
     'old-site': 'Старый сайт',
   };
 
+  var ARCHIVE_LABELS = {
+    'gloris-beauty': 'Старый сайт салона красоты',
+  };
+
   var SECTION_LABELS = {
     about: 'О нас',
     calc: 'Калькулятор',
@@ -117,9 +121,21 @@
     };
   }
 
+  function isOldSiteArchive(ctx) {
+    return ctx.folders.indexOf('old-site') !== -1;
+  }
+
   function buildItems(ctx) {
     var items = [];
     var position = 1;
+
+    if (isOldSiteArchive(ctx)) {
+      var archiveLabel =
+        ARCHIVE_LABELS[ctx.siteFolder] || FOLDER_LABELS['old-site'] || 'Старый сайт';
+      items.push({ label: 'Станислав', href: ctx.portfolioHref, position: position++ });
+      items.push({ label: archiveLabel, href: null, position: position++ });
+      return items;
+    }
 
     items.push({ label: 'Станислав', href: ctx.portfolioHref, position: position++ });
     items.push({

@@ -9,10 +9,6 @@
   --line: #e8e8e8;
 }
 
-html.scroll-smooth {
-  scroll-behavior: smooth;
-}
-
 body.bg-canvas,
 body {
   background: var(--canvas);
@@ -20,6 +16,15 @@ body {
   font-family: Inter, system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow-x: clip;
+  overscroll-behavior-x: none;
+  touch-action: pan-y;
+}
+
+html.scroll-smooth {
+  scroll-behavior: smooth;
+  overflow-x: clip;
+  overscroll-behavior-x: none;
 }
 
 .hidden {
@@ -41,6 +46,7 @@ body {
 main.pt-\[4rem\],
 main {
   padding-top: 4rem;
+  background: var(--canvas);
 }
 
 #mobileMenu {
@@ -209,5 +215,36 @@ main {
   .lg\:py-24 {
     padding-top: 6rem;
     padding-bottom: 6rem;
+  }
+}
+
+/* Mobile: prevent horizontal drift */
+@media (max-width: 760px) {
+  html,
+  body.bg-canvas,
+  body {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+
+  body.bg-canvas,
+  body {
+    min-height: 100%;
+    background: var(--canvas);
+  }
+
+  main {
+    background: var(--canvas);
+  }
+
+  .site-footer {
+    background: var(--ink);
+  }
+
+  img,
+  iframe,
+  table {
+    max-width: 100%;
   }
 }

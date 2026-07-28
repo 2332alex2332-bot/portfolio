@@ -15,7 +15,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   <script src="js/tailwind-config.js"></script>
   <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/style.css?v=20260728q">
   <link rel="stylesheet" href="css/clients-widget.css">
 </head>
 <body data-page="home">
@@ -89,7 +89,19 @@
       <div class="home-first-screen">
       <section class="main-content">
         <div class="hero-image hero-text-animate">
-          <img src="images/hero-main.png" alt="Осенний маникюр с декором в GLORIS BEAUTY" width="1005" height="564" loading="eager" fetchpriority="high">
+          <video
+            class="hero-video"
+            src="images/hero-main.mp4"
+            poster="images/hero-main.png"
+            width="1920"
+            height="1080"
+            autoplay
+            muted
+            loop
+            playsinline
+            preload="auto"
+            aria-label="Интерьер салона GLORIS BEAUTY"
+          ></video>
         </div>
         <div class="hero-text hero-text-animate delay-1">
           <div class="hero-copy">
@@ -97,6 +109,7 @@
               <span class="hero-line hero-line--primary">Салон, в который</span>
               <span class="hero-line hero-line--primary">хочется вернуться</span>
             </h1>
+            <p class="hero-lead">Цены и свободные окна — на сайте. Запись за минуту, без звонка.</p>
             <div class="hero-actions">
               <button type="button" class="hero-book-btn lo-pill-btn yc-widget-open">Записаться</button>
               <a href="services.html" class="explore-btn ds-btn lo-pill-btn">
@@ -107,14 +120,6 @@
           </div>
         </div>
       </section>
-
-      <!-- MARQUEE -->
-      <div class="marquee" aria-hidden="true">
-        <div class="marquee-track">
-          <span class="marquee-group">АКЦИЯ №1: 6 140 → 5 390 ₽ &nbsp;✦&nbsp; АКЦИЯ №2: 5 140 → 3 990 ₽ &nbsp;✦&nbsp; ЭКОНОМИЯ ДО 1 940 ₽ &nbsp;✦&nbsp; GLORIS BEAUTY &nbsp;✦&nbsp;</span>
-          <span class="marquee-group" aria-hidden="true">АКЦИЯ №1: 6 140 → 5 390 ₽ &nbsp;✦&nbsp; АКЦИЯ №2: 5 140 → 3 990 ₽ &nbsp;✦&nbsp; ЭКОНОМИЯ ДО 1 940 ₽ &nbsp;✦&nbsp; GLORIS BEAUTY &nbsp;✦&nbsp;</span>
-        </div>
-      </div>
       </div>
 
       <!-- PROMO CARDS -->

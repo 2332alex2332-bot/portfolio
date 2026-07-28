@@ -18,6 +18,7 @@
 
 .site-breadcrumbs-wrap + main {
   padding-top: calc(var(--site-header-height, 74px) + var(--breadcrumbs-bar-height));
+  background: var(--black, #050505);
 }
 
 .site-breadcrumbs__list {

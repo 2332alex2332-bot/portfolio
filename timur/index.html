@@ -48,7 +48,7 @@
       --accent-dark: #E5A503;
     }
     .text-accent { color: var(--accent); }
-    .btn-accent { display:inline-flex; align-items:center; gap:0.5rem; border:1px solid var(--accent); background:var(--accent); padding:0.625rem 1.35rem; font-size:0.8125rem; font-weight:600; color:var(--ink); transition:opacity .2s, background .2s, border-color .2s; }
+    .btn-accent { display:inline-flex; align-items:center; gap:0.5rem; border:1px solid var(--accent); background:var(--accent); padding:0.625rem 1.35rem; font-size:0.8125rem; font-weight:600; color:var(--ink); border-radius:9999px; transition:opacity .2s, background .2s, border-color .2s; }
     .btn-accent:hover { opacity:.9; background:var(--accent-dark); border-color:var(--accent-dark); }
     .btn-accent:disabled { opacity:.45; cursor:not-allowed; }
     .btn-accent.rounded-full { border-radius:9999px; text-transform:uppercase; letter-spacing:0.06em; font-size:0.75rem; font-weight:500; }
@@ -62,7 +62,7 @@
       letter-spacing:0.12em;
       color:var(--muted);
     }
-    .btn-dark, .btn-solid { display:inline-flex; align-items:center; gap:0.5rem; border:1px solid var(--ink); background:var(--ink); padding:0.625rem 1.35rem; font-size:0.8125rem; font-weight:500; color:#fff; transition:opacity 0.2s; }
+    .btn-dark, .btn-solid { display:inline-flex; align-items:center; gap:0.5rem; border:1px solid var(--ink); background:var(--ink); padding:0.625rem 1.35rem; font-size:0.8125rem; font-weight:500; color:#fff; border-radius:9999px; transition:opacity 0.2s; }
     .btn-dark { border-radius:9999px; text-transform:uppercase; letter-spacing:0.06em; font-size:0.75rem; }
     .btn-dark:hover, .btn-solid:hover { opacity:0.82; }
     .btn-ghost { display:inline-flex; align-items:center; gap:0.5rem; border-radius:9999px; border:1px solid var(--line); background:transparent; padding:0.625rem 1.35rem; font-size:0.75rem; font-weight:500; text-transform:uppercase; letter-spacing:0.06em; color:var(--ink); transition:all 0.2s; }
@@ -177,28 +177,55 @@
     .calc-nav { display:flex; align-items:center; justify-content:space-between; gap:1rem; margin-top:2rem; padding-top:1.5rem; }
     .calc-path .quiz-opt { cursor:default; pointer-events:none; }
     .price-panel {
-      --price-block-space: 3rem;
-      --price-row-space: 1rem;
+      --price-block-space: 2.75rem;
       display: flex;
       flex-direction: column;
-      padding: clamp(1.75rem, 4vw, 3rem);
-      border: 1px solid var(--line);
-      background: var(--card);
       width: 100%;
+      padding-block: clamp(1.75rem, 4vw, 3rem);
+      border: none;
+      background: var(--card);
+    }
+    .price-panel__shell {
+      width: 100%;
+    }
+    .price-panel__head + .price-panel__grid {
+      margin-top: 3.5rem;
     }
     .price-panel__grid {
       display: grid;
       grid-template-columns: minmax(0, 1fr);
+      gap: var(--price-block-space);
     }
     .price-panel__col {
       display: flex;
       flex-direction: column;
+      gap: var(--price-block-space);
       min-width: 0;
     }
     .price-panel__col .price-block + .price-block {
-      margin-top: var(--price-block-space);
-      padding-top: var(--price-block-space);
-      border-top: 1px solid var(--line);
+      margin-top: 0;
+      padding-top: 0;
+      border-top: none;
+    }
+    .price-block {
+      position: relative;
+      padding: 0;
+      border: none;
+      border-radius: 0;
+      background: transparent;
+      box-shadow: none;
+    }
+    .price-block::before {
+      display: none;
+    }
+    .price-block__head {
+      display: block;
+      margin-bottom: 1.1rem;
+      padding-bottom: 0;
+      border-bottom: none;
+    }
+    .price-block__index {
+      display: none;
     }
     @media (max-width: 1023px) {
       .price-panel__col {
@@ -211,81 +238,124 @@
       .price-panel__grid {
         display: flex;
         flex-direction: column;
+        gap: var(--price-block-space);
       }
       .price-block[data-pos="houses"],
       .price-block[data-pos="finishing"],
       .price-block[data-pos="rooms"] {
-        margin-top: var(--price-block-space);
-        padding-top: var(--price-block-space);
-        border-top: 1px solid var(--line);
+        margin-top: 0;
+        padding-top: 0;
+        border-top: none;
       }
     }
     @media (min-width: 1024px) {
       .price-panel {
-        padding: clamp(2.5rem, 4vw, 3.5rem) clamp(2.5rem, 5vw, 4.5rem);
+        padding-block: clamp(2.5rem, 4vw, 3.5rem);
+        --price-block-space: 3rem;
       }
       .price-panel__grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
-        column-gap: clamp(3rem, 6vw, 7rem);
-        row-gap: 0;
+        column-gap: clamp(1.25rem, 2.5vw, 1.75rem);
+        row-gap: var(--price-block-space);
       }
       .price-row {
-        gap: 1.25rem 3rem;
+        gap: 1rem 1.25rem;
       }
     }
     @media (min-width: 1280px) {
       .price-panel {
-        --price-block-space: 3.5rem;
-        --price-row-space: 1.1rem;
+        --price-block-space: 3.25rem;
       }
       .price-row-name { font-size: 1rem; }
-      .price-row-amount { font-size: 1.125rem; }
-      .price-row {
-        gap: 1.5rem 4rem;
-      }
+      .price-row-amount { font-size: 1.25rem; }
     }
     .price-block-title {
-      font-family: 'JetBrains Mono', ui-monospace, monospace;
-      font-size: 11px;
-      font-weight: 500;
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-      color: var(--muted);
+      font-family: inherit;
+      font-size: clamp(1.0625rem, 3.2vw, 1.375rem);
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      text-transform: none;
+      color: var(--ink);
+      margin: 0;
+      line-height: 1.2;
     }
-    .price-rows { margin-top: 0.875rem; }
+    .price-block-title::after {
+      content: '';
+      display: block;
+      width: 2.75rem;
+      height: 3px;
+      margin-top: 0.7rem;
+      background: var(--accent);
+      border-radius: 999px;
+    }
+    .price-block[data-pos="houses"] .price-block-title::after,
+    .price-block[data-pos="rooms"] .price-block-title::after {
+      width: 3.5rem;
+    }
+    .price-rows {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      margin-top: 0;
+    }
     .price-row {
       display: grid;
-      grid-template-columns: minmax(0, 1fr) max-content;
-      gap: 1rem 1.5rem;
+      grid-template-columns: minmax(0, 1fr) auto;
       align-items: baseline;
-      padding: var(--price-row-space) 0;
+      gap: 1rem 1.25rem;
+      padding: 0.85rem 0;
+      border: none;
       border-bottom: 1px solid var(--line);
+      background: transparent;
+      transition: opacity 0.2s ease;
     }
     .price-rows .price-row:last-child {
       border-bottom: none;
       padding-bottom: 0;
     }
     .price-rows .price-row:first-child {
-      padding-top: calc(var(--price-row-space) * 0.5);
+      padding-top: 0.15rem;
     }
-    .price-row-name { font-size: 0.9375rem; line-height: 1.45; color: var(--ink); min-width: 0; }
+    .price-row:hover {
+      opacity: 0.72;
+    }
+    .price-row-name {
+      font-size: 0.9375rem;
+      line-height: 1.35;
+      color: var(--ink);
+      min-width: 0;
+      font-weight: 500;
+    }
     .price-row-value {
       display: inline-flex;
+      flex-direction: row;
       align-items: baseline;
       justify-content: flex-end;
-      gap: 0.3rem;
+      gap: 0.35rem;
+      min-height: 0;
+      padding: 0;
+      border: none;
+      border-radius: 0;
+      background: transparent;
       font-variant-numeric: tabular-nums;
       white-space: nowrap;
       text-align: right;
       flex-shrink: 0;
-      min-width: max-content;
+      box-shadow: none;
     }
-    .price-row-unit { font-size: 0.75rem; font-weight: 500; color: var(--muted); white-space: nowrap; }
-    .price-row-amount {
-      font-size: 1.0625rem;
+    .price-row-unit {
+      font-size: 0.625rem;
       font-weight: 600;
-      line-height: 1.2;
-      letter-spacing: -0.02em;
+      color: var(--muted);
+      white-space: nowrap;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .price-row-amount {
+      font-size: clamp(1.05rem, 3.2vw, 1.2rem);
+      font-weight: 700;
+      line-height: 1;
+      letter-spacing: -0.03em;
       color: var(--ink);
       white-space: nowrap;
     }
@@ -300,6 +370,7 @@
     #contactForm .btn-accent {
       width: 100%;
       justify-content: center;
+      padding: 0.85rem 1.5rem;
     }
     .contact-form__feedback {
       min-height: 2.75rem;
@@ -312,8 +383,13 @@
       .pricing-cta .btn-solid {
         width: auto;
         min-width: 15.5rem;
-        padding: 0.75rem 2.25rem;
+        padding: 0.85rem 2.25rem;
         justify-content: center;
+      }
+      #contactForm .btn-accent {
+        width: auto;
+        min-width: 18rem;
+        padding: 0.85rem 2rem;
       }
     }
     .step-pill { width:2rem; height:2rem; border-radius:9999px; border:1px solid var(--line); display:flex; align-items:center; justify-content:center; font-family:'JetBrains Mono',monospace; font-size:10px; color:var(--muted); transition:all 0.2s; cursor:pointer; background:transparent; padding:0; }
@@ -380,16 +456,16 @@
     .project-card__media img.is-horizontal { width:200%; height:100%; bottom:auto; top:0; left:0; object-position:right center; }
     .project-card:hover .project-card__media img { transform:scale(1.03); }
     .project-card__badges { position:absolute; inset:auto 0 0 0; display:flex; flex-wrap:wrap; gap:.35rem; padding:.75rem; background:linear-gradient(to top,rgba(0,0,0,.72),transparent); }
-    .project-card__badge { background:rgba(255,255,255,.95); color:var(--ink); padding:.25rem .55rem; font-size:9px; font-weight:600; text-transform:uppercase; letter-spacing:.06em; }
+    .project-card__badge { background:rgba(255,255,255,.95); color:var(--ink); padding:calc(.25rem + 1px) .55rem calc(.25rem - 1px); font-size:9px; font-weight:600; text-transform:uppercase; letter-spacing:.06em; line-height:1; }
     .project-card__media { position:relative; height:14rem; overflow:hidden; }
     .project-card__body { padding:1.25rem; display:flex; flex-direction:column; flex:1; }
     .project-card__meta { margin-top:.5rem; font-size:.75rem; color:var(--muted); }
     .project-card__btn { margin-top:1rem; width:100%; justify-content:center; font-size:10px; pointer-events:none; }
-    .project-modal { position:fixed; inset:0; z-index:200; display:none; align-items:center; justify-content:center; padding:1rem; background:rgba(0,0,0,.88); backdrop-filter:blur(4px); overflow-y:auto; -webkit-overflow-scrolling:touch; overscroll-behavior:contain; }
+    .project-modal { position:fixed; inset:0; z-index:200; display:none; align-items:center; justify-content:center; padding:1rem; background:rgba(0,0,0,.88); backdrop-filter:blur(4px); overflow:hidden; overscroll-behavior:none; }
     .project-modal.is-open { display:flex; }
     .project-modal__panel { position:relative; width:100%; max-width:1100px; max-height:92vh; overflow:hidden; background:var(--canvas); }
     @media(max-width:899px){
-      .project-modal { align-items:flex-start; padding:.5rem; padding-bottom:max(.5rem, env(safe-area-inset-bottom, 0px)); --modal-close-offset:.75rem; }
+      .project-modal { align-items:stretch; padding:.5rem; padding-bottom:max(.5rem, env(safe-area-inset-bottom, 0px)); --modal-close-offset:.75rem; }
       .project-modal.is-open { display:block; }
       .project-modal__close-stick {
         position:fixed;
@@ -400,6 +476,10 @@
         height:auto;
         z-index:220;
         pointer-events:none;
+        transform:translateZ(0);
+        -webkit-transform:translateZ(0);
+        backface-visibility:hidden;
+        -webkit-backface-visibility:hidden;
       }
       .project-modal__close-stick .project-modal__close {
         position:relative;
@@ -408,12 +488,14 @@
         float:none;
         margin:0;
         pointer-events:auto;
-        -webkit-transform:translateZ(0);
-        transform:translateZ(0);
       }
       .project-modal__panel {
-        max-height:none;
-        overflow:visible;
+        height:100%;
+        max-height:100%;
+        overflow-x:hidden;
+        overflow-y:auto;
+        overscroll-behavior:none;
+        overscroll-behavior-y:none;
         margin:0 auto;
         padding-bottom:max(5rem, calc(3rem + env(safe-area-inset-bottom, 0px)));
       }
@@ -425,10 +507,18 @@
       .project-modal__panel { height:min(92vh,680px); max-height:min(92vh,680px); }
       .project-modal__viewport,
       .project-modal__track { height:100%; }
-      .project-modal__close-stick { position:absolute; top:12px; right:12px; z-index:210; pointer-events:none; width:auto; height:auto; }
+      .project-modal__close-stick {
+        position:absolute;
+        top:calc((100vh - min(92vh, 680px)) / 2 + 12px);
+        right:max(1rem, calc((100vw - min(1100px, 100vw - 2rem)) / 2 + 12px));
+        z-index:220;
+        pointer-events:none;
+        width:auto;
+        height:auto;
+      }
       .project-modal__close-stick .project-modal__close { position:relative; pointer-events:auto; }
     }
-    .project-modal__close { position:relative; width:40px; height:40px; display:flex; align-items:center; justify-content:center; background:var(--ink); color:#fff; font-size:18px; line-height:1; border:none; cursor:pointer; transition:opacity .2s; flex-shrink:0; }
+    .project-modal__close { position:relative; width:40px; height:40px; display:flex; align-items:center; justify-content:center; background:var(--ink); color:#fff; font-size:14px; line-height:1; border:none; cursor:pointer; transition:opacity .2s; flex-shrink:0; }
     .project-modal__close:hover { opacity:.8; }
     .project-modal__viewport { position:relative; width:100%; overflow:hidden; touch-action:pan-y pinch-zoom; }
     .project-modal__track { display:flex; width:100%; will-change:transform; transition:transform .38s cubic-bezier(.25,.46,.45,.94); }
@@ -623,6 +713,15 @@
       }
       .spec-row > svg { width:1.75rem; height:1.75rem; margin-top:0.1rem; }
     }
+    .reviews-panel {
+      width: 100%;
+      padding-block: clamp(1.75rem, 4vw, 3rem);
+      border: none;
+      background: var(--card);
+    }
+    .reviews-panel__shell {
+      width: 100%;
+    }
     .reviews-section {
       display: flex;
       flex-direction: column;
@@ -634,91 +733,91 @@
       margin-inline: auto;
     }
     .reviews-rating-bar {
-      margin-top: 1.5rem;
+      margin-top: 2rem;
       margin-inline: auto;
-      padding: 0.875rem 1.25rem;
-      border: 1px solid var(--line);
-      background: var(--card);
+      padding: 0;
+      border: none;
+      background: transparent;
       width: fit-content;
       max-width: 100%;
     }
-    .reviews-rating-bar img {
-      display: block;
-      width: clamp(10.5rem, 28vw, 14rem);
-      height: auto;
-      max-width: 100%;
+    .reviews-rating {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .reviews-rating__main {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.625rem;
+    }
+    .reviews-rating__stars {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.25rem;
+    }
+    .reviews-rating__star {
+      width: clamp(1.5rem, 5vw, 1.85rem);
+      height: clamp(1.5rem, 5vw, 1.85rem);
+      fill: #ffb020;
+      flex-shrink: 0;
+    }
+    .reviews-rating__score {
+      font-size: clamp(1.5rem, 5vw, 2rem);
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      line-height: 1;
+      color: var(--ink);
+    }
+    .reviews-rating__meta {
+      font-size: 0.8125rem;
+      line-height: 1.4;
+      color: var(--muted);
     }
     .reviews-grid {
-      display: flex;
-      gap: 1rem;
-      margin-top: 2rem;
-      margin-inline: auto;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: 2.25rem;
+      margin-top: 3.5rem;
+      margin-inline: 0;
       width: 100%;
-      max-width: 44rem;
-      justify-content: center;
-      overflow-x: auto;
-      padding-bottom: 0.35rem;
-      scroll-snap-type: x mandatory;
-      -webkit-overflow-scrolling: touch;
-      scrollbar-width: thin;
+      max-width: 100%;
     }
     .reviews-grid__card {
-      flex: 0 0 clamp(13.5rem, 58vw, 16rem);
       margin: 0;
-      padding: 0.75rem;
-      border: 1px solid var(--line);
-      background: var(--card);
-      scroll-snap-align: start;
+      padding: 0;
+      border: none;
+      background: transparent;
+      width: 100%;
+      min-width: 0;
+      display: flex;
+      justify-content: center;
     }
     .reviews-grid__card img {
       display: block;
       width: 100%;
+      max-width: 22rem;
       height: auto;
-      max-height: 18rem;
+      max-height: none;
       object-fit: contain;
-      object-position: top left;
+      object-position: top center;
+      margin-inline: auto;
+    }
+    .reviews-grid__more-wrap {
+      display: flex;
+      justify-content: center;
+      width: 100%;
+      margin-top: 2rem;
     }
     .reviews-grid__more {
       display: none;
-      width: 100%;
-      margin-top: 1.5rem;
+      width: auto;
+      max-width: 100%;
+      margin: 0;
       justify-content: center;
-      align-self: center;
-    }
-    @media (min-width: 768px) {
-      .reviews-grid {
-        display: grid;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 1.5rem;
-        max-width: 44rem;
-        margin-inline: auto;
-        justify-content: center;
-        overflow: visible;
-        padding-bottom: 0;
-        scroll-snap-type: none;
-      }
-      .reviews-grid__card {
-        flex: none;
-        padding: 0.875rem 1rem;
-      }
-      .reviews-grid__card img {
-        max-height: 21rem;
-      }
-      .reviews-grid__more {
-        width: auto;
-      }
-    }
-    @media (min-width: 1024px) {
-      .reviews-grid {
-        max-width: 48rem;
-        gap: 1.75rem;
-      }
-      .reviews-grid--compact:not(.is-expanded) .reviews-grid__card:nth-child(n + 5) {
-        display: none;
-      }
-      .reviews-grid__more.is-visible {
-        display: inline-flex;
-      }
+      text-align: center;
+      white-space: normal;
     }
     @media (max-width: 1023px) {
       .reviews-grid--compact:not(.is-expanded) .reviews-grid__card:nth-child(n + 3) {
@@ -728,13 +827,36 @@
         display: inline-flex;
       }
     }
-    @media (max-width: 639px) {
-      #reviews .section-inner {
-        padding-left: 0.875rem;
-        padding-right: 0.875rem;
+    @media (min-width: 768px) {
+      .reviews-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 2.75rem;
+        margin-top: 4rem;
       }
     }
-    .hero-wide { width:100%; max-width:1920px; margin-left:auto; margin-right:auto; padding-left:2.5vw; padding-right:2.5vw; }
+    @media (min-width: 1024px) {
+      .reviews-panel {
+        padding-block: clamp(2.5rem, 4vw, 3.5rem);
+      }
+      .reviews-grid {
+        gap: 3rem;
+        margin-top: 4.5rem;
+      }
+      .reviews-grid--compact:not(.is-expanded) .reviews-grid__card:nth-child(n + 5) {
+        display: none;
+      }
+      .reviews-grid__more.is-visible {
+        display: inline-flex;
+      }
+    }
+    .hero-wide {
+      width: 100%;
+      max-width: 1920px;
+      margin-left: auto;
+      margin-right: auto;
+      padding-left: max(1.25rem, 2.5vw);
+      padding-right: max(1.25rem, 2.5vw);
+    }
     .nav-link { font-size:11px; font-weight:500; text-transform:uppercase; letter-spacing:0.14em; color:var(--muted); transition:color .2s; white-space:nowrap; }
     .nav-link:hover { color:var(--ink); }
     .hero-mark { width:2rem; height:2rem; border-radius:9999px; border:1px solid var(--ink); flex-shrink:0; overflow:hidden; display:block; background:var(--surface); }
@@ -921,7 +1043,6 @@
       position:relative; overflow:visible; z-index:0;
     }
     .site-footer {
-      scroll-margin-bottom:1rem;
       padding-top:2.5rem;
       padding-bottom:max(2.5rem, env(safe-area-inset-bottom, 0px));
       padding-left:max(1.25rem, env(safe-area-inset-left, 0px));
@@ -1010,7 +1131,7 @@
         <a href="#contacts" class="mobile-link py-3 border-b border-line">Контакты</a>
         <a href="tel:+79000000000" class="mobile-link site-header__menu-phone py-3 border-b border-line">+7 (900) 000-00-00</a>
         <div class="site-header__menu-footer">
-          <a href="#calculator" class="site-header__menu-cta btn-accent">Рассчитать стоимость</a>
+          <a href="#calculator" class="site-header__menu-cta btn-accent rounded-full">Рассчитать стоимость</a>
         </div>
       </nav>
     </div>
@@ -1057,10 +1178,10 @@
 
     <!-- Модалка проекта -->
     <div id="projectModal" class="project-modal" role="dialog" aria-modal="true" aria-hidden="true">
+      <div class="project-modal__close-stick">
+        <button type="button" id="projectModalClose" class="project-modal__close" aria-label="Закрыть">✕</button>
+      </div>
       <div class="project-modal__panel">
-        <div class="project-modal__close-stick">
-          <button type="button" id="projectModalClose" class="project-modal__close" aria-label="Закрыть">✕</button>
-        </div>
         <div class="project-modal__viewport" id="projectModalViewport">
           <div id="projectModalTrack" class="project-modal__track"></div>
         </div>
@@ -1217,52 +1338,63 @@
     </section>
 
     <!-- 4b. REVIEWS -->
-    <section id="reviews" class="section-flow bg-surface">
-      <div class="hero-wide py-16 lg:py-24 section-inner reveal-block">
-        <div class="reviews-section reveal">
-          <div class="reviews-section__head">
-            <p class="label">Отзывы</p>
-            <h2 class="section-heading mt-3">Что пишут клиенты</h2>
-            <p class="section-desc">Реальные отзывы с объявления на Авито — скриншоты без правок</p>
-          </div>
+    <section id="reviews" class="section-flow bg-canvas">
+      <div class="reviews-panel reveal section-inner reveal-block">
+        <div class="reviews-panel__shell mx-auto max-w-content px-5 lg:px-10">
+          <div class="reviews-section reveal">
+            <div class="reviews-section__head">
+              <p class="label">Отзывы</p>
+              <h2 class="section-heading mt-3">Что пишут клиенты</h2>
+              <p class="section-desc">Реальные отзывы с объявления на Авито — скриншоты без правок</p>
+            </div>
 
-          <div class="reviews-rating-bar">
-            <img
-              src="images/reviews/avito-reviews-summary.png"
-              alt="Рейтинг 5,0 — 5 отзывов клиентов"
-              width="560"
-              height="80"
-              loading="lazy"
-            >
-          </div>
+            <div class="reviews-rating-bar">
+              <div class="reviews-rating" role="img" aria-label="Рейтинг 5.0 из 5 — 5 отзывов">
+                <div class="reviews-rating__main">
+                  <div class="reviews-rating__stars" aria-hidden="true">
+                    <svg class="reviews-rating__star" viewBox="0 0 20 20" focusable="false"><path d="M10 1.6 12.47 6.6l5.53.8-4 3.9.94 5.5L10 14.4l-4.94 2.6.94-5.5-4-3.9 5.53-.8L10 1.6z"/></svg>
+                    <svg class="reviews-rating__star" viewBox="0 0 20 20" focusable="false"><path d="M10 1.6 12.47 6.6l5.53.8-4 3.9.94 5.5L10 14.4l-4.94 2.6.94-5.5-4-3.9 5.53-.8L10 1.6z"/></svg>
+                    <svg class="reviews-rating__star" viewBox="0 0 20 20" focusable="false"><path d="M10 1.6 12.47 6.6l5.53.8-4 3.9.94 5.5L10 14.4l-4.94 2.6.94-5.5-4-3.9 5.53-.8L10 1.6z"/></svg>
+                    <svg class="reviews-rating__star" viewBox="0 0 20 20" focusable="false"><path d="M10 1.6 12.47 6.6l5.53.8-4 3.9.94 5.5L10 14.4l-4.94 2.6.94-5.5-4-3.9 5.53-.8L10 1.6z"/></svg>
+                    <svg class="reviews-rating__star" viewBox="0 0 20 20" focusable="false"><path d="M10 1.6 12.47 6.6l5.53.8-4 3.9.94 5.5L10 14.4l-4.94 2.6.94-5.5-4-3.9 5.53-.8L10 1.6z"/></svg>
+                  </div>
+                  <span class="reviews-rating__score">5.0</span>
+                </div>
+                <span class="reviews-rating__meta">5 отзывов</span>
+              </div>
+            </div>
 
-          <div class="reviews-grid reviews-grid--compact reveal-stagger" id="reviewsFeed">
-            <figure class="reviews-grid__card reveal-child"><img src="images/reviews/avito-review-1.png" alt="Отзыв Кристины" loading="lazy"></figure>
-            <figure class="reviews-grid__card reveal-child"><img src="images/reviews/avito-review-2.png" alt="Отзыв Романа" loading="lazy"></figure>
-            <figure class="reviews-grid__card reveal-child"><img src="images/reviews/avito-review-3.png" alt="Отзыв Генриха" loading="lazy"></figure>
-            <figure class="reviews-grid__card reveal-child"><img src="images/reviews/avito-review-4.png" alt="Отзыв David" loading="lazy"></figure>
-            <figure class="reviews-grid__card reveal-child"><img src="images/reviews/avito-review-5.png" alt="Отзыв Анжелы" loading="lazy"></figure>
+            <div class="reviews-grid reviews-grid--compact reveal-stagger" id="reviewsFeed">
+              <figure class="reviews-grid__card reveal-child"><img src="images/reviews/avito-review-1.png" alt="Отзыв Кристины" loading="lazy"></figure>
+              <figure class="reviews-grid__card reveal-child"><img src="images/reviews/avito-review-2.png" alt="Отзыв Романа" loading="lazy"></figure>
+              <figure class="reviews-grid__card reveal-child"><img src="images/reviews/avito-review-3.png" alt="Отзыв Генриха" loading="lazy"></figure>
+              <figure class="reviews-grid__card reveal-child"><img src="images/reviews/avito-review-4.png" alt="Отзыв David" loading="lazy"></figure>
+              <figure class="reviews-grid__card reveal-child"><img src="images/reviews/avito-review-5.png" alt="Отзыв Анжелы" loading="lazy"></figure>
+            </div>
+            <div class="reviews-grid__more-wrap">
+              <button type="button" class="reviews-grid__more btn-ghost" id="reviewsMore">Показать ещё 3 отзыва</button>
+            </div>
           </div>
-          <button type="button" class="reviews-grid__more btn-ghost" id="reviewsMore">Показать ещё отзывы</button>
         </div>
       </div>
     </section>
 
     <!-- 5. PRICING -->
-    <section id="pricing" class="section-flow bg-surface">
-      <div class="hero-wide py-16 lg:py-24 section-inner reveal-block">
-        <div class="reveal">
-          <p class="label">Цены</p>
-          <h2 class="section-heading mt-3">Прайс-лист</h2>
-          <p class="section-desc max-w-lg">Актуальные расценки на все виды работ</p>
-        </div>
-        <div class="price-panel reveal mt-14">
+    <section id="pricing" class="section-flow bg-canvas">
+      <div class="price-panel reveal section-inner reveal-block">
+        <div class="price-panel__shell mx-auto max-w-content px-5 lg:px-10">
+          <div class="price-panel__head reveal">
+            <p class="label">Цены</p>
+            <h2 class="section-heading mt-3">Прайс-лист</h2>
+            <p class="section-desc max-w-lg">Актуальные расценки на все виды работ</p>
+          </div>
           <div class="price-panel__grid" id="priceList"></div>
           <div class="pricing-cta reveal">
             <a href="#calculator" class="btn-solid">Рассчитать стоимость</a>
           </div>
         </div>
       </div>
+      <div class="pb-16 lg:pb-24" aria-hidden="true"></div>
     </section>
 
     <!-- 6. CONTACTS -->
@@ -1476,7 +1608,9 @@
     function renderPriceBlock(block) {
       return `
         <div class="price-block" data-pos="${block.id}">
-          <h3 class="price-block-title">${block.title}</h3>
+          <div class="price-block__head">
+            <h3 class="price-block-title">${block.title}</h3>
+          </div>
           <div class="price-rows">
             ${block.services.map(s => `
               <div class="price-row">
@@ -2199,6 +2333,12 @@
         m.classList.add('is-open');
         m.setAttribute('aria-hidden', 'false');
         document.body.classList.add('project-modal-open');
+        document.body.dataset.modalScrollY = String(window.scrollY || 0);
+        document.body.style.position = 'fixed';
+        document.body.style.top = `-${document.body.dataset.modalScrollY}px`;
+        document.body.style.left = '0';
+        document.body.style.right = '0';
+        document.body.style.width = '100%';
         document.body.style.overflow = 'hidden';
       }
     }
@@ -2208,7 +2348,15 @@
       m.classList.remove('is-open');
       m.setAttribute('aria-hidden', 'true');
       document.body.classList.remove('project-modal-open');
+      const scrollY = Number(document.body.dataset.modalScrollY || 0);
+      document.body.style.position = '';
+      document.body.style.top = '';
+      document.body.style.left = '';
+      document.body.style.right = '';
+      document.body.style.width = '';
       document.body.style.overflow = '';
+      delete document.body.dataset.modalScrollY;
+      window.scrollTo(0, scrollY);
       modalProject = null;
       modalTrackBuilt = false;
       document.getElementById('projectModalPager')?.classList.remove('is-ready');
@@ -2244,6 +2392,40 @@
     document.getElementById('projectModal').onclick = e => { if (e.target.id === 'projectModal') closeProjectModal(); };
     document.getElementById('projectModalPrev').onclick = () => navigateModalProject(-1);
     document.getElementById('projectModalNext').onclick = () => navigateModalProject(1);
+
+    (function initProjectModalOverscrollLock() {
+      const modal = document.getElementById('projectModal');
+      const panel = modal?.querySelector('.project-modal__panel');
+      if (!modal || !panel) return;
+
+      let lastTouchY = 0;
+
+      panel.addEventListener('touchstart', (e) => {
+        if (!modal.classList.contains('is-open')) return;
+        lastTouchY = e.touches[0].clientY;
+      }, { passive: true });
+
+      panel.addEventListener('touchmove', (e) => {
+        if (!modal.classList.contains('is-open')) return;
+
+        const touchY = e.touches[0].clientY;
+        const deltaY = touchY - lastTouchY;
+        lastTouchY = touchY;
+
+        const maxScroll = panel.scrollHeight - panel.clientHeight;
+        if (maxScroll <= 0) {
+          if (e.cancelable) e.preventDefault();
+          return;
+        }
+
+        const atTop = panel.scrollTop <= 0;
+        const atBottom = panel.scrollTop >= maxScroll - 1;
+
+        if ((atTop && deltaY > 0) || (atBottom && deltaY < 0)) {
+          if (e.cancelable) e.preventDefault();
+        }
+      }, { passive: false });
+    })();
 
     document.getElementById('projectModalTrack').addEventListener('click', e => {
       const room = e.target.closest('.project-modal__room');
@@ -2361,14 +2543,11 @@
       const feed = document.getElementById('reviewsFeed');
       const btn = document.getElementById('reviewsMore');
       if (!feed || !btn) return;
-      const mqMobile = window.matchMedia('(max-width: 639px)');
       const mqDesktop = window.matchMedia('(min-width: 1024px)');
       const total = feed.querySelectorAll('.reviews-grid__card').length;
 
       function initialVisible() {
-        if (mqDesktop.matches) return 4;
-        if (mqMobile.matches) return 2;
-        return total;
+        return mqDesktop.matches ? 4 : 2;
       }
 
       function sync() {
@@ -2379,19 +2558,22 @@
         if (!useCompact) {
           feed.classList.remove('is-expanded');
           btn.classList.remove('is-visible');
-          btn.hidden = true;
           return;
         }
         const expanded = feed.classList.contains('is-expanded');
-        btn.hidden = false;
         btn.classList.add('is-visible');
-        btn.textContent = expanded ? 'Свернуть отзывы' : `Показать ещё ${hiddenCount} ${hiddenCount === 1 ? 'отзыв' : hiddenCount < 5 ? 'отзыва' : 'отзывов'}`;
+        if (expanded) {
+          btn.textContent = 'Свернуть отзывы';
+        } else if (hiddenCount === 3) {
+          btn.textContent = 'Показать ещё 3 отзыва';
+        } else {
+          btn.textContent = `Показать ещё ${hiddenCount} ${hiddenCount === 1 ? 'отзыв' : hiddenCount < 5 ? 'отзыва' : 'отзывов'}`;
+        }
       }
       btn.addEventListener('click', () => {
         feed.classList.toggle('is-expanded');
         sync();
       });
-      mqMobile.addEventListener('change', sync);
       mqDesktop.addEventListener('change', sync);
       sync();
     })();

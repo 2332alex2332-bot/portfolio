@@ -67,6 +67,7 @@ html {
   width: 100%;
   overflow-x: clip;
   -webkit-tap-highlight-color: transparent;
+  background: var(--black);
 }
 
 body {
@@ -531,6 +532,23 @@ h1 span,
 .contact-grid h3 {
   font-size: clamp(16px, 1.5vw, 24px);
   line-height: 1.15;
+}
+
+.hero-intro__link,
+.hero-intro a[href^="tel:"],
+.hero-intro a[href^="mailto:"],
+.hero-intro a[x-apple-data-detectors],
+.hero-intro a[x-apple-data-detectors="true"] {
+  color: inherit;
+  text-decoration: none;
+  -webkit-text-decoration: none;
+}
+
+.hero-intro__link:hover,
+.hero-intro__link:focus-visible {
+  color: var(--acid);
+  text-decoration: none;
+  outline: none;
 }
 
 .button {
@@ -2677,6 +2695,8 @@ address {
     max-width: 100%;
     overflow-x: clip;
     overscroll-behavior-x: none;
+    overscroll-behavior-y: none;
+    background: var(--black);
   }
 
   img,
