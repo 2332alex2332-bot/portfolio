@@ -2,15 +2,32 @@
   'use strict';
 
   const MOBILE_MQ = window.matchMedia('(max-width: 1024px)');
+  let lockedViewportHeight = 0;
 
   function isHome() {
     return document.body.dataset.page === 'home';
   }
 
+  function lockViewportHeight() {
+    const height =
+      window.visualViewport && window.visualViewport.height > 0
+        ? Math.round(window.visualViewport.height)
+        : Math.round(window.innerHeight);
+
+    if (height > 0) {
+      lockedViewportHeight = height;
+    }
+  }
+
   function getViewportHeight() {
+    if (MOBILE_MQ.matches && lockedViewportHeight > 0) {
+      return lockedViewportHeight;
+    }
+
     if (window.visualViewport && window.visualViewport.height > 0) {
       return Math.round(window.visualViewport.height);
     }
+
     return Math.round(window.innerHeight);
   }
 
@@ -81,13 +98,12 @@
     const headerH = getHeaderHeight();
     const stageH = Math.max(280, viewportH - headerH);
 
-    root.style.setProperty('--app-viewport-height', `${viewportH}px`);
-    root.style.setProperty('--hero-stage-height', `${stageH}px`);
-
     if (MOBILE_MQ.matches) {
+      root.style.setProperty('--hero-stage-height', `${stageH}px`);
       setMobileTypography(stageH);
       root.classList.add('is-hero-mobile-fit');
     } else {
+      root.style.removeProperty('--hero-stage-height');
       clearMobileTypography();
       root.classList.remove('is-hero-mobile-fit');
       const heroCopy = document.querySelector('body[data-page="home"] .hero-copy');
@@ -100,36 +116,35 @@
   function init() {
     if (!isHome()) return;
 
+    lockViewportHeight();
     updateHeroViewport();
 
-    window.addEventListener('resize', updateHeroViewport, { passive: true });
-    window.addEventListener('orientationchange', () => {
-      window.setTimeout(updateHeroViewport, 120);
+    window.addEventListener('resize', () => {
+      if (MOBILE_MQ.matches) return;
+      updateHeroViewport();
     }, { passive: true });
 
-    if (window.visualViewport) {
-      window.visualViewport.addEventListener('resize', updateHeroViewport, { passive: true });
-      window.visualViewport.addEventListener('scroll', updateHeroViewport, { passive: true });
-    }
+    window.addEventListener('orientationchange', () => {
+      window.setTimeout(() => {
+        lockViewportHeight();
+        updateHeroViewport();
+      }, 120);
+    }, { passive: true });
 
     if (document.fonts && document.fonts.ready) {
       document.fonts.ready.then(updateHeroViewport);
     }
 
-    const header = document.querySelector('.site-header');
-    if (header && typeof ResizeObserver !== 'undefined') {
-      new ResizeObserver(updateHeroViewport).observe(header);
-    }
-
-    const heroText = document.querySelector('body[data-page="home"] .hero-text');
-    if (heroText && typeof ResizeObserver !== 'undefined') {
-      new ResizeObserver(updateHeroViewport).observe(heroText);
-    }
-
     if (typeof MOBILE_MQ.addEventListener === 'function') {
-      MOBILE_MQ.addEventListener('change', updateHeroViewport);
+      MOBILE_MQ.addEventListener('change', () => {
+        lockViewportHeight();
+        updateHeroViewport();
+      });
     } else if (typeof MOBILE_MQ.addListener === 'function') {
-      MOBILE_MQ.addListener(updateHeroViewport);
+      MOBILE_MQ.addListener(() => {
+        lockViewportHeight();
+        updateHeroViewport();
+      });
     }
   }
 

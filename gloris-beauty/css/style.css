@@ -3074,8 +3074,8 @@ body[data-page="home"] .visit-btn.purple:hover {
     flex-direction: column;
     flex: 0 0 auto;
     min-height: 0;
-    height: var(--hero-stage-height, calc(100dvh - var(--site-header-height, 56px)));
-    max-height: var(--hero-stage-height, calc(100dvh - var(--site-header-height, 56px)));
+    height: var(--hero-stage-height, calc(100svh - var(--site-header-height, 56px)));
+    max-height: var(--hero-stage-height, calc(100svh - var(--site-header-height, 56px)));
     overflow: hidden;
   }
 
@@ -3099,9 +3099,9 @@ body[data-page="home"] .visit-btn.purple:hover {
 
   body[data-page="home"] .hero-image img,
   body[data-page="home"] .hero-image video {
-    object-position: center 76%;
-    transform: scale(1.08);
-    transform-origin: center 70%;
+    object-position: center center;
+    transform: scale(1.2);
+    transform-origin: center center;
   }
 
   body[data-page="home"] .hero-text {
@@ -3239,9 +3239,9 @@ body[data-page="home"] .visit-btn.purple:hover {
   @container hero-stage (max-height: 620px) {
     body[data-page="home"] .hero-image img,
     body[data-page="home"] .hero-image video {
-      object-position: center 80%;
-      transform: scale(1.1);
-      transform-origin: center 74%;
+      object-position: center center;
+      transform: scale(1.22);
+      transform-origin: center center;
     }
   }
 }
@@ -3255,9 +3255,9 @@ body[data-page="home"] .visit-btn.purple:hover {
 @media (max-width: 1024px) and (max-height: 667px) {
   body[data-page="home"] .hero-image img,
   body[data-page="home"] .hero-image video {
-    object-position: center 82%;
-    transform: scale(1.12);
-    transform-origin: center 76%;
+    object-position: center center;
+    transform: scale(1.24);
+    transform-origin: center center;
   }
 }
 
