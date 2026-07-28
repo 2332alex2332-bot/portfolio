@@ -2264,12 +2264,23 @@ function formatEndTime(startTime, durationMinutes) {
 }
 
 /* ----- Site header height (sticky offsets) ----- */
+let homeHeaderHeightLocked = false;
+
 function updateSiteHeaderHeight() {
+  if (homeHeaderHeightLocked) return;
+
   const header = document.querySelector('.site-header');
   if (!header) return;
   const height = Math.ceil(header.getBoundingClientRect().height);
   document.documentElement.style.setProperty('--site-header-height', `${height}px`);
   document.documentElement.style.setProperty('--catalog-sticky-top', `${height}px`);
+
+  if (
+    document.body.dataset.page === 'home' &&
+    window.matchMedia('(max-width: 1024px)').matches
+  ) {
+    homeHeaderHeightLocked = true;
+  }
 }
 
 function initSiteHeaderHeight() {

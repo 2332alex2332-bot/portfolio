@@ -1,12 +1,23 @@
 (function updateHeaderMetrics() {
+  const HOME_MOBILE_MQ = window.matchMedia('(max-width: 1024px)');
+  let homeMetricsLocked = false;
+
+  function shouldLockHomeMetrics() {
+    return document.body.dataset.page === 'home' && HOME_MOBILE_MQ.matches;
+  }
+
   function set() {
+    if (homeMetricsLocked) return;
+
     const header = document.querySelector('.site-header');
     if (!header) return;
+
     const height = Math.ceil(header.getBoundingClientRect().height);
     document.documentElement.style.setProperty('--site-header-height', `${height}px`);
     document.documentElement.style.setProperty('--catalog-sticky-top', `${height}px`);
-    if (typeof window.updateGlorisHeroViewport === 'function') {
-      window.updateGlorisHeroViewport();
+
+    if (shouldLockHomeMetrics()) {
+      homeMetricsLocked = true;
     }
   }
 
