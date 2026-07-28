@@ -1019,16 +1019,23 @@
     .hero-bath__visual {
       position:relative;
       background:#D4DDD0;
-      min-height:clamp(260px, 50vh, 580px);
+      height:var(--hero-visual-height, clamp(320px, 58svh, 580px));
       overflow:hidden;
+      flex-shrink:0;
     }
     .hero-bath__visual img {
       display:block;
       width:100%;
       height:100%;
-      min-height:clamp(260px, 50vh, 580px);
       object-fit:cover;
       object-position:center 35%;
+    }
+    .section-hero .reveal {
+      opacity:1;
+      transform:none;
+      filter:none;
+      transition:none;
+      will-change:auto;
     }
     @media (prefers-reduced-motion: reduce) {
       .hero-bath__marquee-track { animation:none; flex-wrap:wrap; width:100%; }
@@ -1096,6 +1103,17 @@
 </head>
 <body class="bg-canvas font-sans text-ink antialiased">
   <script>if('scrollRestoration' in history) history.scrollRestoration='manual';window.scrollTo(0,0);</script>
+  <script>
+    (function lockHeroVisualHeight() {
+      const apply = () => {
+        const height = Math.round(window.innerHeight * 0.58);
+        const locked = Math.max(320, Math.min(580, height));
+        document.documentElement.style.setProperty('--hero-visual-height', locked + 'px');
+      };
+      apply();
+      window.addEventListener('orientationchange', () => window.setTimeout(apply, 150));
+    })();
+  </script>
 
   <!-- HEADER -->
   <header class="site-header fixed inset-x-0 top-0 z-50 border-b border-line bg-white/95 backdrop-blur-sm">
@@ -1156,7 +1174,7 @@
           </div>
         </div>
       </div>
-      <figure class="hero-bath__visual reveal">
+      <figure class="hero-bath__visual">
         <img src="images/hero/01-painting.png" alt="Малярные работы — ремонт под ключ в Химках" width="7680" height="5120" loading="eager">
       </figure>
     </section>
@@ -2591,7 +2609,6 @@
     revealEls.forEach(el => revealObs.observe(el));
     document.querySelector('.hero-bath__title.reveal')?.classList.add('is-visible');
     document.querySelector('.hero-bath__marquee.reveal')?.classList.add('is-visible');
-    document.querySelector('.hero-bath__visual.reveal')?.classList.add('is-visible');
 
     // Smooth scroll по якорям
     document.querySelectorAll('a[href^="#"]').forEach(a => a.onclick = e => {
