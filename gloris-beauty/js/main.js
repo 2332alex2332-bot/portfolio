@@ -2286,11 +2286,32 @@ function bootDynamicContent() {
   initMastersGrid();
 }
 
+function initHeroVideo() {
+  const video = document.querySelector('.hero-video');
+  if (!video) return;
+
+  const ensurePlay = () => {
+    video.removeAttribute('poster');
+    video.muted = true;
+    if (!video.paused) return;
+    const attempt = video.play();
+    if (attempt && typeof attempt.catch === 'function') attempt.catch(() => {});
+  };
+
+  ensurePlay();
+  video.addEventListener('loadeddata', ensurePlay, { once: true });
+  video.addEventListener('canplay', ensurePlay, { once: true });
+  document.addEventListener('visibilitychange', () => {
+    if (!document.hidden) ensurePlay();
+  });
+}
+
 function bootSiteUi() {
   initMobileMenu();
   initMobileOverscrollLock();
   initMobileHeaderCta();
   initSiteHeaderHeight();
+  initHeroVideo();
   observeReveal();
   setActiveNav();
   initSubnavScroll();
@@ -2307,6 +2328,7 @@ function markContentReady() {
 
 /* ----- Init ----- */
 bootDynamicContent();
+initHeroVideo();
 markContentReady();
 document.addEventListener('DOMContentLoaded', () => {
   bootDynamicContent();
