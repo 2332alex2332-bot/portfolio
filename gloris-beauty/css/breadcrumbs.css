@@ -72,4 +72,10 @@ body.yc-widget-body-open .site-breadcrumbs-wrap {
   .site-breadcrumbs__list {
     font-size: 0.6875rem;
   }
+
+  .site-breadcrumbs__item a,
+  .site-breadcrumbs__item span[aria-current='page'] {
+    display: inline-block;
+    transform: translateY(2px);
+  }
 }

@@ -476,6 +476,11 @@ body:not([data-page="home"]):not([data-page="services"]):not([data-page="masters
     min-width: 0;
   }
 
+  .top-nav-logo {
+    font-size: 1.1rem;
+    letter-spacing: 0.08em;
+  }
+
   .top-nav-center.top-nav-menu {
     display: none;
   }
@@ -502,8 +507,8 @@ body:not([data-page="home"]):not([data-page="services"]):not([data-page="masters
   }
 
   .top-nav-logo {
-    font-size: 0.82rem;
-    letter-spacing: 0.06em;
+    font-size: 1.05rem;
+    letter-spacing: 0.07em;
   }
 }
 
@@ -522,8 +527,8 @@ body:not([data-page="home"]):not([data-page="services"]):not([data-page="masters
   }
 
   .top-nav-logo {
-    font-size: 0.72rem;
-    letter-spacing: 0.05em;
+    font-size: 0.98rem;
+    letter-spacing: 0.06em;
     max-width: calc(100vw - 5.5rem);
     overflow: hidden;
     text-overflow: ellipsis;
@@ -1114,11 +1119,12 @@ body.menu-open .top-nav-cta.yc-widget-open {
 
 .promo-content {
   flex: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: var(--space-48);
+  display: grid;
+  place-content: center;
+  place-items: center;
+  gap: 10px;
+  min-height: 280px;
+  padding: clamp(1.5rem, 4vw, 3rem) var(--space-48);
   text-align: center;
   text-decoration: none;
   color: inherit;
@@ -1126,14 +1132,104 @@ body.menu-open .top-nav-cta.yc-widget-open {
   transition: background 0.35s var(--ease);
 }
 
-.promo-card.green .promo-content { background: var(--color-bg-secondary); }
-.promo-card.purple .promo-content { background: var(--color-card-pink); }
+.promo-content .promo-badge-inline,
+.promo-content .promo-price,
+.promo-content .price-save,
+.promo-content .promo-subtitle {
+  margin: 0;
+}
+
+.promo-content .promo-subtitle {
+  max-width: 20rem;
+}
+
+.promo-card.green .promo-content,
+.promo-card.purple .promo-content {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  color: var(--color-text-main, #111);
+  transition: background-color 0.35s var(--ease);
+}
+
+.promo-card.green .promo-content::before,
+.promo-card.purple .promo-content::before,
+.promo-card.green .promo-content::after,
+.promo-card.purple .promo-content::after {
+  content: '';
+  position: absolute;
+  pointer-events: none;
+}
+
+.promo-card.green .promo-content::before,
+.promo-card.purple .promo-content::before {
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 5px;
+  z-index: 2;
+}
+
+.promo-card.green .promo-content::after,
+.promo-card.purple .promo-content::after {
+  inset: 0;
+  z-index: 0;
+}
+
+.promo-card.green .promo-content > *,
+.promo-card.purple .promo-content > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* Зелёная — приглушённый шалфей, заметно цветная, но в палитре сайта */
+.promo-card.green .promo-content {
+  background-color: #B8D4CA;
+}
+
+.promo-card.green .promo-content::before {
+  background: #6B9485;
+}
+
+.promo-card.green .promo-content::after {
+  opacity: 0.72;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'%3E%3Cg fill='none' stroke='%23ffffff' stroke-linecap='square' stroke-linejoin='miter'%3E%3Cpath d='M0 20 L20 0 L40 20 L60 0 L80 20' stroke-opacity='0.46' stroke-width='6'/%3E%3Cpath d='M0 60 L20 40 L40 60 L60 40 L80 60' stroke-opacity='0.46' stroke-width='6'/%3E%3C/g%3E%3C/svg%3E");
+  background-size: 80px 80px;
+}
 
 .promo-card.green .promo-content:hover,
+.promo-card.green .promo-content:focus-visible {
+  background-color: #A8C8BC;
+}
+
+/* Розовая — пыльная роза, теплее и отличима от зелёной */
+.promo-card.purple .promo-content {
+  background-color: #E0B4C0;
+}
+
+.promo-card.purple .promo-content::before {
+  background: var(--dusty-rose, #B8908E);
+}
+
+.promo-card.purple .promo-content::after {
+  opacity: 0.72;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'%3E%3Cpath d='M40 4 L76 40 L40 76 L4 40 Z' fill='none' stroke='%23ffffff' stroke-opacity='0.46' stroke-width='6'/%3E%3C/svg%3E");
+  background-size: 80px 80px;
+}
+
 .promo-card.purple .promo-content:hover,
-.promo-card.green .promo-content:focus-visible,
 .promo-card.purple .promo-content:focus-visible {
-  background: #E5E5E5;
+  background-color: #D4A4B2;
+}
+
+.promo-card.green .promo-content .promo-badge-inline,
+.promo-card.purple .promo-content .promo-badge-inline {
+  color: rgba(17, 17, 17, 0.55);
+}
+
+.promo-card.green .promo-content .price-new,
+.promo-card.purple .promo-content .price-new {
+  color: var(--charcoal, #111);
 }
 
 .promo-content:focus-visible {
@@ -1238,8 +1334,15 @@ body.menu-open .top-nav-cta.yc-widget-open {
   .promo-card.green,
   .promo-card.purple { flex-direction: column; min-height: auto; }
   .promo-image { width: 100%; min-height: 280px; }
+  .promo-content { min-height: 240px; }
   body[data-page="home"] .hero-copy .explore-btn { margin-top: 0; }
   .testimonial { left: 20px; bottom: 80px; max-width: 260px; }
+}
+
+@media (min-width: 769px) {
+  .promo-card .promo-content {
+    min-height: 480px;
+  }
 }
 
 /* ===== SECTIONS ===== */
@@ -2518,7 +2621,7 @@ body.menu-open .top-nav-cta.yc-widget-open {
 /* Landing typography + pill buttons */
 body[data-page="home"] .hero-text .hero-heading {
   font-family: var(--font-body) !important;
-  font-size: clamp(2.25rem, 5.2vw, 4.5rem) !important;
+  font-size: clamp(2.5rem, 5.8vw, 5.125rem) !important;
   font-weight: 800 !important;
   font-style: normal !important;
   font-synthesis: none;
@@ -2577,6 +2680,7 @@ body[data-page="home"] .hero-copy {
   align-items: center;
   text-align: center;
   pointer-events: none;
+  transform: translateY(55px);
 }
 
 body[data-page="home"] .hero-actions {
@@ -2765,7 +2869,9 @@ body[data-page="home"] .visit-btn.purple:hover {
   body[data-page="home"] .home-first-screen {
     display: flex;
     flex-direction: column;
-    min-height: calc(100svh - var(--site-header-height, 56px));
+    min-height: 0;
+    height: calc(100svh - var(--site-header-height, 56px) - 120px);
+    max-height: calc(100svh - var(--site-header-height, 56px) - 120px);
     overflow: hidden;
   }
 
@@ -2774,11 +2880,17 @@ body[data-page="home"] .visit-btn.purple:hover {
     min-height: 0;
     height: auto;
     display: grid;
-    place-items: center;
+    place-items: stretch;
   }
 
   body[data-page="home"] .hero-image {
     grid-area: 1 / 1;
+  }
+
+  body[data-page="home"] .hero-image img {
+    object-position: center 78%;
+    transform: scale(1.1);
+    transform-origin: center 72%;
   }
 
   body[data-page="home"] .hero-text {
@@ -2791,9 +2903,9 @@ body[data-page="home"] .visit-btn.purple:hover {
     min-height: 0;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-end;
     align-items: center;
-    padding: var(--container-padding);
+    padding: clamp(2.5rem, 8vh, 4rem) var(--container-padding) clamp(1rem, 3.5vh, 1.75rem);
     box-sizing: border-box;
     pointer-events: none;
   }
@@ -2812,18 +2924,15 @@ body[data-page="home"] .visit-btn.purple:hover {
     pointer-events: none;
     align-items: center;
     text-align: center;
+    transform: translateY(-85px);
   }
 
   body[data-page="home"] .home-first-screen .marquee {
     flex-shrink: 0;
   }
 
-  body[data-page="home"] .hero-book-btn.yc-widget-open {
-    display: inline-flex !important;
-  }
-
   body[data-page="home"] .yc-widget-fab {
-    display: none !important;
+    display: inline-flex !important;
   }
 
   body[data-page="home"] .hero-image::after {
@@ -2838,7 +2947,7 @@ body[data-page="home"] .visit-btn.purple:hover {
     max-width: 100%;
     text-align: center !important;
     font-weight: 800 !important;
-    font-size: clamp(1.625rem, 7vw, 3.75rem) !important;
+    font-size: clamp(1.875rem, 7.6vw, 4.25rem) !important;
     line-height: 1.06 !important;
     letter-spacing: 0.018em !important;
     text-transform: uppercase !important;
@@ -2880,7 +2989,7 @@ body[data-page="home"] .visit-btn.purple:hover {
 
 @media (max-width: 380px) {
   body[data-page="home"] .hero-text .hero-heading {
-    font-size: clamp(1.1rem, 6.2vw, 1.875rem) !important;
+    font-size: clamp(1.25rem, 6.8vw, 2.125rem) !important;
     letter-spacing: 0.015em !important;
     text-transform: uppercase !important;
   }
@@ -2888,11 +2997,17 @@ body[data-page="home"] .visit-btn.purple:hover {
 
 @media (max-width: 1024px) and (max-height: 667px) {
   body[data-page="home"] .hero-text {
-    padding: clamp(48px, 8vh, 64px) var(--container-padding);
+    padding: clamp(2.75rem, 10vh, 3.5rem) var(--container-padding) clamp(0.75rem, 2.5vh, 1.25rem);
+  }
+
+  body[data-page="home"] .hero-image img {
+    object-position: center 82%;
+    transform: scale(1.12);
+    transform-origin: center 76%;
   }
 
   body[data-page="home"] .hero-text .hero-heading {
-    font-size: clamp(1.1rem, 6vw, 2.125rem) !important;
+    font-size: clamp(1.2rem, 6.4vw, 2.375rem) !important;
     text-transform: uppercase !important;
   }
 
