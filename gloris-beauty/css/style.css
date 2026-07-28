@@ -2766,7 +2766,37 @@ body[data-page="home"] .hero-heading .hero-line--primary {
   text-align: center !important;
 }
 
-body[data-page="home"] .hero-heading .hero-line,
+body[data-page="home"] .hero-heading .hero-line--primary + .hero-line--primary {
+  margin-top: 3px;
+}
+
+@media (min-width: 1025px) {
+  body[data-page="home"] .hero-heading > .hero-line--primary:first-child {
+    display: inline;
+    width: auto;
+    margin-inline: 0;
+  }
+
+  body[data-page="home"] .hero-heading .hero-line--join-prev {
+    display: inline;
+    width: auto;
+    margin-inline: 0;
+    margin-top: 0;
+  }
+
+  body[data-page="home"] .hero-heading .hero-line--join-prev::before {
+    content: '\00a0';
+  }
+
+  body[data-page="home"] .hero-heading .hero-line--row-break {
+    display: block;
+    width: fit-content;
+    margin-inline: auto;
+    margin-top: 3px;
+  }
+}
+
+body[data-page="home"] .hero-heading .hero-line:not(.hero-line--join-prev),
 body[data-page="home"] .hero-lead .hero-line {
   display: block;
 }
@@ -2864,9 +2894,9 @@ body[data-page="home"] .hero-copy .explore-btn {
   position: static;
   margin: 0;
   pointer-events: all;
-  background: transparent !important;
-  color: var(--white) !important;
-  border: 1px solid rgba(255, 255, 255, 0.85) !important;
+  background: var(--white) !important;
+  color: var(--charcoal) !important;
+  border: 1px solid var(--white) !important;
   -webkit-tap-highlight-color: transparent;
   touch-action: manipulation;
   transition:
@@ -2914,9 +2944,9 @@ body[data-page="home"] .hero-book-btn:active {
 }
 
 body[data-page="home"] .hero-copy .explore-btn:is(:hover, :active) {
-  background: var(--white) !important;
-  color: var(--charcoal) !important;
-  border-color: var(--white) !important;
+  background: var(--charcoal) !important;
+  color: var(--white) !important;
+  border-color: var(--charcoal) !important;
   opacity: 1;
 }
 
@@ -3034,22 +3064,31 @@ body[data-page="home"] .visit-btn.purple:hover {
 }
 
 @media (max-width: 1024px) {
+  html.is-hero-mobile-fit {
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+  }
+
   body[data-page="home"] .home-first-screen {
     display: flex;
     flex-direction: column;
+    flex: 0 0 auto;
     min-height: 0;
-    height: calc(100svh - var(--site-header-height, 56px) - 85px);
-    max-height: calc(100svh - var(--site-header-height, 56px) - 85px);
+    height: var(--hero-stage-height, calc(100dvh - var(--site-header-height, 56px)));
+    max-height: var(--hero-stage-height, calc(100dvh - var(--site-header-height, 56px)));
     overflow: hidden;
   }
 
   body[data-page="home"] .home-first-screen .main-content {
-    flex: 1 1 0;
+    flex: 1 1 auto;
     min-height: 0;
-    height: auto;
+    height: 100%;
+    max-height: 100%;
     display: grid;
     grid-template-areas: "hero";
     place-items: stretch;
+    container-type: size;
+    container-name: hero-stage;
   }
 
   body[data-page="home"] .hero-image {
@@ -3060,9 +3099,9 @@ body[data-page="home"] .visit-btn.purple:hover {
 
   body[data-page="home"] .hero-image img,
   body[data-page="home"] .hero-image video {
-    object-position: center 78%;
-    transform: scale(1.1);
-    transform-origin: center 72%;
+    object-position: center 76%;
+    transform: scale(1.08);
+    transform-origin: center 70%;
   }
 
   body[data-page="home"] .hero-text {
@@ -3074,12 +3113,14 @@ body[data-page="home"] .visit-btn.purple:hover {
     height: 100%;
     min-height: 0 !important;
     margin: 0 !important;
-    display: grid !important;
-    place-items: center;
+    display: flex !important;
+    flex-direction: column;
     justify-content: center;
-    align-content: end;
-    padding: var(--container-padding) !important;
-    padding-bottom: clamp(3.5rem, 18vh, 6rem) !important;
+    align-items: center;
+    padding-top: max(0.5rem, env(safe-area-inset-top, 0px)) !important;
+    padding-right: max(var(--container-padding), env(safe-area-inset-right, 0px)) !important;
+    padding-bottom: max(0.5rem, env(safe-area-inset-bottom, 0px)) !important;
+    padding-left: max(var(--container-padding), env(safe-area-inset-left, 0px)) !important;
     box-sizing: border-box;
     pointer-events: none;
   }
@@ -3091,10 +3132,14 @@ body[data-page="home"] .visit-btn.purple:hover {
     padding: 0;
     box-sizing: border-box;
     pointer-events: none;
+    display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     text-align: center;
-    transform: translateY(-15px);
+    transform: translateY(var(--hero-block-shift, clamp(2rem, 9vh, 4.5rem))) scale(var(--hero-copy-scale, 1));
+    transform-origin: center center;
+    will-change: transform;
   }
 
   body[data-page="home"] .home-first-screen .marquee {
@@ -3116,9 +3161,9 @@ body[data-page="home"] .visit-btn.purple:hover {
     max-width: 100%;
     text-align: center !important;
     font-weight: 800 !important;
-    font-size: clamp(1.625rem, 6.8vw, 4.25rem) !important;
-    line-height: 1.06 !important;
-    letter-spacing: 0.014em !important;
+    font-size: var(--hero-title-size, clamp(2.65rem, 12vw, 3.65rem)) !important;
+    line-height: 1.04 !important;
+    letter-spacing: 0.01em !important;
     text-transform: uppercase !important;
   }
 
@@ -3132,22 +3177,38 @@ body[data-page="home"] .visit-btn.purple:hover {
     text-align: center !important;
   }
 
+  body[data-page="home"] .hero-heading .hero-line--primary + .hero-line--primary {
+    margin-top: 3px;
+  }
+
+  body[data-page="home"] .hero-heading .hero-line--join-prev {
+    display: block;
+    width: fit-content;
+    margin-inline: auto;
+  }
+
+  body[data-page="home"] .hero-heading .hero-line--join-prev::before {
+    content: none;
+  }
+
   body[data-page="home"] .hero-lead {
-    margin: calc(0.75rem + 5px) auto 0 !important;
+    margin: calc(0.85rem + 3px) auto 0 !important;
     width: 100%;
-    max-width: 18rem;
+    max-width: 20rem;
+    font-size: var(--hero-lead-size, 0.875rem) !important;
     text-align: center !important;
   }
 
   body[data-page="home"] .hero-actions {
-    margin-top: calc(1.125rem + 5px);
+    margin-top: calc(1.05rem + 3px);
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 10px;
+    gap: var(--hero-actions-gap, 10px);
     width: 100%;
     max-width: 100%;
     margin-inline: auto;
+    pointer-events: all;
   }
 
   body[data-page="home"] .hero-actions .lo-pill-btn {
@@ -3162,49 +3223,41 @@ body[data-page="home"] .visit-btn.purple:hover {
   body[data-page="home"] .hero-lead .hero-line {
     white-space: normal;
   }
+
+  @container hero-stage (max-height: 520px) {
+    body[data-page="home"] .hero-text .hero-heading {
+      font-size: min(var(--hero-title-size, 2rem), 2rem) !important;
+    }
+
+    body[data-page="home"] .hero-actions .lo-pill-btn {
+      min-height: 40px;
+      padding: 11px 20px !important;
+      font-size: 11px !important;
+    }
+  }
+
+  @container hero-stage (max-height: 620px) {
+    body[data-page="home"] .hero-image img,
+    body[data-page="home"] .hero-image video {
+      object-position: center 80%;
+      transform: scale(1.1);
+      transform-origin: center 74%;
+    }
+  }
 }
 
 @media (max-width: 380px) {
   body[data-page="home"] .hero-text .hero-heading {
-    font-size: clamp(1.2rem, 6.2vw, 2rem) !important;
-    letter-spacing: 0.01em !important;
-    text-transform: uppercase !important;
+    letter-spacing: 0.008em !important;
   }
 }
 
 @media (max-width: 1024px) and (max-height: 667px) {
-  body[data-page="home"] .hero-text {
-    align-content: end;
-    padding: clamp(1.75rem, 7vh, 2.5rem) var(--container-padding) clamp(2rem, 12vh, 3.25rem) !important;
-  }
-
   body[data-page="home"] .hero-image img,
   body[data-page="home"] .hero-image video {
     object-position: center 82%;
     transform: scale(1.12);
     transform-origin: center 76%;
-  }
-
-  body[data-page="home"] .hero-text .hero-heading {
-    font-size: clamp(1.2rem, 6.4vw, 2.375rem) !important;
-    text-transform: uppercase !important;
-  }
-
-  body[data-page="home"] .hero-lead {
-    font-size: 0.8125rem !important;
-    margin-top: calc(0.625rem + 5px) !important;
-  }
-
-  body[data-page="home"] .hero-actions {
-    margin-top: calc(1rem + 5px);
-    gap: 8px;
-    max-width: 100%;
-  }
-
-  body[data-page="home"] .hero-actions .lo-pill-btn {
-    padding: 11px 18px !important;
-    min-height: 40px;
-    font-size: 10px !important;
   }
 }
 

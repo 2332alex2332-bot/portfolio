@@ -3,12 +3,13 @@
 :root {
   --yc-fab-bottom-reserve: 0px;
   --yc-fab-size: 3.75rem;
+  --yc-fab-height: 2.375rem;
 }
 
 @media (max-width: 1024px) {
   :root {
     /* FAB + отступ от края + safe-area — зона в футере под кнопку */
-    --yc-fab-bottom-reserve: calc(var(--yc-fab-size) + 32px + env(safe-area-inset-bottom, 0px));
+    --yc-fab-bottom-reserve: calc(var(--yc-fab-height) + 32px + env(safe-area-inset-bottom, 0px));
   }
 }
 
@@ -20,17 +21,20 @@
   display: none;
   align-items: center;
   justify-content: center;
-  min-width: var(--yc-fab-size);
-  min-height: var(--yc-fab-size);
-  padding: 0 1.5rem !important;
+  min-width: auto;
+  width: auto;
+  min-height: var(--yc-fab-height) !important;
+  height: var(--yc-fab-height);
+  padding: 0 1.15rem !important;
   border: 1px solid var(--color-accent-dark, #000);
   border-radius: var(--radius-btn, 9999px) !important;
   background: var(--color-accent-dark, #000);
   color: var(--color-bg-primary, #fff);
   font-family: var(--font-family, 'Inter', system-ui, sans-serif);
-  font-size: 12px !important;
+  font-size: 11px !important;
   font-weight: 600 !important;
   letter-spacing: 0.08em;
+  line-height: 1 !important;
   text-transform: uppercase;
   cursor: pointer;
   white-space: nowrap;
@@ -52,10 +56,6 @@
   }
 
   .top-nav-cta.yc-widget-open {
-    display: none !important;
-  }
-
-  body[data-page="home"] .hero-book-btn.yc-widget-open {
     display: none !important;
   }
 

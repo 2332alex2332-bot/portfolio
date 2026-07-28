@@ -7,15 +7,47 @@ const resetScrollPosition = () => {
 };
 
 resetScrollPosition();
+
+const lockHeroStableHeight = () => {
+  const isMobile = window.matchMedia("(max-width: 1024px)").matches;
+  if (!isMobile) {
+    document.documentElement.style.removeProperty("--hero-stable-height");
+    return;
+  }
+
+  const height =
+    window.visualViewport && window.visualViewport.height > 0
+      ? Math.round(window.visualViewport.height)
+      : window.innerHeight;
+
+  if (height > 0) {
+    document.documentElement.style.setProperty("--hero-stable-height", `${height}px`);
+  }
+};
+
+lockHeroStableHeight();
 window.addEventListener(
   "pageshow",
   (event) => {
-    if (event.persisted) resetScrollPosition();
+    if (event.persisted) {
+      resetScrollPosition();
+      lockHeroStableHeight();
+    }
+  },
+  { passive: true }
+);
+window.addEventListener(
+  "orientationchange",
+  () => {
+    window.setTimeout(lockHeroStableHeight, 150);
   },
   { passive: true }
 );
 
 document.addEventListener("hero-enter-complete", () => {
+  const canSmoothScroll = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+  if (!canSmoothScroll) return;
+
   window.setTimeout(() => {
     document.documentElement.classList.add("is-scroll-smooth");
   }, 100);
@@ -59,6 +91,7 @@ const applyHeaderMorph = (value) => {
   document.documentElement.style.setProperty("--header-morph-slim", fixed);
   document.documentElement.style.setProperty("--header-morph-radius", fixed);
   document.documentElement.style.setProperty("--header-morph-split", splitFixed);
+  document.documentElement.classList.toggle("is-header-island", clamped > 0.5);
 };
 
 const animateHeaderMorphTo = (target) => {

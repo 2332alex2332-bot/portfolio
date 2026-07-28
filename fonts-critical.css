@@ -131,6 +131,8 @@ h3,
   display: flex;
   flex-wrap: wrap;
   align-items: center;
+  justify-content: center;
+  width: 100%;
   gap: clamp(16px, 4vw, 48px);
   margin: 0;
   padding: 0;

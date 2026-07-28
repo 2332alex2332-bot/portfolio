@@ -5,6 +5,9 @@
     const height = Math.ceil(header.getBoundingClientRect().height);
     document.documentElement.style.setProperty('--site-header-height', `${height}px`);
     document.documentElement.style.setProperty('--catalog-sticky-top', `${height}px`);
+    if (typeof window.updateGlorisHeroViewport === 'function') {
+      window.updateGlorisHeroViewport();
+    }
   }
 
   set();
